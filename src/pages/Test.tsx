@@ -1,21 +1,36 @@
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { useNavigate } from "react-router-dom";
+import { supabase } from "@/integrations/supabase/client";
 import Header from "@/components/Header";
+import PaymentSuccessModal from "@/components/PaymentSuccessModal";
 
 const Test = () => {
   const navigate = useNavigate();
   const [currentStep, setCurrentStep] = useState(0);
   const [answers, setAnswers] = useState<Record<number, string>>({});
+  const [showPaymentSuccess, setShowPaymentSuccess] = useState(false);
+  const [isAnimating, setIsAnimating] = useState(false);
 
   const questions = [
     {
       id: 0,
+      title: "Tu es dans quelle filière actuellement ?",
+      type: "single" as const,
+      options: [
+        "Bac général (Scientifique / Littéraire / Éco)",
+        "Bac pro",
+        "Bac techno",
+        "Autre"
+      ]
+    },
+    {
+      id: 1,
       title: "Qu'est-ce qui te motive le plus ?",
-      type: "single",
+      type: "single" as const,
       options: [
         "Aider les autres et avoir un impact positif",
         "Créer, innover et exprimer ma créativité",
@@ -25,9 +40,9 @@ const Test = () => {
       ]
     },
     {
-      id: 1,
+      id: 2,
       title: "Dans quel environnement te sens-tu le mieux ?",
-      type: "single",
+      type: "single" as const,
       options: [
         "En équipe, avec beaucoup d'interactions",
         "Seul(e), dans le calme pour me concentrer",
@@ -37,9 +52,9 @@ const Test = () => {
       ]
     },
     {
-      id: 2,
+      id: 3,
       title: "Quelles matières t'intéressent le plus ?",
-      type: "multiple",
+      type: "multiple" as const,
       options: [
         "Sciences (maths, physique, SVT)",
         "Langues et littérature",
@@ -50,9 +65,9 @@ const Test = () => {
       ]
     },
     {
-      id: 3,
+      id: 4,
       title: "Comment vois-tu ton équilibre vie pro/perso ?",
-      type: "single",
+      type: "single" as const,
       options: [
         "Je veux une carrière intense, je suis ambitieux",
         "L'équilibre est crucial, pas de stress excessif",
@@ -62,9 +77,9 @@ const Test = () => {
       ]
     },
     {
-      id: 4,
+      id: 5,
       title: "Quel est ton plus grand talent ?",
-      type: "single",
+      type: "single" as const,
       options: [
         "Je communique facilement avec tout le monde",
         "Je suis très organisé(e) et méthodique",
@@ -77,6 +92,13 @@ const Test = () => {
 
   const currentQuestion = questions[currentStep];
   const progress = ((currentStep + 1) / questions.length) * 100;
+
+  // Animation effect when changing questions
+  useEffect(() => {
+    setIsAnimating(true);
+    const timer = setTimeout(() => setIsAnimating(false), 300);
+    return () => clearTimeout(timer);
+  }, [currentStep]);
 
   const handleAnswer = (option: string) => {
     const newAnswers = { ...answers };
@@ -126,57 +148,96 @@ const Test = () => {
     }
   };
 
+  const handlePayment = async () => {
+    // Simulate payment processing
+    try {
+      // Store lead in Supabase
+      const leadData = {
+        name: "Test User", // In a real app, this would come from a form
+        email: "test@example.com", // In a real app, this would come from a form
+        current_filiere: answers[0] || "Non spécifié",
+        key_answers: answers
+      };
+
+      const { error } = await supabase
+        .from('leads')
+        .insert([leadData]);
+
+      if (error) {
+        console.error('Error storing lead:', error);
+      } else {
+        console.log('Lead stored successfully');
+      }
+
+      // Show success modal after a short delay (simulating payment processing)
+      setTimeout(() => {
+        setShowPaymentSuccess(true);
+      }, 1500);
+    } catch (error) {
+      console.error('Payment simulation error:', error);
+      // Still show success for simulation purposes
+      setTimeout(() => {
+        setShowPaymentSuccess(true);
+      }, 1500);
+    }
+  };
+
   return (
     <div className="min-h-screen bg-gray-50">
       <Header />
       
-      <div className="pt-24 pb-16 px-4">
-        <div className="container mx-auto max-w-2xl">
+      <div className="pt-20 pb-8 px-3 sm:px-4">
+        <div className="container mx-auto max-w-lg">
           {/* Progress Bar */}
-          <div className="mb-8">
+          <div className="mb-6 animate-fade-in">
             <div className="flex justify-between items-center mb-2">
-              <span className="text-sm font-medium text-primary">
+              <span className="text-xs sm:text-sm font-medium text-primary">
                 Question {currentStep + 1} sur {questions.length}
               </span>
-              <span className="text-sm text-gray-500">
-                {Math.round(progress)}% complété
+              <span className="text-xs sm:text-sm text-gray-500">
+                {Math.round(progress)}%
               </span>
             </div>
-            <Progress value={progress} className="h-2 bg-gray-200" />
+            <Progress 
+              value={progress} 
+              className="h-2 bg-gray-200 transition-all duration-500 ease-out" 
+            />
           </div>
 
           {/* Question Card */}
-          <Card className="mb-8 border-0 shadow-lg">
-            <CardHeader className="pb-4">
-              <CardTitle className="text-2xl text-primary leading-tight">
+          <Card className={`mb-6 border-0 shadow-lg transition-all duration-300 ${
+            isAnimating ? 'opacity-0 translate-y-4' : 'opacity-100 translate-y-0'
+          }`}>
+            <CardHeader className="pb-3 px-4 sm:px-6">
+              <CardTitle className="text-lg sm:text-xl text-primary leading-tight">
                 {currentQuestion.title}
               </CardTitle>
               {currentQuestion.type === "multiple" && (
-                <p className="text-sm text-gray-500 mt-2">
+                <p className="text-xs sm:text-sm text-gray-500 mt-2">
                   Plusieurs réponses possibles
                 </p>
               )}
             </CardHeader>
-            <CardContent>
-              <div className="space-y-3">
+            <CardContent className="px-4 sm:px-6">
+              <div className="space-y-2.5">
                 {currentQuestion.options.map((option, index) => (
                   <button
                     key={index}
                     onClick={() => handleAnswer(option)}
-                    className={`w-full p-4 text-left rounded-2xl border transition-all hover:shadow-md ${
+                    className={`w-full p-3 sm:p-4 text-left text-sm sm:text-base rounded-xl border transition-all duration-200 hover:shadow-md transform hover:scale-[1.02] ${
                       isAnswerSelected(option)
-                        ? "bg-primary/10 border-primary text-primary font-medium"
+                        ? "bg-primary/10 border-primary text-primary font-medium shadow-sm"
                         : "bg-white border-gray-200 hover:border-gray-300"
                     }`}
                   >
-                    <div className="flex items-center">
-                      <div className={`w-5 h-5 rounded-full border-2 mr-3 flex-shrink-0 ${
+                    <div className="flex items-start">
+                      <div className={`w-4 h-4 sm:w-5 sm:h-5 rounded-full border-2 mr-3 flex-shrink-0 mt-0.5 transition-all duration-200 ${
                         isAnswerSelected(option)
-                          ? "bg-primary border-primary"
+                          ? "bg-primary border-primary scale-110"
                           : "border-gray-300"
                       }`}>
                         {isAnswerSelected(option) && (
-                          <div className="w-full h-full rounded-full bg-white scale-50"></div>
+                          <div className="w-full h-full rounded-full bg-white scale-50 transition-transform duration-200"></div>
                         )}
                       </div>
                       <span className="leading-relaxed">{option}</span>
@@ -188,37 +249,28 @@ const Test = () => {
           </Card>
 
           {/* Navigation Buttons */}
-          <div className="flex justify-between items-center">
+          <div className="flex justify-between items-center gap-2 mb-6">
             <Button
               variant="outline"
               onClick={handlePrevious}
               disabled={currentStep === 0}
-              className="px-6 py-2 rounded-2xl"
+              className="px-4 sm:px-6 py-2 rounded-xl text-sm transition-all duration-200 hover:scale-105 disabled:hover:scale-100"
             >
               Précédent
             </Button>
 
-            <div className="flex items-center space-x-2">
-              <Button
-                variant="ghost"
-                className="text-gray-500 hover:text-primary"
-              >
-                Sauvegarder et continuer plus tard
-              </Button>
-            </div>
-
             <Button
-              onClick={handleNext}
+              onClick={currentStep === questions.length - 1 ? handlePayment : handleNext}
               disabled={!canProceed()}
-              className="bg-primary hover:bg-primary/90 text-white px-6 py-2 rounded-2xl transition-all hover:scale-105"
+              className="bg-primary hover:bg-primary/90 text-white px-4 sm:px-6 py-2 rounded-xl font-medium text-sm transition-all duration-200 hover:scale-105 disabled:hover:scale-100 disabled:opacity-50"
             >
-              {currentStep === questions.length - 1 ? "Terminer" : "Suivant"}
+              {currentStep === questions.length - 1 ? "Obtenir mes résultats" : "Suivant"}
             </Button>
           </div>
 
           {/* Encouragement */}
-          <div className="text-center mt-8">
-            <p className="text-gray-600">
+          <div className="text-center">
+            <p className="text-gray-600 text-sm animate-fade-in">
               {currentStep < questions.length - 1 
                 ? "Courage, vous y êtes presque ! 💪"
                 : "Dernière question, vous touchez au but ! 🎯"
@@ -227,6 +279,12 @@ const Test = () => {
           </div>
         </div>
       </div>
+
+      {/* Payment Success Modal */}
+      <PaymentSuccessModal 
+        isOpen={showPaymentSuccess}
+        onClose={() => setShowPaymentSuccess(false)}
+      />
     </div>
   );
 };
