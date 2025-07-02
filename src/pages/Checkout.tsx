@@ -1,5 +1,5 @@
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -33,12 +33,16 @@ const Checkout = () => {
     setIsProcessing(true);
 
     try {
+      // Get test answers from localStorage
+      const testAnswers = localStorage.getItem('testAnswers');
+      const parsedAnswers = testAnswers ? JSON.parse(testAnswers) : {};
+
       // Store lead in Supabase
       const leadData = {
         name: formData.name,
         email: formData.email,
         current_filiere: formData.currentFiliere || "Non spécifié",
-        key_answers: {} // Empty for checkout form leads
+        key_answers: parsedAnswers
       };
 
       const { error } = await supabase

@@ -6,13 +6,11 @@ import { Progress } from "@/components/ui/progress";
 import { useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import Header from "@/components/Header";
-import PaymentSuccessModal from "@/components/PaymentSuccessModal";
 
 const Test = () => {
   const navigate = useNavigate();
   const [currentStep, setCurrentStep] = useState(0);
   const [answers, setAnswers] = useState<Record<number, string>>({});
-  const [showPaymentSuccess, setShowPaymentSuccess] = useState(false);
   const [isAnimating, setIsAnimating] = useState(false);
 
   const questions = [
@@ -90,6 +88,16 @@ const Test = () => {
     }
   ];
 
+  // Messages d'encouragement différents pour chaque question
+  const encouragementMessages = [
+    "Excellente première question ! Continuons ensemble 🚀",
+    "Tu prends forme ! Encore quelques questions 💪",
+    "C'est parfait ! On avance bien 🎯",
+    "Super ! Tu es à mi-parcours 🌟",
+    "Presque fini ! Plus qu'une question 🔥",
+    "Dernière question, tu touches au but ! 🎉"
+  ];
+
   const currentQuestion = questions[currentStep];
   const progress = ((currentStep + 1) / questions.length) * 100;
 
@@ -137,8 +145,8 @@ const Test = () => {
     if (currentStep < questions.length - 1) {
       setCurrentStep(currentStep + 1);
     } else {
-      // Test completed, go to checkout
-      navigate('/checkout');
+      // Test completed, store answers and go to checkout
+      handleTestCompletion();
     }
   };
 
@@ -148,37 +156,17 @@ const Test = () => {
     }
   };
 
-  const handlePayment = async () => {
-    // Simulate payment processing
+  const handleTestCompletion = async () => {
     try {
-      // Store lead in Supabase
-      const leadData = {
-        name: "Test User", // In a real app, this would come from a form
-        email: "test@example.com", // In a real app, this would come from a form
-        current_filiere: answers[0] || "Non spécifié",
-        key_answers: answers
-      };
-
-      const { error } = await supabase
-        .from('leads')
-        .insert([leadData]);
-
-      if (error) {
-        console.error('Error storing lead:', error);
-      } else {
-        console.log('Lead stored successfully');
-      }
-
-      // Show success modal after a short delay (simulating payment processing)
-      setTimeout(() => {
-        setShowPaymentSuccess(true);
-      }, 1500);
+      // Store test answers in localStorage for checkout
+      localStorage.setItem('testAnswers', JSON.stringify(answers));
+      
+      // Navigate to checkout
+      navigate('/checkout');
     } catch (error) {
-      console.error('Payment simulation error:', error);
-      // Still show success for simulation purposes
-      setTimeout(() => {
-        setShowPaymentSuccess(true);
-      }, 1500);
+      console.error('Error storing test data:', error);
+      // Still navigate to checkout even if storage fails
+      navigate('/checkout');
     }
   };
 
@@ -260,7 +248,7 @@ const Test = () => {
             </Button>
 
             <Button
-              onClick={currentStep === questions.length - 1 ? handlePayment : handleNext}
+              onClick={handleNext}
               disabled={!canProceed()}
               className="bg-primary hover:bg-primary/90 text-white px-4 sm:px-6 py-2 rounded-xl font-medium text-sm transition-all duration-200 hover:scale-105 disabled:hover:scale-100 disabled:opacity-50"
             >
@@ -271,20 +259,11 @@ const Test = () => {
           {/* Encouragement */}
           <div className="text-center">
             <p className="text-gray-600 text-sm animate-fade-in">
-              {currentStep < questions.length - 1 
-                ? "Courage, vous y êtes presque ! 💪"
-                : "Dernière question, vous touchez au but ! 🎯"
-              }
+              {encouragementMessages[currentStep]}
             </p>
           </div>
         </div>
       </div>
-
-      {/* Payment Success Modal */}
-      <PaymentSuccessModal 
-        isOpen={showPaymentSuccess}
-        onClose={() => setShowPaymentSuccess(false)}
-      />
     </div>
   );
 };
