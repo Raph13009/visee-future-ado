@@ -13,7 +13,7 @@ const CheckoutButton = ({ isProcessing, totalPrice, isDisabled, onPayment }: Che
     <Button
       onClick={onPayment}
       disabled={isDisabled}
-      className="w-full bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-white py-5 sm:py-6 rounded-xl font-bold text-sm sm:text-base transition-all duration-200 hover:scale-105 disabled:hover:scale-100 disabled:opacity-50 mb-4 shadow-lg"
+      className="w-full bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-white py-6 sm:py-8 px-4 sm:px-6 rounded-xl font-bold text-sm sm:text-base transition-all duration-200 hover:scale-105 disabled:hover:scale-100 disabled:opacity-50 mb-4 shadow-lg min-h-[80px] sm:min-h-[100px]"
     >
       {isProcessing ? (
         <div className="flex items-center justify-center gap-2">
@@ -21,8 +21,8 @@ const CheckoutButton = ({ isProcessing, totalPrice, isDisabled, onPayment }: Che
           <span className="text-sm sm:text-base">Traitement sécurisé...</span>
         </div>
       ) : (
-        <div className="flex flex-col items-center justify-center gap-1">
-          <span className="text-sm sm:text-base">🚀 Commencer maintenant</span>
+        <div className="flex flex-col items-center justify-center gap-2">
+          <span className="text-sm sm:text-base leading-tight">🚀 Commencer maintenant</span>
           <div className="flex items-center gap-2">
             <span className="text-lg sm:text-xl font-bold">{totalPrice}€</span>
             <div className="text-xs bg-white/20 px-2 py-1 rounded-full">
