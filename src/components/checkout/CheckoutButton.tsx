@@ -22,7 +22,7 @@ const CheckoutButton = ({ isProcessing, totalPrice, isDisabled, onPayment }: Che
         </div>
       ) : (
         <div className="flex flex-col items-center justify-center gap-1">
-          <span className="text-sm sm:text-base">🚀 Accéder au coaching</span>
+          <span className="text-sm sm:text-base">🚀 Commencer maintenant</span>
           <div className="flex items-center gap-2">
             <span className="text-lg sm:text-xl font-bold">{totalPrice}€</span>
             <div className="text-xs bg-white/20 px-2 py-1 rounded-full">
