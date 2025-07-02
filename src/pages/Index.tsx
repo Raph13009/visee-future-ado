@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import Header from "@/components/Header";
@@ -30,7 +29,7 @@ const Index = () => {
     {
       icon: "💰",
       title: "Prix mini, impact maxi",
-      description: "15€ seulement pour débloquer votre orientation"
+      description: "18€ seulement pour débloquer votre orientation"
     }
   ];
 
@@ -88,10 +87,6 @@ const Index = () => {
             >
               Commencer le test 🚀
             </Button>
-            
-            <p className="text-sm text-gray-500 mt-4">
-              15€ • 10 minutes • Résultats garantis
-            </p>
           </div>
         </div>
       </section>

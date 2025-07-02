@@ -72,7 +72,7 @@ const Checkout = () => {
       
       <div className="pt-20 pb-8 px-3 sm:px-4">
         <div className="container mx-auto max-w-lg">
-          <div className="text-center mb-8 animate-fade-in">
+          <div className="text-center mb-8">
             <h1 className="text-2xl sm:text-3xl font-bold text-primary mb-3">
               Obtiens ton coaching personnalisé
             </h1>
@@ -81,7 +81,7 @@ const Checkout = () => {
             </p>
           </div>
 
-          <Card className="border-0 shadow-lg mb-6 animate-fade-in">
+          <Card className="border-0 shadow-lg mb-6">
             <CardHeader className="pb-4 px-4 sm:px-6">
               <CardTitle className="text-lg sm:text-xl text-primary">
                 Informations personnelles
@@ -134,7 +134,7 @@ const Checkout = () => {
             </CardContent>
           </Card>
 
-          <Card className="border-0 shadow-lg mb-6 animate-fade-in">
+          <Card className="border-0 shadow-lg mb-6">
             <CardHeader className="pb-4 px-4 sm:px-6">
               <CardTitle className="text-lg sm:text-xl text-primary">
                 Coaching personnalisé
@@ -144,7 +144,7 @@ const Checkout = () => {
               <div className="space-y-4">
                 <div className="flex justify-between items-center py-2">
                   <span className="text-sm sm:text-base text-gray-700">Analyse personnalisée</span>
-                  <span className="font-medium text-sm sm:text-base">29€</span>
+                  <span className="font-medium text-sm sm:text-base">18€</span>
                 </div>
                 <div className="flex justify-between items-center py-2">
                   <span className="text-sm sm:text-base text-gray-700">Appel coaching (30min)</span>
@@ -153,7 +153,7 @@ const Checkout = () => {
                 <div className="border-t pt-4">
                   <div className="flex justify-between items-center">
                     <span className="text-base sm:text-lg font-semibold text-primary">Total</span>
-                    <span className="text-xl sm:text-2xl font-bold text-primary">29€</span>
+                    <span className="text-xl sm:text-2xl font-bold text-primary">18€</span>
                   </div>
                 </div>
               </div>
