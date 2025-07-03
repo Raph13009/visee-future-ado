@@ -1,12 +1,10 @@
 
 import { useState, useEffect } from "react";
-import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Header from "@/components/Header";
 
 const Results = () => {
   const [isReportReady, setIsReportReady] = useState(false);
-  const [showCalendar, setShowCalendar] = useState(false);
 
   useEffect(() => {
     // Simulate report generation
@@ -16,17 +14,6 @@ const Results = () => {
 
     return () => clearTimeout(timer);
   }, []);
-
-  const handleBookCall = () => {
-    setShowCalendar(true);
-    // In a real implementation, this would integrate with Calendly
-    console.log("Opening Calendly integration...");
-  };
-
-  const handleDownloadReport = () => {
-    // In a real implementation, this would download the actual PDF
-    console.log("Downloading personalized report...");
-  };
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -76,7 +63,7 @@ const Results = () => {
                         <span className="font-semibold text-green-700">Rapport prêt !</span>
                       </div>
                       <p className="text-green-600 text-sm">
-                        Votre analyse personnalisée de 8 pages est disponible
+                        Votre analyse personnalisée sera envoyée par email
                       </p>
                     </div>
 
@@ -101,13 +88,6 @@ const Results = () => {
                         </li>
                       </ul>
                     </div>
-
-                    <Button 
-                      onClick={handleDownloadReport}
-                      className="w-full bg-primary hover:bg-primary/90 text-white py-3 rounded-2xl font-medium transition-all hover:scale-105"
-                    >
-                      Télécharger mon rapport PDF 📄
-                    </Button>
                   </div>
                 )}
               </CardContent>
@@ -127,8 +107,7 @@ const Results = () => {
                     30 minutes avec un expert
                   </h3>
                   <p className="text-gray-600 text-sm leading-relaxed">
-                    Un coach certifié reprendra votre rapport avec vous, répondra à vos questions 
-                    et vous aidera à affiner vos choix d'orientation.
+                    Un coach certifié vous contactera dans les prochains jours pour reprendre votre rapport avec vous et vous aider à affiner vos choix d'orientation.
                   </p>
                 </div>
 
@@ -154,29 +133,13 @@ const Results = () => {
                   </ul>
                 </div>
 
-                {!showCalendar ? (
-                  <Button 
-                    onClick={handleBookCall}
-                    className="w-full bg-secondary hover:bg-secondary/90 text-white py-3 rounded-2xl font-medium transition-all hover:scale-105"
-                  >
-                    Réserver mon créneau 📅
-                  </Button>
-                ) : (
-                  <div className="bg-gray-100 p-6 rounded-2xl text-center">
-                    <div className="text-4xl mb-3">📅</div>
-                    <h3 className="font-semibold text-primary mb-2">Calendly Integration</h3>
-                    <p className="text-gray-600 text-sm">
-                      Ici s'afficherait le widget Calendly pour choisir votre créneau
-                    </p>
-                    <Button 
-                      variant="outline" 
-                      onClick={() => setShowCalendar(false)}
-                      className="mt-3 rounded-2xl"
-                    >
-                      Fermer
-                    </Button>
-                  </div>
-                )}
+                <div className="bg-gray-100 p-6 rounded-2xl text-center">
+                  <div className="text-4xl mb-3">📅</div>
+                  <h3 className="font-semibold text-primary mb-2">Rendez-vous programmé</h3>
+                  <p className="text-gray-600 text-sm">
+                    Vous serez contacté dans les 7 jours pour programmer votre appel coaching
+                  </p>
+                </div>
               </CardContent>
             </Card>
           </div>
@@ -199,46 +162,22 @@ const Results = () => {
                   </p>
                 </div>
                 <div className="text-center p-4 bg-gray-50 rounded-2xl">
-                  <div className="text-3xl mb-2">💬</div>
-                  <h3 className="font-semibold text-primary mb-1">Appel programmé</h3>
+                  <div className="text-3xl mb-2">📄</div>
+                  <h3 className="font-semibold text-primary mb-1">Rapport PDF</h3>
                   <p className="text-sm text-gray-600">
-                    Rendez-vous avec votre coach dans les 7 jours
+                    Votre analyse complète envoyée par email
                   </p>
                 </div>
                 <div className="text-center p-4 bg-gray-50 rounded-2xl">
-                  <div className="text-3xl mb-2">📝</div>
-                  <h3 className="font-semibold text-primary mb-1">Résumé d'appel</h3>
+                  <div className="text-3xl mb-2">💬</div>
+                  <h3 className="font-semibold text-primary mb-1">Appel coaching</h3>
                   <p className="text-sm text-gray-600">
-                    Notes personnalisées envoyées après l'échange
+                    Rendez-vous programmé dans les 7 jours
                   </p>
                 </div>
               </div>
             </CardContent>
           </Card>
-
-          {/* Support */}
-          <div className="text-center mt-8 p-6 bg-white rounded-2xl shadow-sm">
-            <h3 className="font-semibold text-primary mb-2">Une question ?</h3>
-            <p className="text-gray-600 mb-4">
-              Notre équipe est là pour vous accompagner
-            </p>
-            <div className="flex flex-col sm:flex-row gap-3 justify-center">
-              <a 
-                href="mailto:hello@orienteo.fr" 
-                className="flex items-center justify-center space-x-2 text-primary hover:text-primary/80 transition-colors"
-              >
-                <span>📧</span>
-                <span>hello@orienteo.fr</span>
-              </a>
-              <a 
-                href="tel:0123456789" 
-                className="flex items-center justify-center space-x-2 text-primary hover:text-primary/80 transition-colors"
-              >
-                <span>📞</span>
-                <span>01 23 45 67 89</span>
-              </a>
-            </div>
-          </div>
         </div>
       </div>
     </div>
