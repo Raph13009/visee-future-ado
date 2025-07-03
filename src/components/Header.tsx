@@ -12,10 +12,14 @@ const Header = () => {
           onClick={() => navigate('/')}
           className="flex items-center space-x-3 cursor-pointer hover:opacity-80 transition-opacity"
         >
-          <div className="w-10 h-10 rounded-2xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center">
-            <span className="text-white font-bold text-lg">🧭</span>
+          <div className="w-10 h-10 rounded-2xl flex items-center justify-center">
+            <img 
+              src="/lovable-uploads/d90e4f60-4ab5-48a0-9e2f-ba4658dc9b54.png" 
+              alt="Avenirea Logo" 
+              className="w-full h-full object-contain"
+            />
           </div>
-          <span className="text-xl font-semibold text-primary tracking-tight">Orienteo</span>
+          <span className="text-xl font-semibold text-primary tracking-tight">Avenirea</span>
         </div>
         
         <nav className="hidden md:flex items-center space-x-8">

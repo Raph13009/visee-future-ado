@@ -6,10 +6,14 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div className="space-y-4">
             <div className="flex items-center space-x-3">
-              <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center">
-                <span className="text-white font-bold">🧭</span>
+              <div className="w-8 h-8 rounded-xl flex items-center justify-center">
+                <img 
+                  src="/lovable-uploads/d90e4f60-4ab5-48a0-9e2f-ba4658dc9b54.png" 
+                  alt="Avenirea Logo" 
+                  className="w-full h-full object-contain"
+                />
               </div>
-              <span className="text-lg font-semibold text-primary">Orienteo</span>
+              <span className="text-lg font-semibold text-primary">Avenirea</span>
             </div>
             <p className="text-gray-600 text-sm leading-relaxed">
               Trouver sa voie n'a jamais été aussi simple.
@@ -36,7 +40,7 @@ const Footer = () => {
         </div>
 
         <div className="mt-8 pt-8 border-t border-gray-200 text-center text-sm text-gray-500">
-          <p>&copy; {new Date().getFullYear()} Orienteo. Tous droits réservés.</p>
+          <p>&copy; {new Date().getFullYear()} Avenirea. Tous droits réservés.</p>
         </div>
       </div>
     </footer>

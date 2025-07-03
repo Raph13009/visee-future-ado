@@ -96,7 +96,7 @@ const Index = () => {
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-primary mb-4">
-              Pourquoi choisir Orienteo ?
+              Pourquoi choisir Avenirea ?
             </h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
               Une approche unique qui combine technologie et accompagnement humain
@@ -166,7 +166,7 @@ const Index = () => {
               Questions fréquentes
             </h2>
             <p className="text-xl text-gray-600">
-              Tout ce que vous devez savoir sur Orienteo
+              Tout ce que vous devez savoir sur Avenirea
             </p>
           </div>
           
