@@ -1,10 +1,11 @@
+
 import { useState, useEffect } from "react";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Progress } from "@/components/ui/progress";
 import { useNavigate } from "react-router-dom";
-import { supabase } from "@/integrations/supabase/client";
 import Header from "@/components/Header";
+import ProgressBar from "@/components/test/ProgressBar";
+import QuestionCard from "@/components/test/QuestionCard";
+import NavigationButtons from "@/components/test/NavigationButtons";
+import EncouragementMessage from "@/components/test/EncouragementMessage";
 
 const Test = () => {
   const navigate = useNavigate();
@@ -127,22 +128,7 @@ const Test = () => {
     }
   ];
 
-  // Messages d'encouragement différents pour chaque question
-  const encouragementMessages = [
-    "Excellente première question ! Continuons ensemble 🚀",
-    "Tu prends forme ! Encore quelques questions 💪",
-    "C'est parfait ! On avance bien 🎯",
-    "Super ! Tu es à mi-parcours 🌟",
-    "Génial ! On progresse 🔥",
-    "Très bien ! Plus que quelques questions 💫",
-    "Excellent ! Tu touches au but 🎊",
-    "Parfait ! Dernière ligne droite 🏁",
-    "Bravo ! Une dernière question 🎉",
-    "Dernière question, tu y es presque ! 🎁"
-  ];
-
   const currentQuestion = questions[currentStep];
-  const progress = ((currentStep + 1) / questions.length) * 100;
 
   // Animation effect when changing questions
   useEffect(() => {
@@ -163,12 +149,6 @@ const Test = () => {
     setAnswers(newAnswers);
   };
 
-  const isAnswerSelected = (option: string) => {
-    const currentAnswer = answers[currentStep];
-    if (!currentAnswer) return false;
-    return currentAnswer === option;
-  };
-
   const canProceed = () => {
     return answers[currentStep] && answers[currentStep].trim() !== "";
   };
@@ -177,7 +157,6 @@ const Test = () => {
     if (currentStep < questions.length - 1) {
       setCurrentStep(currentStep + 1);
     } else {
-      // Test completed, store answers and go to checkout
       handleTestCompletion();
     }
   };
@@ -190,14 +169,10 @@ const Test = () => {
 
   const handleTestCompletion = async () => {
     try {
-      // Store test answers in localStorage for checkout
       localStorage.setItem('testAnswers', JSON.stringify(answers));
-      
-      // Navigate to checkout
       navigate('/checkout');
     } catch (error) {
       console.error('Error storing test data:', error);
-      // Still navigate to checkout even if storage fails
       navigate('/checkout');
     }
   };
@@ -208,101 +183,28 @@ const Test = () => {
       
       <div className="pt-20 pb-8 px-3 sm:px-4">
         <div className="container mx-auto max-w-lg">
-          {/* Progress Bar */}
-          <div className="mb-6 animate-fade-in">
-            <div className="flex justify-between items-center mb-2">
-              <span className="text-xs sm:text-sm font-medium text-primary">
-                Question {currentStep + 1} sur {questions.length}
-              </span>
-              <span className="text-xs sm:text-sm text-gray-500">
-                {Math.round(progress)}%
-              </span>
-            </div>
-            <Progress 
-              value={progress} 
-              className="h-2 bg-gray-200 transition-all duration-500 ease-out" 
-            />
-          </div>
+          <ProgressBar 
+            currentStep={currentStep} 
+            totalSteps={questions.length} 
+          />
 
-          {/* Question Card */}
-          <Card className={`mb-6 border-0 shadow-lg transition-all duration-300 ${
-            isAnimating ? 'opacity-0 translate-y-4' : 'opacity-100 translate-y-0'
-          }`}>
-            <CardHeader className="pb-3 px-4 sm:px-6">
-              <CardTitle className="text-lg sm:text-xl text-primary leading-tight">
-                {currentQuestion.title}
-              </CardTitle>
-              {currentQuestion.type === "text" && (
-                <p className="text-xs sm:text-sm text-gray-500 mt-2">
-                  Réponse libre
-                </p>
-              )}
-            </CardHeader>
-            <CardContent className="px-4 sm:px-6">
-              {currentQuestion.type === "text" ? (
-                <textarea
-                  value={answers[currentStep] || ""}
-                  onChange={(e) => handleTextAnswer(e.target.value)}
-                  placeholder="Partage ton rêve professionnel..."
-                  className="w-full p-4 border border-gray-200 rounded-xl focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all duration-200 min-h-[120px] resize-none text-sm sm:text-base"
-                />
-              ) : (
-                <div className="space-y-2.5">
-                  {currentQuestion.options.map((option, index) => (
-                    <button
-                      key={index}
-                      onClick={() => handleAnswer(option)}
-                      className={`w-full p-3 sm:p-4 text-left text-sm sm:text-base rounded-xl border transition-all duration-200 hover:shadow-md transform hover:scale-[1.02] ${
-                        isAnswerSelected(option)
-                          ? "bg-primary/10 border-primary text-primary font-medium shadow-sm"
-                          : "bg-white border-gray-200 hover:border-gray-300"
-                      }`}
-                    >
-                      <div className="flex items-start">
-                        <div className={`w-4 h-4 sm:w-5 sm:h-5 rounded-full border-2 mr-3 flex-shrink-0 mt-0.5 transition-all duration-200 ${
-                          isAnswerSelected(option)
-                            ? "bg-primary border-primary scale-110"
-                            : "border-gray-300"
-                        }`}>
-                          {isAnswerSelected(option) && (
-                            <div className="w-full h-full rounded-full bg-white scale-50 transition-transform duration-200"></div>
-                          )}
-                        </div>
-                        <span className="leading-relaxed">{option}</span>
-                      </div>
-                    </button>
-                  ))}
-                </div>
-              )}
-            </CardContent>
-          </Card>
+          <QuestionCard
+            question={currentQuestion}
+            currentAnswer={answers[currentStep]}
+            isAnimating={isAnimating}
+            onAnswer={handleAnswer}
+            onTextAnswer={handleTextAnswer}
+          />
 
-          {/* Navigation Buttons */}
-          <div className="flex justify-between items-center gap-2 mb-6">
-            <Button
-              variant="outline"
-              onClick={handlePrevious}
-              disabled={currentStep === 0}
-              className="px-4 sm:px-6 py-2 rounded-xl text-sm transition-all duration-200 hover:scale-105 disabled:hover:scale-100"
-            >
-              Précédent
-            </Button>
+          <NavigationButtons
+            currentStep={currentStep}
+            totalSteps={questions.length}
+            canProceed={canProceed()}
+            onPrevious={handlePrevious}
+            onNext={handleNext}
+          />
 
-            <Button
-              onClick={handleNext}
-              disabled={!canProceed()}
-              className="bg-primary hover:bg-primary/90 text-white px-4 sm:px-6 py-2 rounded-xl font-medium text-sm transition-all duration-200 hover:scale-105 disabled:hover:scale-100 disabled:opacity-50"
-            >
-              {currentStep === questions.length - 1 ? "Obtenir mes résultats" : "Suivant"}
-            </Button>
-          </div>
-
-          {/* Encouragement */}
-          <div className="text-center">
-            <p className="text-gray-600 text-sm animate-fade-in">
-              {encouragementMessages[currentStep]}
-            </p>
-          </div>
+          <EncouragementMessage currentStep={currentStep} />
         </div>
       </div>
     </div>
