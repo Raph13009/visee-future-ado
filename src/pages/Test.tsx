@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -154,19 +153,7 @@ const Test = () => {
 
   const handleAnswer = (option: string) => {
     const newAnswers = { ...answers };
-    
-    if (currentQuestion.type === "multiple") {
-      const currentAnswers = newAnswers[currentStep]?.split(",") || [];
-      if (currentAnswers.includes(option)) {
-        const filtered = currentAnswers.filter(a => a !== option);
-        newAnswers[currentStep] = filtered.join(",");
-      } else {
-        newAnswers[currentStep] = [...currentAnswers, option].join(",");
-      }
-    } else {
-      newAnswers[currentStep] = option;
-    }
-    
+    newAnswers[currentStep] = option;
     setAnswers(newAnswers);
   };
 
@@ -179,11 +166,6 @@ const Test = () => {
   const isAnswerSelected = (option: string) => {
     const currentAnswer = answers[currentStep];
     if (!currentAnswer) return false;
-    
-    if (currentQuestion.type === "multiple") {
-      return currentAnswer.split(",").includes(option);
-    }
-    
     return currentAnswer === option;
   };
 
@@ -250,11 +232,6 @@ const Test = () => {
               <CardTitle className="text-lg sm:text-xl text-primary leading-tight">
                 {currentQuestion.title}
               </CardTitle>
-              {currentQuestion.type === "multiple" && (
-                <p className="text-xs sm:text-sm text-gray-500 mt-2">
-                  Plusieurs réponses possibles
-                </p>
-              )}
               {currentQuestion.type === "text" && (
                 <p className="text-xs sm:text-sm text-gray-500 mt-2">
                   Réponse libre
