@@ -14,7 +14,7 @@ const CheckoutButton = ({ isProcessing, totalPrice, isDisabled, onPayment }: Che
       <Button
         onClick={onPayment}
         disabled={isDisabled}
-        className="w-full bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-white py-4 px-6 rounded-xl font-bold text-base transition-all duration-200 hover:scale-105 disabled:hover:scale-100 disabled:opacity-50 shadow-lg"
+        className="w-full bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 text-white py-4 px-6 rounded-xl font-bold text-base transition-all duration-200 hover:scale-105 hover:shadow-xl disabled:hover:scale-100 disabled:opacity-50 shadow-lg cursor-pointer"
       >
         {isProcessing ? (
           <div className="flex items-center justify-center gap-2">
@@ -32,7 +32,7 @@ const CheckoutButton = ({ isProcessing, totalPrice, isDisabled, onPayment }: Che
             <span className="text-sm text-gray-600">
               🟢 {totalPrice}€ – analyse + appel inclus
             </span>
-            <div className="bg-green-500 text-white px-3 py-1 rounded-full text-xs font-bold">
+            <div className="bg-gray-100 text-gray-600 px-2 py-1 rounded-full text-xs font-medium border">
               -79%
             </div>
           </div>
