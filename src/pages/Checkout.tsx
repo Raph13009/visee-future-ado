@@ -31,7 +31,8 @@ const Checkout = () => {
 
   const basePrice = 18;
   const monthlyCoachingPrice = 49;
-  const totalPrice = includeMonthlyCoaching ? basePrice + monthlyCoachingPrice : basePrice;
+  // Total price should be 67€ when coaching is included (not 18 + 49)
+  const totalPrice = includeMonthlyCoaching ? 67 : basePrice;
 
   const handlePayment = async () => {
     if (!formData.name || !formData.email) {
@@ -103,7 +104,7 @@ const Checkout = () => {
           <CheckoutButton
             isProcessing={isProcessing}
             totalPrice={totalPrice}
-            isDisabled={isProcessing || !formData.name || !formData.email}
+            isDisabled={!formData.name || !formData.email}
             onPayment={handlePayment}
           />
         </div>

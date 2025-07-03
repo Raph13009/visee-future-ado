@@ -9,13 +9,17 @@ interface CheckoutButtonProps {
 }
 
 const CheckoutButton = ({ isProcessing, totalPrice, isDisabled, onPayment }: CheckoutButtonProps) => {
-  const handleStripePayment = () => {
+  const handleStripePayment = async () => {
     if (isDisabled || isProcessing) return;
     
+    // Call onPayment first to store lead data
+    await onPayment();
+    
     // Determine which Stripe link to use based on total price
-    const stripeUrl = totalPrice === 18 
-      ? "https://buy.stripe.com/9B6dRaevWbT3bDK0nY7IY00" 
-      : "https://buy.stripe.com/3cI3cwdrS6yJazGc6G7IY01";
+    // 18€ for base product, 67€ for product with monthly coaching (18 + 49)
+    const stripeUrl = totalPrice === 67 
+      ? "https://buy.stripe.com/3cI3cwdrS6yJazGc6G7IY01"  // 67€ product
+      : "https://buy.stripe.com/9B6dRaevWbT3bDK0nY7IY00"; // 18€ product
     
     // Add success URL parameter to redirect to /results after payment
     const successUrl = encodeURIComponent(`${window.location.origin}/results`);
@@ -29,7 +33,7 @@ const CheckoutButton = ({ isProcessing, totalPrice, isDisabled, onPayment }: Che
     <div className="space-y-4">
       <Button
         onClick={handleStripePayment}
-        disabled={isDisabled}
+        disabled={isDisabled || isProcessing}
         className="w-full bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-white py-4 px-6 rounded-xl font-bold text-base transition-all duration-200 hover:scale-105 hover:shadow-xl disabled:hover:scale-100 disabled:opacity-50 shadow-lg cursor-pointer"
       >
         {isProcessing ? (
