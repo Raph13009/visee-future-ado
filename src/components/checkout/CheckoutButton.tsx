@@ -9,10 +9,26 @@ interface CheckoutButtonProps {
 }
 
 const CheckoutButton = ({ isProcessing, totalPrice, isDisabled, onPayment }: CheckoutButtonProps) => {
+  const handleStripePayment = () => {
+    if (isDisabled || isProcessing) return;
+    
+    // Determine which Stripe link to use based on total price
+    const stripeUrl = totalPrice === 18 
+      ? "https://buy.stripe.com/9B6dRaevWbT3bDK0nY7IY00" 
+      : "https://buy.stripe.com/3cI3cwdrS6yJazGc6G7IY01";
+    
+    // Add success URL parameter to redirect to /results after payment
+    const successUrl = encodeURIComponent(`${window.location.origin}/results`);
+    const finalUrl = `${stripeUrl}?success_url=${successUrl}`;
+    
+    // Open Stripe checkout in the same tab
+    window.location.href = finalUrl;
+  };
+
   return (
     <div className="space-y-4">
       <Button
-        onClick={onPayment}
+        onClick={handleStripePayment}
         disabled={isDisabled}
         className="w-full bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-white py-4 px-6 rounded-xl font-bold text-base transition-all duration-200 hover:scale-105 hover:shadow-xl disabled:hover:scale-100 disabled:opacity-50 shadow-lg cursor-pointer"
       >

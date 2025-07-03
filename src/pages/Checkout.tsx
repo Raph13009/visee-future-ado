@@ -39,14 +39,12 @@ const Checkout = () => {
       return;
     }
 
-    setIsProcessing(true);
-
     try {
       // Get test answers from localStorage
       const testAnswers = localStorage.getItem('testAnswers');
       const parsedAnswers = testAnswers ? JSON.parse(testAnswers) : {};
 
-      // Store lead in Supabase
+      // Store lead in Supabase before payment
       const leadData = {
         name: formData.name,
         email: formData.email,
@@ -64,18 +62,11 @@ const Checkout = () => {
         console.log('Lead stored successfully');
       }
 
-      // Simulate payment processing delay
-      setTimeout(() => {
-        setIsProcessing(false);
-        setShowPaymentSuccess(true);
-      }, 2000);
+      // The actual payment will be handled by the CheckoutButton component
+      // which will redirect to Stripe
     } catch (error) {
-      console.error('Payment simulation error:', error);
-      // Still show success for simulation purposes
-      setTimeout(() => {
-        setIsProcessing(false);
-        setShowPaymentSuccess(true);
-      }, 2000);
+      console.error('Error storing lead data:', error);
+      // Continue with payment even if lead storage fails
     }
   };
 
