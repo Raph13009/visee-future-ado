@@ -1,4 +1,3 @@
-
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -23,7 +22,7 @@ const CheckoutForm = ({ formData, onInputChange }: CheckoutFormProps) => {
       <CardContent className="space-y-4 px-4 sm:px-6">
         <div>
           <Label htmlFor="name" className="text-sm font-medium text-gray-700">
-            👤 Nom complet *
+            👤 Nom complet
           </Label>
           <Input
             id="name"
@@ -31,14 +30,14 @@ const CheckoutForm = ({ formData, onInputChange }: CheckoutFormProps) => {
             value={formData.name}
             onChange={(e) => onInputChange("name", e.target.value)}
             className="mt-1 rounded-xl border-gray-200 focus:border-primary focus:ring-primary text-sm sm:text-base"
-            placeholder="Ton nom et prénom"
-            required
+            placeholder="Ton nom et prénom (optionnel)"
+            required={false}
           />
         </div>
 
         <div>
           <Label htmlFor="email" className="text-sm font-medium text-gray-700">
-            📧 Adresse email *
+            📧 Adresse email
           </Label>
           <Input
             id="email"
@@ -46,8 +45,8 @@ const CheckoutForm = ({ formData, onInputChange }: CheckoutFormProps) => {
             value={formData.email}
             onChange={(e) => onInputChange("email", e.target.value)}
             className="mt-1 rounded-xl border-gray-200 focus:border-primary focus:ring-primary text-sm sm:text-base"
-            placeholder="ton.email@exemple.com"
-            required
+            placeholder="ton.email@exemple.com (optionnel)"
+            required={false}
           />
         </div>
 
@@ -61,7 +60,7 @@ const CheckoutForm = ({ formData, onInputChange }: CheckoutFormProps) => {
             value={formData.currentFiliere}
             onChange={(e) => onInputChange("currentFiliere", e.target.value)}
             className="mt-1 rounded-xl border-gray-200 focus:border-primary focus:ring-primary text-sm sm:text-base"
-            placeholder="Ex: Terminale S, Bac Pro, etc."
+            placeholder="Ex: Terminale Générale, Bac Pro, etc."
           />
         </div>
       </CardContent>

@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Badge } from "@/components/ui/badge";
 import { Shield } from "lucide-react";
@@ -34,33 +33,39 @@ const Checkout = () => {
   // Total price should be 67€ when coaching is included (not 18 + 49)
   const totalPrice = includeMonthlyCoaching ? 67 : basePrice;
 
+  // Check if form is valid - no longer required
+  const isFormValid = true; // Always true since fields are not required
+
   const handlePayment = async () => {
-    if (!formData.name || !formData.email) {
-      alert("Veuillez remplir tous les champs obligatoires");
-      return;
-    }
+    console.log('Starting payment process...', { formData, totalPrice, includeMonthlyCoaching });
+    
+    setIsProcessing(true);
 
     try {
       // Get test answers from localStorage
       const testAnswers = localStorage.getItem('testAnswers');
       const parsedAnswers = testAnswers ? JSON.parse(testAnswers) : {};
 
-      // Store lead in Supabase before payment
-      const leadData = {
-        name: formData.name,
-        email: formData.email,
-        current_filiere: formData.currentFiliere || "Non spécifié",
-        key_answers: parsedAnswers
-      };
+      // Store lead in Supabase before payment (only if data is provided)
+      if (formData.name || formData.email) {
+        const leadData = {
+          name: formData.name || "Non renseigné",
+          email: formData.email || "Non renseigné",
+          current_filiere: formData.currentFiliere || "Non spécifié",
+          key_answers: parsedAnswers,
+          include_monthly_coaching: includeMonthlyCoaching,
+          total_price: totalPrice
+        };
 
-      const { error } = await supabase
-        .from('leads')
-        .insert([leadData]);
+        const { error } = await supabase
+          .from('leads')
+          .insert([leadData]);
 
-      if (error) {
-        console.error('Error storing lead:', error);
-      } else {
-        console.log('Lead stored successfully');
+        if (error) {
+          console.error('Error storing lead:', error);
+        } else {
+          console.log('Lead stored successfully');
+        }
       }
 
       // The actual payment will be handled by the CheckoutButton component
@@ -68,6 +73,8 @@ const Checkout = () => {
     } catch (error) {
       console.error('Error storing lead data:', error);
       // Continue with payment even if lead storage fails
+    } finally {
+      setIsProcessing(false);
     }
   };
 
@@ -104,8 +111,9 @@ const Checkout = () => {
           <CheckoutButton
             isProcessing={isProcessing}
             totalPrice={totalPrice}
-            isDisabled={!formData.name || !formData.email}
+            isDisabled={false}
             onPayment={handlePayment}
+            includeMonthlyCoaching={includeMonthlyCoaching}
           />
         </div>
       </div>

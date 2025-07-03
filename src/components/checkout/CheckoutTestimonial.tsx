@@ -22,7 +22,7 @@ const CheckoutTestimonial = () => {
                 <Star className="w-3 h-3" fill="currentColor" />
                 <Star className="w-3 h-3" fill="currentColor" />
               </div>
-              <span className="ml-1">- Sarah M., Terminale S</span>
+              <span className="ml-1">- Sarah M., Terminale spé éco & anglais</span>
             </div>
           </div>
         </div>
