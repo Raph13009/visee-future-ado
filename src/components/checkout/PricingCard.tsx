@@ -7,6 +7,12 @@ interface PricingCardProps {
 }
 
 const PricingCard = ({ totalPrice }: PricingCardProps) => {
+  // Calculate savings based on total price
+  const baseSavings = 89 - 18; // 71€ for base package
+  const additionalSavings = totalPrice > 18 ? 100 : 0; // +100€ if upsell is selected
+  const totalSavings = baseSavings + additionalSavings;
+  const originalPrice = totalPrice + totalSavings;
+
   return (
     <Card className="border-0 shadow-lg mb-6 bg-gradient-to-r from-primary/5 to-secondary/5">
       <CardHeader className="pb-4 px-4 sm:px-6">
@@ -51,12 +57,12 @@ const PricingCard = ({ totalPrice }: PricingCardProps) => {
             <div className="flex justify-between items-center">
               <div>
                 <span className="text-base sm:text-lg font-semibold text-primary">Total aujourd'hui</span>
-                <p className="text-xs text-gray-500">Au lieu de 89€</p>
+                <p className="text-xs text-gray-500">Au lieu de {originalPrice}€</p>
               </div>
               <div className="text-right">
-                <span className="text-gray-400 line-through text-sm">89€</span>
+                <span className="text-gray-400 line-through text-sm">{originalPrice}€</span>
                 <span className="text-xl sm:text-2xl font-bold text-primary ml-2">{totalPrice}€</span>
-                <div className="text-xs text-green-600 font-medium">Économise {89 - totalPrice}€ ! 💰</div>
+                <div className="text-xs text-green-600 font-medium">Économise {totalSavings}€ ! 💰</div>
               </div>
             </div>
           </div>

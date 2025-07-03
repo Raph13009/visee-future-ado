@@ -16,75 +16,115 @@ const Test = () => {
   const questions = [
     {
       id: 0,
-      title: "Tu es dans quelle filière actuellement ?",
+      title: "Si tu pouvais passer une journée dans la peau de n'importe quel professionnel, qui choisirais-tu et pourquoi ?",
       type: "single" as const,
       options: [
-        "Bac général (Scientifique / Littéraire / Éco)",
-        "Bac pro",
-        "Bac techno",
-        "Autre"
+        "Un(e) scientifique ou ingénieur(e)",
+        "Un(e) entrepreneur(e) ou chef(fe) d'entreprise",
+        "Un(e) artiste ou créateur(trice)",
+        "Un(e) professionnel(le) de la santé ou du social",
+        "Un(e) enseignant(e) ou chercheur(se)",
+        "Autre (précise)"
       ]
     },
     {
       id: 1,
-      title: "Qu'est-ce qui te motive le plus ?",
+      title: "Parmi ces situations, laquelle te motive le plus ?",
       type: "single" as const,
       options: [
-        "Aider les autres et avoir un impact positif",
-        "Créer, innover et exprimer ma créativité",
-        "Résoudre des problèmes complexes",
-        "Diriger et prendre des décisions importantes",
-        "Travailler avec mes mains et créer du concret"
+        "Résoudre un problème complexe en équipe",
+        "Créer un projet de A à Z",
+        "Aider concrètement des personnes",
+        "Apprendre et transmettre des connaissances",
+        "Organiser et gérer des événements ou des ressources"
       ]
     },
     {
       id: 2,
-      title: "Dans quel environnement te sens-tu le mieux ?",
+      title: "Comment te vois-tu évoluer dans 10 ans ?",
       type: "single" as const,
       options: [
-        "En équipe, avec beaucoup d'interactions",
-        "Seul(e), dans le calme pour me concentrer",
-        "Dans un mix équilibré selon les projets",
-        "En mouvement, pas toujours au même endroit",
-        "Dans un cadre structuré avec des règles claires"
+        "À la tête d'une équipe ou d'une entreprise",
+        "Expert(e) dans un domaine pointu",
+        "Polyvalent(e), avec plusieurs expériences variées",
+        "Engagé(e) dans une cause ou un projet à impact",
+        "Je ne sais pas encore, mais je veux garder des portes ouvertes"
       ]
     },
     {
       id: 3,
-      title: "Quelles matières t'intéressent le plus ?",
-      type: "multiple" as const,
+      title: "Quelles sont les valeurs qui comptent le plus pour toi dans ton futur métier ?",
+      type: "single" as const,
       options: [
-        "Sciences (maths, physique, SVT)",
-        "Langues et littérature",
-        "Histoire et géographie",
-        "Arts et design",
-        "Sport et bien-être",
-        "Économie et gestion"
+        "Innovation et créativité",
+        "Sécurité et stabilité",
+        "Utilité sociale",
+        "Liberté et autonomie",
+        "Reconnaissance et prestige"
       ]
     },
     {
       id: 4,
-      title: "Comment vois-tu ton équilibre vie pro/perso ?",
+      title: "Quel environnement de travail t'attire le plus ?",
       type: "single" as const,
       options: [
-        "Je veux une carrière intense, je suis ambitieux",
-        "L'équilibre est crucial, pas de stress excessif",
-        "Ça dépendra de ma passion pour le métier",
-        "Je préfère plus de temps libre quitte à gagner moins",
-        "Je veux de la flexibilité pour voyager/bouger"
+        "Bureau dynamique et collaboratif",
+        "Lieux variés, déplacements fréquents",
+        "Travail à distance ou indépendant",
+        "Contact direct avec le public",
+        "Laboratoire ou environnement technique"
       ]
     },
     {
       id: 5,
-      title: "Quel est ton plus grand talent ?",
+      title: "Face à un nouvel apprentissage, tu préfères :",
       type: "single" as const,
       options: [
-        "Je communique facilement avec tout le monde",
-        "Je suis très organisé(e) et méthodique",
-        "J'ai une grande créativité et imagination",
-        "Je résous les problèmes rapidement",
-        "Je suis empathique et à l'écoute des autres"
+        "Expérimenter par toi-même, quitte à faire des erreurs",
+        "Être guidé(e) étape par étape",
+        "Travailler en groupe pour échanger des idées",
+        "Suivre des cours structurés et approfondis"
       ]
+    },
+    {
+      id: 6,
+      title: "Quelle place accordes-tu à l'équilibre vie pro/vie perso ?",
+      type: "single" as const,
+      options: [
+        "Priorité à l'équilibre, je veux du temps pour moi",
+        "Je suis prêt(e) à m'investir beaucoup pour réussir",
+        "Je cherche un compromis selon les périodes",
+        "Je ne sais pas encore, cela dépendra du projet"
+      ]
+    },
+    {
+      id: 7,
+      title: "As-tu déjà identifié des freins ou des peurs concernant ton orientation ?",
+      type: "single" as const,
+      options: [
+        "Oui, j'ai peur de me tromper de voie",
+        "Oui, je crains de ne pas être à la hauteur",
+        "Oui, j'ai des contraintes familiales ou financières",
+        "Non, je me sens confiant(e)",
+        "Autre (précise)"
+      ]
+    },
+    {
+      id: 8,
+      title: "Quelle importance accordes-tu à l'international dans ton parcours ?",
+      type: "single" as const,
+      options: [
+        "Je veux absolument partir à l'étranger",
+        "J'aimerais avoir des opportunités internationales",
+        "Je préfère rester en France",
+        "Je n'y ai pas encore réfléchi"
+      ]
+    },
+    {
+      id: 9,
+      title: "Pour finir, quel serait ton rêve professionnel si tout était possible ?",
+      type: "text" as const,
+      options: []
     }
   ];
 
@@ -94,8 +134,12 @@ const Test = () => {
     "Tu prends forme ! Encore quelques questions 💪",
     "C'est parfait ! On avance bien 🎯",
     "Super ! Tu es à mi-parcours 🌟",
-    "Presque fini ! Plus qu'une question 🔥",
-    "Dernière question, tu touches au but ! 🎉"
+    "Génial ! On progresse 🔥",
+    "Très bien ! Plus que quelques questions 💫",
+    "Excellent ! Tu touches au but 🎊",
+    "Parfait ! Dernière ligne droite 🏁",
+    "Bravo ! Une dernière question 🎉",
+    "Dernière question, tu y es presque ! 🎁"
   ];
 
   const currentQuestion = questions[currentStep];
@@ -123,6 +167,12 @@ const Test = () => {
       newAnswers[currentStep] = option;
     }
     
+    setAnswers(newAnswers);
+  };
+
+  const handleTextAnswer = (value: string) => {
+    const newAnswers = { ...answers };
+    newAnswers[currentStep] = value;
     setAnswers(newAnswers);
   };
 
@@ -205,34 +255,48 @@ const Test = () => {
                   Plusieurs réponses possibles
                 </p>
               )}
+              {currentQuestion.type === "text" && (
+                <p className="text-xs sm:text-sm text-gray-500 mt-2">
+                  Réponse libre
+                </p>
+              )}
             </CardHeader>
             <CardContent className="px-4 sm:px-6">
-              <div className="space-y-2.5">
-                {currentQuestion.options.map((option, index) => (
-                  <button
-                    key={index}
-                    onClick={() => handleAnswer(option)}
-                    className={`w-full p-3 sm:p-4 text-left text-sm sm:text-base rounded-xl border transition-all duration-200 hover:shadow-md transform hover:scale-[1.02] ${
-                      isAnswerSelected(option)
-                        ? "bg-primary/10 border-primary text-primary font-medium shadow-sm"
-                        : "bg-white border-gray-200 hover:border-gray-300"
-                    }`}
-                  >
-                    <div className="flex items-start">
-                      <div className={`w-4 h-4 sm:w-5 sm:h-5 rounded-full border-2 mr-3 flex-shrink-0 mt-0.5 transition-all duration-200 ${
+              {currentQuestion.type === "text" ? (
+                <textarea
+                  value={answers[currentStep] || ""}
+                  onChange={(e) => handleTextAnswer(e.target.value)}
+                  placeholder="Partage ton rêve professionnel..."
+                  className="w-full p-4 border border-gray-200 rounded-xl focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all duration-200 min-h-[120px] resize-none text-sm sm:text-base"
+                />
+              ) : (
+                <div className="space-y-2.5">
+                  {currentQuestion.options.map((option, index) => (
+                    <button
+                      key={index}
+                      onClick={() => handleAnswer(option)}
+                      className={`w-full p-3 sm:p-4 text-left text-sm sm:text-base rounded-xl border transition-all duration-200 hover:shadow-md transform hover:scale-[1.02] ${
                         isAnswerSelected(option)
-                          ? "bg-primary border-primary scale-110"
-                          : "border-gray-300"
-                      }`}>
-                        {isAnswerSelected(option) && (
-                          <div className="w-full h-full rounded-full bg-white scale-50 transition-transform duration-200"></div>
-                        )}
+                          ? "bg-primary/10 border-primary text-primary font-medium shadow-sm"
+                          : "bg-white border-gray-200 hover:border-gray-300"
+                      }`}
+                    >
+                      <div className="flex items-start">
+                        <div className={`w-4 h-4 sm:w-5 sm:h-5 rounded-full border-2 mr-3 flex-shrink-0 mt-0.5 transition-all duration-200 ${
+                          isAnswerSelected(option)
+                            ? "bg-primary border-primary scale-110"
+                            : "border-gray-300"
+                        }`}>
+                          {isAnswerSelected(option) && (
+                            <div className="w-full h-full rounded-full bg-white scale-50 transition-transform duration-200"></div>
+                          )}
+                        </div>
+                        <span className="leading-relaxed">{option}</span>
                       </div>
-                      <span className="leading-relaxed">{option}</span>
-                    </div>
-                  </button>
-                ))}
-              </div>
+                    </button>
+                  ))}
+                </div>
+              )}
             </CardContent>
           </Card>
 

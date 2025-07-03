@@ -22,13 +22,10 @@ const CheckoutButton = ({ isProcessing, totalPrice, isDisabled, onPayment }: Che
         </div>
       ) : (
         <div className="flex flex-col items-center justify-center gap-2">
-          <span className="text-sm sm:text-base leading-tight">🚀 Commencer maintenant</span>
-          <div className="flex items-center gap-2">
-            <span className="text-lg sm:text-xl font-bold">{totalPrice}€</span>
-            <div className="text-xs bg-white/20 px-2 py-1 rounded-full">
-              -79% 🔥
-            </div>
-          </div>
+          <span className="text-sm sm:text-base leading-tight font-bold">👉 Commencer maintenant</span>
+          <span className="text-xs sm:text-sm leading-tight text-white/90">
+            🟢 {totalPrice}€ – analyse + appel inclus avec le -79%
+          </span>
         </div>
       )}
     </Button>
