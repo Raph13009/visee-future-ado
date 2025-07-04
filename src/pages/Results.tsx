@@ -1,10 +1,49 @@
-
 import { useState, useEffect } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Header from "@/components/Header";
+import { supabase } from "@/integrations/supabase/client";
 
 const Results = () => {
   const [isReportReady, setIsReportReady] = useState(false);
+  const [hasSent, setHasSent] = useState(false);
+
+  useEffect(() => {
+    // Envoi automatique des données du test à Supabase
+    if (!hasSent) {
+      const sendResults = async () => {
+        try {
+          // Récupère les réponses du test
+          const testAnswers = localStorage.getItem('testAnswers');
+          const parsedAnswers = testAnswers ? JSON.parse(testAnswers) : {};
+
+          // Récupère les infos utilisateur si dispo (depuis checkout)
+          const checkoutData = localStorage.getItem('checkoutData');
+          let userData = { name: '', email: '', currentFiliere: '' };
+          if (checkoutData) {
+            try {
+              userData = JSON.parse(checkoutData);
+            } catch {}
+          }
+
+          // Envoie dans Supabase
+          const leadData = {
+            name: userData.name || "Non renseigné",
+            email: userData.email || "Non renseigné",
+            current_filiere: userData.currentFiliere || "Non spécifié",
+            key_answers: parsedAnswers,
+            from: 'results-page',
+            created_at: new Date().toISOString()
+          };
+          await supabase.from('leads').insert([leadData]);
+          setHasSent(true);
+        } catch (error) {
+          // Ne bloque pas l'affichage
+          setHasSent(true);
+        }
+      };
+      sendResults();
+    }
+  }, [hasSent]);
 
   useEffect(() => {
     // Simulate report generation
