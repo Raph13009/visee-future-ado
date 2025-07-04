@@ -2,8 +2,21 @@
 import { createClient } from '@supabase/supabase-js';
 import type { Database } from './types';
 
-const SUPABASE_URL = "https://gpeeqapdjzjmuitypudb.supabase.co";
-const SUPABASE_PUBLISHABLE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdwZWVxYXBkanpqbXVpdHlwdWRiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTE0ODc2NDUsImV4cCI6MjA2NzA2MzY0NX0.b0FWyBhJi3P8KGWHhIVBY9Z2CxGt-glLozm60IQiCwE";
+console.log('--- SUPABASE DEBUG ---');
+console.log('process.env.NODE_ENV:', import.meta.env.MODE);
+console.log('cwd:', window.location.href);
+console.log('VITE_SUPABASE_URL:', import.meta.env.VITE_SUPABASE_URL);
+console.log('VITE_SUPABASE_ANON_KEY:', import.meta.env.VITE_SUPABASE_ANON_KEY);
+
+const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL;
+const SUPABASE_PUBLISHABLE_KEY = import.meta.env.VITE_SUPABASE_ANON_KEY;
+
+if (!SUPABASE_URL) {
+  throw new Error('VITE_SUPABASE_URL is missing or empty!');
+}
+if (!SUPABASE_PUBLISHABLE_KEY) {
+  throw new Error('VITE_SUPABASE_ANON_KEY is missing or empty!');
+}
 
 // Import the supabase client like this:
 // import { supabase } from "@/integrations/supabase/client";

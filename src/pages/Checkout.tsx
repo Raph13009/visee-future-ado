@@ -54,17 +54,19 @@ const Checkout = () => {
           current_filiere: formData.currentFiliere || "Non spécifié",
           key_answers: parsedAnswers,
           include_monthly_coaching: includeMonthlyCoaching,
-          total_price: totalPrice
+          total_price: totalPrice,
+          payment: "paye"
         };
-
-        const { error } = await supabase
+        console.log('[SUPABASE] Inserting lead:', leadData);
+        const { error, data } = await supabase
           .from('leads')
           .insert([leadData]);
-
+        console.log('[SUPABASE] Insert result:', { error, data });
         if (error) {
+          alert('Erreur lors de l’enregistrement dans la base : ' + error.message);
           console.error('Error storing lead:', error);
         } else {
-          console.log('Lead stored successfully');
+          console.log('Lead stored successfully', data);
         }
       }
 
