@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Header from "@/components/Header";
@@ -6,6 +5,7 @@ import ProgressBar from "@/components/test/ProgressBar";
 import QuestionCard from "@/components/test/QuestionCard";
 import NavigationButtons from "@/components/test/NavigationButtons";
 import EncouragementMessage from "@/components/test/EncouragementMessage";
+import { Helmet } from 'react-helmet-async';
 
 const Test = () => {
   const navigate = useNavigate();
@@ -178,36 +178,57 @@ const Test = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <Header />
-      
-      <div className="pt-20 pb-8 px-3 sm:px-4">
-        <div className="container mx-auto max-w-lg">
-          <ProgressBar 
-            currentStep={currentStep} 
-            totalSteps={questions.length} 
-          />
+    <>
+      <Helmet>
+        <title>Test d'orientation Avenirea | Découvre ta voie professionnelle</title>
+        <meta name="description" content="Passe le test d'orientation Avenirea et découvre la voie professionnelle qui te correspond vraiment. Test rapide, résultats personnalisés, coaching humain." />
+        <link rel="canonical" href="https://www.avenirea.com/test" />
+        <meta property="og:title" content="Test d'orientation Avenirea" />
+        <meta property="og:description" content="Passe le test d'orientation Avenirea et découvre la voie professionnelle qui te correspond vraiment. Test rapide, résultats personnalisés, coaching humain." />
+        <meta property="og:url" content="https://www.avenirea.com/test" />
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content="/lovable-uploads/d90e4f60-4ab5-48a0-9e2f-ba4658dc9b54.png" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Test d'orientation Avenirea" />
+        <meta name="twitter:description" content="Passe le test d'orientation Avenirea et découvre la voie professionnelle qui te correspond vraiment." />
+        <meta name="twitter:image" content="/lovable-uploads/d90e4f60-4ab5-48a0-9e2f-ba4658dc9b54.png" />
+        {/* SEO local France */}
+        <meta name="geo.region" content="FR" />
+        <meta name="geo.placename" content="France" />
+        <meta name="geo.position" content="48.8566;2.3522" />
+        <meta name="ICBM" content="48.8566, 2.3522" />
+      </Helmet>
+      <div className="min-h-screen bg-gray-50">
+        <Header />
+        
+        <div className="pt-20 pb-8 px-3 sm:px-4">
+          <div className="container mx-auto max-w-lg">
+            <ProgressBar 
+              currentStep={currentStep} 
+              totalSteps={questions.length} 
+            />
 
-          <QuestionCard
-            question={currentQuestion}
-            currentAnswer={answers[currentStep]}
-            isAnimating={isAnimating}
-            onAnswer={handleAnswer}
-            onTextAnswer={handleTextAnswer}
-          />
+            <QuestionCard
+              question={currentQuestion}
+              currentAnswer={answers[currentStep]}
+              isAnimating={isAnimating}
+              onAnswer={handleAnswer}
+              onTextAnswer={handleTextAnswer}
+            />
 
-          <NavigationButtons
-            currentStep={currentStep}
-            totalSteps={questions.length}
-            canProceed={canProceed()}
-            onPrevious={handlePrevious}
-            onNext={handleNext}
-          />
+            <NavigationButtons
+              currentStep={currentStep}
+              totalSteps={questions.length}
+              canProceed={canProceed()}
+              onPrevious={handlePrevious}
+              onNext={handleNext}
+            />
 
-          <EncouragementMessage currentStep={currentStep} />
+            <EncouragementMessage currentStep={currentStep} />
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
