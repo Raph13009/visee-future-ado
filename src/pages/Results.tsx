@@ -295,19 +295,6 @@ const Results = () => {
           </Card>
         </div>
       </div>
-      {/* Déplacement du bouton de test d'insertion tout en bas de la page */}
-      <div className="p-4 bg-yellow-50 border-t border-yellow-200 flex flex-col items-center mt-8">
-        <button
-          className="px-4 py-2 bg-yellow-400 text-yellow-900 rounded font-bold shadow hover:bg-yellow-300 disabled:opacity-50"
-          onClick={handleTestInsert}
-          disabled={inserting}
-        >
-          {inserting ? 'Insertion en cours...' : 'Test insertion Supabase'}
-        </button>
-        <pre className="mt-2 text-xs text-left whitespace-pre-wrap max-w-2xl bg-white p-2 rounded border border-yellow-200 overflow-x-auto" style={{minHeight: 80}}>
-          {insertionLog}
-        </pre>
-      </div>
     </div>
   );
 };
