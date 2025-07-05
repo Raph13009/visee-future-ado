@@ -6,6 +6,7 @@ import QuestionCard from "@/components/test/QuestionCard";
 import NavigationButtons from "@/components/test/NavigationButtons";
 import EncouragementMessage from "@/components/test/EncouragementMessage";
 import { Helmet } from 'react-helmet-async';
+import { supabase } from "@/integrations/supabase/client";
 
 const Test = () => {
   const navigate = useNavigate();
@@ -170,6 +171,31 @@ const Test = () => {
   const handleTestCompletion = async () => {
     try {
       localStorage.setItem('testAnswers', JSON.stringify(answers));
+      // Insertion Supabase ici
+      try {
+        const testAnswers = JSON.stringify(answers);
+        const parsedAnswers = testAnswers ? JSON.parse(testAnswers) : {};
+        // On ne connait pas les infos utilisateur ici, donc valeurs par défaut
+        const leadData = {
+          name: "Non renseigné",
+          email: "Non renseigné",
+          current_filiere: "Non spécifié",
+          key_answers: parsedAnswers,
+          created_at: new Date().toISOString(),
+          payment: null,
+          include_monthly_coaching: false,
+          total_price: 0
+        };
+        console.log('[SUPABASE][TEST] Inserting lead at end of test:', leadData);
+        const { error, data } = await supabase.from('leads').insert([leadData]);
+        if (error) {
+          console.error('[SUPABASE][TEST] Insert error:', error);
+        } else {
+          console.log('[SUPABASE][TEST] Insert success:', data);
+        }
+      } catch (err) {
+        console.error('[SUPABASE][TEST] General error:', err);
+      }
       navigate('/checkout');
     } catch (error) {
       console.error('Error storing test data:', error);
@@ -199,7 +225,7 @@ const Test = () => {
         <meta name="ICBM" content="48.8566, 2.3522" />
       </Helmet>
       <div className="min-h-screen bg-gray-50">
-        <Header />
+        <Header hideTestCTA={true} />
         
         <div className="pt-20 pb-8 px-3 sm:px-4">
           <div className="container mx-auto max-w-lg">
