@@ -1,8 +1,11 @@
-
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
 
-const Header = () => {
+interface HeaderProps {
+  hideTestCTA?: boolean;
+}
+
+const Header = ({ hideTestCTA }: HeaderProps) => {
   const navigate = useNavigate();
 
   return (
@@ -28,12 +31,14 @@ const Header = () => {
           <a href="#faq" className="text-gray-600 hover:text-primary transition-colors">FAQ</a>
         </nav>
 
-        <Button 
-          onClick={() => navigate('/test')}
-          className="bg-primary hover:bg-primary/90 text-white px-6 py-2 rounded-2xl font-medium transition-all hover:scale-105"
-        >
-          Commencer le test
-        </Button>
+        {!hideTestCTA && (
+          <Button 
+            onClick={() => navigate('/test')}
+            className="bg-primary hover:bg-primary/90 text-white px-6 py-2 rounded-2xl font-medium transition-all hover:scale-105"
+          >
+            Commencer le test
+          </Button>
+        )}
       </div>
     </header>
   );

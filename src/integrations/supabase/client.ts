@@ -12,11 +12,15 @@ const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL;
 const SUPABASE_PUBLISHABLE_KEY = import.meta.env.VITE_SUPABASE_ANON_KEY;
 
 if (!SUPABASE_URL) {
+  console.error('❌ VITE_SUPABASE_URL is missing or empty!');
   throw new Error('VITE_SUPABASE_URL is missing or empty!');
 }
 if (!SUPABASE_PUBLISHABLE_KEY) {
+  console.error('❌ VITE_SUPABASE_ANON_KEY is missing or empty!');
   throw new Error('VITE_SUPABASE_ANON_KEY is missing or empty!');
 }
+
+console.log('✅ Configuration Supabase OK');
 
 // Import the supabase client like this:
 // import { supabase } from "@/integrations/supabase/client";
@@ -26,5 +30,15 @@ export const supabase = createClient<Database>(SUPABASE_URL, SUPABASE_PUBLISHABL
     storage: localStorage,
     persistSession: true,
     autoRefreshToken: true,
+  }
+});
+
+// Test de connexion
+console.log('🔗 Test de connexion Supabase...');
+supabase.from('leads').select('count').limit(1).then(({ data, error }) => {
+  if (error) {
+    console.error('❌ Erreur de connexion Supabase:', error);
+  } else {
+    console.log('✅ Connexion Supabase OK');
   }
 });

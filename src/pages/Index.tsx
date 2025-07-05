@@ -74,11 +74,15 @@ const Index = () => {
         <div className="container mx-auto text-center max-w-4xl">
           <div className="animate-fade-in">
             <h1 className="text-4xl md:text-6xl font-bold text-primary mb-6 tracking-tight leading-tight">
-              Trouver sa voie n'a jamais été aussi simple
+            Enfin un test qui t’aide vraiment à y voir clair.
             </h1>
-            <p className="text-xl md:text-2xl text-gray-600 mb-8 max-w-2xl mx-auto leading-relaxed">
-              Un test rapide + un coach humain = une orientation plus claire
-            </p>
+            <div className="flex justify-center mb-8">
+              <div className="flex items-center gap-3 bg-blue-50 border border-blue-200 rounded-2xl px-5 py-3 shadow-sm max-w-2xl mx-auto">
+                <span className="text-2xl">📚</span>
+                <span className="text-sm md:text-base text-blue-900 font-medium leading-relaxed">
+                Méthode inspirée de Stanford & Harvard, conçue pour t’aider à choisir une voie alignée avec ta personnalité.                </span>
+              </div>
+            </div>
             
             <Button 
               onClick={() => navigate('/test')}

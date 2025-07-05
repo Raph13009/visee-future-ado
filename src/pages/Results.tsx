@@ -6,23 +6,32 @@ import { supabase } from "@/integrations/supabase/client";
 const Results = () => {
   const [isReportReady, setIsReportReady] = useState(false);
   const [hasSent, setHasSent] = useState(false);
+  const [insertionLog, setInsertionLog] = useState<string>("");
+  const [inserting, setInserting] = useState(false);
 
   useEffect(() => {
     // Envoi automatique des données du test à Supabase
     if (!hasSent) {
       const sendResults = async () => {
+        console.log('🚀 [RESULTS] Début de sendResults');
         try {
           // Récupère les réponses du test
           const testAnswers = localStorage.getItem('testAnswers');
+          console.log('📝 [RESULTS] testAnswers from localStorage:', testAnswers);
           const parsedAnswers = testAnswers ? JSON.parse(testAnswers) : {};
+          console.log('📝 [RESULTS] parsedAnswers:', parsedAnswers);
 
           // Récupère les infos utilisateur si dispo (depuis checkout)
           const checkoutData = localStorage.getItem('checkoutData');
+          console.log('👤 [RESULTS] checkoutData from localStorage:', checkoutData);
           let userData = { name: '', email: '', currentFiliere: '' };
           if (checkoutData) {
             try {
               userData = JSON.parse(checkoutData);
-            } catch {}
+              console.log('👤 [RESULTS] parsed userData:', userData);
+            } catch (parseError) {
+              console.error('❌ [RESULTS] Erreur parsing checkoutData:', parseError);
+            }
           }
 
           // Envoie dans Supabase
@@ -31,12 +40,31 @@ const Results = () => {
             email: userData.email || "Non renseigné",
             current_filiere: userData.currentFiliere || "Non spécifié",
             key_answers: parsedAnswers,
-            from: 'results-page',
-            created_at: new Date().toISOString()
+            created_at: new Date().toISOString(),
+            payment: null, // ou "" si la colonne n'accepte pas null
+            include_monthly_coaching: false,
+            total_price: 0
           };
-          await supabase.from('leads').insert([leadData]);
+          console.log('📊 [RESULTS] leadData à envoyer:', leadData);
+          console.log('🔗 [RESULTS] Tentative d\'insertion dans Supabase...');
+          
+          const { data, error } = await supabase.from('leads').insert([leadData]);
+          
+          if (error) {
+            console.error('❌ [RESULTS] Erreur Supabase:', error);
+            console.error('❌ [RESULTS] Détails de l\'erreur:', {
+              message: error.message,
+              details: error.details,
+              hint: error.hint,
+              code: error.code
+            });
+          } else {
+            console.log('✅ [RESULTS] Données insérées avec succès:', data);
+          }
+          
           setHasSent(true);
         } catch (error) {
+          console.error('❌ [RESULTS] Erreur générale dans sendResults:', error);
           // Ne bloque pas l'affichage
           setHasSent(true);
         }
@@ -54,10 +82,58 @@ const Results = () => {
     return () => clearTimeout(timer);
   }, []);
 
+  // Nouvelle fonction pour forcer l'insertion et afficher les logs dans la page
+  const handleTestInsert = async () => {
+    setInserting(true);
+    setInsertionLog('⏳ Tentative d\'insertion...');
+    try {
+      const testAnswers = localStorage.getItem('testAnswers');
+      setInsertionLog(prev => prev + `\n📝 testAnswers from localStorage: ${testAnswers}`);
+      let parsedAnswers = {};
+      try {
+        parsedAnswers = testAnswers ? JSON.parse(testAnswers) : {};
+        setInsertionLog(prev => prev + `\n📝 parsedAnswers: ${JSON.stringify(parsedAnswers)}`);
+      } catch (err) {
+        setInsertionLog(prev => prev + `\n❌ Erreur parsing testAnswers: ${err}`);
+      }
+      const checkoutData = localStorage.getItem('checkoutData');
+      setInsertionLog(prev => prev + `\n👤 checkoutData from localStorage: ${checkoutData}`);
+      let userData = { name: '', email: '', currentFiliere: '' };
+      try {
+        if (checkoutData) {
+          userData = JSON.parse(checkoutData);
+          setInsertionLog(prev => prev + `\n👤 parsed userData: ${JSON.stringify(userData)}`);
+        }
+      } catch (err) {
+        setInsertionLog(prev => prev + `\n❌ Erreur parsing checkoutData: ${err}`);
+      }
+      const leadData = {
+        name: userData.name || "Non renseigné",
+        email: userData.email || "Non renseigné",
+        current_filiere: userData.currentFiliere || "Non spécifié",
+        key_answers: parsedAnswers,
+        created_at: new Date().toISOString(),
+        payment: null,
+        include_monthly_coaching: false,
+        total_price: 0
+      };
+      setInsertionLog(prev => prev + `\n📊 leadData à envoyer: ${JSON.stringify(leadData)}`);
+      const { data, error } = await supabase.from('leads').insert([leadData]);
+      if (error) {
+        setInsertionLog(prev => prev + `\n❌ Erreur Supabase: ${JSON.stringify(error)}`);
+        setInsertionLog(prev => prev + `\n❌ Détails: ${JSON.stringify({ message: error.message, details: error.details, hint: error.hint, code: error.code })}`);
+      } else {
+        setInsertionLog(prev => prev + `\n✅ Données insérées avec succès: ${JSON.stringify(data)}`);
+      }
+    } catch (err) {
+      setInsertionLog(prev => prev + `\n❌ Erreur générale: ${err}`);
+    }
+    setInserting(false);
+  };
+
   return (
     <div className="min-h-screen bg-gray-50">
       <Header />
-      
       <div className="pt-24 pb-16 px-4">
         <div className="container mx-auto max-w-4xl">
           {/* Success Message */}
@@ -218,6 +294,19 @@ const Results = () => {
             </CardContent>
           </Card>
         </div>
+      </div>
+      {/* Déplacement du bouton de test d'insertion tout en bas de la page */}
+      <div className="p-4 bg-yellow-50 border-t border-yellow-200 flex flex-col items-center mt-8">
+        <button
+          className="px-4 py-2 bg-yellow-400 text-yellow-900 rounded font-bold shadow hover:bg-yellow-300 disabled:opacity-50"
+          onClick={handleTestInsert}
+          disabled={inserting}
+        >
+          {inserting ? 'Insertion en cours...' : 'Test insertion Supabase'}
+        </button>
+        <pre className="mt-2 text-xs text-left whitespace-pre-wrap max-w-2xl bg-white p-2 rounded border border-yellow-200 overflow-x-auto" style={{minHeight: 80}}>
+          {insertionLog}
+        </pre>
       </div>
     </div>
   );
