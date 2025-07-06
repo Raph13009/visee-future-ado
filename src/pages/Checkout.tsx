@@ -10,6 +10,7 @@ import PricingCard from "@/components/checkout/PricingCard";
 import MonthlyCoachingUpsell from "@/components/checkout/MonthlyCoachingUpsell";
 import CheckoutButton from "@/components/checkout/CheckoutButton";
 import { supabase } from "@/integrations/supabase/client";
+import CgvModal from "@/components/checkout/CgvModal";
 
 const Checkout = () => {
   const [formData, setFormData] = useState({
@@ -20,6 +21,8 @@ const Checkout = () => {
   const [showPaymentSuccess, setShowPaymentSuccess] = useState(false);
   const [isProcessing, setIsProcessing] = useState(false);
   const [includeMonthlyCoaching, setIncludeMonthlyCoaching] = useState(false);
+  const [acceptCgv, setAcceptCgv] = useState(false);
+  const [showCgvModal, setShowCgvModal] = useState(false);
 
   const handleInputChange = (field: string, value: string) => {
     setFormData(prev => ({
@@ -83,7 +86,7 @@ const Checkout = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-primary/5 via-white to-secondary/5">
       <Header />
-      
+      <CgvModal open={showCgvModal} onClose={() => setShowCgvModal(false)} />
       <div className="pt-20 pb-8 px-3 sm:px-4">
         <div className="container mx-auto max-w-lg">
           <CheckoutHero />
@@ -103,6 +106,29 @@ const Checkout = () => {
             onInputChange={handleInputChange}
           />
 
+          {/* CGV Checkbox */}
+          <div className="flex items-center mb-4 mt-2">
+            <input
+              id="accept-cgv"
+              type="checkbox"
+              checked={acceptCgv}
+              onChange={e => setAcceptCgv(e.target.checked)}
+              className="w-5 h-5 rounded border-gray-300 focus:ring-primary mr-2"
+              required
+            />
+            <label htmlFor="accept-cgv" className="text-sm text-gray-700 select-none">
+              J'accepte les 
+              <button
+                type="button"
+                className="underline text-primary ml-1 hover:text-primary/80"
+                onClick={() => setShowCgvModal(true)}
+              >
+                conditions de vente
+              </button>
+              .
+            </label>
+          </div>
+
           <PricingCard totalPrice={totalPrice} />
 
           <MonthlyCoachingUpsell 
@@ -113,7 +139,7 @@ const Checkout = () => {
           <CheckoutButton
             isProcessing={isProcessing}
             totalPrice={totalPrice}
-            isDisabled={false}
+            isDisabled={!acceptCgv}
             onPayment={handlePayment}
             includeMonthlyCoaching={includeMonthlyCoaching}
           />
