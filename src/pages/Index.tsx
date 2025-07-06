@@ -5,10 +5,12 @@ import Footer from "@/components/Footer";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import CgvModal from "@/components/checkout/CgvModal";
 
 const Index = () => {
   const navigate = useNavigate();
   const [hoveredBenefit, setHoveredBenefit] = useState<number | null>(null);
+  const [showCgvModal, setShowCgvModal] = useState(false);
 
   const benefits = [
     {
@@ -68,19 +70,20 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-white">
       <Header />
+      <CgvModal open={showCgvModal} onClose={() => setShowCgvModal(false)} />
       
       {/* Hero Section */}
       <section className="pt-24 pb-16 px-4">
         <div className="container mx-auto text-center max-w-4xl">
           <div className="animate-fade-in">
             <h1 className="text-4xl md:text-6xl font-bold text-primary mb-6 tracking-tight leading-tight">
-            Enfin un test qui t’aide vraiment à y voir clair.
+            Enfin un test qui t'aide vraiment à y voir clair.
             </h1>
             <div className="flex justify-center mb-8">
               <div className="flex items-center gap-3 bg-blue-50 border border-blue-200 rounded-2xl px-5 py-3 shadow-sm max-w-2xl mx-auto">
                 <span className="text-2xl">📚</span>
                 <span className="text-sm md:text-base text-blue-900 font-medium leading-relaxed">
-                Méthode inspirée de Stanford & Harvard, conçue pour t’aider à choisir une voie alignée avec ta personnalité.                </span>
+                Méthode inspirée de Stanford & Harvard, conçue pour t'aider à choisir une voie alignée avec ta personnalité.                </span>
               </div>
             </div>
             
@@ -217,7 +220,7 @@ const Index = () => {
         </div>
       </section>
 
-      <Footer />
+      <Footer onOpenCgvModal={() => setShowCgvModal(true)} />
     </div>
   );
 };

@@ -1,5 +1,8 @@
+interface FooterProps {
+  onOpenCgvModal?: () => void;
+}
 
-const Footer = () => {
+const Footer = ({ onOpenCgvModal }: FooterProps) => {
   return (
     <footer className="bg-gray-50 border-t border-gray-100">
       <div className="container mx-auto px-4 py-12">
@@ -23,18 +26,18 @@ const Footer = () => {
           <div className="space-y-4">
             <h4 className="font-semibold text-primary">Légal</h4>
             <div className="space-y-2 text-sm text-gray-600">
-              <a href="#" className="block hover:text-primary transition-colors">Mentions légales</a>
-              <a href="#" className="block hover:text-primary transition-colors">CGV</a>
-              <a href="#" className="block hover:text-primary transition-colors">Politique de confidentialité</a>
+              <a href="#" className="block hover:text-primary transition-colors" onClick={e => { e.preventDefault(); onOpenCgvModal && onOpenCgvModal(); }}>Mentions légales</a>
+              <a href="#" className="block hover:text-primary transition-colors" onClick={e => { e.preventDefault(); onOpenCgvModal && onOpenCgvModal(); }}>CGV</a>
+              <a href="#" className="block hover:text-primary transition-colors" onClick={e => { e.preventDefault(); onOpenCgvModal && onOpenCgvModal(); }}>Politique de confidentialité</a>
             </div>
           </div>
 
           <div className="space-y-4">
             <h4 className="font-semibold text-primary">Confiance</h4>
             <div className="space-y-2 text-sm text-gray-600">
-              <p>✅ Paiement sécurisé</p>
-              <p>✅ Données protégées</p>
-              <p>✅ Coaching certifié</p>
+              <p className="hover:text-primary transition-colors cursor-pointer" onClick={onOpenCgvModal}>✅ Paiement sécurisé</p>
+              <p className="hover:text-primary transition-colors cursor-pointer" onClick={onOpenCgvModal}>✅ Données protégées</p>
+              <p className="hover:text-primary transition-colors cursor-pointer" onClick={onOpenCgvModal}>✅ Coaching certifié</p>
             </div>
           </div>
         </div>
