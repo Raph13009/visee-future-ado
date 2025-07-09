@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Badge } from "@/components/ui/badge";
 import { Shield } from "lucide-react";
 import Header from "@/components/Header";
@@ -39,18 +39,48 @@ const Checkout = () => {
   // Check if form is valid - no longer required
   const isFormValid = true; // Always true since fields are not required
 
-  const handlePayment = async () => {
-    console.log('Starting payment process...', { formData, totalPrice, includeMonthlyCoaching });
-    
-    setIsProcessing(true);
-
-    try {
-      // Get test answers from localStorage
+  useEffect(() => {
+    // Si on a déjà un leadId, ne rien faire
+    if (typeof window !== 'undefined' && !localStorage.getItem('leadId') && (formData.name || formData.email)) {
+      // Récupère les réponses du test
       const testAnswers = localStorage.getItem('testAnswers');
       const parsedAnswers = testAnswers ? JSON.parse(testAnswers) : {};
+      const leadData = {
+        name: formData.name || "Non renseigné",
+        email: formData.email || "Non renseigné",
+        current_filiere: formData.currentFiliere || "Non spécifié",
+        key_answers: parsedAnswers,
+        include_monthly_coaching: includeMonthlyCoaching,
+        total_price: 0,
+        payment: null
+      };
+      supabase.from('leads').insert([leadData]).select('id').then(({ data, error }) => {
+        if (data && data[0] && data[0].id) {
+          localStorage.setItem('leadId', data[0].id);
+        }
+      });
+    }
+  }, [formData, includeMonthlyCoaching]);
 
-      // Store lead in Supabase before payment (only if data is provided)
-      if (formData.name || formData.email) {
+  const handlePayment = async () => {
+    setIsProcessing(true);
+    try {
+      // Récupère l'id du lead
+      const leadId = typeof window !== 'undefined' ? localStorage.getItem('leadId') : null;
+      if (leadId) {
+        // Met à jour la ligne avec payment et total_price
+        const { error } = await supabase.from('leads').update({
+          payment: 'paye',
+          total_price: totalPrice
+        }).eq('id', leadId);
+        if (error) {
+          alert('Erreur lors de la mise à jour du paiement : ' + error.message);
+          console.error('Error updating lead:', error);
+        }
+      } else {
+        // Fallback : si pas d'id, insère une nouvelle ligne (rare)
+        const testAnswers = localStorage.getItem('testAnswers');
+        const parsedAnswers = testAnswers ? JSON.parse(testAnswers) : {};
         const leadData = {
           name: formData.name || "Non renseigné",
           email: formData.email || "Non renseigné",
@@ -58,26 +88,12 @@ const Checkout = () => {
           key_answers: parsedAnswers,
           include_monthly_coaching: includeMonthlyCoaching,
           total_price: totalPrice,
-          payment: "paye"
+          payment: 'paye'
         };
-        console.log('[SUPABASE] Inserting lead:', leadData);
-        const { error, data } = await supabase
-          .from('leads')
-          .insert([leadData]);
-        console.log('[SUPABASE] Insert result:', { error, data });
-        if (error) {
-          alert('Erreur lors de l’enregistrement dans la base : ' + error.message);
-          console.error('Error storing lead:', error);
-        } else {
-          console.log('Lead stored successfully', data);
-        }
+        await supabase.from('leads').insert([leadData]);
       }
-
-      // The actual payment will be handled by the CheckoutButton component
-      // which will redirect to Stripe
     } catch (error) {
       console.error('Error storing lead data:', error);
-      // Continue with payment even if lead storage fails
     } finally {
       setIsProcessing(false);
     }
