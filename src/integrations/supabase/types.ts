@@ -18,6 +18,9 @@ export type Database = {
           key_answers: Json
           name: string
           updated_at: string
+          payment: string | null
+          include_monthly_coaching: boolean
+          total_price: number
         }
         Insert: {
           created_at?: string
@@ -27,6 +30,9 @@ export type Database = {
           key_answers: Json
           name: string
           updated_at?: string
+          payment?: string | null
+          include_monthly_coaching?: boolean
+          total_price?: number
         }
         Update: {
           created_at?: string
@@ -36,6 +42,9 @@ export type Database = {
           key_answers?: Json
           name?: string
           updated_at?: string
+          payment?: string | null
+          include_monthly_coaching?: boolean
+          total_price?: number
         }
         Relationships: []
       }
