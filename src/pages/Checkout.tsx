@@ -79,8 +79,8 @@ const Checkout = () => {
         }
       } else {
         // Fallback : si pas d'id, insère une nouvelle ligne (rare)
-        const testAnswers = localStorage.getItem('testAnswers');
-        const parsedAnswers = testAnswers ? JSON.parse(testAnswers) : {};
+      const testAnswers = localStorage.getItem('testAnswers');
+      const parsedAnswers = testAnswers ? JSON.parse(testAnswers) : {};
         const leadData = {
           name: formData.name || "Non renseigné",
           email: formData.email || "Non renseigné",
