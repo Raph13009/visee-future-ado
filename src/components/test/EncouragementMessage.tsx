@@ -13,7 +13,9 @@ const EncouragementMessage = ({ currentStep }: EncouragementMessageProps) => {
     "Très bien ! Plus que quelques questions 💫",
     "Excellent ! Tu touches au but 🎊",
     "Parfait ! Dernière ligne droite 🏁",
-    "Bravo ! Une dernière question 🎉",
+    "Bravo ! Plus qu'une seule question 🎉",
+    "Presque terminé ! Pense à un environnement où tu t'épanouis vraiment 💭",
+    "Dernière question ! Visualise ton futur métier idéal 🌟",
     "Dernière question, tu y es presque ! 🎁"
   ];
 

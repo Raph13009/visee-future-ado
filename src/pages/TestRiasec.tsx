@@ -330,11 +330,15 @@ const TestRiasec = () => {
         };
 
         console.log('[SUPABASE][RIASEC] Inserting result:', resultData);
-        const { error, data } = await supabase.from('riasec_results').insert([resultData]);
+        const { error, data } = await supabase.from('riasec_results').insert([resultData]).select('id');
         if (error) {
           console.error('[SUPABASE][RIASEC] Insert error:', error);
         } else {
           console.log('[SUPABASE][RIASEC] Insert success:', data);
+          // Stocker l'ID pour la mise à jour ultérieure lors du paiement
+          if (data && data[0] && data[0].id) {
+            localStorage.setItem('riasecResultId', data[0].id);
+          }
         }
       } catch (err) {
         console.error('[SUPABASE][RIASEC] General error:', err);

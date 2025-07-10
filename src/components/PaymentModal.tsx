@@ -77,7 +77,7 @@ const PaymentModal: React.FC<PaymentModalProps> = ({ isOpen, onClose, onProceedT
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
             <Label htmlFor="name" className="text-sm font-semibold text-gray-700">
-              Votre nom <span className="text-gray-400 font-normal">(optionnel)</span>
+              Votre nom
             </Label>
             <Input
               id="name"
@@ -92,7 +92,7 @@ const PaymentModal: React.FC<PaymentModalProps> = ({ isOpen, onClose, onProceedT
 
           <div>
             <Label htmlFor="email" className="text-sm font-semibold text-gray-700">
-              Votre email <span className="text-gray-400 font-normal">(optionnel)</span>
+              Votre email
             </Label>
             <Input
               id="email"

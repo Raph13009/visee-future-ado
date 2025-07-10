@@ -468,6 +468,30 @@ function ResultsRiasec() {
     const urlParams = new URLSearchParams(window.location.search);
     if (urlParams.get('payment') === 'success') {
       setIsUnlocked(true);
+      
+      // Mettre à jour le statut de paiement en base
+      const updatePaymentStatus = async () => {
+        const riasecResultId = localStorage.getItem('riasecResultId');
+        if (riasecResultId) {
+          try {
+            const { error } = await supabase
+              .from('riasec_results')
+              .update({ payment: 'completed' })
+              .eq('id', riasecResultId);
+            
+            if (error) {
+              console.error('Erreur mise à jour statut paiement:', error);
+            } else {
+              console.log('Statut de paiement mis à jour avec succès');
+            }
+          } catch (err) {
+            console.error('Erreur lors de la mise à jour du paiement:', err);
+          }
+        }
+      };
+      
+      updatePaymentStatus();
+      
       // Optionnel: supprimer le paramètre de l'URL
       const newUrl = window.location.pathname + '?profile=' + urlParams.get('profile');
       window.history.replaceState({}, '', newUrl);
@@ -496,42 +520,60 @@ function ResultsRiasec() {
       const finalName = name.trim() || null;
       const finalEmail = email.trim() || null;
       
-      // Enregistrer les données utilisateur et le profil RIASEC en base
-      const { error } = await supabase
-        .from('riasec_results')
-        .insert({
-          name: finalName,
-          email: finalEmail,
-          dominant_profile: profile?.code || '',
-          profile_name: profile?.name || '',
-          r_score: 0,
-          i_score: 0,
-          a_score: 0,
-          s_score: 0,
-          e_score: 0,
-          c_score: 0,
-          total_price: 190, // Prix en centimes (1.90€ = 190 centimes)
-          include_monthly_coaching: false,
-          payment: 'pending'
-        });
+      // Récupérer l'ID de la ligne créée lors du test RIASEC
+      const riasecResultId = localStorage.getItem('riasecResultId');
+      
+      if (riasecResultId) {
+        // Mettre à jour la ligne existante
+        const { error } = await supabase
+          .from('riasec_results')
+          .update({
+            name: finalName,
+            email: finalEmail,
+            total_price: 190, // Prix en centimes (1.90€ = 190 centimes)
+            payment: 'pending'
+          })
+          .eq('id', riasecResultId);
 
-      if (error) {
-        console.error('Erreur lors de l\'enregistrement:', error);
-        console.error('Détails de l\'erreur:', {
-          message: error.message,
-          details: error.details,
-          hint: error.hint,
-          code: error.code
-        });
-        throw error;
+        if (error) {
+          console.error('Erreur lors de la mise à jour:', error);
+          throw error;
+        }
+        
+        console.log('Mise à jour réussie pour l\'ID:', riasecResultId);
+      } else {
+        // Fallback : créer une nouvelle ligne si pas d'ID trouvé
+        console.warn('Aucun ID de résultat RIASEC trouvé, création d\'une nouvelle ligne');
+        const { error } = await supabase
+          .from('riasec_results')
+          .insert({
+            name: finalName,
+            email: finalEmail,
+            dominant_profile: profile?.code || '',
+            profile_name: profile?.name || '',
+            r_score: 0,
+            i_score: 0,
+            a_score: 0,
+            s_score: 0,
+            e_score: 0,
+            c_score: 0,
+            total_price: 190, // Prix en centimes (1.90€ = 190 centimes)
+            include_monthly_coaching: false,
+            payment: 'pending'
+          });
+
+        if (error) {
+          console.error('Erreur lors de l\'insertion fallback:', error);
+          throw error;
+        }
       }
 
       // Fermer le modal
       setShowPaymentModal(false);
 
-      // Construire l'URL de retour avec le profil actuel et le paramètre de succès
+      // Construire l'URL de retour vers la page de confirmation de paiement
       const currentProfile = new URLSearchParams(window.location.search).get('profile');
-      const returnUrl = `${window.location.origin}/resultats-riasec?profile=${currentProfile}&payment=success`;
+      const returnUrl = `${window.location.origin}/payment-success?profile=${currentProfile}`;
       
       // Rediriger vers Stripe avec l'URL de retour
       window.location.href = `https://buy.stripe.com/dRm28safGcX7fU00nY7IY02?success_url=${encodeURIComponent(returnUrl)}`;
@@ -795,7 +837,7 @@ function ResultsRiasec() {
             
             {/* Afficher les 2 derniers traits floutés si non débloqué */}
             {profile.traits?.slice(2).map((trait, index) => (
-              <LockedSection key={index + 2} isUnlocked={isUnlocked} showOnlyIcon={true}>
+              <LockedSection key={index + 2} isUnlocked={isUnlocked} showOnlyIcon={true} onClick={() => setShowPaymentModal(true)}>
                 <span className="bg-gradient-to-r from-blue-100 via-purple-100 to-pink-100 text-gray-800 px-4 py-2 rounded-full text-sm font-semibold flex items-center gap-2 shadow-md hover:shadow-lg transition-all duration-300 transform hover:scale-105">
                   <span className="text-base">{trait.emoji}</span>
                   <span>{trait.label}</span>
