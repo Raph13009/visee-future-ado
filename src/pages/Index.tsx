@@ -76,7 +76,7 @@ const Index = () => {
       <section className="pt-24 pb-16 px-4">
         <div className="container mx-auto text-center max-w-4xl">
           <div className="animate-fade-in">
-            <h1 className="text-4xl md:text-6xl font-bold text-primary mb-6 tracking-tight leading-tight">
+            <h1 className="text-4xl md:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-800 mb-6 tracking-tight leading-tight">
             Enfin un test qui t'aide à trouver ta voie sans te perdre
             </h1>
             <div className="flex justify-center mb-8">
