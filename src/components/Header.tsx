@@ -32,12 +32,12 @@ const Header = ({ hideTestCTA }: HeaderProps) => {
         </nav>
 
         {!hideTestCTA && (
-          <Button 
-            onClick={() => navigate('/test')}
-            className="bg-primary hover:bg-primary/90 text-white px-6 py-2 rounded-2xl font-medium transition-all hover:scale-105"
-          >
-            Commencer le test
-          </Button>
+        <Button 
+          onClick={() => navigate('/test-riasec')}
+          className="bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 hover:from-blue-700 hover:via-indigo-700 hover:to-purple-700 text-white px-6 py-2 rounded-2xl font-medium transition-all hover:scale-105 shadow-lg hover:shadow-xl"
+        >
+          Commencer le test
+        </Button>
         )}
       </div>
     </header>

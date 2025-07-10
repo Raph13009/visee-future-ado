@@ -48,6 +48,66 @@ export type Database = {
         }
         Relationships: []
       }
+      riasec_results: {
+        Row: {
+          id: string
+          name: string | null
+          email: string | null
+          r_score: number
+          i_score: number
+          a_score: number
+          s_score: number
+          e_score: number
+          c_score: number
+          dominant_profile: string
+          profile_name: string
+          detailed_answers: Json | null
+          payment: string | null
+          total_price: number
+          include_monthly_coaching: boolean
+          created_at: string
+          updated_at: string
+        }
+        Insert: {
+          id?: string
+          name?: string | null
+          email?: string | null
+          r_score?: number
+          i_score?: number
+          a_score?: number
+          s_score?: number
+          e_score?: number
+          c_score?: number
+          dominant_profile: string
+          profile_name: string
+          detailed_answers?: Json | null
+          payment?: string | null
+          total_price?: number
+          include_monthly_coaching?: boolean
+          created_at?: string
+          updated_at?: string
+        }
+        Update: {
+          id?: string
+          name?: string | null
+          email?: string | null
+          r_score?: number
+          i_score?: number
+          a_score?: number
+          s_score?: number
+          e_score?: number
+          c_score?: number
+          dominant_profile?: string
+          profile_name?: string
+          detailed_answers?: Json | null
+          payment?: string | null
+          total_price?: number
+          include_monthly_coaching?: boolean
+          created_at?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
