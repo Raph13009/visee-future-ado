@@ -6,11 +6,10 @@ import { Label } from './ui/label';
 interface PaymentModalProps {
   isOpen: boolean;
   onClose: () => void;
-  onProceedToPayment: (name: string, email: string) => void;
+  onProceedToPayment: (email: string) => void;
 }
 
 const PaymentModal: React.FC<PaymentModalProps> = ({ isOpen, onClose, onProceedToPayment }) => {
-  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [errors, setErrors] = useState<{email?: string}>({});
   const [isLoading, setIsLoading] = useState(false);
@@ -37,7 +36,7 @@ const PaymentModal: React.FC<PaymentModalProps> = ({ isOpen, onClose, onProceedT
     setIsLoading(true);
     
     try {
-      await onProceedToPayment(name.trim(), email.trim());
+      await onProceedToPayment(email.trim());
     } catch (error) {
       console.error('Erreur lors de l\'enregistrement:', error);
     } finally {
@@ -47,7 +46,6 @@ const PaymentModal: React.FC<PaymentModalProps> = ({ isOpen, onClose, onProceedT
 
   const handleClose = () => {
     onClose();
-    setName('');
     setEmail('');
     setErrors({});
   };
@@ -75,21 +73,6 @@ const PaymentModal: React.FC<PaymentModalProps> = ({ isOpen, onClose, onProceedT
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-4">
-          <div>
-            <Label htmlFor="name" className="text-sm font-semibold text-gray-700">
-              Votre nom
-            </Label>
-            <Input
-              id="name"
-              type="text"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              placeholder="Ex: Jean Dupont"
-              className="mt-1"
-              disabled={isLoading}
-            />
-          </div>
-
           <div>
             <Label htmlFor="email" className="text-sm font-semibold text-gray-700">
               Votre email

@@ -14,7 +14,6 @@ import CgvModal from "@/components/checkout/CgvModal";
 
 const Checkout = () => {
   const [formData, setFormData] = useState({
-    name: "",
     email: "",
     currentFiliere: ""
   });
@@ -41,12 +40,14 @@ const Checkout = () => {
 
   useEffect(() => {
     // Si on a déjà un leadId, ne rien faire
-    if (typeof window !== 'undefined' && !localStorage.getItem('leadId') && (formData.name || formData.email)) {
+    if (typeof window !== 'undefined' && !localStorage.getItem('leadId') && formData.email) {
       // Récupère les réponses du test
       const testAnswers = localStorage.getItem('testAnswers');
       const parsedAnswers = testAnswers ? JSON.parse(testAnswers) : {};
+      // Récupérer le pseudo depuis localStorage
+      const userPseudo = localStorage.getItem('userPseudo') || "Non renseigné";
       const leadData = {
-        name: formData.name || "Non renseigné",
+        name: userPseudo,
         email: formData.email || "Non renseigné",
         current_filiere: formData.currentFiliere || "Non spécifié",
         key_answers: parsedAnswers,
@@ -81,8 +82,10 @@ const Checkout = () => {
         // Fallback : si pas d'id, insère une nouvelle ligne (rare)
       const testAnswers = localStorage.getItem('testAnswers');
       const parsedAnswers = testAnswers ? JSON.parse(testAnswers) : {};
+        // Récupérer le pseudo depuis localStorage
+        const userPseudo = localStorage.getItem('userPseudo') || "Non renseigné";
         const leadData = {
-          name: formData.name || "Non renseigné",
+          name: userPseudo,
           email: formData.email || "Non renseigné",
           current_filiere: formData.currentFiliere || "Non spécifié",
           key_answers: parsedAnswers,

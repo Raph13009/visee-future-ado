@@ -4,7 +4,6 @@ import { Label } from "@/components/ui/label";
 
 interface CheckoutFormProps {
   formData: {
-    name: string;
     email: string;
     currentFiliere: string;
   };
@@ -20,21 +19,6 @@ const CheckoutForm = ({ formData, onInputChange }: CheckoutFormProps) => {
         </CardTitle>
       </CardHeader>
       <CardContent className="space-y-4 px-4 sm:px-6">
-        <div>
-          <Label htmlFor="name" className="text-sm font-medium text-gray-700">
-            👤 Nom complet
-          </Label>
-          <Input
-            id="name"
-            type="text"
-            value={formData.name}
-            onChange={(e) => onInputChange("name", e.target.value)}
-            className="mt-1 rounded-xl border-gray-200 focus:border-primary focus:ring-primary text-sm sm:text-base"
-            placeholder="Ton nom et prénom (optionnel)"
-            required={false}
-          />
-        </div>
-
         <div>
           <Label htmlFor="email" className="text-sm font-medium text-gray-700">
             📧 Adresse email

@@ -312,8 +312,11 @@ const TestRiasec = () => {
 
         const profileName = profileNames[dominantProfile] || 'Profil Unique';
 
+        // Récupérer le pseudo depuis localStorage
+        const userPseudo = localStorage.getItem('userPseudo') || "Non renseigné";
+
         const resultData = {
-          name: "Non renseigné",
+          name: userPseudo,
           email: "Non renseigné",
           r_score: scores.R,
           i_score: scores.I,

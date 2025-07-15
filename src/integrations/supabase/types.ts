@@ -21,6 +21,12 @@ export type Database = {
           payment: string | null
           include_monthly_coaching: boolean
           total_price: number
+          coaching_objectives: string | null
+          coaching_availability: string | null
+          coaching_price: number | null
+          coaching_type: string | null
+          coaching_status: string | null
+          coaching_session_date: string | null
         }
         Insert: {
           created_at?: string
@@ -33,6 +39,12 @@ export type Database = {
           payment?: string | null
           include_monthly_coaching?: boolean
           total_price?: number
+          coaching_objectives?: string | null
+          coaching_availability?: string | null
+          coaching_price?: number | null
+          coaching_type?: string | null
+          coaching_status?: string | null
+          coaching_session_date?: string | null
         }
         Update: {
           created_at?: string
@@ -45,6 +57,12 @@ export type Database = {
           payment?: string | null
           include_monthly_coaching?: boolean
           total_price?: number
+          coaching_objectives?: string | null
+          coaching_availability?: string | null
+          coaching_price?: number | null
+          coaching_type?: string | null
+          coaching_status?: string | null
+          coaching_session_date?: string | null
         }
         Relationships: []
       }

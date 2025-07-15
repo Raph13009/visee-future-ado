@@ -9,6 +9,7 @@ import LockedSection from "@/components/LockedSection";
 import PromoModal from "@/components/PromoModal";
 import PaymentModal from "@/components/PaymentModal";
 import { supabase } from "@/integrations/supabase/client";
+import CoachingCTA from "@/components/coaching/CoachingCTA";
 
 interface RiasecProfile {
   code: string;
@@ -513,12 +514,18 @@ function ResultsRiasec() {
     setIsUnlocked(true);
   };
   
+  // Fonction pour naviguer vers le coaching
+  const handleDiscoverCoaching = () => {
+    navigate('/coaching');
+  };
+
   // Fonction pour enregistrer en base et rediriger vers Stripe
-  const handleProceedToPayment = async (name: string, email: string) => {
+  const handleProceedToPayment = async (email: string) => {
     try {
       // Traiter les champs vides avec des valeurs par défaut
-      const finalName = name.trim() || null;
       const finalEmail = email.trim() || null;
+      // Récupérer le pseudo depuis localStorage
+      const userPseudo = localStorage.getItem('userPseudo') || null;
       
       // Récupérer l'ID de la ligne créée lors du test RIASEC
       const riasecResultId = localStorage.getItem('riasecResultId');
@@ -528,7 +535,7 @@ function ResultsRiasec() {
         const { error } = await supabase
           .from('riasec_results')
           .update({
-            name: finalName,
+            name: userPseudo,
             email: finalEmail,
             total_price: 190, // Prix en centimes (1.90€ = 190 centimes)
             payment: 'pending'
@@ -547,7 +554,7 @@ function ResultsRiasec() {
         const { error } = await supabase
           .from('riasec_results')
           .insert({
-            name: finalName,
+            name: userPseudo,
             email: finalEmail,
             dominant_profile: profile?.code || '',
             profile_name: profile?.name || '',
@@ -1251,6 +1258,11 @@ function ResultsRiasec() {
             </p>
           </CardContent>
         </Card>
+
+        {/* Coaching CTA - exactement identique à celui de la page d'accueil */}
+        <div className="max-w-2xl mx-auto">
+          <CoachingCTA onDiscover={handleDiscoverCoaching} />
+        </div>
       </main>
 
       <Footer />

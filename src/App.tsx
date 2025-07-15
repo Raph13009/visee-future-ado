@@ -11,6 +11,8 @@ import ResultsRiasec from "./pages/ResultsRiasec";
 import PaymentSuccess from "./pages/PaymentSuccess";
 import Checkout from "./pages/Checkout";
 import Results from "./pages/Results";
+import Coaching from "./pages/Coaching";
+import CoachingSuccess from "./pages/CoachingSuccess";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -29,6 +31,8 @@ const App = () => (
           <Route path="/payment-success" element={<PaymentSuccess />} />
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/results" element={<Results />} />
+          <Route path="/coaching" element={<Coaching />} />
+          <Route path="/coaching-success" element={<CoachingSuccess />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
