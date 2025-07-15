@@ -6,11 +6,14 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import CgvModal from "@/components/checkout/CgvModal";
+import PseudoModal from "@/components/PseudoModal";
+import CoachingCTA from "@/components/coaching/CoachingCTA";
 
 const Index = () => {
   const navigate = useNavigate();
   const [hoveredBenefit, setHoveredBenefit] = useState<number | null>(null);
   const [showCgvModal, setShowCgvModal] = useState(false);
+  const [showPseudoModal, setShowPseudoModal] = useState(false);
 
   const benefits = [
     {
@@ -67,10 +70,32 @@ const Index = () => {
     }
   ];
 
+  const handleStartTest = () => {
+    setShowPseudoModal(true);
+  };
+
+  const handleContinueToTest = (pseudo: string) => {
+    setShowPseudoModal(false);
+    navigate('/test-riasec');
+  };
+
+  const handleClosePseudoModal = () => {
+    setShowPseudoModal(false);
+  };
+
+  const handleDiscoverCoaching = () => {
+    navigate('/coaching');
+  };
+
   return (
     <div className="min-h-screen bg-white">
       <Header />
       <CgvModal open={showCgvModal} onClose={() => setShowCgvModal(false)} />
+      <PseudoModal 
+        isOpen={showPseudoModal}
+        onClose={handleClosePseudoModal}
+        onContinue={handleContinueToTest}
+      />
       
       {/* Hero Section */}
       <section className="pt-24 pb-16 px-4">
@@ -93,7 +118,7 @@ const Index = () => {
               {/* Bouton principal RIASEC */}
               <div>
                 <Button 
-                  onClick={() => navigate('/test-riasec')}
+                  onClick={handleStartTest}
                   size="lg"
                   className="bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 hover:from-blue-700 hover:via-indigo-700 hover:to-purple-700 text-white px-8 sm:px-12 py-6 text-lg sm:text-xl font-bold rounded-2xl transition-all duration-300 transform hover:scale-105 shadow-2xl hover:shadow-purple-500/25 border-2 border-white/20 w-full sm:w-auto max-w-sm sm:max-w-none mx-auto"
                 >
@@ -110,6 +135,11 @@ const Index = () => {
                 <span className="text-blue-600 font-semibold"> 10 minutes</span> • 
                 <span className="text-purple-600 font-semibold"> Résultats immédiats</span>
               </p>
+            </div>
+
+            {/* CTA Coaching */}
+            <div className="max-w-2xl mx-auto">
+              <CoachingCTA onDiscover={handleDiscoverCoaching} />
             </div>
           </div>
         </div>
@@ -370,7 +400,7 @@ const Index = () => {
             </p>
             
             <Button 
-              onClick={() => navigate('/test-riasec')}
+              onClick={handleStartTest}
               size="lg"
               className="bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 text-white px-10 py-5 text-lg rounded-2xl font-bold transition-all hover:scale-105 shadow-lg hover:shadow-xl"
             >
