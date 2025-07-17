@@ -29,11 +29,12 @@ const CoachingCTA = ({ onDiscover }: CoachingCTAProps) => {
           <Button 
             onClick={onDiscover}
             size="lg"
-            className="bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white px-10 py-4 text-xl font-bold rounded-2xl transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
+            className="bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white px-6 sm:px-10 py-4 text-lg sm:text-xl font-bold rounded-2xl transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
           >
-            <span className="flex items-center gap-3">
-              <span className="text-2xl">🚀</span>
-              <span>Découvrir le coaching</span>
+            <span className="flex items-center gap-2 sm:gap-3">
+              <span className="text-xl sm:text-2xl">🚀</span>
+              <span className="hidden sm:inline">Découvrir le coaching</span>
+              <span className="sm:hidden">Coaching</span>
             </span>
           </Button>
         </div>
