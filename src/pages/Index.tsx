@@ -57,10 +57,6 @@ const Index = () => {
       answer: "Le questionnaire prend environ 10-15 minutes. Vous pouvez le faire à votre rythme et même le mettre en pause si besoin."
     },
     {
-      question: "Qui sont les coachs ?",
-      answer: "Nos coachs sont des professionnels certifiés en orientation scolaire et professionnelle, avec une expérience auprès des jeunes."
-    },
-    {
       question: "Que contient le rapport personnalisé ?",
       answer: "Votre rapport inclut vos points forts, des suggestions de filières, des métiers qui vous correspondent, et des prochaines étapes concrètes."
     },
@@ -281,6 +277,98 @@ const Index = () => {
                     Pas de théorie : découvre les jobs alignés avec qui tu es vraiment. 
                     Des suggestions précises avec les débouchés et salaires moyens.
                   </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Pause bien-être Section */}
+      <section className="py-16 bg-gradient-to-br from-purple-50 via-pink-50 to-indigo-50">
+        <div className="container mx-auto px-4">
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center mb-12">
+              <div className="inline-flex items-center gap-3 bg-white/70 backdrop-blur-sm border border-purple-200 rounded-2xl px-6 py-3 shadow-sm mb-6">
+                <span className="text-2xl">🎨</span>
+                <h2 className="text-2xl md:text-3xl font-bold text-purple-900">
+                  Pause bien-être
+                </h2>
+              </div>
+              <p className="text-lg md:text-xl text-purple-800 max-w-3xl mx-auto leading-relaxed">
+                <span className="font-semibold">Prends une vraie pause</span> • 
+                <span className="text-purple-700"> Pose ton téléphone</span> • 
+                <span className="text-purple-700"> Reconnecte-toi à toi-même</span>
+              </p>
+            </div>
+
+            <div className="flex flex-col lg:flex-row items-center gap-12">
+              {/* Image du livre */}
+              <div className="flex-1 lg:max-w-md">
+                <div className="relative group">
+                  <div className="rounded-2xl overflow-hidden bg-white/80 backdrop-blur-sm p-6 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-rotate-1">
+                    <img 
+                      src="/cover-fr.png" 
+                      alt="Cute & Cozy Worlds - Livre de coloriage pour la relaxation"
+                      className="w-full h-auto rounded-xl shadow-lg"
+                    />
+                  </div>
+                  <div className="absolute -top-2 -right-2 bg-gradient-to-r from-pink-500 to-purple-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg">
+                    NOUVEAU
+                  </div>
+                </div>
+              </div>
+
+              {/* Contenu textuel */}
+              <div className="flex-1 text-center lg:text-left">
+                <div className="space-y-6">
+                  <div>
+                    <h3 className="text-2xl md:text-3xl font-bold text-purple-900 mb-4">
+                      Cute & Cozy Worlds
+                    </h3>
+                    <p className="text-lg text-purple-800 leading-relaxed mb-4">
+                      <span className="font-semibold">Scientifiquement prouvé :</span> le coloriage réduit le stress de 68%, 
+                      améliore la concentration et libère de la <span className="font-semibold text-pink-600">dopamine</span> - 
+                      l'hormone du bien-être.
+                    </p>
+                    <p className="text-purple-700 leading-relaxed">
+                      Un moment de <span className="font-semibold">créativité apaisante</span> pour ados, étudiants et adultes. 
+                      Parfait pour une <span className="font-semibold">hygiène mentale simple et efficace</span>.
+                    </p>
+                  </div>
+
+                  <div className="flex flex-col sm:flex-row items-center gap-4">
+                    <Button 
+                      onClick={() => window.open('https://www.amazon.fr/dp/B0FHW8CJ92', '_blank')}
+                      size="lg"
+                      className="bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white px-8 py-4 text-lg font-bold rounded-2xl transition-all duration-300 transform hover:scale-105 shadow-xl hover:shadow-2xl border-2 border-white/20"
+                    >
+                      <span className="flex items-center gap-3">
+                        <span className="text-xl">🎨</span>
+                        <span>Acheter pour 7,99 €</span>
+                      </span>
+                    </Button>
+                    
+                    <div className="flex items-center gap-2 text-sm text-purple-600">
+                      <span className="text-lg">✨</span>
+                      <span>Livraison gratuite Amazon Prime</span>
+                    </div>
+                  </div>
+
+                  <div className="flex flex-wrap justify-center lg:justify-start gap-3 text-sm">
+                    <span className="bg-white/60 backdrop-blur-sm px-3 py-1 rounded-full text-purple-700 font-medium">
+                      🧠 Concentration
+                    </span>
+                    <span className="bg-white/60 backdrop-blur-sm px-3 py-1 rounded-full text-purple-700 font-medium">
+                      😌 Apaisement
+                    </span>
+                    <span className="bg-white/60 backdrop-blur-sm px-3 py-1 rounded-full text-purple-700 font-medium">
+                      🎯 Créativité
+                    </span>
+                    <span className="bg-white/60 backdrop-blur-sm px-3 py-1 rounded-full text-purple-700 font-medium">
+                      📱 Pause digitale
+                    </span>
+                  </div>
                 </div>
               </div>
             </div>
