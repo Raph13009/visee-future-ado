@@ -61,7 +61,7 @@ const UserInfoModal: React.FC<UserInfoModalProps> = ({ isOpen, onClose, onContin
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-2xl shadow-2xl max-w-md w-full p-6 transform transition-all">
+      <div className="rounded-2xl shadow-2xl max-w-md w-full p-6 transform transition-all" style={{ background: '#F9F8F4' }}>
         <div className="text-center mb-6">
           <div className="text-4xl mb-3">🚀</div>
           <h2 className="text-xl font-black text-gray-900 mb-2">

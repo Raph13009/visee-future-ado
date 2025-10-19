@@ -65,7 +65,7 @@ const Index = () => {
 
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen" style={{ background: '#F9F8F4' }}>
       <Header />
       <CgvModal open={showCgvModal} onClose={() => setShowCgvModal(false)} />
       
@@ -98,7 +98,7 @@ const Index = () => {
         <div className="bilan-grid">
           <div className="bilan-card">
             <img 
-              src="public/scolar.png" 
+              src="/scolar.png" 
               alt="Bilan d'orientation scolaire"
               className="bilan-card-image"
             />
@@ -120,7 +120,7 @@ const Index = () => {
 
           <div className="bilan-card">
             <img 
-              src="public/professional.png" 
+              src="/professional.png" 
               alt="Bilan de compétences — reconversion professionnelle"
               className="bilan-card-image"
             />
@@ -142,7 +142,7 @@ const Index = () => {
 
           <div className="bilan-card">
             <img 
-              src="public/other.png" 
+              src="/other.png" 
               alt="Bilan de compétences tous publics"
               className="bilan-card-image"
             />

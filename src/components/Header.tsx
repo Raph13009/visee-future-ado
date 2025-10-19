@@ -1,7 +1,5 @@
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
-import PseudoModal from "@/components/PseudoModal";
 
 interface HeaderProps {
   hideTestCTA?: boolean;
@@ -9,28 +7,15 @@ interface HeaderProps {
 
 const Header = ({ hideTestCTA }: HeaderProps) => {
   const navigate = useNavigate();
-  const [showPseudoModal, setShowPseudoModal] = useState(false);
 
   const handleStartTest = () => {
-    setShowPseudoModal(true);
-  };
-
-  const handleContinueToTest = (pseudo: string) => {
-    setShowPseudoModal(false);
-    navigate('/test-riasec');
-  };
-
-  const handleClosePseudoModal = () => {
-    setShowPseudoModal(false);
+    // Rediriger vers la page bilan tous publics
+    navigate('/bilan-competences-tous-publics');
+    window.scrollTo(0, 0);
   };
 
   return (
     <>
-      <PseudoModal 
-        isOpen={showPseudoModal}
-        onClose={handleClosePseudoModal}
-        onContinue={handleContinueToTest}
-      />
       <header className="fixed top-0 left-0 right-0 z-50" style={{ background: 'var(--neo-bg)', borderBottom: '3px solid var(--neo-line)' }}>
         <div className="neo-container py-4 flex items-center justify-between">
         <div 
