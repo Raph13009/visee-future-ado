@@ -290,7 +290,7 @@ All colors MUST be HSL.
 
   @media (min-width: 768px) {
     .hero-callout {
-      max-width: 90%;
+      max-width: 60%;
     }
   }
 
@@ -354,7 +354,7 @@ All colors MUST be HSL.
 
   /* Bilan Section Styles */
   .bilan-section {
-    padding: clamp(3rem, 6vw, 5rem) 1rem;
+    padding: clamp(2rem, 4vw, 3rem) 1rem;
     background: var(--neo-bg);
   }
 
