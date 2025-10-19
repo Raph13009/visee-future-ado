@@ -19,7 +19,11 @@ const TestRiasec = () => {
   const [answers, setAnswers] = useState<Record<number, RiasecAnswer>>({});
   const [isAnimating, setIsAnimating] = useState(false);
 
-  const questions = [
+  // Récupérer le type de bilan depuis localStorage
+  const bilanType = localStorage.getItem('bilanType') || 'scolaire';
+
+  // Questions pour l'orientation scolaire (jeunes)
+  const questionsJeunes = [
     {
       id: 0,
       title: "Tu préfères...",
@@ -178,6 +182,169 @@ const TestRiasec = () => {
     }
   ];
 
+  // Questions pour la reconversion professionnelle et tous publics (adultes)
+  const questionsAdultes = [
+    {
+      id: 0,
+      title: "Quand tu imagines ton futur métier, tu te vois plutôt...",
+      type: "single" as const,
+      options: [
+        { text: "Fabriquer, réparer ou manipuler du concret", letter: 'R' as const },
+        { text: "Observer, comprendre ou résoudre des problèmes complexes", letter: 'I' as const },
+        { text: "Concevoir, imaginer ou exprimer des idées créatives", letter: 'A' as const },
+        { text: "Aider, accompagner ou former d'autres personnes", letter: 'S' as const },
+        { text: "Diriger, décider ou lancer des projets ambitieux", letter: 'E' as const },
+        { text: "Structurer, planifier ou gérer l'administratif", letter: 'C' as const }
+      ]
+    },
+    {
+      id: 1,
+      title: "Dans ton travail idéal, tu préfères...",
+      type: "single" as const,
+      options: [
+        { text: "Travailler avec tes mains et voir un résultat concret", letter: 'R' as const },
+        { text: "Faire des recherches ou analyser des données", letter: 'I' as const },
+        { text: "Créer des visuels, écrire ou inventer des concepts", letter: 'A' as const },
+        { text: "Être au contact des gens, écouter et conseiller", letter: 'S' as const },
+        { text: "Motiver une équipe et prendre des décisions", letter: 'E' as const },
+        { text: "Organiser, classer ou rendre les choses plus efficaces", letter: 'C' as const }
+      ]
+    },
+    {
+      id: 2,
+      title: "Ce qui te donne le plus d'énergie, c'est...",
+      type: "single" as const,
+      options: [
+        { text: "Résoudre un problème technique ou pratique", letter: 'R' as const },
+        { text: "Trouver la logique cachée derrière un sujet", letter: 'I' as const },
+        { text: "Imaginer quelque chose de nouveau ou d'original", letter: 'A' as const },
+        { text: "Sentir que tu aides ou soutiens quelqu'un", letter: 'S' as const },
+        { text: "Défendre une idée et convaincre ton entourage", letter: 'E' as const },
+        { text: "Mettre de l'ordre et clarifier une situation", letter: 'C' as const }
+      ]
+    },
+    {
+      id: 3,
+      title: "Quand tu apprends quelque chose, tu préfères...",
+      type: "single" as const,
+      options: [
+        { text: "Faire toi-même, expérimenter", letter: 'R' as const },
+        { text: "Comprendre en profondeur le pourquoi du comment", letter: 'I' as const },
+        { text: "Visualiser ou créer à partir de ton imagination", letter: 'A' as const },
+        { text: "En discuter avec d'autres et échanger", letter: 'S' as const },
+        { text: "Te projeter sur comment l'utiliser pour atteindre un but", letter: 'E' as const },
+        { text: "Suivre une méthode claire et bien structurée", letter: 'C' as const }
+      ]
+    },
+    {
+      id: 4,
+      title: "Dans un projet d'équipe, ton rôle naturel, c'est...",
+      type: "single" as const,
+      options: [
+        { text: "Le bricoleur ou le technicien, celui qui fait fonctionner les choses", letter: 'R' as const },
+        { text: "Le cerveau analytique, celui qui cherche des solutions", letter: 'I' as const },
+        { text: "Le créatif, celui qui donne l'idée originale", letter: 'A' as const },
+        { text: "Le lien humain, celui qui comprend les autres", letter: 'S' as const },
+        { text: "Le leader, celui qui donne la direction", letter: 'E' as const },
+        { text: "L'organisateur, celui qui garde le cap et les délais", letter: 'C' as const }
+      ]
+    },
+    {
+      id: 5,
+      title: "Ce qui t'ennuie le plus dans un travail, c'est...",
+      type: "single" as const,
+      options: [
+        { text: "Rester trop longtemps assis sans rien manipuler", letter: 'R' as const },
+        { text: "Faire sans comprendre le sens ou la logique", letter: 'I' as const },
+        { text: "Devoir suivre des consignes rigides sans liberté", letter: 'A' as const },
+        { text: "Être isolé ou sans contact humain", letter: 'S' as const },
+        { text: "Ne pas pouvoir décider ou avancer", letter: 'E' as const },
+        { text: "Le désordre, les imprévus, l'improvisation", letter: 'C' as const }
+      ]
+    },
+    {
+      id: 6,
+      title: "Tu te sens le plus à l'aise quand tu...",
+      type: "single" as const,
+      options: [
+        { text: "Utilises tes mains, outils ou machines", letter: 'R' as const },
+        { text: "Observes, analyses et tires des conclusions", letter: 'I' as const },
+        { text: "Exprimes des émotions ou une idée personnelle", letter: 'A' as const },
+        { text: "Soutiens quelqu'un dans sa progression", letter: 'S' as const },
+        { text: "Motives ou influences un groupe", letter: 'E' as const },
+        { text: "Organises un système ou une méthode efficace", letter: 'C' as const }
+      ]
+    },
+    {
+      id: 7,
+      title: "Si tu devais changer de métier demain, tu choisirais...",
+      type: "single" as const,
+      options: [
+        { text: "Un métier manuel ou technique", letter: 'R' as const },
+        { text: "Un métier de recherche ou d'analyse", letter: 'I' as const },
+        { text: "Un métier artistique ou créatif", letter: 'A' as const },
+        { text: "Un métier d'accompagnement humain", letter: 'S' as const },
+        { text: "Un métier de gestion ou de direction d'équipe", letter: 'E' as const },
+        { text: "Un métier d'organisation, de gestion ou de support", letter: 'C' as const }
+      ]
+    },
+    {
+      id: 8,
+      title: "Ce que tu valorises le plus dans ton travail, c'est...",
+      type: "single" as const,
+      options: [
+        { text: "La concrétisation, voir le résultat de mes efforts", letter: 'R' as const },
+        { text: "La compréhension, apprendre en continu", letter: 'I' as const },
+        { text: "L'expression personnelle et la liberté de créer", letter: 'A' as const },
+        { text: "L'utilité sociale et la reconnaissance des autres", letter: 'S' as const },
+        { text: "L'impact, la réussite, la progression", letter: 'E' as const },
+        { text: "La rigueur, la stabilité, la fiabilité", letter: 'C' as const }
+      ]
+    },
+    {
+      id: 9,
+      title: "Quand tu es face à un défi, tu as tendance à...",
+      type: "single" as const,
+      options: [
+        { text: "Passer directement à l'action", letter: 'R' as const },
+        { text: "Analyser calmement avant d'agir", letter: 'I' as const },
+        { text: "Chercher une idée originale pour contourner l'obstacle", letter: 'A' as const },
+        { text: "En parler avec d'autres pour trouver une solution", letter: 'S' as const },
+        { text: "Prendre les devants et organiser les troupes", letter: 'E' as const },
+        { text: "Chercher à structurer le problème pour mieux le résoudre", letter: 'C' as const }
+      ]
+    },
+    {
+      id: 10,
+      title: "Le type d'environnement où tu t'épanouis le plus, c'est...",
+      type: "single" as const,
+      options: [
+        { text: "Pratique, concret, sur le terrain", letter: 'R' as const },
+        { text: "Calme, intellectuel, tourné vers la réflexion", letter: 'I' as const },
+        { text: "Libre, expressif et stimulant", letter: 'A' as const },
+        { text: "Chaleureux, collaboratif et humain", letter: 'S' as const },
+        { text: "Dynamique, ambitieux, orienté résultats", letter: 'E' as const },
+        { text: "Ordonné, stable et bien organisé", letter: 'C' as const }
+      ]
+    },
+    {
+      id: 11,
+      title: "Quand tu réussis quelque chose, tu ressens le plus de fierté à...",
+      type: "single" as const,
+      options: [
+        { text: "Avoir construit ou réparé quelque chose de tangible", letter: 'R' as const },
+        { text: "Avoir compris un concept difficile", letter: 'I' as const },
+        { text: "Avoir créé quelque chose d'unique", letter: 'A' as const },
+        { text: "Avoir aidé quelqu'un à progresser", letter: 'S' as const },
+        { text: "Avoir dirigé une initiative ou atteint un objectif collectif", letter: 'E' as const },
+        { text: "Avoir mis de l'ordre dans le chaos et tout rendu plus clair", letter: 'C' as const }
+      ]
+    }
+  ];
+
+  // Sélectionner le bon set de questions selon le type de bilan
+  const questions = bilanType === 'scolaire' ? questionsJeunes : questionsAdultes;
+
   const currentQuestion = questions[currentStep];
 
   // Animation effect when changing questions
@@ -312,12 +479,14 @@ const TestRiasec = () => {
 
         const profileName = profileNames[dominantProfile] || 'Profil Unique';
 
-        // Récupérer le pseudo depuis localStorage
-        const userPseudo = localStorage.getItem('userPseudo') || "Non renseigné";
+        // Récupérer le nom, l'email et le type depuis localStorage
+        const userName = localStorage.getItem('userName') || "Non renseigné";
+        const userEmail = localStorage.getItem('userEmail') || "Non renseigné";
+        const bilanType = localStorage.getItem('bilanType') || "scolaire"; // scolaire par défaut
 
         const resultData = {
-          name: userPseudo,
-          email: "Non renseigné",
+          name: userName,
+          email: userEmail,
           r_score: scores.R,
           i_score: scores.I,
           a_score: scores.A,
@@ -329,7 +498,8 @@ const TestRiasec = () => {
           detailed_answers: answers as any,
           payment: null,
           total_price: 0,
-          include_monthly_coaching: false
+          include_monthly_coaching: false,
+          type: bilanType
         };
 
         console.log('[SUPABASE][RIASEC] Inserting result:', resultData);

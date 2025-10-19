@@ -1,5 +1,6 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lora:wght@300;400;500;600;700&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -48,6 +49,15 @@ All colors MUST be HSL.
     --sidebar-accent-foreground: 240 5.9% 10%;
     --sidebar-border: 220 13% 91%;
     --sidebar-ring: 217.2 91.2% 59.8%;
+
+    /* Modern Neobrutalism Theme */
+    --neo-bg: #F8F9FA;
+    --neo-ink: #1A1A1A;
+    --neo-accent: #FF6B35;
+    --neo-accent-2: #00D4AA;
+    --neo-line: #2D2D2D;
+    --neo-card-bg: #FFFFFF;
+    --neo-shadow: #6B7280;
   }
 }
 
@@ -104,5 +114,392 @@ All colors MUST be HSL.
       opacity: 1;
       transform: scale(1);
     }
+  }
+
+  /* Modern Neobrutalism Utility Classes */
+  .neo-card {
+    background: var(--neo-card-bg);
+    border: 3px solid var(--neo-line);
+    border-radius: 12px;
+    padding: 1.5rem;
+    transition: transform 0.2s ease;
+    box-shadow: 6px 6px 0 var(--neo-shadow);
+  }
+
+  .neo-card:hover {
+    transform: translate(-3px, -3px);
+    box-shadow: 9px 9px 0 var(--neo-shadow);
+  }
+
+  .neo-button {
+    background: var(--neo-accent);
+    color: var(--neo-bg);
+    border: 3px solid var(--neo-line);
+    border-radius: 12px;
+    padding: 1rem 2rem;
+    font-weight: 700;
+    font-size: 1.1rem;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    box-shadow: 4px 4px 0 var(--neo-shadow);
+  }
+
+  .neo-button:hover {
+    background: var(--neo-ink);
+    color: var(--neo-bg);
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0 var(--neo-shadow);
+  }
+
+  .neo-button:active {
+    transform: translate(0, 0);
+    box-shadow: 2px 2px 0 var(--neo-shadow);
+  }
+
+  .neo-button-secondary {
+    background: var(--neo-card-bg);
+    color: var(--neo-ink);
+    border: 3px solid var(--neo-line);
+    border-radius: 12px;
+    padding: 1rem 2rem;
+    font-weight: 700;
+    font-size: 1.1rem;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    box-shadow: 4px 4px 0 var(--neo-shadow);
+  }
+
+  .neo-button-secondary:hover {
+    background: var(--neo-accent-2);
+    color: var(--neo-bg);
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0 var(--neo-shadow);
+  }
+
+  .neo-button-secondary:active {
+    transform: translate(0, 0);
+    box-shadow: 2px 2px 0 var(--neo-shadow);
+  }
+
+  .neo-badge {
+    background: var(--neo-accent-2);
+    color: var(--neo-bg);
+    border: 2px solid var(--neo-line);
+    border-radius: 6px;
+    padding: 0.5rem 1rem;
+    font-weight: 600;
+    font-size: 0.9rem;
+    display: inline-block;
+  }
+
+  .neo-input {
+    background: var(--neo-bg);
+    border: 3px solid var(--neo-line);
+    border-radius: 8px;
+    padding: 1rem;
+    font-size: 1rem;
+    transition: all 0.2s ease;
+  }
+
+  .neo-input:focus {
+    outline: none;
+    border-color: var(--neo-accent);
+    box-shadow: 0 0 0 3px var(--neo-accent);
+  }
+
+  .neo-heading {
+    font-weight: 900;
+    line-height: 1.1;
+    color: var(--neo-ink);
+    letter-spacing: -0.02em;
+  }
+
+  .neo-heading-xl {
+    font-size: clamp(3rem, 8vw, 6rem);
+  }
+
+  @media (max-width: 768px) {
+    .neo-heading-xl {
+      margin-top: 2rem;
+    }
+  }
+
+  /* Professional Hero Layout */
+  .hero-title {
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    font-weight: 900;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: var(--neo-ink);
+    margin-bottom: 4rem;
+    margin-top: 3rem;
+  }
+
+  @media (min-width: 768px) {
+    .hero-title {
+      text-align: left;
+    }
+  }
+
+  .hero-subtitle {
+    font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+    line-height: 1.6;
+    color: #6B7280;
+    margin-bottom: 5rem;
+  }
+
+  @media (min-width: 768px) {
+    .hero-subtitle {
+      margin-left: 4rem;
+      margin-right: 4rem;
+    }
+  }
+
+  .hero-callout {
+    background: var(--neo-card-bg);
+    border: 3px solid var(--neo-line);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin: 0 auto 2rem auto;
+    box-shadow: 6px 6px 0 var(--neo-shadow);
+    max-width: 85%;
+    text-align: left;
+    transition: transform 0.2s ease;
+  }
+
+  .hero-callout:hover {
+    transform: translate(-3px, -3px);
+    box-shadow: 9px 9px 0 var(--neo-shadow);
+  }
+
+  .hero-callout-content {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: var(--neo-ink);
+    font-weight: 500;
+  }
+
+  .hero-callout-icon {
+    font-size: 1.2rem;
+    margin-right: 0.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .hero-callout {
+      max-width: 90%;
+    }
+  }
+
+  .neo-heading-lg {
+    font-size: clamp(2rem, 5vw, 3rem);
+  }
+
+  .neo-heading-md {
+    font-size: clamp(1.5rem, 4vw, 2rem);
+  }
+
+  .neo-text {
+    color: var(--neo-ink);
+    line-height: 1.6;
+  }
+
+  .neo-text-muted {
+    color: #666666;
+  }
+
+  .neo-link {
+    color: var(--neo-accent);
+    text-decoration: underline;
+    font-weight: 600;
+    transition: all 0.2s ease;
+  }
+
+  .neo-link:hover {
+    color: var(--neo-ink);
+    background: var(--neo-accent-2);
+    padding: 0.2rem 0.4rem;
+    border-radius: 4px;
+    text-decoration: none;
+  }
+
+  .neo-section {
+    padding: clamp(4rem, 10vw, 8rem) 1rem;
+  }
+
+  .neo-container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .neo-grid {
+    display: grid;
+    gap: 2rem;
+  }
+
+  .neo-grid-2 {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  }
+
+  .neo-grid-3 {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  }
+
+  .neo-grid-4 {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  }
+
+  /* Bilan Section Styles */
+  .bilan-section {
+    padding: clamp(3rem, 6vw, 5rem) 1rem;
+    background: var(--neo-bg);
+  }
+
+  .bilan-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .bilan-card {
+    background: #E8C785;
+    border: 3px solid var(--neo-line);
+    border-radius: 16px;
+    overflow: hidden;
+    transition: transform 0.2s ease;
+    box-shadow: 6px 6px 0 var(--neo-shadow);
+  }
+
+  .bilan-card:hover {
+    transform: translate(-3px, -3px);
+    box-shadow: 9px 9px 0 var(--neo-shadow);
+  }
+
+  .bilan-card-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 13px 13px 0 0;
+  }
+
+  .bilan-card-content {
+    padding: 1.5rem;
+  }
+
+  .bilan-card-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--neo-ink);
+    margin-bottom: 1rem;
+    line-height: 1.3;
+  }
+
+  .bilan-button {
+    background: #A1B5D8;
+    color: var(--neo-ink);
+    border: 3px solid var(--neo-line);
+    border-radius: 12px;
+    padding: 0.75rem 1.5rem;
+    font-weight: 700;
+    font-size: 0.9rem;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    box-shadow: 4px 4px 0 var(--neo-shadow);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .bilan-button:hover {
+    background: var(--neo-ink);
+    color: #A1B5D8;
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0 var(--neo-shadow);
+  }
+
+  .bilan-button:active {
+    transform: translate(0, 0);
+    box-shadow: 2px 2px 0 var(--neo-shadow);
+  }
+
+  /* Elegant Typography for Content Sections */
+  .content-section {
+    background: #F9F8F4;
+    padding: clamp(4rem, 8vw, 6rem) clamp(2rem, 6vw, 8rem);
+  }
+
+  .section-title {
+    font-family: 'Lora', serif;
+    font-weight: 700;
+    letter-spacing: 0.2px;
+    font-size: clamp(22px, 2vw, 28px);
+    color: #D4B16A;
+    margin-bottom: 1rem;
+    line-height: 1.3;
+  }
+
+  .section-subtitle {
+    font-family: 'Lora', serif;
+    font-weight: 600;
+    letter-spacing: 0.2px;
+    font-size: clamp(20px, 1.8vw, 24px);
+    color: #D4B16A;
+    margin-bottom: 1rem;
+    line-height: 1.3;
+  }
+
+  .section-text {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    line-height: 1.75;
+    letter-spacing: 0.1px;
+    font-size: clamp(16px, 1.1vw, 18px);
+    color: #3B3B3B;
+    max-width: 640px;
+    margin-bottom: 1.25rem;
+  }
+
+  .section-text-light {
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+    line-height: 1.75;
+    letter-spacing: 0.1px;
+    font-size: clamp(16px, 1.1vw, 18px);
+    color: #3B3B3B;
+    max-width: 640px;
+    margin-bottom: 1.25rem;
+  }
+
+  .section-text a,
+  .section-text-light a {
+    color: #7A9ACD;
+    text-decoration: none;
+    transition: all 0.2s ease;
+  }
+
+  .section-text a:hover,
+  .section-text-light a:hover {
+    text-decoration: underline;
+    opacity: 0.8;
+  }
+
+  .section-text strong,
+  .section-text-light strong {
+    font-weight: 600;
+  }
+
+  .section-content {
+    text-align: left;
+  }
+
+  .section-text,
+  .section-text-light {
+    text-align: left;
   }
 }

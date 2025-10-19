@@ -6,14 +6,11 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import CgvModal from "@/components/checkout/CgvModal";
-import PseudoModal from "@/components/PseudoModal";
-import CoachingCTA from "@/components/coaching/CoachingCTA";
 
 const Index = () => {
   const navigate = useNavigate();
   const [hoveredBenefit, setHoveredBenefit] = useState<number | null>(null);
   const [showCgvModal, setShowCgvModal] = useState(false);
-  const [showPseudoModal, setShowPseudoModal] = useState(false);
 
   const benefits = [
     {
@@ -66,93 +63,119 @@ const Index = () => {
     }
   ];
 
-  const handleStartTest = () => {
-    setShowPseudoModal(true);
-  };
-
-  const handleContinueToTest = (pseudo: string) => {
-    setShowPseudoModal(false);
-    navigate('/test-riasec');
-  };
-
-  const handleClosePseudoModal = () => {
-    setShowPseudoModal(false);
-  };
-
-  const handleDiscoverCoaching = () => {
-    navigate('/coaching');
-  };
 
   return (
     <div className="min-h-screen bg-white">
       <Header />
       <CgvModal open={showCgvModal} onClose={() => setShowCgvModal(false)} />
-      <PseudoModal 
-        isOpen={showPseudoModal}
-        onClose={handleClosePseudoModal}
-        onContinue={handleContinueToTest}
-      />
       
       {/* Hero Section */}
-      <section className="pt-24 pb-16 px-4">
-        <div className="container mx-auto text-center max-w-4xl">
+      <section className="neo-section" style={{ background: 'var(--neo-bg)' }}>
+        <div className="neo-container">
           <div className="animate-fade-in">
-            <h1 className="text-4xl md:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-800 mb-6 tracking-tight leading-tight">
-            Enfin un test qui t'aide à trouver ta voie sans te perdre
+            <h1 className="hero-title text-center">
+              Bilan de compétences<br />
+              en ligne
             </h1>
-            <div className="flex justify-center mb-8">
-              <div className="flex items-center gap-3 bg-gradient-to-r from-purple-50 to-pink-50 border border-purple-200 rounded-2xl px-6 py-4 shadow-sm max-w-2xl mx-auto">
-                <span className="text-2xl">🎓</span>
-                <span className="text-sm md:text-base text-purple-900 font-medium leading-relaxed">
-                  Méthode inspirée de <span className="font-bold">Stanford & Harvard</span>, conçue pour t'aider à choisir une voie alignée avec ta personnalité.
-                </span>
-              </div>
-            </div>
             
-            {/* CTA principal - Test RIASEC mis en avant */}
-            <div className="space-y-6">
-              {/* Bouton principal RIASEC */}
-              <div>
-                <Button 
-                  onClick={handleStartTest}
-                  size="lg"
-                  className="bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 hover:from-blue-700 hover:via-indigo-700 hover:to-purple-700 text-white px-8 sm:px-12 py-6 text-lg sm:text-xl font-bold rounded-2xl transition-all duration-300 transform hover:scale-105 shadow-2xl hover:shadow-purple-500/25 border-2 border-white/20 w-full sm:w-auto max-w-sm sm:max-w-none mx-auto"
-                >
-                  <span className="flex items-center gap-2 sm:gap-3">
-                    <span className="text-xl sm:text-2xl">👉</span>
-                    <span>Commence le test gratuit</span>
-                  </span>
-                </Button>
+            <h2 className="hero-subtitle text-center">
+              Découvrez votre profil, vos forces et les métiers qui vous correspondent.<br />
+              Des tests simples et fiables pour choisir vos études, réussir votre reconversion ou faire le point sur votre carrière.
+            </h2>
+            
+            <div className="hero-callout">
+              <div className="hero-callout-content">
+                <span className="hero-callout-icon">💡</span>
+                <span className="font-bold">1 actif sur 3</span> souhaite changer de métier selon France Compétences.<br />
               </div>
-              
-              {/* Sous-titre encourageant */}
-              <p className="text-gray-600 text-lg font-medium max-w-lg mx-auto">
-                <span className="text-emerald-600 font-semibold">Gratuit</span> • 
-                <span className="text-blue-600 font-semibold"> 10 minutes</span> • 
-                <span className="text-purple-600 font-semibold"> Résultats immédiats</span>
-              </p>
             </div>
+          </div>
+        </div>
+      </section>
 
-            {/* CTA Coaching */}
-            <div className="max-w-2xl mx-auto">
-              <CoachingCTA onDiscover={handleDiscoverCoaching} />
+      {/* Bilan Section */}
+      <section className="bilan-section">
+        <div className="bilan-grid">
+          <div className="bilan-card">
+            <img 
+              src="public/scolar.png" 
+              alt="Bilan d'orientation scolaire"
+              className="bilan-card-image"
+            />
+            <div className="bilan-card-content">
+              <h3 className="bilan-card-title">
+                Bilan d'orientation scolaire
+              </h3>
+              <button 
+                className="bilan-button"
+                onClick={() => {
+                  navigate('/bilan-orientation-scolaire');
+                  window.scrollTo(0, 0);
+                }}
+              >
+                EN SAVOIR PLUS
+              </button>
+            </div>
+          </div>
+
+          <div className="bilan-card">
+            <img 
+              src="public/professional.png" 
+              alt="Bilan de compétences — reconversion professionnelle"
+              className="bilan-card-image"
+            />
+            <div className="bilan-card-content">
+              <h3 className="bilan-card-title">
+                Bilan de compétences — reconversion professionnelle
+              </h3>
+              <button 
+                className="bilan-button"
+                onClick={() => {
+                  navigate('/bilan-reconversion-professionnelle');
+                  window.scrollTo(0, 0);
+                }}
+              >
+                EN SAVOIR PLUS
+              </button>
+            </div>
+          </div>
+
+          <div className="bilan-card">
+            <img 
+              src="public/other.png" 
+              alt="Bilan de compétences tous publics"
+              className="bilan-card-image"
+            />
+            <div className="bilan-card-content">
+              <h3 className="bilan-card-title">
+                Bilan de compétences tous publics
+              </h3>
+              <button 
+                className="bilan-button"
+                onClick={() => {
+                  navigate('/bilan-competences-tous-publics');
+                  window.scrollTo(0, 0);
+                }}
+              >
+                EN SAVOIR PLUS
+              </button>
             </div>
           </div>
         </div>
       </section>
 
       {/* Preview Section */}
-      <section className="py-16 bg-gradient-to-b from-gray-50 to-white">
-        <div className="container mx-auto px-4">
+      <section className="neo-section" style={{ background: 'var(--neo-bg)' }}>
+        <div className="neo-container">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-primary mb-4">
+            <h2 className="neo-heading neo-heading-lg mb-4">
               Ce que tu vas découvrir
             </h2>
-            <div className="inline-flex items-center gap-3 bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200 rounded-2xl px-6 py-3 shadow-sm">
+            <div className="neo-badge inline-flex items-center gap-3 px-6 py-3">
               <span className="text-2xl">📊</span>
-              <p className="text-blue-900 font-medium">
+              <p className="font-medium">
                 <span className="font-bold">1 jeune sur 2</span> change d'orientation après le bac - 
-                <span className="text-blue-700"> évite cette erreur coûteuse !</span>
+                <span style={{ color: 'var(--neo-accent)' }}> évite cette erreur coûteuse !</span>
               </p>
             </div>
           </div>
@@ -377,80 +400,78 @@ const Index = () => {
       </section>
 
       {/* Benefits Section */}
-      <section id="benefices" className="py-16 bg-gray-50">
-        <div className="container mx-auto px-4">
+      <section id="benefices" className="neo-section" style={{ background: 'var(--neo-bg)' }}>
+        <div className="neo-container">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-primary mb-4">
+            <h2 className="neo-heading neo-heading-lg mb-4">
               Pourquoi choisir Avenirea ?
             </h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+            <p className="neo-text-muted text-xl max-w-2xl mx-auto">
               Une approche unique qui combine technologie et accompagnement humain
             </p>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+          <div className="neo-grid neo-grid-4 max-w-6xl mx-auto">
             {benefits.map((benefit, index) => (
-              <Card 
+              <div 
                 key={index}
-                className="group cursor-pointer transition-all duration-300 hover:shadow-lg hover:-translate-y-1 border-0 shadow-sm"
+                className="neo-card group cursor-pointer"
                 onMouseEnter={() => setHoveredBenefit(index)}
                 onMouseLeave={() => setHoveredBenefit(null)}
               >
-                <CardContent className="p-6 text-center">
+                <div className="text-center">
                   <div className={`text-4xl mb-4 transition-transform duration-300 ${hoveredBenefit === index ? 'scale-110' : ''}`}>
                     {benefit.icon}
                   </div>
-                  <h3 className="font-semibold text-primary mb-2 text-lg">
+                  <h3 className="neo-heading neo-heading-md mb-2">
                     {benefit.title}
                   </h3>
-                  <p className="text-gray-600 text-sm leading-relaxed">
+                  <p className="neo-text-muted text-sm leading-relaxed">
                     {benefit.description}
                   </p>
-                </CardContent>
-              </Card>
+                </div>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
       {/* Testimonials Section */}
-      <section id="temoignages" className="py-16">
-        <div className="container mx-auto px-4">
+      <section id="temoignages" className="neo-section" style={{ background: 'var(--neo-bg)' }}>
+        <div className="neo-container">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-primary mb-4">
+            <h2 className="neo-heading neo-heading-lg mb-4">
               Ils nous font confiance
             </h2>
-            <p className="text-xl text-gray-600">
+            <p className="neo-text-muted text-xl">
               Des témoignages authentiques de nos utilisateurs
             </p>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+          <div className="neo-grid neo-grid-2 max-w-4xl mx-auto">
             {testimonials.map((testimonial, index) => (
-              <Card key={index} className="border-0 shadow-sm hover:shadow-md transition-shadow">
-                <CardContent className="p-8">
-                  <div className="text-3xl mb-4">{testimonial.emoji}</div>
-                  <blockquote className="text-lg text-gray-700 mb-4 italic leading-relaxed">
-                    "{testimonial.text}"
-                  </blockquote>
-                  <cite className="text-primary font-medium">
-                    {testimonial.author}
-                  </cite>
-                </CardContent>
-              </Card>
+              <div key={index} className="neo-card">
+                <div className="text-3xl mb-4">{testimonial.emoji}</div>
+                <blockquote className="neo-text text-lg mb-4 italic leading-relaxed">
+                  "{testimonial.text}"
+                </blockquote>
+                <cite className="font-medium" style={{ color: 'var(--neo-accent)' }}>
+                  {testimonial.author}
+                </cite>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
       {/* FAQ Section */}
-      <section id="faq" className="py-16 bg-gray-50">
-        <div className="container mx-auto px-4">
+      <section id="faq" className="neo-section" style={{ background: 'var(--neo-bg)' }}>
+        <div className="neo-container">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-primary mb-4">
+            <h2 className="neo-heading neo-heading-lg mb-4">
               Questions fréquentes
             </h2>
-            <p className="text-xl text-gray-600">
+            <p className="neo-text-muted text-xl">
               Tout ce que vous devez savoir sur Avenirea
             </p>
           </div>
@@ -461,12 +482,12 @@ const Index = () => {
                 <AccordionItem 
                   key={index} 
                   value={`item-${index}`}
-                  className="bg-white rounded-2xl border-0 shadow-sm"
+                  className="neo-card"
                 >
-                  <AccordionTrigger className="px-6 py-4 text-left font-medium text-primary hover:no-underline">
+                  <AccordionTrigger className="px-6 py-4 text-left font-medium hover:no-underline" style={{ color: 'var(--neo-ink)' }}>
                     {faq.question}
                   </AccordionTrigger>
-                  <AccordionContent className="px-6 pb-4 text-gray-600 leading-relaxed">
+                  <AccordionContent className="px-6 pb-4 neo-text-muted leading-relaxed">
                     {faq.answer}
                   </AccordionContent>
                 </AccordionItem>
@@ -476,30 +497,6 @@ const Index = () => {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-16">
-        <div className="container mx-auto px-4 text-center">
-          <div className="max-w-2xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-bold text-primary mb-6">
-              Prêt à découvrir ton profil professionnel&nbsp;?
-            </h2>
-            <p className="text-xl text-gray-600 mb-8">
-              Rejoins les centaines d'étudiants qui ont déjà clarifié leur avenir avec le test RIASEC
-            </p>
-            
-            <Button 
-              onClick={handleStartTest}
-              size="lg"
-              className="bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 text-white px-10 py-5 text-lg rounded-2xl font-bold transition-all hover:scale-105 shadow-lg hover:shadow-xl"
-            >
-              <span className="flex items-center gap-2">
-                <span>Commencer mon test</span>
-                <span className="text-xl">🚀</span>
-              </span>
-            </Button>
-          </div>
-        </div>
-      </section>
 
       <Footer onOpenCgvModal={() => setShowCgvModal(true)} />
     </div>
