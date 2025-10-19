@@ -72,7 +72,7 @@ const BilanPublic = () => {
   };
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen" style={{ background: '#F9F8F4' }}>
       <Header />
       <CgvModal open={showCgvModal} onClose={() => setShowCgvModal(false)} />
       <UserInfoModal 
@@ -82,7 +82,7 @@ const BilanPublic = () => {
       />
       
       {/* Hero Section with Background Image */}
-      <section className="relative flex items-center justify-center" style={{ height: '50vh', minHeight: '400px', backgroundImage: 'url("/public/other.png")', backgroundSize: 'cover', backgroundPosition: 'center' }}>
+      <section className="relative flex items-center justify-center" style={{ height: '50vh', minHeight: '400px', backgroundImage: 'url("/other.png")', backgroundSize: 'cover', backgroundPosition: 'center' }}>
         <div className="absolute inset-0 bg-black bg-opacity-40"></div>
         <div className="relative z-10 text-center text-white">
           <div className="animate-fade-in">
