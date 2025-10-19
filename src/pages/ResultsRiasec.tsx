@@ -27,9 +27,11 @@ interface RiasecProfile {
   careers: Array<{name: string, level: string, pathway?: string, description?: string, icon?: string, tag?: string}>;
   environment: string;
   advice: string;
+  strengths?: string[]; // Pour les profils adultes
 }
 
-const riasecProfiles: RiasecProfile[] = [
+// Profils pour l'orientation scolaire (jeunes)
+const riasecProfilesJeunes: RiasecProfile[] = [
   {
     code: "RI",
     name: "Le Pratique Curieux",
@@ -447,10 +449,729 @@ const riasecProfiles: RiasecProfile[] = [
        {name: "Brand manager", level: "École de commerce / Master", pathway: "Parcours marketing", description: "Tu développes l'image, le message et la notoriété d'une marque.", icon: "🏷️", tag: "🎯"},
        {name: "Porte-parole / communicant politique", level: "Sciences Po / Master com", pathway: "Parcours stratégie / politique / oratoire", description: "Tu représentes une idée ou une organisation avec impact et clarté.", icon: "🎤", tag: "🧑‍🤝‍🧑"}
      ],
-     environment: "Un cadre stimulant, où l'on te donne la parole, du leadership, des projets ambitieux et de la marge de manœuvre.",
-     advice: "Tu sais parler, porter une vision, inspirer. Choisis des métiers où ton énergie fait bouger les lignes, où ton charisme ouvre des portes."
-   }
- ];
+    environment: "Un cadre stimulant, où l'on te donne la parole, du leadership, des projets ambitieux et de la marge de manœuvre.",
+    advice: "Tu sais parler, porter une vision, inspirer. Choisis des métiers où ton énergie fait bouger les lignes, où ton charisme ouvre des portes."
+  }
+];
+
+// Profils pour la reconversion professionnelle et tous publics (adultes)
+const riasecProfilesAdultes: RiasecProfile[] = [
+  // Profils simples (R, I, A, S, E, C)
+  {
+    code: "R",
+    name: "Le Réaliste / Le Concret",
+    description: "Tu aimes le concret, l'action, les résultats visibles. Tu apprends en faisant, tu aimes résoudre des problèmes pratiques et voir l'impact immédiat de ton travail.",
+    traits: [
+      {emoji: "🔧", label: "Pratique"},
+      {emoji: "💪", label: "Résistant"},
+      {emoji: "🎯", label: "Efficace"},
+      {emoji: "⚡", label: "Action"}
+    ],
+    radarScores: {ponctualite: 5, resolutionProblemes: 4, resistanceStress: 5, connaissanceMarche: 3, competencesInterpersonnelles: 2},
+    strengths: [
+      "Excellente coordination entre la tête et les mains",
+      "Goût pour la précision, la fiabilité, le travail bien fait",
+      "Résistance au stress et efficacité sur le terrain"
+    ],
+    formations: [
+      {name: "CAP / Titre pro en maintenance, artisanat, bâtiment ou mécanique", duration: "6-12 mois", level: "Niveau 3-4"},
+      {name: "Formation courte en logistique, énergie, ou technicien spécialisé", duration: "3-6 mois", level: "Niveau 4-5"}
+    ],
+    careers: [
+      {name: "Technicien(ne) de maintenance", level: "CAP/Titre pro", description: "Assurer le bon fonctionnement des équipements et machines"},
+      {name: "Électricien(ne) / Installateur(trice)", level: "CAP/BP", description: "Installer et maintenir des systèmes électriques"},
+      {name: "Mécanicien(ne) auto ou moto", level: "CAP/BEP", description: "Réparer et entretenir des véhicules"},
+      {name: "Logisticien(ne)", level: "Titre pro", description: "Gérer les flux de marchandises et l'approvisionnement"},
+      {name: "Monteur(se) audiovisuel(le) technique", level: "Formation courte", description: "Assembler et installer du matériel audiovisuel"},
+      {name: "Chef(fe) d'équipe sur chantier", level: "Expérience + formation", description: "Coordonner les équipes et superviser les travaux"}
+    ],
+    environment: "Un environnement pratique, sur le terrain, où tu peux manipuler, construire et voir des résultats concrets.",
+    advice: "Privilégie les métiers où ton action a un impact visible immédiat. Le travail manuel et technique te donnera satisfaction."
+  },
+  {
+    code: "I",
+    name: "L'Investigateur / L'Analytique",
+    description: "Tu es curieux, méthodique et passionné par la compréhension du monde. Tu aimes observer, analyser, apprendre en profondeur et résoudre des problèmes complexes.",
+    traits: [
+      {emoji: "🧠", label: "Logique"},
+      {emoji: "🔍", label: "Analytique"},
+      {emoji: "📚", label: "Rigoureux"},
+      {emoji: "🎓", label: "Autonome"}
+    ],
+    radarScores: {ponctualite: 4, resolutionProblemes: 5, resistanceStress: 3, connaissanceMarche: 3, competencesInterpersonnelles: 2},
+    strengths: [
+      "Esprit logique et structuré",
+      "Capacité à rester concentré sur un sujet exigeant",
+      "Rigueur et autonomie dans le travail intellectuel"
+    ],
+    formations: [
+      {name: "Formation en data, cybersécurité ou systèmes informatiques", duration: "3-12 mois", level: "BTS/Bootcamp/Titre pro"},
+      {name: "Certification en recherche UX, veille technologique, ou analyse métier", duration: "2-6 mois", level: "Certification"}
+    ],
+    careers: [
+      {name: "Analyste data / Data technician", level: "Formation courte", description: "Analyser des données pour en tirer des insights"},
+      {name: "Technicien(ne) informatique", level: "BTS/Titre pro", description: "Maintenir et dépanner les systèmes informatiques"},
+      {name: "UX researcher junior", level: "Bootcamp/Formation", description: "Étudier les comportements utilisateurs pour améliorer les produits"},
+      {name: "Assistant(e) ingénieur", level: "BTS/DUT", description: "Soutenir les équipes techniques dans leurs projets"},
+      {name: "Technicien(ne) de laboratoire", level: "BTS/DUT", description: "Réaliser des analyses et expérimentations"},
+      {name: "Contrôleur(se) qualité", level: "Formation courte", description: "Vérifier la conformité des produits et processus"}
+    ],
+    environment: "Un cadre calme, intellectuel, propice à la réflexion et à l'analyse approfondie.",
+    advice: "Cherche des environnements où tu peux creuser, comprendre et résoudre des problèmes complexes. La tech et l'analyse sont faits pour toi."
+  },
+  {
+    code: "A",
+    name: "L'Artistique / Le Créatif",
+    description: "Tu as besoin de liberté, d'expression et d'originalité dans ton travail. Tu aimes créer, concevoir, produire des choses uniques et donner du sens à ce que tu fais.",
+    traits: [
+      {emoji: "🎨", label: "Créatif"},
+      {emoji: "💡", label: "Original"},
+      {emoji: "✨", label: "Expressif"},
+      {emoji: "🎭", label: "Sensible"}
+    ],
+    radarScores: {ponctualite: 3, resolutionProblemes: 4, resistanceStress: 3, connaissanceMarche: 3, competencesInterpersonnelles: 4},
+    strengths: [
+      "Grande imagination et sens esthétique",
+      "Capacité à innover et à proposer des idées originales",
+      "Sensibilité à l'émotion, à la communication visuelle ou verbale"
+    ],
+    formations: [
+      {name: "Formation courte en design graphique, audiovisuel, photographie ou web design", duration: "3-9 mois", level: "Certification"},
+      {name: "Bootcamp ou formation certifiante en création de contenu / UX design", duration: "2-6 mois", level: "Bootcamp"}
+    ],
+    careers: [
+      {name: "Graphiste / Web designer", level: "Formation courte", description: "Créer des visuels et interfaces pour le web et print"},
+      {name: "Créateur(trice) de contenu digital", level: "Auto-formation", description: "Produire du contenu créatif pour les réseaux sociaux"},
+      {name: "Photographe / Vidéaste", level: "Formation/Portfolio", description: "Capturer et créer des images et vidéos"},
+      {name: "Designer d'intérieur", level: "Formation spécialisée", description: "Concevoir et aménager des espaces de vie"},
+      {name: "Illustrateur(trice) / Motion designer", level: "Formation/Portfolio", description: "Créer des illustrations et animations"},
+      {name: "Rédacteur(trice) créatif(ve)", level: "Expérience/Formation", description: "Écrire des contenus originaux et engageants"}
+    ],
+    environment: "Un cadre libre, expressif et stimulant où tu peux exprimer ta créativité.",
+    advice: "Privilégie les environnements qui valorisent l'originalité et la création. Les métiers du design et de la création sont ta voie."
+  },
+  {
+    code: "S",
+    name: "Le Social / L'Humain",
+    description: "Tu aimes comprendre, écouter et aider les autres à progresser. Tu t'épanouis dans la relation, l'échange, le service ou l'enseignement.",
+    traits: [
+      {emoji: "🤝", label: "Empathique"},
+      {emoji: "💬", label: "À l'écoute"},
+      {emoji: "❤️", label: "Bienveillant"},
+      {emoji: "👥", label: "Pédagogue"}
+    ],
+    radarScores: {ponctualite: 4, resolutionProblemes: 4, resistanceStress: 3, connaissanceMarche: 3, competencesInterpersonnelles: 5},
+    strengths: [
+      "Empathie et patience naturelle",
+      "Bonne communication et écoute active",
+      "Sens du collectif et de la pédagogie"
+    ],
+    formations: [
+      {name: "Formation en coaching, accompagnement ou aide à la personne", duration: "3-12 mois", level: "Titre pro/Certif/DU"},
+      {name: "Diplôme d'État ou formation privée en médiation, insertion ou animation sociale", duration: "6-24 mois", level: "DE/Formation"}
+    ],
+    careers: [
+      {name: "Coach en évolution professionnelle", level: "Certification coaching", description: "Accompagner les personnes dans leur transition de carrière"},
+      {name: "Conseiller(ère) en insertion", level: "Titre pro/DE", description: "Aider les personnes en difficulté à retrouver un emploi"},
+      {name: "Formateur(trice) ou tuteur", level: "Titre pro/Expérience", description: "Transmettre des compétences et former des adultes"},
+      {name: "Assistant(e) social(e) / éducateur(trice)", level: "DE", description: "Accompagner des personnes vulnérables"},
+      {name: "Infirmier(ère) / aide médico-psychologique", level: "DE/Diplôme", description: "Soigner et accompagner les patients"},
+      {name: "Médiateur(trice) ou accompagnant(e) social(e)", level: "Formation spécialisée", description: "Faciliter les relations et résoudre les conflits"}
+    ],
+    environment: "Un cadre chaleureux, humain et collaboratif où tu peux créer du lien.",
+    advice: "Les métiers de l'accompagnement, du soin et de la formation sont faits pour toi. Ton empathie est une force."
+  },
+  {
+    code: "E",
+    name: "L'Entreprenant / Le Leader",
+    description: "Tu aimes les défis, les responsabilités et l'action. Tu es à l'aise pour convaincre, vendre, motiver et prendre des décisions.",
+    traits: [
+      {emoji: "🚀", label: "Ambitieux"},
+      {emoji: "💼", label: "Leader"},
+      {emoji: "🎯", label: "Décideur"},
+      {emoji: "💬", label: "Persuasif"}
+    ],
+    radarScores: {ponctualite: 4, resolutionProblemes: 4, resistanceStress: 5, connaissanceMarche: 5, competencesInterpersonnelles: 5},
+    strengths: [
+      "Leadership et aisance à fédérer",
+      "Goût du risque et du résultat",
+      "Excellente communication orale"
+    ],
+    formations: [
+      {name: "Formation courte en gestion de projet, commerce digital ou entrepreneuriat", duration: "2-6 mois", level: "Certification"},
+      {name: "Programme certifiant en marketing digital ou management d'équipe", duration: "3-9 mois", level: "Certification"}
+    ],
+    careers: [
+      {name: "Entrepreneur / Créateur d'entreprise", level: "Formation/Expérience", description: "Créer et développer sa propre activité"},
+      {name: "Responsable commercial", level: "Formation/Expérience", description: "Développer les ventes et gérer une équipe commerciale"},
+      {name: "Chef(fe) de projet digital", level: "Formation/Expérience", description: "Piloter des projets digitaux de A à Z"},
+      {name: "Community manager stratégique", level: "Formation courte", description: "Développer et animer une communauté en ligne"},
+      {name: "Recruteur / Talent acquisition", level: "Formation/Expérience", description: "Identifier et recruter les meilleurs talents"},
+      {name: "Consultant(e) indépendant(e)", level: "Expertise métier", description: "Conseiller les entreprises dans ton domaine"}
+    ],
+    environment: "Un cadre dynamique, ambitieux et orienté résultats où tu peux prendre des initiatives.",
+    advice: "Les métiers du commerce, de l'entrepreneuriat et du management sont ta zone de confort. Ton énergie est contagieuse."
+  },
+  {
+    code: "C",
+    name: "Le Conventionnel / L'Organisé",
+    description: "Tu aimes l'ordre, la méthode et les systèmes bien huilés. Tu trouves de la satisfaction à rendre les choses claires, fiables et structurées.",
+    traits: [
+      {emoji: "📋", label: "Organisé"},
+      {emoji: "🗂️", label: "Méthodique"},
+      {emoji: "✅", label: "Rigoureux"},
+      {emoji: "📊", label: "Fiable"}
+    ],
+    radarScores: {ponctualite: 5, resolutionProblemes: 4, resistanceStress: 4, connaissanceMarche: 3, competencesInterpersonnelles: 3},
+    strengths: [
+      "Sens du détail et de la rigueur",
+      "Patience et fiabilité dans les tâches répétitives",
+      "Capacité à suivre et améliorer des processus"
+    ],
+    formations: [
+      {name: "Formation en comptabilité, gestion administrative ou assistanat", duration: "6-12 mois", level: "Titre pro/BTS"},
+      {name: "Certification en gestion de données, bureautique ou secrétariat numérique", duration: "3-6 mois", level: "Certification"}
+    ],
+    careers: [
+      {name: "Assistant(e) administratif(ve)", level: "Titre pro/BTS", description: "Gérer les tâches administratives d'une organisation"},
+      {name: "Comptable / gestionnaire paie", level: "BTS/DCG", description: "Tenir la comptabilité et gérer les salaires"},
+      {name: "Secrétaire indépendant(e)", level: "Formation/Expérience", description: "Offrir des services administratifs en freelance"},
+      {name: "Assistant(e) RH", level: "Formation/Expérience", description: "Soutenir la gestion des ressources humaines"},
+      {name: "Technicien(ne) de gestion documentaire", level: "Formation spécialisée", description: "Organiser et archiver les documents"},
+      {name: "Gestionnaire de base de données", level: "Formation technique", description: "Maintenir et organiser les données d'entreprise"}
+    ],
+    environment: "Un cadre ordonné, stable et bien organisé où les processus sont clairs.",
+    advice: "Les métiers de l'administration, de la gestion et de l'organisation sont parfaits pour toi. Ta rigueur est précieuse."
+  },
+  // Profils combinés
+  {
+    code: "RI",
+    name: "Le Technicien Curieux",
+    description: "Tu aimes comprendre comment les choses fonctionnent et les faire fonctionner mieux. Curieux, logique et concret.",
+    traits: [
+      {emoji: "🔧", label: "Pratique"},
+      {emoji: "🧠", label: "Analytique"},
+      {emoji: "⚙️", label: "Technique"},
+      {emoji: "🎯", label: "Efficace"}
+    ],
+    radarScores: {ponctualite: 5, resolutionProblemes: 5, resistanceStress: 4, connaissanceMarche: 3, competencesInterpersonnelles: 2},
+    strengths: [
+      "Sens pratique + logique d'analyse",
+      "Capacité à apprendre vite, seul",
+      "Persévérance et fiabilité"
+    ],
+    formations: [
+      {name: "Formation en maintenance industrielle / automatisme / énergie", duration: "6-12 mois", level: "Titre pro"},
+      {name: "Bootcamp en data, cybersécurité ou développement web", duration: "3-6 mois", level: "Bootcamp"}
+    ],
+    careers: [
+      {name: "Technicien(ne) systèmes & réseaux", level: "Formation technique", description: "Installer et maintenir les infrastructures informatiques"},
+      {name: "Développeur(se) web junior", level: "Bootcamp/Formation", description: "Créer des sites et applications web"},
+      {name: "Data technician", level: "Formation courte", description: "Analyser et gérer des données"},
+      {name: "Électronicien(ne) / roboticien(ne)", level: "BTS/Titre pro", description: "Travailler sur des systèmes électroniques complexes"},
+      {name: "Technicien(ne) énergie / bâtiment intelligent", level: "Formation spécialisée", description: "Gérer les systèmes énergétiques des bâtiments"},
+      {name: "Analyste support technique", level: "Formation/Expérience", description: "Résoudre les problèmes techniques des utilisateurs"}
+    ],
+    environment: "Un environnement technique où tu peux manipuler, analyser et optimiser.",
+    advice: "Les métiers techniques qui allient réflexion et pratique sont parfaits pour toi."
+  },
+  {
+    code: "IS",
+    name: "L'Analytique Humaniste",
+    description: "Tu combines la logique et l'envie d'aider. Tu cherches à comprendre le monde, mais aussi à avoir un impact humain réel.",
+    traits: [
+      {emoji: "🧠", label: "Analytique"},
+      {emoji: "🤝", label: "Bienveillant"},
+      {emoji: "📚", label: "Pédagogue"},
+      {emoji: "💬", label: "Transmetteur"}
+    ],
+    radarScores: {ponctualite: 4, resolutionProblemes: 5, resistanceStress: 3, connaissanceMarche: 3, competencesInterpersonnelles: 4},
+    strengths: [
+      "Capacité à expliquer des sujets complexes simplement",
+      "Esprit rationnel et bienveillant",
+      "Goût du savoir et de la transmission"
+    ],
+    formations: [
+      {name: "Formation de coach professionnel / formateur", duration: "6-12 mois", level: "Certification"},
+      {name: "Formation en analyse de données ou psychologie appliquée", duration: "6-18 mois", level: "Formation/DU"}
+    ],
+    careers: [
+      {name: "Formateur(trice) en entreprise", level: "Titre pro/Certification", description: "Former les salariés aux compétences métier"},
+      {name: "Coach en transition de carrière", level: "Certification coaching", description: "Accompagner les reconversions professionnelles"},
+      {name: "Consultant(e) en RH ou mobilité", level: "Formation/Expérience", description: "Conseiller sur la gestion des talents"},
+      {name: "Psychopraticien(ne) / accompagnant(e)", level: "Formation spécialisée", description: "Accompagner les personnes en questionnement"},
+      {name: "Conseiller(ère) en orientation", level: "Master/Certification", description: "Guider les choix de carrière et formation"},
+      {name: "Analyste en formation / e-learning", level: "Formation/Expérience", description: "Concevoir et analyser des parcours de formation"}
+    ],
+    environment: "Un cadre intellectuel et humain où tu peux transmettre et accompagner.",
+    advice: "Les métiers du conseil, de la formation et de l'accompagnement sont faits pour toi."
+  },
+  {
+    code: "AE",
+    name: "Le Créatif Ambitieux",
+    description: "Tu veux créer, innover, convaincre. Tu cherches la liberté d'entreprendre ou de donner forme à tes idées.",
+    traits: [
+      {emoji: "🎨", label: "Créatif"},
+      {emoji: "🚀", label: "Ambitieux"},
+      {emoji: "💡", label: "Visionnaire"},
+      {emoji: "💼", label: "Entrepreneur"}
+    ],
+    radarScores: {ponctualite: 3, resolutionProblemes: 4, resistanceStress: 4, connaissanceMarche: 5, competencesInterpersonnelles: 5},
+    strengths: [
+      "Créativité pragmatique (tu crées pour impacter)",
+      "Leadership naturel",
+      "Vision claire et goût du risque mesuré"
+    ],
+    formations: [
+      {name: "Formation courte en design / branding / marketing digital", duration: "3-6 mois", level: "Certification"},
+      {name: "Programme entrepreneuriat ou création d'activité", duration: "2-6 mois", level: "Formation"}
+    ],
+    careers: [
+      {name: "Créateur(trice) de contenu ou studio freelance", level: "Auto-formation/Portfolio", description: "Créer et vendre du contenu créatif"},
+      {name: "Designer de marque / UX designer", level: "Formation/Portfolio", description: "Concevoir l'identité et l'expérience de marque"},
+      {name: "Chef(fe) de projet créatif", level: "Expérience/Formation", description: "Diriger des projets créatifs de A à Z"},
+      {name: "Entrepreneur digital", level: "Expérience/Formation", description: "Créer et développer un business en ligne"},
+      {name: "Community builder", level: "Expérience/Formation", description: "Créer et animer des communautés engagées"},
+      {name: "Consultant(e) en communication visuelle", level: "Expertise/Portfolio", description: "Conseiller sur la stratégie visuelle"}
+    ],
+    environment: "Un cadre libre et dynamique où tu peux entreprendre et créer.",
+    advice: "L'entrepreneuriat créatif et le marketing sont ta zone d'excellence."
+  },
+  {
+    code: "SE",
+    name: "Le Communicant Engagé",
+    description: "Tu comprends les gens et tu sais les convaincre. Tu veux un métier de contact, d'influence, ou de relation client.",
+    traits: [
+      {emoji: "💬", label: "Communicant"},
+      {emoji: "🤝", label: "Empathique"},
+      {emoji: "🎯", label: "Persuasif"},
+      {emoji: "👥", label: "Fédérateur"}
+    ],
+    radarScores: {ponctualite: 4, resolutionProblemes: 4, resistanceStress: 4, connaissanceMarche: 4, competencesInterpersonnelles: 5},
+    strengths: [
+      "Empathie + charisme naturel",
+      "Communication fluide et persuasive",
+      "Sens du collectif et de la motivation"
+    ],
+    formations: [
+      {name: "Formation en vente, marketing ou accompagnement commercial", duration: "3-6 mois", level: "Titre pro/Certification"},
+      {name: "Certification en communication interpersonnelle ou management d'équipe", duration: "2-6 mois", level: "Certification"}
+    ],
+    careers: [
+      {name: "Recruteur / chargé(e) de relations humaines", level: "Formation/Expérience", description: "Identifier et attirer les talents"},
+      {name: "Responsable commercial / business developer", level: "Formation/Expérience", description: "Développer les ventes et le portefeuille client"},
+      {name: "Community manager", level: "Formation courte", description: "Animer et développer une communauté en ligne"},
+      {name: "Manager d'équipe terrain", level: "Expérience/Formation", description: "Diriger et motiver une équipe opérationnelle"},
+      {name: "Conseiller(ère) client premium", level: "Formation/Expérience", description: "Accompagner les clients à haute valeur"},
+      {name: "Formateur(trice) en communication", level: "Certification/Expérience", description: "Former aux techniques de communication"}
+    ],
+    environment: "Un cadre relationnel et dynamique où tu peux échanger et influencer.",
+    advice: "Les métiers de la relation client, de la vente et du management sont faits pour toi."
+  },
+  {
+    code: "CE",
+    name: "L'Organisé Stratège",
+    description: "Tu aimes planifier, gérer, optimiser. Tu préfères la stabilité, mais avec un vrai sens de la performance.",
+    traits: [
+      {emoji: "📋", label: "Organisé"},
+      {emoji: "🎯", label: "Stratège"},
+      {emoji: "💼", label: "Gestionnaire"},
+      {emoji: "📊", label: "Performant"}
+    ],
+    radarScores: {ponctualite: 5, resolutionProblemes: 4, resistanceStress: 4, connaissanceMarche: 4, competencesInterpersonnelles: 3},
+    strengths: [
+      "Vision claire des priorités",
+      "Rigueur et gestion du temps",
+      "Fiabilité et constance"
+    ],
+    formations: [
+      {name: "Formation en gestion / comptabilité / administration d'entreprise", duration: "6-12 mois", level: "Titre pro/BTS"},
+      {name: "Certification en gestion de projet (Agile, PMP)", duration: "3-6 mois", level: "Certification"}
+    ],
+    careers: [
+      {name: "Assistant(e) de direction", level: "BTS/Titre pro", description: "Assister la direction dans ses missions stratégiques"},
+      {name: "Gestionnaire administratif(ve)", level: "Titre pro/BTS", description: "Gérer les opérations administratives"},
+      {name: "Responsable logistique / opérations", level: "Formation/Expérience", description: "Optimiser les flux et opérations"},
+      {name: "Chef(fe) de projet back-office", level: "Formation/Expérience", description: "Piloter des projets de support"},
+      {name: "Office manager", level: "Formation/Expérience", description: "Gérer le fonctionnement global d'un bureau"},
+      {name: "Contrôleur(se) de gestion", level: "BTS/DCG", description: "Analyser et optimiser les coûts"}
+    ],
+    environment: "Un cadre structuré et performant où tu peux optimiser les processus.",
+    advice: "Les métiers de la gestion, du pilotage et de l'optimisation sont ta force."
+  },
+  {
+    code: "RA",
+    name: "L'Artisan Créatif",
+    description: "Tu aimes créer de tes mains et donner vie à des idées concrètes. Tu es à la fois manuel et inventif.",
+    traits: [
+      {emoji: "🔨", label: "Manuel"},
+      {emoji: "🎨", label: "Créatif"},
+      {emoji: "✨", label: "Inventif"},
+      {emoji: "🎯", label: "Précis"}
+    ],
+    radarScores: {ponctualite: 4, resolutionProblemes: 4, resistanceStress: 4, connaissanceMarche: 3, competencesInterpersonnelles: 3},
+    strengths: [
+      "Sens esthétique + précision du geste",
+      "Patience et exigence de qualité",
+      "Créativité ancrée dans le réel"
+    ],
+    formations: [
+      {name: "CAP / formation artisanat design (ébénisterie, déco, fabrication)", duration: "6-24 mois", level: "CAP/Formation"},
+      {name: "Formation courte en design produit / impression 3D / prototypage", duration: "3-6 mois", level: "Formation"}
+    ],
+    careers: [
+      {name: "Artisan designer / créateur indépendant", level: "CAP/Portfolio", description: "Créer et vendre des objets artisanaux"},
+      {name: "Décorateur(trice) d'intérieur", level: "Formation spécialisée", description: "Aménager et décorer des espaces"},
+      {name: "Technicien(ne) fabrication / maquette", level: "Formation technique", description: "Fabriquer des prototypes et maquettes"},
+      {name: "Tapissier / menuisier moderne", level: "CAP/BP", description: "Créer et restaurer du mobilier"},
+      {name: "Modéliste ou styliste accessoire", level: "Formation mode", description: "Concevoir des accessoires et vêtements"},
+      {name: "Fab manager en atelier partagé", level: "Formation/Expérience", description: "Gérer un atelier de fabrication partagé"}
+    ],
+    environment: "Un atelier créatif où tu peux manipuler, créer et concrétiser tes idées.",
+    advice: "L'artisanat créatif et le design manuel sont parfaits pour toi."
+  },
+  {
+    code: "SC",
+    name: "Le Soutien Structuré",
+    description: "Tu aimes aider les autres, mais dans un cadre clair. Tu rends les organisations plus humaines et plus efficaces.",
+    traits: [
+      {emoji: "🤝", label: "Aidant"},
+      {emoji: "📋", label: "Organisé"},
+      {emoji: "💬", label: "Diplomate"},
+      {emoji: "🎯", label: "Efficace"}
+    ],
+    radarScores: {ponctualite: 5, resolutionProblemes: 4, resistanceStress: 4, connaissanceMarche: 3, competencesInterpersonnelles: 5},
+    strengths: [
+      "Empathie organisée (tu aides sans te disperser)",
+      "Bon sens et diplomatie",
+      "Respect des process, sens du service"
+    ],
+    formations: [
+      {name: "Formation en ressources humaines / paie / gestion", duration: "6-12 mois", level: "Titre pro/BTS"},
+      {name: "Certification assistante RH ou coordination de projet social", duration: "3-6 mois", level: "Certification"}
+    ],
+    careers: [
+      {name: "Assistant(e) RH", level: "BTS/Titre pro", description: "Soutenir la gestion des ressources humaines"},
+      {name: "Gestionnaire administratif(ve) social", level: "Titre pro", description: "Gérer les aspects administratifs du social"},
+      {name: "Chargé(e) d'accueil / relations salariés", level: "Formation/Expérience", description: "Accueillir et accompagner les salariés"},
+      {name: "Coordinateur(trice) d'équipe", level: "Formation/Expérience", description: "Coordonner les activités d'une équipe"},
+      {name: "Assistant(e) en cabinet de recrutement", level: "Formation/Expérience", description: "Assister dans les processus de recrutement"},
+      {name: "Support client / support interne", level: "Formation courte", description: "Assister les clients ou équipes internes"}
+    ],
+    environment: "Un cadre structuré et humain où tu peux aider et organiser.",
+    advice: "Les métiers du support RH et de la coordination sont parfaits pour toi."
+  },
+  {
+    code: "IA",
+    name: "Le Stratège Créatif",
+    description: "Tu analyses avant d'imaginer. Tes idées sont solides, construites, réfléchies. Tu cherches à innover avec sens.",
+    traits: [
+      {emoji: "🧠", label: "Analytique"},
+      {emoji: "🎨", label: "Créatif"},
+      {emoji: "💡", label: "Innovant"},
+      {emoji: "📊", label: "Structuré"}
+    ],
+    radarScores: {ponctualite: 4, resolutionProblemes: 5, resistanceStress: 3, connaissanceMarche: 4, competencesInterpersonnelles: 3},
+    strengths: [
+      "Créativité cadrée et structurée",
+      "Esprit critique et réflexion profonde",
+      "Capacité à relier analyse et intuition"
+    ],
+    formations: [
+      {name: "Formation courte en UX design / stratégie digitale", duration: "3-6 mois", level: "Bootcamp/Formation"},
+      {name: "Certification data storytelling / recherche utilisateur", duration: "2-4 mois", level: "Certification"}
+    ],
+    careers: [
+      {name: "UX/UI designer", level: "Bootcamp/Portfolio", description: "Concevoir des expériences utilisateur optimales"},
+      {name: "Stratégiste contenu digital", level: "Formation/Expérience", description: "Définir la stratégie de contenu en ligne"},
+      {name: "Data visualisation designer", level: "Formation spécialisée", description: "Créer des visualisations de données"},
+      {name: "Chef(fe) de projet innovation", level: "Formation/Expérience", description: "Piloter des projets d'innovation"},
+      {name: "Rédacteur(trice) spécialisé(e)", level: "Expérience/Portfolio", description: "Rédiger du contenu technique ou spécialisé"},
+      {name: "Consultant(e) innovation / produit", level: "Expertise", description: "Conseiller sur l'innovation produit"}
+    ],
+    environment: "Un cadre intellectuel et créatif où tu peux innover avec méthode.",
+    advice: "L'UX design et la stratégie digitale sont faits pour toi."
+  },
+  {
+    code: "RE",
+    name: "Le Bâtisseur d'Équipe",
+    description: "Tu aimes l'action, le concret et la réussite collective. Tu veux bouger, décider et voir le résultat de ton travail.",
+    traits: [
+      {emoji: "🔨", label: "Action"},
+      {emoji: "👥", label: "Leader"},
+      {emoji: "🎯", label: "Résultat"},
+      {emoji: "⚡", label: "Dynamique"}
+    ],
+    radarScores: {ponctualite: 5, resolutionProblemes: 4, resistanceStress: 5, connaissanceMarche: 4, competencesInterpersonnelles: 4},
+    strengths: [
+      "Esprit d'initiative fort",
+      "Goût du terrain et du leadership",
+      "Sens du résultat et de l'efficacité"
+    ],
+    formations: [
+      {name: "Formation en management opérationnel / logistique / commerce terrain", duration: "3-6 mois", level: "Titre pro/Formation"},
+      {name: "Certif en leadership ou supervision d'équipe", duration: "2-4 mois", level: "Certification"}
+    ],
+    careers: [
+      {name: "Chef(fe) d'équipe terrain", level: "Expérience/Formation", description: "Diriger une équipe opérationnelle sur le terrain"},
+      {name: "Responsable logistique", level: "Formation/Expérience", description: "Gérer les flux et optimiser la logistique"},
+      {name: "Entrepreneur artisanal", level: "CAP/Expérience", description: "Créer et développer son activité artisanale"},
+      {name: "Responsable d'exploitation", level: "Formation/Expérience", description: "Superviser les opérations d'un site"},
+      {name: "Manager de production", level: "Formation/Expérience", description: "Gérer la production et les équipes"},
+      {name: "Coordinateur(trice) de chantier", level: "Formation technique", description: "Coordonner les différents corps de métier sur un chantier"}
+    ],
+    environment: "Un environnement terrain, dynamique et orienté résultats.",
+    advice: "Le management opérationnel et la gestion terrain sont ta force."
+  },
+  {
+    code: "AS",
+    name: "Le Créatif Humain",
+    description: "Tu combines créativité et empathie. Tu cherches à créer pour toucher, émouvoir et accompagner les autres.",
+    traits: [
+      {emoji: "🎨", label: "Créatif"},
+      {emoji: "💖", label: "Empathique"},
+      {emoji: "✨", label: "Expressif"},
+      {emoji: "🤝", label: "Accompagnant"}
+    ],
+    radarScores: {ponctualite: 3, resolutionProblemes: 4, resistanceStress: 3, connaissanceMarche: 3, competencesInterpersonnelles: 5},
+    strengths: [
+      "Créativité au service de l'humain",
+      "Grande sensibilité et écoute",
+      "Capacité à créer du lien par l'art"
+    ],
+    formations: [
+      {name: "Formation en art-thérapie ou médiation culturelle", duration: "6-18 mois", level: "DU/Formation"},
+      {name: "Formation courte en animation ou création de contenu social", duration: "3-6 mois", level: "Formation"}
+    ],
+    careers: [
+      {name: "Art-thérapeute", level: "DU/Master", description: "Utiliser l'art pour accompagner et soigner"},
+      {name: "Animateur(trice) socioculturel", level: "BPJEPS/Formation", description: "Animer des activités créatives et sociales"},
+      {name: "Médiateur(trice) culturel", level: "Licence/Master", description: "Rendre la culture accessible à tous"},
+      {name: "Créateur(trice) de contenu à impact social", level: "Auto-formation", description: "Créer du contenu pour sensibiliser"},
+      {name: "Coach créatif", level: "Certification", description: "Accompagner par la créativité"},
+      {name: "Designer social", level: "Formation spécialisée", description: "Concevoir des solutions pour l'impact social"}
+    ],
+    environment: "Un cadre créatif et humain où tu peux créer du lien.",
+    advice: "Les métiers qui allient création et accompagnement sont faits pour toi."
+  },
+  {
+    code: "IC",
+    name: "L'Analyste Méthodique",
+    description: "Tu combines logique et structure. Tu aimes analyser avec rigueur et créer des systèmes fiables.",
+    traits: [
+      {emoji: "🧠", label: "Analytique"},
+      {emoji: "📊", label: "Méthodique"},
+      {emoji: "🔍", label: "Rigoureux"},
+      {emoji: "📋", label: "Structuré"}
+    ],
+    radarScores: {ponctualite: 5, resolutionProblemes: 5, resistanceStress: 4, connaissanceMarche: 3, competencesInterpersonnelles: 2},
+    strengths: [
+      "Rigueur intellectuelle et méthodologie",
+      "Capacité d'analyse approfondie",
+      "Sens de l'organisation des données"
+    ],
+    formations: [
+      {name: "Formation en data analysis / business intelligence", duration: "3-9 mois", level: "Bootcamp/Formation"},
+      {name: "Certification en audit ou contrôle qualité", duration: "3-6 mois", level: "Certification"}
+    ],
+    careers: [
+      {name: "Analyste de données", level: "Formation/Expérience", description: "Analyser et interpréter des données complexes"},
+      {name: "Consultant(e) en organisation", level: "Formation/Expérience", description: "Optimiser les processus d'entreprise"},
+      {name: "Auditeur(trice) interne", level: "Formation comptable", description: "Contrôler et auditer les procédures"},
+      {name: "Business analyst", level: "Formation/Expérience", description: "Analyser les besoins métier et proposer des solutions"},
+      {name: "Responsable qualité", level: "Formation spécialisée", description: "Garantir la qualité des processus et produits"},
+      {name: "Gestionnaire de base de données", level: "Formation technique", description: "Structurer et optimiser les bases de données"}
+    ],
+    environment: "Un cadre analytique et structuré où tu peux optimiser les systèmes.",
+    advice: "L'analyse de données et l'optimisation des processus sont ta voie."
+  },
+  {
+    code: "AC",
+    name: "L'Artiste Méthodique",
+    description: "Tu combines créativité et organisation. Tu veux créer mais avec une méthode et une structure claire.",
+    traits: [
+      {emoji: "🎨", label: "Créatif"},
+      {emoji: "📋", label: "Organisé"},
+      {emoji: "✨", label: "Précis"},
+      {emoji: "🎯", label: "Structuré"}
+    ],
+    radarScores: {ponctualite: 4, resolutionProblemes: 4, resistanceStress: 3, connaissanceMarche: 3, competencesInterpersonnelles: 3},
+    strengths: [
+      "Créativité organisée et structurée",
+      "Sens du détail et de la qualité",
+      "Capacité à gérer des projets créatifs"
+    ],
+    formations: [
+      {name: "Formation en design graphique / direction artistique", duration: "6-12 mois", level: "Formation/Bootcamp"},
+      {name: "Certification en gestion de projet créatif", duration: "3-6 mois", level: "Certification"}
+    ],
+    careers: [
+      {name: "Directeur(trice) artistique junior", level: "Formation/Portfolio", description: "Superviser la création visuelle de projets"},
+      {name: "Designer éditorial", level: "Formation spécialisée", description: "Concevoir la mise en page de publications"},
+      {name: "Chef(fe) de projet web", level: "Formation/Expérience", description: "Piloter la création de sites web"},
+      {name: "Graphiste indépendant organisé", level: "Portfolio/Formation", description: "Créer et gérer ses projets graphiques"},
+      {name: "Coordinateur(trice) de production créative", level: "Formation/Expérience", description: "Coordonner la production de contenus créatifs"},
+      {name: "Designer de marque", level: "Formation/Portfolio", description: "Créer des identités visuelles cohérentes"}
+    ],
+    environment: "Un cadre créatif et structuré où tu peux allier art et méthode.",
+    advice: "La direction artistique et le design structuré sont faits pour toi."
+  },
+  {
+    code: "RS",
+    name: "Le Pratique Solidaire",
+    description: "Tu aimes aider concrètement. Tu veux être utile avec tes mains et ton cœur.",
+    traits: [
+      {emoji: "🔧", label: "Pratique"},
+      {emoji: "🤝", label: "Solidaire"},
+      {emoji: "💪", label: "Concret"},
+      {emoji: "❤️", label: "Aidant"}
+    ],
+    radarScores: {ponctualite: 5, resolutionProblemes: 4, resistanceStress: 4, connaissanceMarche: 3, competencesInterpersonnelles: 4},
+    strengths: [
+      "Action concrète au service des autres",
+      "Fiabilité et dévouement",
+      "Sens pratique et empathie"
+    ],
+    formations: [
+      {name: "Formation en aide à la personne / services à domicile", duration: "6-12 mois", level: "Titre pro/CAP"},
+      {name: "Formation courte en maintenance ou réparation solidaire", duration: "3-6 mois", level: "Formation"}
+    ],
+    careers: [
+      {name: "Aide à domicile", level: "Titre pro/CAP", description: "Accompagner les personnes dépendantes chez elles"},
+      {name: "Auxiliaire de vie", level: "Titre pro", description: "Aider les personnes dans les actes de la vie quotidienne"},
+      {name: "Technicien(ne) en économie sociale et solidaire", level: "Formation spécialisée", description: "Réparer et maintenir dans un cadre solidaire"},
+      {name: "Agent de service hospitalier", level: "Formation courte", description: "Assurer l'hygiène et le confort dans les hôpitaux"},
+      {name: "Animateur(trice) en EHPAD", level: "Formation/BPJEPS", description: "Animer des activités pour les personnes âgées"},
+      {name: "Mécanicien solidaire", level: "CAP/Formation", description: "Réparer des véhicules dans un cadre associatif"}
+    ],
+    environment: "Un cadre concret et humain où tu peux aider activement.",
+    advice: "Les métiers de l'aide à la personne et du service solidaire sont faits pour toi."
+  },
+  {
+    code: "RC",
+    name: "Le Technicien Rigoureux",
+    description: "Tu aimes la précision technique et la méthode. Tu veux que tout fonctionne parfaitement.",
+    traits: [
+      {emoji: "🔧", label: "Technique"},
+      {emoji: "📋", label: "Rigoureux"},
+      {emoji: "🎯", label: "Précis"},
+      {emoji: "⚙️", label: "Méthodique"}
+    ],
+    radarScores: {ponctualite: 5, resolutionProblemes: 5, resistanceStress: 4, connaissanceMarche: 3, competencesInterpersonnelles: 2},
+    strengths: [
+      "Précision technique et rigueur",
+      "Sens de la méthode et de la qualité",
+      "Fiabilité et constance"
+    ],
+    formations: [
+      {name: "Formation en maintenance industrielle / contrôle qualité", duration: "6-12 mois", level: "Titre pro/BTS"},
+      {name: "Certification en métrologie ou instrumentation", duration: "3-6 mois", level: "Certification"}
+    ],
+    careers: [
+      {name: "Technicien(ne) de maintenance préventive", level: "BTS/Titre pro", description: "Planifier et réaliser la maintenance des équipements"},
+      {name: "Contrôleur(se) qualité industriel", level: "BTS/Formation", description: "Vérifier la conformité des produits"},
+      {name: "Mécanicien(ne) de précision", level: "CAP/BP", description: "Réaliser des pièces et assemblages précis"},
+      {name: "Technicien(ne) métrologie", level: "BTS/Formation", description: "Mesurer et contrôler avec précision"},
+      {name: "Agent de maîtrise en production", level: "BTS/Expérience", description: "Superviser la production avec rigueur"},
+      {name: "Technicien(ne) méthodes", level: "BTS/Formation", description: "Optimiser les processus de fabrication"}
+    ],
+    environment: "Un cadre technique et structuré où la précision est essentielle.",
+    advice: "La maintenance de précision et le contrôle qualité sont ta force."
+  },
+  {
+    code: "IE",
+    name: "L'Expert Influent",
+    description: "Tu combines expertise et leadership. Tu veux être reconnu pour ton savoir et ton influence.",
+    traits: [
+      {emoji: "🧠", label: "Expert"},
+      {emoji: "💼", label: "Leader"},
+      {emoji: "🎯", label: "Stratège"},
+      {emoji: "💬", label: "Influent"}
+    ],
+    radarScores: {ponctualite: 4, resolutionProblemes: 5, resistanceStress: 4, connaissanceMarche: 5, competencesInterpersonnelles: 4},
+    strengths: [
+      "Expertise technique + charisme",
+      "Capacité à vulgariser et convaincre",
+      "Vision stratégique et leadership"
+    ],
+    formations: [
+      {name: "Formation en management de l'innovation / transformation digitale", duration: "6-12 mois", level: "Formation/Executive"},
+      {name: "Certification en conseil stratégique ou consulting", duration: "3-6 mois", level: "Certification"}
+    ],
+    careers: [
+      {name: "Consultant(e) expert", level: "Expertise métier", description: "Conseiller les entreprises dans ton domaine d'expertise"},
+      {name: "Chef(fe) de projet technique", level: "Formation/Expérience", description: "Piloter des projets complexes"},
+      {name: "Responsable R&D", level: "Formation/Expérience", description: "Diriger la recherche et le développement"},
+      {name: "Formateur(trice) technique expert", level: "Expertise/Certification", description: "Former sur des sujets techniques pointus"},
+      {name: "Architecte solution", level: "Expertise technique", description: "Concevoir des architectures techniques complexes"},
+      {name: "Product owner technique", level: "Formation/Expérience", description: "Définir la vision produit technique"}
+    ],
+    environment: "Un cadre stratégique et technique où ton expertise est valorisée.",
+    advice: "Le consulting expert et le management technique sont ta voie."
+  },
+  {
+    code: "EA",
+    name: "Le Visionnaire Charismatique",
+    description: "Tu combines ambition et créativité. Tu veux innover, porter une vision et inspirer.",
+    traits: [
+      {emoji: "🚀", label: "Visionnaire"},
+      {emoji: "🎨", label: "Créatif"},
+      {emoji: "💫", label: "Inspirant"},
+      {emoji: "💼", label: "Entrepreneur"}
+    ],
+    radarScores: {ponctualite: 3, resolutionProblemes: 4, resistanceStress: 5, connaissanceMarche: 5, competencesInterpersonnelles: 5},
+    strengths: [
+      "Vision innovante et audacieuse",
+      "Charisme et capacité d'inspiration",
+      "Créativité au service de l'impact"
+    ],
+    formations: [
+      {name: "Programme entrepreneuriat créatif / innovation", duration: "3-6 mois", level: "Formation/Incubateur"},
+      {name: "Formation en personal branding / influence", duration: "2-4 mois", level: "Formation"}
+    ],
+    careers: [
+      {name: "Fondateur(trice) de startup créative", level: "Expérience/Formation", description: "Créer et développer une entreprise innovante"},
+      {name: "Directeur(trice) créatif(ve)", level: "Expérience/Portfolio", description: "Définir et porter la vision créative"},
+      {name: "Influenceur(se) / créateur(trice) de marque personnelle", level: "Auto-formation", description: "Construire et monétiser son influence"},
+      {name: "Entrepreneur créatif", level: "Portfolio/Expérience", description: "Créer et vendre des services créatifs"},
+      {name: "Consultant(e) en innovation", level: "Expertise/Expérience", description: "Accompagner l'innovation en entreprise"},
+      {name: "Chef(fe) de projet transformation", level: "Formation/Expérience", description: "Piloter des projets de transformation"}
+    ],
+    environment: "Un cadre libre et ambitieux où tu peux innover et inspirer.",
+    advice: "L'entrepreneuriat créatif et l'innovation sont faits pour toi."
+  },
+  {
+    code: "EC",
+    name: "Le Manager Organisé",
+    description: "Tu combines leadership et rigueur. Tu veux diriger avec méthode et performance.",
+    traits: [
+      {emoji: "💼", label: "Manager"},
+      {emoji: "📊", label: "Organisé"},
+      {emoji: "🎯", label: "Performant"},
+      {emoji: "⚡", label: "Leader"}
+    ],
+    radarScores: {ponctualite: 5, resolutionProblemes: 4, resistanceStress: 5, connaissanceMarche: 5, competencesInterpersonnelles: 4},
+    strengths: [
+      "Leadership structuré et méthodique",
+      "Sens de la performance et des résultats",
+      "Capacité à organiser et motiver"
+    ],
+    formations: [
+      {name: "Formation en management / gestion d'équipe", duration: "3-6 mois", level: "Formation/Certification"},
+      {name: "MBA ou executive program", duration: "12-24 mois", level: "Executive"}
+    ],
+    careers: [
+      {name: "Manager opérationnel", level: "Formation/Expérience", description: "Diriger une équipe et atteindre les objectifs"},
+      {name: "Responsable de centre de profit", level: "Formation/Expérience", description: "Gérer une unité avec responsabilité financière"},
+      {name: "Chef(fe) de projet PMO", level: "Certification/Expérience", description: "Piloter le portefeuille de projets"},
+      {name: "Directeur(trice) des opérations", level: "Expérience/MBA", description: "Superviser l'ensemble des opérations"},
+      {name: "Manager de transition", level: "Expertise/Expérience", description: "Prendre en charge des situations de crise ou transformation"},
+      {name: "Entrepreneur organisé", level: "Expérience/Formation", description: "Créer et structurer une entreprise performante"}
+    ],
+    environment: "Un cadre performant et structuré où tu peux diriger avec méthode.",
+    advice: "Le management opérationnel et la direction sont ta force."
+  }
+];
 
 function ResultsRiasec() {
   const [searchParams] = useSearchParams();
@@ -520,12 +1241,11 @@ function ResultsRiasec() {
   };
 
   // Fonction pour enregistrer en base et rediriger vers Stripe
-  const handleProceedToPayment = async (email: string) => {
+  const handleProceedToPayment = async () => {
     try {
-      // Traiter les champs vides avec des valeurs par défaut
-      const finalEmail = email.trim() || null;
-      // Récupérer le pseudo depuis localStorage
-      const userPseudo = localStorage.getItem('userPseudo') || null;
+      // Récupérer les données depuis localStorage
+      const userName = localStorage.getItem('userName') || null;
+      const userEmail = localStorage.getItem('userEmail') || null;
       
       // Récupérer l'ID de la ligne créée lors du test RIASEC
       const riasecResultId = localStorage.getItem('riasecResultId');
@@ -535,8 +1255,8 @@ function ResultsRiasec() {
         const { error } = await supabase
           .from('riasec_results')
           .update({
-            name: userPseudo,
-            email: finalEmail,
+            name: userName,
+            email: userEmail,
             total_price: 190, // Prix en centimes (1.90€ = 190 centimes)
             payment: 'pending'
           })
@@ -554,8 +1274,8 @@ function ResultsRiasec() {
         const { error } = await supabase
           .from('riasec_results')
           .insert({
-            name: userPseudo,
-            email: finalEmail,
+            name: userName,
+            email: userEmail,
             dominant_profile: profile?.code || '',
             profile_name: profile?.name || '',
             r_score: 0,
@@ -598,6 +1318,12 @@ function ResultsRiasec() {
       navigate('/');
       return;
     }
+
+    // Récupérer le type de bilan depuis localStorage
+    const bilanType = localStorage.getItem('bilanType') || 'scolaire';
+    
+    // Sélectionner le bon tableau de profils selon le type
+    const riasecProfiles = bilanType === 'scolaire' ? riasecProfilesJeunes : riasecProfilesAdultes;
 
     const foundProfile = riasecProfiles.find(p => p.code === profileCode);
     
