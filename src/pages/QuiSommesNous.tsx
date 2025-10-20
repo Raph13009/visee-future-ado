@@ -53,16 +53,16 @@ const QuiSommesNous = () => {
             </div>
             
             <div className="w-full md:w-1/2 text-left">
-              <h2 className="text-3xl md:text-4xl font-bold mb-6" style={{ color: '#D4B16A' }}>
+              <h2 className="section-title mb-6">
                 Une approche simple, rapide et toujours en évolution
               </h2>
-              <p className="text-gray-700 leading-relaxed text-base md:text-lg mb-4">
+              <p className="section-text mb-4">
                 Avenirea n'est pas un centre de formation, ni une agence.
               </p>
-              <p className="text-gray-700 leading-relaxed text-base md:text-lg mb-4">
+              <p className="section-text mb-4">
                 C'est une plateforme qui investit constamment dans la recherche et le développement de tests professionnels fiables et accessibles.
               </p>
-              <p className="text-gray-700 leading-relaxed text-base md:text-lg">
+              <p className="section-text">
                 Chaque test est pensé pour offrir une expérience rapide et efficace, réadaptée régulièrement selon les tendances de la <strong>reconversion</strong> et les retours de professionnels du secteur.
               </p>
             </div>
@@ -71,7 +71,7 @@ const QuiSommesNous = () => {
 
         {/* 3️⃣ Pourquoi nos bilans fonctionnent */}
         <section className="py-16 max-w-6xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center" style={{ color: '#D4B16A' }}>
+          <h2 className="section-title mb-12 text-center">
             Des bilans de compétences réinventés
           </h2>
           
@@ -128,16 +128,16 @@ const QuiSommesNous = () => {
             </div>
             
             <div className="w-full md:w-1/2 text-left">
-              <h2 className="text-3xl md:text-4xl font-bold mb-6" style={{ color: '#D4B16A' }}>
+              <h2 className="section-title mb-6">
                 Redonner confiance à ceux qui cherchent leur voie
               </h2>
-              <p className="text-gray-700 leading-relaxed text-base md:text-lg mb-4">
+              <p className="section-text mb-4">
                 Que vous envisagiez une <strong>reconversion professionnelle</strong>, un <strong>bilan de compétences</strong> ou une nouvelle <strong>orientation</strong>,
               </p>
-              <p className="text-gray-700 leading-relaxed text-base md:text-lg mb-4">
+              <p className="section-text mb-4">
                 Avenirea a été pensée pour vous aider à prendre les bonnes décisions, sans jargon ni perte de temps.
               </p>
-              <p className="text-gray-700 leading-relaxed text-base md:text-lg">
+              <p className="section-text">
                 Nos outils sont faits pour les personnes qui veulent avancer vite, avec clarté.
               </p>
             </div>

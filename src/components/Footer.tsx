@@ -24,6 +24,15 @@ const Footer = ({ onOpenCgvModal }: FooterProps) => {
           </div>
 
           <div className="space-y-4">
+            <h4 className="font-bold" style={{ color: 'var(--neo-ink)' }}>Ressources</h4>
+            <div className="space-y-2 text-sm">
+              <a href="/conseils-reconversion-professionnelle" className="block neo-link">Conseils sur la reconversion</a>
+              <a href="/qui-sommes-nous" className="block neo-link">Qui sommes-nous</a>
+              <a href="/acces-resultats" className="block neo-link">Accès à mes résultats</a>
+            </div>
+          </div>
+
+          <div className="space-y-4">
             <h4 className="font-bold" style={{ color: 'var(--neo-ink)' }}>Légal</h4>
             <div className="space-y-2 text-sm">
               <a href="#" className="block neo-link" onClick={e => { e.preventDefault(); onOpenCgvModal && onOpenCgvModal(); }}>Mentions légales</a>
