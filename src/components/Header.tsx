@@ -29,7 +29,21 @@ const Header = ({ hideTestCTA }: HeaderProps) => {
               className="w-full h-full object-contain"
             />
           </div>
-          <span className="text-xl font-bold" style={{ color: 'var(--neo-ink)' }}>Avenirea</span>
+          <div className="flex flex-col">
+            <span className="text-xl font-bold leading-none" style={{ color: 'var(--neo-ink)' }}>Avenirea</span>
+            <span 
+              className="text-[10px] font-bold px-2 py-0.5 mt-1 inline-block"
+              style={{ 
+                background: 'var(--neo-card-bg)', 
+                border: '2px solid var(--neo-line)',
+                borderRadius: '6px',
+                color: 'var(--neo-ink)',
+                boxShadow: '2px 2px 0 var(--neo-shadow)'
+              }}
+            >
+              EN LIGNE
+            </span>
+          </div>
         </div>
         
         <nav className="hidden md:flex items-center space-x-8">
