@@ -73,12 +73,27 @@ const Index = () => {
       <section className="neo-section" style={{ background: 'var(--neo-bg)' }}>
         <div className="neo-container">
           <div className="animate-fade-in">
-            <h1 className="hero-title text-center">
-              Bilan de compétences<br />
-              en ligne
+            <h1 className="hero-title text-center mb-3">
+              Bilan de compétences
             </h1>
             
-            <h2 className="hero-subtitle text-center">
+            <div className="flex justify-center mb-12">
+              <span 
+                className="text-xs font-bold px-3 py-1.5 inline-block"
+                style={{ 
+                  background: 'var(--neo-card-bg)', 
+                  border: '2px solid var(--neo-line)',
+                  borderRadius: '8px',
+                  color: 'var(--neo-ink)',
+                  boxShadow: '3px 3px 0 var(--neo-shadow)',
+                  letterSpacing: '0.5px'
+                }}
+              >
+                EN LIGNE
+              </span>
+            </div>
+            
+            <h2 className="hero-subtitle text-center mb-8">
               Découvrez votre profil, vos forces et les métiers qui vous correspondent.<br />
               Des tests simples et fiables pour choisir vos études, réussir votre reconversion ou faire le point sur votre carrière.
             </h2>
@@ -169,13 +184,13 @@ const Index = () => {
         <div className="neo-container">
           <div className="text-center mb-16">
             <h2 className="neo-heading neo-heading-lg mb-4">
-              Ce que tu vas découvrir
+              Exemple de résultats pour un bilan d'orientation scolaire
             </h2>
             <div className="neo-badge inline-flex items-center gap-3 px-6 py-3">
               <span className="text-2xl">📊</span>
               <p className="font-medium">
-                <span className="font-bold">1 jeune sur 2</span> change d'orientation après le bac - 
-                <span style={{ color: 'var(--neo-accent)' }}> évite cette erreur coûteuse !</span>
+                <span className="font-bold">Aperçu gratuit</span> de ce que vous obtiendrez - 
+                <span style={{ color: 'var(--neo-accent)' }}> rapport complet disponible après le test !</span>
               </p>
             </div>
           </div>
