@@ -108,6 +108,10 @@ const UserInfoModal: React.FC<UserInfoModalProps> = ({ isOpen, onClose, onContin
               disabled={isLoading}
               maxLength={100}
             />
+            <p className="text-xs text-gray-600 mt-1.5 flex items-start gap-1">
+              <span>💡</span>
+              <span>Indiquez votre vrai email pour retrouver votre rapport complet à tout moment</span>
+            </p>
             {errors.email && (
               <p className="text-red-500 text-xs mt-1">{errors.email}</p>
             )}
