@@ -107,6 +107,24 @@ const ReconversionPro = () => {
         </div>
       </section>
 
+      {/* Back Button - Below the image */}
+      <div className="py-4 px-4 max-w-7xl mx-auto" style={{ background: '#F9F8F4' }}>
+        <button
+          onClick={() => navigate('/')}
+          className="flex items-center gap-1.5 text-xs font-medium px-2.5 py-1.5 transition-all hover:opacity-80"
+          style={{ 
+            background: 'rgba(255, 255, 255, 0.9)', 
+            border: '2px solid var(--neo-line)',
+            borderRadius: '8px',
+            color: 'var(--neo-ink)',
+            boxShadow: '2px 2px 0 rgba(107, 114, 128, 0.3)'
+          }}
+        >
+          <span>←</span>
+          <span>Retour</span>
+        </button>
+      </div>
+
       {/* SEO Content Section */}
       <section className="content-section">
         <div className="neo-container section-content">
