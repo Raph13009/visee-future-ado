@@ -136,8 +136,8 @@ const AccesResultats = () => {
                   disabled={loading || !email || !prenom}
                   className="w-full px-6 py-4 font-bold text-base rounded-xl transition-all hover:translate-y-[-2px]"
                   style={{
-                    background: '#6DC9B3',
-                    color: '#1A1A1A',
+                    background: '#E96A3C',
+                    color: '#FFFFFF',
                     border: '3px solid #1A1A1A',
                     boxShadow: '5px 5px 0 #1A1A1A'
                   }}
@@ -154,9 +154,9 @@ const AccesResultats = () => {
               <>
                 {/* Success Message */}
                 <div className="text-center mb-6">
-                  <div className="inline-flex items-center gap-2 px-6 py-3 rounded-lg mb-4" style={{ background: '#E8F5F0', border: '2px solid #6DC9B3' }}>
+                  <div className="inline-flex items-center gap-2 px-6 py-3 rounded-lg mb-4" style={{ background: '#D9D2B6', border: '2px solid #1A1A1A' }}>
                     <span className="text-xl">✅</span>
-                    <p className="font-semibold" style={{ color: '#1A1A1A' }}>
+                    <p className="font-semibold" style={{ color: '#2C2C2C' }}>
                       Résultats trouvés — cliquez ci-dessous pour les consulter
                     </p>
                   </div>
@@ -166,8 +166,8 @@ const AccesResultats = () => {
                   onClick={handleViewResults}
                   className="w-full px-6 py-4 font-bold text-base rounded-xl transition-all hover:translate-y-[-2px]"
                   style={{
-                    background: '#6DC9B3',
-                    color: '#1A1A1A',
+                    background: '#E96A3C',
+                    color: '#FFFFFF',
                     border: '3px solid #1A1A1A',
                     boxShadow: '5px 5px 0 #1A1A1A'
                   }}
@@ -238,8 +238,8 @@ const AccesResultats = () => {
                   href="mailto:lolatalbon@gmail.com?subject=Demande d'accès à mes résultats Avenirea&body=Bonjour,%0D%0A%0D%0AJe n'arrive pas à retrouver mes résultats.%0D%0A%0D%0AEmail utilisé : [votre email]%0D%0APrénom utilisé : [votre prénom]%0D%0ADate du test : [date approximative]%0D%0A%0D%0AMerci de votre aide."
                   className="w-full px-6 py-4 font-bold text-base rounded-xl transition-all hover:translate-y-[-2px] text-center"
                   style={{
-                    background: '#6DC9B3',
-                    color: '#1A1A1A',
+                    background: '#E96A3C',
+                    color: '#FFFFFF',
                     border: '3px solid #1A1A1A',
                     boxShadow: '5px 5px 0 #1A1A1A',
                     textDecoration: 'none'

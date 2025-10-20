@@ -273,8 +273,8 @@ const ConseilsReconversion = () => {
               }}
               className="px-10 py-4 font-bold text-lg rounded-xl transition-all hover:translate-y-[-2px] mb-6"
               style={{
-                background: '#6DC9B3',
-                color: '#1A1A1A',
+                background: '#E96A3C',
+                color: '#FFFFFF',
                 border: '3px solid #1A1A1A',
                 boxShadow: '6px 6px 0 #1A1A1A'
               }}
@@ -293,7 +293,7 @@ const ConseilsReconversion = () => {
                 <a 
                   href="/bilan-reconversion-professionnelle" 
                   className="font-semibold hover:underline"
-                  style={{ color: '#6DC9B3' }}
+                  style={{ color: '#4F8A8B' }}
                 >
                   bilan de compétences en ligne
                 </a>

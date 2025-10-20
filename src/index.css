@@ -50,13 +50,14 @@ All colors MUST be HSL.
     --sidebar-border: 220 13% 91%;
     --sidebar-ring: 217.2 91.2% 59.8%;
 
-    /* Modern Neobrutalism Theme */
+    /* Modern Neobrutalism Theme - Unified Color System */
     --neo-bg: #F5F1E8;
-    --neo-ink: #1A1A1A;
-    --neo-accent: #FF6B35;
-    --neo-accent-2: #00D4AA;
-    --neo-line: #2D2D2D;
+    --neo-ink: #2C2C2C;
+    --neo-accent: #E96A3C;
+    --neo-accent-2: #4F8A8B;
+    --neo-line: #1A1A1A;
     --neo-card-bg: #FFFFFF;
+    --neo-info-bg: #D9D2B6;
     --neo-shadow: #6B7280;
   }
 }

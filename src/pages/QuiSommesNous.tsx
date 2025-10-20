@@ -162,8 +162,8 @@ const QuiSommesNous = () => {
               }}
               className="px-10 py-4 font-bold text-lg rounded-xl transition-all hover:translate-y-[-2px]"
               style={{
-                background: '#6DC9B3',
-                color: '#1A1A1A',
+                background: '#E96A3C',
+                color: '#FFFFFF',
                 border: '3px solid #1A1A1A',
                 boxShadow: '6px 6px 0 #1A1A1A'
               }}
