@@ -69,42 +69,71 @@ const Index = () => {
       <Header />
       <CgvModal open={showCgvModal} onClose={() => setShowCgvModal(false)} />
       
-      {/* Hero Section */}
-      <section className="neo-section" style={{ background: 'var(--neo-bg)' }}>
-        <div className="neo-container">
-          <div className="animate-fade-in">
-            <h1 className="hero-title text-center mb-3">
-              Bilan de compétences
-            </h1>
-            
-            <div className="flex justify-center mb-12">
-              <span 
-                className="text-xs font-bold px-3 py-1.5 inline-block"
-                style={{ 
-                  background: 'var(--neo-card-bg)', 
-                  border: '2px solid var(--neo-line)',
-                  borderRadius: '8px',
-                  color: 'var(--neo-ink)',
-                  boxShadow: '3px 3px 0 var(--neo-shadow)',
-                  letterSpacing: '0.5px'
-                }}
-              >
-                EN LIGNE
-              </span>
-            </div>
-            
-            <h2 className="hero-subtitle text-center mb-8">
-              Découvrez votre profil, vos forces et les métiers qui vous correspondent.<br />
-              Des tests simples et fiables pour choisir vos études, réussir votre reconversion ou faire le point sur votre carrière.
-            </h2>
-            
-            <div className="hero-callout">
-              <div className="hero-callout-content">
-                <span className="hero-callout-icon">💡</span>
-                <span className="font-bold">1 actif sur 3</span> souhaite changer de métier selon France Compétences.<br />
-              </div>
-            </div>
+      {/* Hero Section - Elegant & Professional */}
+      <section className="text-center px-6 pt-24 sm:pt-28 pb-16" style={{ background: '#F5F1E8', color: '#1A1A1A' }}>
+        <div className="max-w-4xl mx-auto">
+          
+          {/* Elegant Badge */}
+          <div className="flex justify-center mb-8">
+            <span 
+              className="inline-block text-xs font-semibold px-4 py-2 rounded-full"
+              style={{ 
+                background: 'rgba(255, 255, 255, 0.8)', 
+                border: '1px solid rgba(230, 220, 204, 0.6)',
+                boxShadow: '0 2px 8px rgba(0,0,0,0.04)',
+                letterSpacing: '0.5px',
+                color: '#1A1A1A'
+              }}
+            >
+              Bilan en ligne certifié
+            </span>
           </div>
+          
+          {/* H1 Title - SEO Optimized */}
+          <h1 className="text-3xl sm:text-5xl font-bold leading-tight tracking-tight mb-6 max-w-3xl mx-auto">
+            Bilan de compétences et reconversion professionnelle en ligne
+          </h1>
+          
+          {/* Refined Subtitle */}
+          <p className="text-lg sm:text-xl mb-10 max-w-2xl mx-auto" style={{ color: '#6B7280' }}>
+            Clarifiez vos forces, définissez vos objectifs et transformez votre avenir professionnel.
+          </p>
+          
+          {/* CTA Buttons */}
+          <div className="flex justify-center gap-4 flex-wrap mb-8">
+            <button
+              onClick={() => navigate('/bilan-competences-tous-publics')}
+              className="px-8 py-4 font-bold text-base rounded-xl transition-all hover:translate-y-[1px] text-white"
+              style={{ 
+                background: '#FF6B35',
+                boxShadow: '0 6px 0 rgba(255, 107, 53, 0.3)'
+              }}
+              aria-label="Commencer le test de bilan de compétences"
+            >
+              Commencer le test
+            </button>
+            
+            <button
+              onClick={() => {
+                document.querySelector('#exemple-rapport')?.scrollIntoView({ behavior: 'smooth' });
+              }}
+              className="px-8 py-4 font-semibold text-base rounded-xl transition-all hover:bg-white"
+              style={{ 
+                background: 'transparent',
+                border: '2px solid #E6DCCC',
+                color: '#1A1A1A'
+              }}
+              aria-label="Voir un exemple de rapport"
+            >
+              Voir un exemple de rapport
+            </button>
+          </div>
+          
+          {/* Inline Reassurance (no box) */}
+          <p className="text-sm mt-6" style={{ color: '#9CA3AF' }}>
+            1 actif sur 3 souhaite changer de métier selon France Compétences
+          </p>
+          
         </div>
       </section>
 
@@ -179,19 +208,149 @@ const Index = () => {
         </div>
       </section>
 
+      {/* SEO Section - Reconversion, Bilan, Orientation */}
+      <section className="py-20" style={{ background: '#F5F1E8' }}>
+        <div className="max-w-6xl mx-auto px-6">
+          {/* Section Title */}
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-black mb-4" style={{ color: '#1A1A1A', letterSpacing: '-0.02em' }}>
+              Trouver sa voie, évoluer, se réinventer.
+            </h2>
+            <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+              Que vous cherchiez à changer de métier, à faire un bilan de compétences ou à clarifier votre orientation professionnelle, Avenirea vous accompagne à chaque étape.
+            </p>
+          </div>
+
+          <div className="space-y-16">
+            {/* Bloc 1 - Reconversion professionnelle (Image à gauche) */}
+            <div className="flex flex-col md:flex-row items-center gap-8 md:gap-12">
+              <div className="w-full md:w-1/2">
+                <div className="rounded-2xl overflow-hidden" style={{ border: '3px solid #1A1A1A', boxShadow: '6px 6px 0px rgba(0,0,0,0.15)' }}>
+                  <img 
+                    src="/seo/reconversion.jpg" 
+                    alt="Reconversion professionnelle"
+                    className="w-full h-64 md:h-80 object-cover"
+                    onError={(e) => {
+                      (e.target as HTMLImageElement).src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="800" height="600"%3E%3Crect fill="%236B8E9E" width="800" height="600"/%3E%3Ctext x="50%25" y="50%25" dominant-baseline="middle" text-anchor="middle" font-family="sans-serif" font-size="24" fill="%23ffffff"%3EReconversion%3C/text%3E%3C/svg%3E';
+                    }}
+                  />
+                </div>
+              </div>
+              <div className="w-full md:w-1/2">
+                <h3 className="text-2xl md:text-3xl font-bold mb-4" style={{ color: '#D4B16A' }}>
+                  Reconversion professionnelle : redonner du sens à sa carrière
+                </h3>
+                <p className="text-gray-700 leading-relaxed text-base md:text-lg mb-4">
+                  Changer de métier n'est plus une exception : c'est une évolution naturelle.
+                </p>
+                <p className="text-gray-700 leading-relaxed text-base md:text-lg mb-4">
+                  La <strong>reconversion professionnelle</strong> permet de retrouver de la motivation, de transformer ses compétences et de se réaligner avec ses valeurs.
+                </p>
+                <p className="text-gray-700 leading-relaxed text-base md:text-lg">
+                  Grâce à nos bilans et à la méthode RIASEC, Avenirea vous aide à identifier vos forces et les secteurs qui vous correspondent vraiment.
+                </p>
+              </div>
+            </div>
+            
+            {/* Bloc 2 - Bilan de compétences (Image à droite) */}
+            <div className="flex flex-col md:flex-row-reverse items-center gap-8 md:gap-12">
+              <div className="w-full md:w-1/2">
+                <div className="rounded-2xl overflow-hidden" style={{ border: '3px solid #1A1A1A', boxShadow: '6px 6px 0px rgba(0,0,0,0.15)' }}>
+                  <img 
+                    src="/seo/bilan.jpg" 
+                    alt="Bilan de compétences"
+                    className="w-full h-64 md:h-80 object-cover"
+                    onError={(e) => {
+                      (e.target as HTMLImageElement).src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="800" height="600"%3E%3Crect fill="%236B8E9E" width="800" height="600"/%3E%3Ctext x="50%25" y="50%25" dominant-baseline="middle" text-anchor="middle" font-family="sans-serif" font-size="24" fill="%23ffffff"%3EBilan de comp%C3%A9tences%3C/text%3E%3C/svg%3E';
+                    }}
+                  />
+                </div>
+              </div>
+              <div className="w-full md:w-1/2">
+                <h3 className="text-2xl md:text-3xl font-bold mb-4" style={{ color: '#D4B16A' }}>
+                  Bilan de compétences : comprendre son potentiel
+                </h3>
+                <p className="text-gray-700 leading-relaxed text-base md:text-lg mb-4">
+                  Le <strong>bilan de compétences</strong> est une étape clé pour prendre du recul et construire un projet professionnel solide.
+                </p>
+                <p className="text-gray-700 leading-relaxed text-base md:text-lg mb-4">
+                  Nos tests et accompagnements vous permettent d'évaluer vos aptitudes, vos motivations et vos pistes d'évolution concrètes.
+                </p>
+                <p className="text-gray-700 leading-relaxed text-base md:text-lg">
+                  C'est un point de départ essentiel avant toute formation ou changement de voie.
+                </p>
+              </div>
+            </div>
+
+            {/* Bloc 3 - Orientation professionnelle (Image à gauche) */}
+            <div className="flex flex-col md:flex-row items-center gap-8 md:gap-12">
+              <div className="w-full md:w-1/2">
+                <div className="rounded-2xl overflow-hidden" style={{ border: '3px solid #1A1A1A', boxShadow: '6px 6px 0px rgba(0,0,0,0.15)' }}>
+                  <img 
+                    src="/seo/orientation.jpg" 
+                    alt="Orientation professionnelle"
+                    className="w-full h-64 md:h-80 object-cover"
+                    onError={(e) => {
+                      (e.target as HTMLImageElement).src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="800" height="600"%3E%3Crect fill="%236B8E9E" width="800" height="600"/%3E%3Ctext x="50%25" y="50%25" dominant-baseline="middle" text-anchor="middle" font-family="sans-serif" font-size="24" fill="%23ffffff"%3EOrientation%3C/text%3E%3C/svg%3E';
+                    }}
+                  />
+                </div>
+              </div>
+              <div className="w-full md:w-1/2">
+                <h3 className="text-2xl md:text-3xl font-bold mb-4" style={{ color: '#D4B16A' }}>
+                  Orientation professionnelle : faire les bons choix
+                </h3>
+                <p className="text-gray-700 leading-relaxed text-base md:text-lg mb-4">
+                  Pour les étudiants, jeunes actifs ou professionnels en transition, l'<strong>orientation professionnelle</strong> reste un moment décisif.
+                </p>
+                <p className="text-gray-700 leading-relaxed text-base md:text-lg mb-4">
+                  Nos bilans d'orientation utilisent des outils reconnus pour clarifier vos choix d'études, de formation ou de carrière.
+                </p>
+                <p className="text-gray-700 leading-relaxed text-base md:text-lg">
+                  Avec Avenirea, trouvez la voie qui vous ressemble et prenez confiance en vos décisions.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* CTA en bas de section */}
+          <div className="text-center mt-16">
+            <button
+              onClick={() => {
+                navigate('/bilan-reconversion-professionnelle');
+                window.scrollTo(0, 0);
+              }}
+              className="inline-flex items-center gap-2 px-8 py-4 font-bold text-lg transition-all hover:translate-x-1"
+              style={{ 
+                background: '#6DC9B3', 
+                color: '#1A1A1A', 
+                border: '3px solid #1A1A1A', 
+                boxShadow: '4px 4px 0px #1A1A1A',
+                borderRadius: '12px'
+              }}
+            >
+              Découvrir nos bilans
+              <span>→</span>
+            </button>
+          </div>
+        </div>
+      </section>
+
       {/* Preview Section */}
-      <section className="neo-section" style={{ background: 'var(--neo-bg)' }}>
+      <section id="exemple-rapport" className="neo-section" style={{ background: 'var(--neo-bg)' }}>
         <div className="neo-container">
           <div className="text-center mb-16">
-            <h2 className="neo-heading neo-heading-lg mb-4">
+            <h2 className="neo-heading neo-heading-lg mb-6">
               Exemple de résultats pour un bilan d'orientation scolaire
             </h2>
-            <div className="neo-badge inline-flex items-center gap-3 px-6 py-3">
-              <span className="text-2xl">📊</span>
-              <p className="font-medium">
-                <span className="font-bold">Aperçu gratuit</span> de ce que vous obtiendrez - 
-                <span style={{ color: 'var(--neo-accent)' }}> rapport complet disponible après le test !</span>
-              </p>
+            <div className="inline-block px-8 py-4 rounded-xl font-bold text-base" 
+                 style={{ 
+                   background: '#E8F5F0', 
+                   color: '#1A1A1A', 
+                   border: '2px solid #6DC9B3', 
+                   boxShadow: '0 4px 0 rgba(109, 201, 179, 0.2)'
+                 }}>
+              <span className="font-bold">Aperçu gratuit</span> de ce que vous obtiendrez - rapport complet disponible après le test !
             </div>
           </div>
           
@@ -309,12 +468,55 @@ const Index = () => {
                   </h3>
                 </div>
                 
-                <div className="space-y-4">
-                  <p className="font-bold text-xl text-primary">Des métiers concrets pour toi</p>
-                  <p className="text-gray-600 text-lg leading-relaxed">
+                <div>
+                  <p className="font-bold text-xl text-primary mb-4">Des métiers concrets pour toi</p>
+                  <p className="text-gray-600 text-lg leading-relaxed mb-16">
                     Pas de théorie : découvre les jobs alignés avec qui tu es vraiment. 
                     Des suggestions précises avec les débouchés et salaires moyens.
                   </p>
+                  
+                  {/* Titre CTA */}
+                  <div className="mb-6 text-center">
+                    <h3 className="text-2xl sm:text-3xl font-black mb-2" style={{ color: '#1A1A1A' }}>
+                      Fais ton test maintenant
+                    </h3>
+                    <div className="w-16 h-1 mx-auto" style={{ background: '#FF6B35' }}></div>
+                  </div>
+                  
+                  {/* CTAs Neobrutalism */}
+                  <div className="flex flex-col sm:flex-row gap-4">
+                    <button
+                      onClick={() => {
+                        navigate('/bilan-orientation-scolaire');
+                        window.scrollTo(0, 0);
+                      }}
+                      className="flex-1 px-6 py-4 font-bold text-base rounded-xl transition-all hover:translate-x-1"
+                      style={{
+                        background: '#A1B5D8',
+                        color: '#1A1A1A',
+                        border: '3px solid #1A1A1A',
+                        boxShadow: '6px 6px 0 #1A1A1A'
+                      }}
+                    >
+                      Test orientation scolaire
+                    </button>
+                    
+                    <button
+                      onClick={() => {
+                        navigate('/bilan-reconversion-professionnelle');
+                        window.scrollTo(0, 0);
+                      }}
+                      className="flex-1 px-6 py-4 font-bold text-base rounded-xl transition-all hover:translate-x-1"
+                      style={{
+                        background: '#E8C785',
+                        color: '#1A1A1A',
+                        border: '3px solid #1A1A1A',
+                        boxShadow: '6px 6px 0 #1A1A1A'
+                      }}
+                    >
+                      Test reconversion pro
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
@@ -322,95 +524,101 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Pause bien-être Section */}
-      <section className="py-16 bg-gradient-to-br from-purple-50 via-pink-50 to-indigo-50">
-        <div className="container mx-auto px-4">
-          <div className="max-w-6xl mx-auto">
-            <div className="text-center mb-12">
-              <div className="inline-flex items-center gap-3 bg-white/70 backdrop-blur-sm border border-purple-200 rounded-2xl px-6 py-3 shadow-sm mb-6">
-                <span className="text-2xl">🎨</span>
-                <h2 className="text-2xl md:text-3xl font-bold text-purple-900">
-                  Pause bien-être
-                </h2>
+      {/* Pause bien-être Section - Neobrutalism Style */}
+      <section className="py-16 px-4" style={{ background: 'linear-gradient(to bottom right, #FAF5FF, #FDF4FF)' }}>
+        <div className="max-w-6xl mx-auto">
+          
+          {/* Header */}
+          <div className="text-center mb-12">
+            <div className="inline-block mb-6 px-6 py-3 rounded-xl" style={{ background: '#FFFFFF', border: '3px solid #DDD6FE', boxShadow: '5px 5px 0 rgba(124, 58, 237, 0.15)' }}>
+              <h2 className="text-2xl md:text-3xl font-black" style={{ color: '#7C3AED' }}>
+                🎨 Pause bien-être
+              </h2>
+            </div>
+            <p className="text-base md:text-lg max-w-3xl mx-auto leading-relaxed" style={{ color: '#6B21A8' }}>
+              <span className="font-semibold">Prends une vraie pause</span> • 
+              <span> Pose ton téléphone</span> • 
+              <span> Reconnecte-toi à toi-même</span>
+            </p>
+          </div>
+
+          {/* Content - Mobile First */}
+          <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-12">
+            
+            {/* Image du livre */}
+            <div className="w-full lg:w-1/2 lg:max-w-md">
+              <div className="relative">
+                <div className="rounded-2xl overflow-hidden p-4" style={{ background: '#FFFFFF', border: '3px solid #DDD6FE', boxShadow: '8px 8px 0 rgba(124, 58, 237, 0.15)' }}>
+                  <img 
+                    src="/cover-fr.png" 
+                    alt="Cute & Cozy Worlds - Livre de coloriage pour la relaxation"
+                    className="w-full h-auto rounded-lg"
+                  />
+                </div>
+                <div className="absolute -top-3 -right-3 px-4 py-2 rounded-lg font-black text-xs" style={{ background: '#EC4899', color: '#FFFFFF', border: '2px solid #C026D3', boxShadow: '3px 3px 0 rgba(236, 72, 153, 0.2)' }}>
+                  NOUVEAU
+                </div>
               </div>
-              <p className="text-lg md:text-xl text-purple-800 max-w-3xl mx-auto leading-relaxed">
-                <span className="font-semibold">Prends une vraie pause</span> • 
-                <span className="text-purple-700"> Pose ton téléphone</span> • 
-                <span className="text-purple-700"> Reconnecte-toi à toi-même</span>
-              </p>
             </div>
 
-            <div className="flex flex-col lg:flex-row items-center gap-12">
-              {/* Image du livre */}
-              <div className="flex-1 lg:max-w-md">
-                <div className="relative group">
-                  <div className="rounded-2xl overflow-hidden bg-white/80 backdrop-blur-sm p-6 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-rotate-1">
-                    <img 
-                      src="/cover-fr.png" 
-                      alt="Cute & Cozy Worlds - Livre de coloriage pour la relaxation"
-                      className="w-full h-auto rounded-xl shadow-lg"
-                    />
-                  </div>
-                  <div className="absolute -top-2 -right-2 bg-gradient-to-r from-pink-500 to-purple-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg">
-                    NOUVEAU
-                  </div>
+            {/* Contenu textuel */}
+            <div className="w-full lg:w-1/2 text-center lg:text-left">
+              <div className="space-y-6">
+                
+                <h3 className="text-2xl md:text-3xl font-black mb-4" style={{ color: '#7C3AED' }}>
+                  Cute & Cozy Worlds
+                </h3>
+                
+                <p className="text-base md:text-lg leading-relaxed mb-4" style={{ color: '#6B21A8' }}>
+                  <span className="font-semibold">Scientifiquement prouvé :</span> le coloriage réduit le stress de 68%, 
+                  améliore la concentration et libère de la <span className="font-semibold" style={{ color: '#EC4899' }}>dopamine</span> - 
+                  l'hormone du bien-être.
+                </p>
+                
+                <p className="text-base leading-relaxed" style={{ color: '#7C3AED' }}>
+                  Un moment de <span className="font-semibold">créativité apaisante</span> pour ados, étudiants et adultes. 
+                  Parfait pour une <span className="font-semibold">hygiène mentale simple et efficace</span>.
+                </p>
+
+                {/* CTA Button */}
+                <div className="mt-6">
+                  <button 
+                    onClick={() => window.open('https://www.amazon.fr/dp/B0FHW8CJ92', '_blank')}
+                    className="px-8 py-4 font-bold text-base md:text-lg rounded-xl transition-all hover:translate-y-[-2px]"
+                    style={{ 
+                      background: 'linear-gradient(135deg, #EC4899 0%, #7C3AED 100%)',
+                      color: '#FFFFFF',
+                      border: '3px solid #C026D3',
+                      boxShadow: '6px 6px 0 rgba(124, 58, 237, 0.2)'
+                    }}
+                  >
+                    Acheter pour 7,99 €
+                  </button>
+                  <p className="text-sm mt-3" style={{ color: '#7C3AED' }}>
+                    ✨ Livraison gratuite Amazon Prime
+                  </p>
                 </div>
-              </div>
 
-              {/* Contenu textuel */}
-              <div className="flex-1 text-center lg:text-left">
-                <div className="space-y-6">
-                  <div>
-                    <h3 className="text-2xl md:text-3xl font-bold text-purple-900 mb-4">
-                      Cute & Cozy Worlds
-                    </h3>
-                    <p className="text-lg text-purple-800 leading-relaxed mb-4">
-                      <span className="font-semibold">Scientifiquement prouvé :</span> le coloriage réduit le stress de 68%, 
-                      améliore la concentration et libère de la <span className="font-semibold text-pink-600">dopamine</span> - 
-                      l'hormone du bien-être.
-                    </p>
-                    <p className="text-purple-700 leading-relaxed">
-                      Un moment de <span className="font-semibold">créativité apaisante</span> pour ados, étudiants et adultes. 
-                      Parfait pour une <span className="font-semibold">hygiène mentale simple et efficace</span>.
-                    </p>
-                  </div>
-
-                  <div className="flex flex-col sm:flex-row items-center gap-4">
-                    <Button 
-                      onClick={() => window.open('https://www.amazon.fr/dp/B0FHW8CJ92', '_blank')}
-                      size="lg"
-                      className="bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white px-8 py-4 text-lg font-bold rounded-2xl transition-all duration-300 transform hover:scale-105 shadow-xl hover:shadow-2xl border-2 border-white/20"
-                    >
-                      <span className="flex items-center gap-3">
-                        <span className="text-xl">🎨</span>
-                        <span>Acheter pour 7,99 €</span>
-                      </span>
-                    </Button>
-                    
-                    <div className="flex items-center gap-2 text-sm text-purple-600">
-                      <span className="text-lg">✨</span>
-                      <span>Livraison gratuite Amazon Prime</span>
-                    </div>
-                  </div>
-
-                  <div className="flex flex-wrap justify-center lg:justify-start gap-3 text-sm">
-                    <span className="bg-white/60 backdrop-blur-sm px-3 py-1 rounded-full text-purple-700 font-medium">
-                      🧠 Concentration
-                    </span>
-                    <span className="bg-white/60 backdrop-blur-sm px-3 py-1 rounded-full text-purple-700 font-medium">
-                      😌 Apaisement
-                    </span>
-                    <span className="bg-white/60 backdrop-blur-sm px-3 py-1 rounded-full text-purple-700 font-medium">
-                      🎯 Créativité
-                    </span>
-                    <span className="bg-white/60 backdrop-blur-sm px-3 py-1 rounded-full text-purple-700 font-medium">
-                      📱 Pause digitale
-                    </span>
-                  </div>
+                {/* Tags */}
+                <div className="flex flex-wrap justify-center lg:justify-start gap-3 mt-6">
+                  <span className="px-3 py-2 rounded-lg font-semibold text-sm" style={{ background: '#FAF5FF', border: '2px solid #7C3AED', color: '#7C3AED' }}>
+                    Concentration
+                  </span>
+                  <span className="px-3 py-2 rounded-lg font-semibold text-sm" style={{ background: '#FAF5FF', border: '2px solid #7C3AED', color: '#7C3AED' }}>
+                    Apaisement
+                  </span>
+                  <span className="px-3 py-2 rounded-lg font-semibold text-sm" style={{ background: '#FAF5FF', border: '2px solid #7C3AED', color: '#7C3AED' }}>
+                    Créativité
+                  </span>
+                  <span className="px-3 py-2 rounded-lg font-semibold text-sm" style={{ background: '#FAF5FF', border: '2px solid #7C3AED', color: '#7C3AED' }}>
+                    Pause digitale
+                  </span>
                 </div>
+                
               </div>
             </div>
           </div>
+          
         </div>
       </section>
 
@@ -466,13 +674,13 @@ const Index = () => {
           <div className="neo-grid neo-grid-2 max-w-4xl mx-auto">
             {testimonials.map((testimonial, index) => (
               <div key={index} className="neo-card">
-                <div className="text-3xl mb-4">{testimonial.emoji}</div>
+                  <div className="text-3xl mb-4">{testimonial.emoji}</div>
                 <blockquote className="neo-text text-lg mb-4 italic leading-relaxed">
-                  "{testimonial.text}"
-                </blockquote>
+                    "{testimonial.text}"
+                  </blockquote>
                 <cite className="font-medium" style={{ color: 'var(--neo-accent)' }}>
-                  {testimonial.author}
-                </cite>
+                    {testimonial.author}
+                  </cite>
               </div>
             ))}
           </div>
