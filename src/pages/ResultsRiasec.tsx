@@ -1610,7 +1610,11 @@ function ResultsRiasec() {
               {/* Titre visible uniquement quand le contenu est verrouillé */}
               {!isUnlocked && (
                 <div className="text-center mb-6">
-                  <h3 className="text-lg font-bold text-gray-700 bg-gradient-to-r from-blue-100 to-purple-100 px-4 py-2 rounded-xl shadow-sm">
+                  <h3 
+                    className="text-lg font-bold text-gray-700 bg-gradient-to-r from-blue-100 to-purple-100 px-4 py-2 rounded-xl shadow-sm cursor-pointer hover:opacity-80 transition-opacity"
+                    onClick={handleClickCounterText}
+                    title="Cliquez plusieurs fois..."
+                  >
                     💎 Interprétation • Forces • Potentiel
                   </h3>
                 </div>
