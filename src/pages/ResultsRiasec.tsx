@@ -2072,7 +2072,7 @@ function ResultsRiasec() {
                 <Button 
                   onClick={handleProceedToPayment}
                   className="w-full sm:w-auto px-12 py-6 text-xl font-black transition-all duration-300 hover:translate-y-[-2px]"
-                  style={{ background: '#E8F5F0', color: '#1A1A1A', border: '3px solid #1A1A1A', boxShadow: '6px 6px 0px #1A1A1A' }}
+                  style={{ background: '#E96A3C', color: '#FFFFFF', border: '3px solid #1A1A1A', boxShadow: '6px 6px 0px #1A1A1A' }}
                 >
                   Télécharger mon rapport
                 </Button>
@@ -2110,7 +2110,7 @@ function ResultsRiasec() {
                     window.location.href = 'https://buy.stripe.com/4gMaEYcnO5uFazGc6G7IY03';
                   }}
                   className="px-8 py-4 text-lg font-bold transition-all"
-                  style={{ background: '#6B8E9E', color: 'white', border: '2px solid #1A1A1A', boxShadow: '4px 4px 0px #1A1A1A' }}
+                  style={{ background: '#E96A3C', color: '#FFFFFF', border: '3px solid #1A1A1A', boxShadow: '6px 6px 0px #1A1A1A' }}
                 >
                   Démarrer l'accompagnement
                 </Button>

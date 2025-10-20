@@ -78,11 +78,11 @@ const Index = () => {
             <span 
               className="inline-block text-xs font-semibold px-4 py-2 rounded-full"
               style={{ 
-                background: 'rgba(255, 255, 255, 0.8)', 
-                border: '1px solid rgba(230, 220, 204, 0.6)',
-                boxShadow: '0 2px 8px rgba(0,0,0,0.04)',
+                background: '#D9D2B6', 
+                border: '2px solid #1A1A1A',
+                boxShadow: '0 3px 0 rgba(0,0,0,0.1)',
                 letterSpacing: '0.5px',
-                color: '#1A1A1A'
+                color: '#2C2C2C'
               }}
             >
               Bilan en ligne certifié
@@ -105,8 +105,8 @@ const Index = () => {
               onClick={() => navigate('/bilan-competences-tous-publics')}
               className="px-8 py-4 font-bold text-base rounded-xl transition-all hover:translate-y-[1px] text-white"
               style={{ 
-                background: '#FF6B35',
-                boxShadow: '0 6px 0 rgba(255, 107, 53, 0.3)'
+                background: '#E96A3C',
+                boxShadow: '0 6px 0 rgba(233, 106, 60, 0.3)'
               }}
               aria-label="Commencer le test de bilan de compétences"
             >
@@ -117,11 +117,19 @@ const Index = () => {
               onClick={() => {
                 document.querySelector('#exemple-rapport')?.scrollIntoView({ behavior: 'smooth' });
               }}
-              className="px-8 py-4 font-semibold text-base rounded-xl transition-all hover:bg-white"
+              className="px-8 py-4 font-semibold text-base rounded-xl transition-all"
               style={{ 
                 background: 'transparent',
                 border: '2px solid #E6DCCC',
-                color: '#1A1A1A'
+                color: '#2C2C2C'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.background = '#4F8A8B';
+                e.currentTarget.style.color = '#FFFFFF';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.background = 'transparent';
+                e.currentTarget.style.color = '#2C2C2C';
               }}
               aria-label="Voir un exemple de rapport"
             >
@@ -322,10 +330,10 @@ const Index = () => {
               }}
               className="inline-flex items-center gap-2 px-8 py-4 font-bold text-lg transition-all hover:translate-x-1"
               style={{ 
-                background: '#6DC9B3', 
-                color: '#1A1A1A', 
+                background: '#E96A3C', 
+                color: '#FFFFFF', 
                 border: '3px solid #1A1A1A', 
-                boxShadow: '4px 4px 0px #1A1A1A',
+                boxShadow: '6px 6px 0 #1A1A1A',
                 borderRadius: '12px'
               }}
             >
@@ -345,10 +353,10 @@ const Index = () => {
             </h2>
             <div className="inline-block px-8 py-4 rounded-xl font-bold text-base" 
                  style={{ 
-                   background: '#E8F5F0', 
-                   color: '#1A1A1A', 
-                   border: '2px solid #6DC9B3', 
-                   boxShadow: '0 4px 0 rgba(109, 201, 179, 0.2)'
+                   background: '#D9D2B6', 
+                   color: '#2C2C2C', 
+                   border: '2px solid #1A1A1A', 
+                   boxShadow: '0 4px 0 rgba(0,0,0,0.1)'
                  }}>
               <span className="font-bold">Aperçu gratuit</span> de ce que vous obtiendrez - rapport complet disponible après le test !
             </div>
@@ -480,7 +488,7 @@ const Index = () => {
                     <h3 className="text-2xl sm:text-3xl font-black mb-2" style={{ color: '#1A1A1A' }}>
                       Fais ton test maintenant
                     </h3>
-                    <div className="w-16 h-1 mx-auto" style={{ background: '#FF6B35' }}></div>
+                    <div className="w-16 h-1 mx-auto" style={{ background: '#E96A3C' }}></div>
                   </div>
                   
                   {/* CTAs Neobrutalism */}
