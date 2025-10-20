@@ -102,6 +102,25 @@ const Header = ({ hideTestCTA }: HeaderProps) => {
               >
                 Qui sommes-nous
               </button>
+              
+              {/* Séparateur Ressources */}
+              <div className="px-6 py-2">
+                <p className="text-xs font-bold uppercase tracking-wide" style={{ color: '#9CA3AF' }}>
+                  Ressources
+                </p>
+              </div>
+              
+              <button
+                onClick={() => {
+                  navigate('/conseils-reconversion-professionnelle');
+                  setMenuOpen(false);
+                  window.scrollTo(0, 0);
+                }}
+                className="w-full px-6 py-3 text-left font-semibold hover:bg-gray-50 transition-colors"
+                style={{ color: '#1A1A1A' }}
+              >
+                Conseils sur la reconversion
+              </button>
               <button
                 onClick={() => {
                   navigate('/acces-resultats');
