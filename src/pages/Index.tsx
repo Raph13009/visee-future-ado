@@ -65,7 +65,7 @@ const Index = () => {
 
 
   return (
-    <div className="min-h-screen" style={{ background: '#F9F8F4' }}>
+    <div className="min-h-screen" style={{ background: '#F5F1E8' }}>
       <Header />
       <CgvModal open={showCgvModal} onClose={() => setShowCgvModal(false)} />
       

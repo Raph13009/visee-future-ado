@@ -449,10 +449,10 @@ const riasecProfilesJeunes: RiasecProfile[] = [
        {name: "Brand manager", level: "École de commerce / Master", pathway: "Parcours marketing", description: "Tu développes l'image, le message et la notoriété d'une marque.", icon: "🏷️", tag: "🎯"},
        {name: "Porte-parole / communicant politique", level: "Sciences Po / Master com", pathway: "Parcours stratégie / politique / oratoire", description: "Tu représentes une idée ou une organisation avec impact et clarté.", icon: "🎤", tag: "🧑‍🤝‍🧑"}
      ],
-    environment: "Un cadre stimulant, où l'on te donne la parole, du leadership, des projets ambitieux et de la marge de manœuvre.",
-    advice: "Tu sais parler, porter une vision, inspirer. Choisis des métiers où ton énergie fait bouger les lignes, où ton charisme ouvre des portes."
-  }
-];
+     environment: "Un cadre stimulant, où l'on te donne la parole, du leadership, des projets ambitieux et de la marge de manœuvre.",
+     advice: "Tu sais parler, porter une vision, inspirer. Choisis des métiers où ton énergie fait bouger les lignes, où ton charisme ouvre des portes."
+   }
+ ];
 
 // Profils pour la reconversion professionnelle et tous publics (adultes)
 const riasecProfilesAdultes: RiasecProfile[] = [
@@ -1170,14 +1170,15 @@ const riasecProfilesAdultes: RiasecProfile[] = [
     ],
     environment: "Un cadre performant et structuré où tu peux diriger avec méthode.",
     advice: "Le management opérationnel et la direction sont ta force."
-  }
-];
+   }
+ ];
 
 function ResultsRiasec() {
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
   const [profile, setProfile] = useState<RiasecProfile | null>(null);
   const [loading, setLoading] = useState(true);
+  const [bilanType, setBilanType] = useState<string>('scolaire');
   
   // États pour la version freemium
   const [isUnlocked, setIsUnlocked] = useState(false);
@@ -1257,7 +1258,7 @@ function ResultsRiasec() {
           .update({
             name: userName,
             email: userEmail,
-            total_price: 190, // Prix en centimes (1.90€ = 190 centimes)
+            total_price: 1800, // Prix en centimes (18€ = 1800 centimes)
             payment: 'pending'
           })
           .eq('id', riasecResultId);
@@ -1284,7 +1285,7 @@ function ResultsRiasec() {
             s_score: 0,
             e_score: 0,
             c_score: 0,
-            total_price: 190, // Prix en centimes (1.90€ = 190 centimes)
+            total_price: 1800, // Prix en centimes (18€ = 1800 centimes)
             include_monthly_coaching: false,
             payment: 'pending'
           });
@@ -1295,15 +1296,12 @@ function ResultsRiasec() {
         }
       }
 
-      // Fermer le modal
-      setShowPaymentModal(false);
-
-      // Construire l'URL de retour vers la page de confirmation de paiement
+      // Construire l'URL de retour vers les résultats avec paiement success
       const currentProfile = new URLSearchParams(window.location.search).get('profile');
-      const returnUrl = `${window.location.origin}/payment-success?profile=${currentProfile}`;
+      const returnUrl = `${window.location.origin}/resultats-riasec?payment=success&profile=${currentProfile}`;
       
-      // Rediriger vers Stripe avec l'URL de retour
-      window.location.href = `https://buy.stripe.com/dRm28safGcX7fU00nY7IY02?success_url=${encodeURIComponent(returnUrl)}`;
+      // Rediriger vers Stripe (lien 18€) avec l'URL de retour
+      window.location.href = `https://buy.stripe.com/9B6dRaevWbT3bDK0nY7IY00?success_url=${encodeURIComponent(returnUrl)}`;
       
     } catch (error) {
       console.error('Erreur:', error);
@@ -1320,10 +1318,11 @@ function ResultsRiasec() {
     }
 
     // Récupérer le type de bilan depuis localStorage
-    const bilanType = localStorage.getItem('bilanType') || 'scolaire';
+    const currentBilanType = localStorage.getItem('bilanType') || 'scolaire';
+    setBilanType(currentBilanType);
     
     // Sélectionner le bon tableau de profils selon le type
-    const riasecProfiles = bilanType === 'scolaire' ? riasecProfilesJeunes : riasecProfilesAdultes;
+    const riasecProfiles = currentBilanType === 'scolaire' ? riasecProfilesJeunes : riasecProfilesAdultes;
 
     const foundProfile = riasecProfiles.find(p => p.code === profileCode);
     
@@ -1503,12 +1502,56 @@ function ResultsRiasec() {
     );
   }
 
+  // Déterminer si c'est un profil pro (reconversion ou public)
+  const isPro = bilanType === 'reconversion' || bilanType === 'public';
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
+    <div className="min-h-screen" style={{ background: isPro ? 'linear-gradient(to bottom right, #F5F1E8, #E8E5DC)' : 'linear-gradient(to bottom right, rgb(239 246 255), rgb(224 231 255))' }}>
       <Header hideTestCTA />
       
       <main className="max-w-5xl mx-auto px-6 pt-20 pb-12">
-        {/* 👤 Titre + Sous-titre + 🧑‍🎨 Illustration dynamique */}
+        {/* Hero Section - Version PRO ou Jeune */}
+        {isPro ? (
+          // VERSION PROFESSIONNELLE POUR RECONVERSION/PUBLIC
+          <div className="mb-16">
+            {/* Image hero sobre - Format petit et compact */}
+            <div className="relative mb-8 rounded-lg overflow-hidden neo-border max-w-xs mx-auto" style={{ border: '3px solid #1A1A1A', boxShadow: '6px 6px 0px #1A1A1A' }}>
+              <img 
+                src="/worker.png" 
+                alt="Professionnel en réflexion"
+                className="w-full aspect-square object-cover object-center"
+                onError={(e) => {
+                  // Fallback si l'image n'existe pas encore
+                  (e.target as HTMLImageElement).src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="400"%3E%3Crect fill="%236B8E9E" width="400" height="400"/%3E%3Ctext x="50%25" y="50%25" dominant-baseline="middle" text-anchor="middle" font-family="sans-serif" font-size="24" fill="%23ffffff"%3EVotre profil%3C/text%3E%3C/svg%3E';
+                }}
+              />
+            </div>
+
+            {/* Titre principal */}
+            <div className="text-center mb-8">
+              <h1 className="text-4xl md:text-5xl font-black mb-4" style={{ color: '#1A1A1A' }}>
+                Votre profil de personnalité professionnelle
+              </h1>
+              <p className="text-xl text-gray-700 font-medium mb-6 max-w-3xl mx-auto">
+                Basé sur la méthode RIASEC, reconnue dans les bilans de compétences.
+              </p>
+              <p className="text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
+                Découvrez vos points forts, vos motivations et vos pistes concrètes d'évolution de carrière.
+              </p>
+            </div>
+
+            {/* Badge certification */}
+            <div className="flex justify-center">
+              <div className="inline-flex items-center gap-3 px-6 py-3 neo-border" style={{ background: '#E8F5F0', border: '3px solid #1A1A1A', boxShadow: '4px 4px 0px #1A1A1A' }}>
+                <span className="text-2xl">🔍</span>
+                <p className="text-sm font-bold text-gray-800">
+                  Analyse réalisée selon la méthode RIASEC + validation par un expert Avenirea
+                </p>
+              </div>
+            </div>
+          </div>
+        ) : (
+          // VERSION JEUNE POUR ORIENTATION SCOLAIRE
         <div className="text-center mb-10">
           <div className="inline-flex items-center gap-2 bg-gradient-to-r from-emerald-100 to-green-100 text-emerald-800 px-4 py-2 rounded-full text-sm font-semibold mb-6 shadow-lg">
             <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
@@ -1521,21 +1564,10 @@ function ResultsRiasec() {
             <div className="text-5xl animate-bounce drop-shadow-lg">
               {(() => {
                 const emojiMap: Record<string, string> = {
-                  'RI': '🔬', // Le Pratique Curieux - scientifique
-                  'RA': '🎨', // L'Artisan Créatif - artistique
-                  'RS': '🤝', // Le Pratique Solidaire - social
-                  'RE': '🚀', // L'Entrepreneur Pratique - entrepreneurial
-                  'RC': '⚙️', // Le Technicien Rigoureux - technique
-                  'IA': '💡', // L'Innovateur Créatif - innovation
-                  'IS': '🧠', // Le Chercheur Humaniste - intellectuel humain
-                  'IE': '🎯', // L'Expert Influent - stratégique
-                  'IC': '📊', // L'Analyste Méthodique - analytique
-                  'AS': '🎭', // Le Créatif Humain - expressif
-                  'AE': '📢', // Le Visionnaire Charismatique - communicant
-                  'AC': '🧑‍🎨', // L'Artiste Méthodique - artiste structuré
-                  'SE': '👥', // Le Leader Bienveillant - leadership humain
-                  'SC': '🛡️', // L'Accompagnateur Structuré - protecteur
-                  'EC': '📋'  // Le Manager Organisé - gestionnaire
+                    'RI': '🔬', 'RA': '🎨', 'RS': '🤝', 'RE': '🚀', 'RC': '⚙️',
+                    'IA': '💡', 'IS': '🧠', 'IE': '🎯', 'IC': '📊',
+                    'AS': '🎭', 'AE': '📢', 'AC': '🧑‍🎨',
+                    'SE': '👥', 'SC': '🛡️', 'EC': '📋'
                 };
                 return emojiMap[profile.code] || '🎯';
               })()}
@@ -1552,18 +1584,30 @@ function ResultsRiasec() {
             {profile.description}
           </p>
         </div>
+        )}
 
-        {/* 🧠 Traits de personnalité (pills visuels) */}
+        {/* Section Synthèse du profil - Version PRO ou Jeune */}
         <div className="mb-8">
           <h2 className="text-xl font-black text-gray-900 mb-4 flex items-center gap-3">
-            <span className="text-2xl">🧠</span>
-            Tes traits de personnalité
+            {!isPro && <span className="text-2xl">🧠</span>}
+            {isPro ? 'Vos atouts naturels' : 'Tes traits de personnalité'}
           </h2>
+          {isPro && (
+            <p className="text-gray-600 mb-6 text-sm italic">
+              Ce qui vous distingue dans votre manière de travailler et d'interagir.
+            </p>
+          )}
           <div className="flex flex-wrap gap-3">
             {/* Afficher les 2 premiers traits en clair */}
             {profile.traits?.slice(0, 2).map((trait, index) => (
-              <span key={index} className="bg-gradient-to-r from-blue-100 via-purple-100 to-pink-100 text-gray-800 px-4 py-2 rounded-full text-sm font-semibold flex items-center gap-2 shadow-md hover:shadow-lg transition-all duration-300 transform hover:scale-105">
-                <span className="text-base">{trait.emoji}</span>
+              <span 
+                key={index} 
+                className={isPro 
+                  ? "px-4 py-2 text-sm font-semibold flex items-center gap-2 transition-all duration-300" 
+                  : "bg-gradient-to-r from-blue-100 via-purple-100 to-pink-100 text-gray-800 px-4 py-2 rounded-full text-sm font-semibold flex items-center gap-2 shadow-md hover:shadow-lg transition-all duration-300 transform hover:scale-105"}
+                style={isPro ? { background: '#E8F5F0', border: '2px solid #1A1A1A', boxShadow: '3px 3px 0px #1A1A1A' } : {}}
+              >
+                {!isPro && <span className="text-base">{trait.emoji}</span>}
                 <span>{trait.label}</span>
               </span>
             ))}
@@ -1571,8 +1615,13 @@ function ResultsRiasec() {
             {/* Afficher les 2 derniers traits floutés si non débloqué */}
             {profile.traits?.slice(2).map((trait, index) => (
               <LockedSection key={index + 2} isUnlocked={isUnlocked} showOnlyIcon={true} onClick={() => setShowPaymentModal(true)}>
-                <span className="bg-gradient-to-r from-blue-100 via-purple-100 to-pink-100 text-gray-800 px-4 py-2 rounded-full text-sm font-semibold flex items-center gap-2 shadow-md hover:shadow-lg transition-all duration-300 transform hover:scale-105">
-                  <span className="text-base">{trait.emoji}</span>
+                <span 
+                  className={isPro 
+                    ? "px-4 py-2 text-sm font-semibold flex items-center gap-2 transition-all duration-300" 
+                    : "bg-gradient-to-r from-blue-100 via-purple-100 to-pink-100 text-gray-800 px-4 py-2 rounded-full text-sm font-semibold flex items-center gap-2 shadow-md hover:shadow-lg transition-all duration-300 transform hover:scale-105"}
+                  style={isPro ? { background: '#E8F5F0', border: '2px solid #1A1A1A', boxShadow: '3px 3px 0px #1A1A1A' } : {}}
+                >
+                  {!isPro && <span className="text-base">{trait.emoji}</span>}
                   <span>{trait.label}</span>
                 </span>
               </LockedSection>
@@ -1580,10 +1629,21 @@ function ResultsRiasec() {
           </div>
         </div>
 
-        {/* 📊 Ton profil de compétences - Section moderne */}
+        {/* Section graphique radar - Version PRO ou Jeune */}
         <div className="mb-12 px-2">
-          {/* 1. Section titre avec baseline inspirante */}
+          {/* Titre adapté selon le profil */}
           <div className="text-center mb-10">
+            {isPro ? (
+              <div className="mb-6">
+                <h2 className="text-2xl font-black text-gray-900 mb-4">Votre profil de compétences professionnelles</h2>
+                <div className="max-w-2xl mx-auto px-6 py-4" style={{ background: '#F5F1E8', border: '2px solid #1A1A1A', boxShadow: '4px 4px 0px #1A1A1A' }}>
+                  <p className="text-sm text-gray-700 font-medium">
+                    Ce profil reflète votre style professionnel dominant. Il peut être approfondi lors du bilan complet.
+                  </p>
+                </div>
+              </div>
+            ) : (
+              <>
             <div className="inline-flex items-center gap-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-3 rounded-2xl shadow-lg mb-4">
               <span className="text-2xl">📊</span>
               <h2 className="text-xl font-black">Ton profil de compétences</h2>
@@ -1595,12 +1655,18 @@ function ResultsRiasec() {
             >
               Visualise tes points forts pour faire les bons choix.
             </p>
+              </>
+            )}
           </div>
 
           <div className="flex flex-col xl:flex-row items-start gap-10">
             {/* 2. Bloc radar à gauche - Grande carte avec dégradé */}
             <div className="flex-shrink-0 mx-auto xl:mx-0">
-              <Card className="bg-gradient-to-br from-sky-50 to-white rounded-2xl shadow-lg border border-sky-100 w-80 h-80 md:w-96 md:h-96 flex items-center justify-center relative">
+              <Card 
+                className="rounded-2xl shadow-lg w-80 h-80 md:w-96 md:h-96 flex items-center justify-center relative"
+                style={isPro ? { background: '#F5F1E8', border: '2px solid #1A1A1A', boxShadow: '4px 4px 0px #1A1A1A' } : {}}
+                {...(!isPro && { className: "bg-gradient-to-br from-sky-50 to-white rounded-2xl shadow-lg border border-sky-100 w-80 h-80 md:w-96 md:h-96 flex items-center justify-center relative" })}
+              >
                 <RadarChart scores={profile.radarScores} />
               </Card>
             </div>
@@ -1622,9 +1688,9 @@ function ResultsRiasec() {
               
               <LockedSection isUnlocked={isUnlocked} onClick={() => setShowPaymentModal(true)}>
                 {/* 🎯 INTERPRÉTATION */}
-                <Card className="bg-blue-50 border-l-4 border-l-blue-500 p-4 md:p-5 rounded-xl shadow-sm">
+                <Card className="border-l-4 border-l-blue-500 p-4 md:p-5 rounded-xl shadow-sm" style={isPro ? { background: '#E8F5F0' } : { background: 'rgb(239 246 255)' }}>
                   <div className="flex items-start gap-4">
-                    <div className="rounded-full bg-white shadow-sm p-2 flex-shrink-0">
+                    <div className="rounded-full shadow-sm p-2 flex-shrink-0" style={{ background: isPro ? '#F5F1E8' : 'white' }}>
                       <span className="text-lg">🎯</span>
                     </div>
                     <div className="flex-1">
@@ -1641,9 +1707,9 @@ function ResultsRiasec() {
 
               <LockedSection isUnlocked={isUnlocked} onClick={() => setShowPaymentModal(true)}>
                 {/* 💪 FORCES */}
-                <Card className="bg-green-50 border-l-4 border-l-green-500 p-4 md:p-5 rounded-xl shadow-sm">
+                <Card className="border-l-4 border-l-green-500 p-4 md:p-5 rounded-xl shadow-sm" style={isPro ? { background: '#E8F5F0' } : { background: 'rgb(240 253 244)' }}>
                   <div className="flex items-start gap-4">
-                    <div className="rounded-full bg-white shadow-sm p-2 flex-shrink-0">
+                    <div className="rounded-full shadow-sm p-2 flex-shrink-0" style={{ background: isPro ? '#F5F1E8' : 'white' }}>
                       <span className="text-lg">💪</span>
                     </div>
                     <div className="flex-1">
@@ -1660,9 +1726,9 @@ function ResultsRiasec() {
 
               <LockedSection isUnlocked={isUnlocked} onClick={() => setShowPaymentModal(true)}>
                 {/* 🚀 POTENTIEL */}
-                <Card className="bg-purple-50 border-l-4 border-l-purple-500 p-4 md:p-5 rounded-xl shadow-sm">
+                <Card className="border-l-4 border-l-purple-500 p-4 md:p-5 rounded-xl shadow-sm" style={isPro ? { background: '#E8F5F0' } : { background: 'rgb(250 245 255)' }}>
                   <div className="flex items-start gap-4">
-                    <div className="rounded-full bg-white shadow-sm p-2 flex-shrink-0">
+                    <div className="rounded-full shadow-sm p-2 flex-shrink-0" style={{ background: isPro ? '#F5F1E8' : 'white' }}>
                       <span className="text-lg">🚀</span>
                     </div>
                     <div className="flex-1">
@@ -1681,9 +1747,9 @@ function ResultsRiasec() {
 
           {/* 4. Ligne de synthèse "profil combiné" */}
           <div className="mt-10">
-            <Card className="bg-gray-50 p-6 rounded-2xl shadow-sm border border-gray-200">
+            <Card className="p-6 rounded-2xl shadow-sm border border-gray-200" style={{ background: isPro ? '#F5F1E8' : 'rgb(249 250 251)' }}>
               <div className="flex items-center justify-center gap-4 text-center">
-                <div className="rounded-full bg-white shadow-sm p-3">
+                <div className="rounded-full shadow-sm p-3" style={{ background: isPro ? '#E8F5F0' : 'white' }}>
                   <span className="text-2xl">🧩</span>
                 </div>
                 <div className="flex-1">
@@ -1702,12 +1768,18 @@ function ResultsRiasec() {
           </div>
         </div>
 
-        {/* 📚 Formations (cards visuelles avec durée, niveau, voie) */}
+        {/* 📚 Formations - Version PRO ou Jeune */}
         <div className="mb-8">
           <h2 className="text-xl font-black text-gray-900 mb-5 flex items-center gap-3">
-            <span className="text-2xl text-blue-600">📚</span>
-            Formations recommandées
+            {!isPro && <span className="text-2xl text-blue-600">📚</span>}
+            {isPro ? 'Formations et reconversions recommandées' : 'Formations recommandées'}
           </h2>
+          {isPro && (
+            <p className="text-gray-600 mb-6 text-sm">
+              Ces pistes sont sélectionnées pour les adultes en reconversion, selon votre profil et vos motivations.
+              <span className="block mt-2 font-semibold text-gray-700">Aperçu : 2 formations visibles sur {profile.formations?.length || 4}</span>
+            </p>
+          )}
           
           <div className="grid md:grid-cols-2 gap-4">
             {profile.formations?.map((formation, index) => {
@@ -1721,7 +1793,11 @@ function ResultsRiasec() {
               };
               
               const formationCard = (
-                <Card key={index} className="p-4 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border-l-4 border-l-blue-500 bg-gradient-to-br from-white to-blue-50">
+                <Card 
+                  key={index} 
+                  className="p-4 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border-l-4 border-l-blue-500"
+                  style={isPro ? { background: '#F5F1E8' } : { background: 'linear-gradient(to bottom right, white, rgb(239 246 255))' }}
+                >
                   <div className="flex items-start gap-4">
                     <div className="text-2xl drop-shadow-sm">{formation.icon || "📚"}</div>
                     <div className="flex-1">
@@ -1759,17 +1835,28 @@ function ResultsRiasec() {
           </div>
         </div>
 
-        {/* 💼 Métiers (cards visuelles avec voie + phrase d'accroche) */}
+        {/* 💼 Métiers - Version PRO ou Jeune */}
         <div className="mb-8">
           <h2 className="text-xl font-black text-gray-900 mb-5 flex items-center gap-3">
-            <span className="text-2xl text-green-600">💼</span>
-            Métiers qui te correspondent
+            {!isPro && <span className="text-2xl text-green-600">💼</span>}
+            {isPro ? 'Pistes de métiers et évolutions de carrière' : 'Métiers qui te correspondent'}
           </h2>
+          {isPro && (
+            <p className="text-gray-600 mb-6 text-sm">
+              <span className="block mb-2">🔸 Formation : durée moyenne / niveau d'accès</span>
+              <span className="block mb-2">🔸 Perspective : Métiers en tension / fort potentiel d'emploi</span>
+              <span className="block mt-3 font-semibold text-gray-700">Aperçu : 2 métiers visibles sur {profile.careers?.length || 6}</span>
+            </p>
+          )}
           
           <div className="grid md:grid-cols-2 gap-4">
             {profile.careers?.map((career, index) => {
               const careerCard = (
-                <Card key={index} className="p-4 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border-l-4 border-l-green-500 bg-gradient-to-br from-white to-green-50">
+                <Card 
+                  key={index} 
+                  className="p-4 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border-l-4 border-l-green-500"
+                  style={isPro ? { background: '#F5F1E8' } : { background: 'linear-gradient(to bottom right, white, rgb(240 253 244))' }}
+                >
                   <div className="flex items-start gap-4">
                     <div className="text-2xl drop-shadow-sm">{career.icon || "💼"}</div>
                     <div className="flex-1">
@@ -1933,7 +2020,106 @@ function ResultsRiasec() {
           </LockedSection>
         </div>
 
-        {/* 🔥 Bloc final = Call-to-action + bénéfices du test complet */}
+        {/* Section Offre Premium - Version PRO ou Jeune */}
+        {isPro ? (
+          // VERSION PROFESSIONNELLE - 19€
+          <>
+            {/* Section preuve humaine */}
+            <div className="mb-12 text-center">
+              <div className="inline-block px-6 py-4" style={{ background: '#F5F1E8', border: '2px solid #1A1A1A', boxShadow: '4px 4px 0px #1A1A1A' }}>
+                <div className="flex items-center gap-4">
+                  <div className="w-16 h-16 rounded-full bg-gray-300 flex items-center justify-center text-2xl">
+                    👩‍💼
+                  </div>
+                  <div className="text-left">
+                    <p className="text-sm font-bold text-gray-900">Analyse réalisée par Julie</p>
+                    <p className="text-xs text-gray-600">Consultante en orientation et reconversion (certifiée RNCP)</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Offre premium pro */}
+            <Card className="mb-8" style={{ background: 'linear-gradient(135deg, #6B8E9E 0%, #5A7A8A 100%)', border: '3px solid #1A1A1A', boxShadow: '8px 8px 0px #1A1A1A' }}>
+              <CardContent className="p-8 text-center text-white">
+                <h2 className="text-3xl font-black mb-6">
+                  Recevez votre bilan complet Avenirea
+                </h2>
+                
+                <div className="mb-6 inline-block px-8 py-4 bg-white text-gray-900 font-black text-4xl" style={{ border: '3px solid #1A1A1A', boxShadow: '6px 6px 0px rgba(0,0,0,0.3)' }}>
+                  18 €
+                </div>
+                
+                <p className="text-lg mb-8 font-medium">
+                  Votre rapport professionnel + un retour personnalisé d'un conseiller certifié
+                </p>
+
+                <div className="text-left max-w-lg mx-auto mb-8 space-y-3">
+                  <div className="flex items-start gap-3">
+                    <span className="text-green-300 font-bold mt-1">✓</span>
+                    <span className="font-medium">Votre profil complet RIASEC et ses interprétations</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <span className="text-green-300 font-bold mt-1">✓</span>
+                    <span className="font-medium">Les 6 métiers et formations les plus adaptés</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <span className="text-green-300 font-bold mt-1">✓</span>
+                    <span className="font-medium">Un expert vous contacte par mail avec des conseils et un rapport pro sur votre situation</span>
+                  </div>
+                </div>
+
+                <Button 
+                  onClick={handleProceedToPayment}
+                  className="w-full sm:w-auto px-12 py-6 text-xl font-black transition-all duration-300 hover:translate-y-[-2px]"
+                  style={{ background: '#E8F5F0', color: '#1A1A1A', border: '3px solid #1A1A1A', boxShadow: '6px 6px 0px #1A1A1A' }}
+                >
+                  Télécharger mon rapport
+                </Button>
+                
+                <p className="text-sm mt-4 font-semibold text-green-200">
+                  Paiement sécurisé • Accès immédiat • Satisfait ou remboursé
+                </p>
+              </CardContent>
+            </Card>
+
+            {/* Accompagnement premium */}
+            <Card className="mb-8" style={{ background: '#F5F1E8', border: '2px solid #1A1A1A', boxShadow: '6px 6px 0px #1A1A1A' }}>
+              <CardContent className="p-8 text-center">
+                <h2 className="text-2xl font-black mb-4 text-gray-900">
+                  💼 Accompagnement premium
+                </h2>
+                
+                <p className="text-3xl font-black mb-6" style={{ color: '#6B8E9E' }}>
+                  59 € <span className="text-sm font-normal text-gray-600">(rapport inclus)</span>
+                </p>
+
+                <div className="text-left max-w-lg mx-auto mb-8 space-y-3">
+                  <div className="flex items-start gap-3">
+                    <span className="text-green-600 font-bold mt-1">✓</span>
+                    <span className="font-medium text-gray-700">1 à 2 sessions de coaching individuel (30 à 45 min chacune) pour clarifier ton projet et lever tes blocages</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <span className="text-green-600 font-bold mt-1">✓</span>
+                    <span className="font-medium text-gray-700">Un suivi personnalisé pendant 1 mois, avec conseils, objectifs et retours concrets sur ton évolution</span>
+                  </div>
+                </div>
+                
+                <Button 
+                  onClick={() => {
+                    window.location.href = 'https://buy.stripe.com/4gMaEYcnO5uFazGc6G7IY03';
+                  }}
+                  className="px-8 py-4 text-lg font-bold transition-all"
+                  style={{ background: '#6B8E9E', color: 'white', border: '2px solid #1A1A1A', boxShadow: '4px 4px 0px #1A1A1A' }}
+                >
+                  Démarrer l'accompagnement
+                </Button>
+              </CardContent>
+            </Card>
+          </>
+        ) : (
+          // VERSION JEUNE - 1,90€
+          <>
         <Card className="bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 text-white shadow-2xl border-0">
           <CardContent className="p-4 sm:p-6 md:p-8 text-center">
             <h2 className="text-lg sm:text-xl md:text-2xl font-black mb-3 md:mb-4 tracking-tight leading-tight">
@@ -1989,10 +2175,12 @@ function ResultsRiasec() {
           </CardContent>
         </Card>
 
-        {/* Coaching CTA - exactement identique à celui de la page d'accueil */}
+            {/* Coaching CTA - pour les jeunes */}
         <div className="max-w-2xl mx-auto">
           <CoachingCTA onDiscover={handleDiscoverCoaching} />
         </div>
+          </>
+        )}
       </main>
 
       <Footer />

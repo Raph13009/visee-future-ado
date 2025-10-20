@@ -51,7 +51,7 @@ All colors MUST be HSL.
     --sidebar-ring: 217.2 91.2% 59.8%;
 
     /* Modern Neobrutalism Theme */
-    --neo-bg: #F9F8F4;
+    --neo-bg: #F5F1E8;
     --neo-ink: #1A1A1A;
     --neo-accent: #FF6B35;
     --neo-accent-2: #00D4AA;
@@ -430,7 +430,7 @@ All colors MUST be HSL.
 
   /* Elegant Typography for Content Sections */
   .content-section {
-    background: #F9F8F4;
+    background: #F5F1E8;
     padding: clamp(4rem, 8vw, 6rem) clamp(2rem, 6vw, 8rem);
   }
 
