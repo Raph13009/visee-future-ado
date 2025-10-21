@@ -19,6 +19,8 @@ import BilanPublic from "./pages/BilanPublic";
 import QuiSommesNous from "./pages/QuiSommesNous";
 import AccesResultats from "./pages/AccesResultats";
 import ConseilsReconversion from "./pages/ConseilsReconversion";
+import MetierReconversion40Ans from "./pages/MetierReconversion40Ans";
+import Ressources from "./pages/Ressources";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -45,6 +47,8 @@ const App = () => (
           <Route path="/qui-sommes-nous" element={<QuiSommesNous />} />
           <Route path="/acces-resultats" element={<AccesResultats />} />
           <Route path="/conseils-reconversion-professionnelle" element={<ConseilsReconversion />} />
+          <Route path="/metier-reconversion-40-ans" element={<MetierReconversion40Ans />} />
+          <Route path="/ressources" element={<Ressources />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
