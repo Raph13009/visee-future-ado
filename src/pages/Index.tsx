@@ -91,7 +91,7 @@ const Index = () => {
           
           {/* H1 Title - SEO Optimized */}
           <h1 className="text-3xl sm:text-5xl font-bold leading-tight tracking-tight mb-6 max-w-3xl mx-auto">
-            Bilan de compétences et reconversion professionnelle en ligne
+            Bilan de compétences et reconversion professionnelle
           </h1>
           
           {/* Refined Subtitle */}
