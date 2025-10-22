@@ -18,9 +18,12 @@ const ConseilsReconversion = () => {
       <main className="pt-24 pb-16">
         
         {/* Bouton Retour */}
-        <div className="max-w-4xl mx-auto px-6 mb-8">
+        <div className="max-w-4xl mx-auto px-6 mb-4">
           <button
-            onClick={() => window.history.back()}
+            onClick={() => {
+              navigate('/ressources');
+              window.scrollTo(0, 0);
+            }}
             className="inline-flex items-center gap-2 px-4 py-2 font-semibold text-sm rounded-lg transition-all hover:translate-x-[-2px]"
             style={{
               background: '#FFFFFF',
@@ -35,7 +38,7 @@ const ConseilsReconversion = () => {
         </div>
         
         {/* 1️⃣ Hero Section */}
-        <section className="py-16 px-6" style={{ background: '#F5F1E8' }}>
+        <section className="py-8 px-6" style={{ background: '#F5F1E8' }}>
           <div className="max-w-4xl mx-auto text-center">
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight tracking-tight mb-6" style={{ color: '#1A1A1A' }}>
               Réussir sa reconversion professionnelle : conseils et étapes clés

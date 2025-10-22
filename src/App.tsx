@@ -4,6 +4,7 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import ScrollToTop from "./components/ScrollToTop";
 import Index from "./pages/Index";
 import Test from "./pages/Test";
 import TestRiasec from "./pages/TestRiasec";
@@ -20,6 +21,8 @@ import QuiSommesNous from "./pages/QuiSommesNous";
 import AccesResultats from "./pages/AccesResultats";
 import ConseilsReconversion from "./pages/ConseilsReconversion";
 import MetierReconversion40Ans from "./pages/MetierReconversion40Ans";
+import TestOrientationProfessionnelleAdulte from "./pages/TestOrientationProfessionnelleAdulte";
+import BilanOrientationProfessionnelleAdulte from "./pages/BilanOrientationProfessionnelleAdulte";
 import Ressources from "./pages/Ressources";
 import NotFound from "./pages/NotFound";
 
@@ -31,6 +34,7 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
+        <ScrollToTop />
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/test" element={<Test />} />
@@ -48,6 +52,8 @@ const App = () => (
           <Route path="/acces-resultats" element={<AccesResultats />} />
           <Route path="/conseils-reconversion-professionnelle" element={<ConseilsReconversion />} />
           <Route path="/metier-reconversion-40-ans" element={<MetierReconversion40Ans />} />
+          <Route path="/test-orientation-professionnelle-adulte" element={<TestOrientationProfessionnelleAdulte />} />
+          <Route path="/bilan-orientation-professionnelle-adulte" element={<BilanOrientationProfessionnelleAdulte />} />
           <Route path="/ressources" element={<Ressources />} />
           <Route path="*" element={<NotFound />} />
         </Routes>

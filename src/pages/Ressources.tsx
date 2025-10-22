@@ -11,6 +11,20 @@ const Ressources = () => {
   // Liste des articles de blog
   const blogPosts = [
     {
+      slug: 'bilan-orientation-professionnelle-adulte',
+      title: 'Bilan d\'orientation professionnelle adulte : comment faire le point sur sa carrière ?',
+      excerpt: 'Vous sentez que votre travail ne vous correspond plus ? Découvrez comment un bilan d\'orientation professionnelle peut vous aider à clarifier votre avenir.',
+      image: '/group-working.jpg',
+      link: '/bilan-orientation-professionnelle-adulte'
+    },
+    {
+      slug: 'test-orientation-professionnelle-adulte',
+      title: 'Test orientation professionnelle adulte : retrouvez votre voie',
+      excerpt: 'Comment savoir si vous êtes encore fait pour votre métier actuel ? Découvrez comment un test d\'orientation professionnelle peut vous aider à clarifier vos envies.',
+      image: '/seo/orientation.jpg',
+      link: '/test-orientation-professionnelle-adulte'
+    },
+    {
       slug: 'metier-reconversion-40-ans',
       title: 'Métier reconversion 40 ans : quel métier choisir après 40 ans ?',
       excerpt: 'À 40 ans, peut-on encore changer de métier ? Découvrez les métiers adaptés, les étapes concrètes et nos conseils pour réussir votre reconversion.',
@@ -68,7 +82,7 @@ const Ressources = () => {
             {blogPosts.map((post) => (
               <article
                 key={post.slug}
-                className="rounded-2xl overflow-hidden transition-all hover:translate-y-[-4px]"
+                className="rounded-2xl overflow-hidden transition-all hover:translate-y-[-4px] flex flex-col h-full"
                 style={{
                   background: '#FFFFFF',
                   border: '3px solid #1A1A1A',
@@ -76,7 +90,7 @@ const Ressources = () => {
                 }}
               >
                 {/* Image de couverture */}
-                <div className="w-full h-56 overflow-hidden" style={{ background: '#D9D2B6' }}>
+                <div className="w-full h-56 overflow-hidden flex-shrink-0" style={{ background: '#D9D2B6' }}>
                   <img
                     src={post.image}
                     alt={post.title}
@@ -94,7 +108,7 @@ const Ressources = () => {
                 </div>
 
                 {/* Contenu de la carte */}
-                <div className="p-6">
+                <div className="p-6 flex flex-col flex-grow">
                   <h2 
                     className="text-xl font-bold mb-3 leading-tight"
                     style={{ color: '#1A1A1A' }}
@@ -103,7 +117,7 @@ const Ressources = () => {
                   </h2>
                   
                   <p 
-                    className="text-base mb-6 leading-relaxed"
+                    className="text-base mb-6 leading-relaxed flex-grow"
                     style={{ color: '#6B7280' }}
                   >
                     {post.excerpt}
@@ -115,7 +129,7 @@ const Ressources = () => {
                       navigate(post.link);
                       window.scrollTo(0, 0);
                     }}
-                    className="w-full px-6 py-3 font-bold text-base rounded-xl transition-all hover:translate-y-[-2px]"
+                    className="w-full px-6 py-3 font-bold text-base rounded-xl transition-all hover:translate-y-[-2px] mt-auto"
                     style={{
                       background: '#E96A3C',
                       color: '#FFFFFF',
