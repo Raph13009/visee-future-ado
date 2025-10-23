@@ -23,7 +23,7 @@ Aucun abonnement ni frais caché ne sont associés à l'achat.
 
 5. Rétractation et remboursement
 Conformément à l'article L221-28 du Code de la consommation, le droit de rétractation ne s'applique pas aux contenus numériques entièrement exécutés après accord préalable du consommateur.
-Cependant, en cas de problème ou d'achat effectué par erreur, un remboursement pourra être envisagé sous 14 jours — il suffit de nous contacter à contact@boostaiconsulting.com.
+Cependant, en cas de problème ou d'achat effectué par erreur, un remboursement pourra être envisagé sous 14 jours — il suffit de nous contacter à contact.avenirea@gmail.com.
 
 6. Protection des données
 Les données saisies sont strictement confidentielles et ne sont jamais revendues.
