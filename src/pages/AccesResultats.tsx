@@ -211,7 +211,7 @@ const AccesResultats = () => {
               
               <div className="mb-6 text-center">
                 <a 
-                  href="mailto:lolatalbon@gmail.com"
+                  href="mailto:contact.avenirea@gmail.com"
                   className="text-lg font-bold inline-block px-4 py-2 rounded-lg"
                   style={{ 
                     color: '#6DC9B3',
@@ -219,7 +219,7 @@ const AccesResultats = () => {
                     border: '2px solid #6DC9B3'
                   }}
                 >
-                  lolatalbon@gmail.com
+                  contact.avenirea@gmail.com
                 </a>
               </div>
               
@@ -235,7 +235,7 @@ const AccesResultats = () => {
               
               <div className="flex flex-col gap-3">
                 <a
-                  href="mailto:lolatalbon@gmail.com?subject=Demande d'accès à mes résultats Avenirea&body=Bonjour,%0D%0A%0D%0AJe n'arrive pas à retrouver mes résultats.%0D%0A%0D%0AEmail utilisé : [votre email]%0D%0APrénom utilisé : [votre prénom]%0D%0ADate du test : [date approximative]%0D%0A%0D%0AMerci de votre aide."
+                  href="mailto:contact.avenirea@gmail.com?subject=Demande d'accès à mes résultats Avenirea&body=Bonjour,%0D%0A%0D%0AJe n'arrive pas à retrouver mes résultats.%0D%0A%0D%0AEmail utilisé : [votre email]%0D%0APrénom utilisé : [votre prénom]%0D%0ADate du test : [date approximative]%0D%0A%0D%0AMerci de votre aide."
                   className="w-full px-6 py-4 font-bold text-base rounded-xl transition-all hover:translate-y-[-2px] text-center"
                   style={{
                     background: '#E96A3C',
