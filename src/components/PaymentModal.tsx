@@ -8,7 +8,7 @@ interface PaymentModalProps {
   price?: number; // Prix en euros
 }
 
-const PaymentModal: React.FC<PaymentModalProps> = ({ isOpen, onClose, onProceedToPayment, price = 1.90 }) => {
+const PaymentModal: React.FC<PaymentModalProps> = ({ isOpen, onClose, onProceedToPayment, price = 18 }) => {
   const [isLoading, setIsLoading] = useState(false);
 
   const handleProceed = async () => {

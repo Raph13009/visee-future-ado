@@ -2132,7 +2132,7 @@ function ResultsRiasec() {
               </p>
               <div className="inline-block bg-gradient-to-r from-emerald-400 via-teal-400 to-cyan-400 text-white px-4 sm:px-6 md:px-8 py-3 sm:py-4 rounded-2xl shadow-2xl transform hover:scale-105 transition-all duration-300 border-2 border-white/20">
                 <div className="flex items-center gap-1 sm:gap-2">
-                  <span className="text-2xl sm:text-3xl md:text-4xl font-black">1,90€</span>
+                  <span className="text-2xl sm:text-3xl md:text-4xl font-black">18€</span>
                   <div className="text-xs font-bold uppercase tracking-wide opacity-90">
                     <div>💎 Premium</div>
                   </div>
