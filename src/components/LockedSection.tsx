@@ -38,7 +38,7 @@ const LockedSection: React.FC<LockedSectionProps> = ({
               <img src="/cadenas.png" alt="Cadenas" className="w-8 h-8 opacity-70" />
             </div>
             <div className="text-sm font-medium">Inclus dans le profil complet</div>
-            <div className="text-xs text-gray-400 mt-1">💡 Débloque tout pour 1,90 € seulement</div>
+            <div className="text-xs text-gray-400 mt-1">💡 Débloque tout pour 18 € seulement</div>
           </div>
         )}
         
