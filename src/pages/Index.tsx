@@ -238,6 +238,10 @@ const Index = () => {
                     src="/seo/reconversion.jpg" 
                     alt="Reconversion professionnelle"
                     className="w-full h-64 md:h-80 object-cover"
+                    loading="lazy"
+                    decoding="async"
+                    width={800}
+                    height={600}
                     onError={(e) => {
                       (e.target as HTMLImageElement).src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="800" height="600"%3E%3Crect fill="%236B8E9E" width="800" height="600"/%3E%3Ctext x="50%25" y="50%25" dominant-baseline="middle" text-anchor="middle" font-family="sans-serif" font-size="24" fill="%23ffffff"%3EReconversion%3C/text%3E%3C/svg%3E';
                     }}
@@ -268,6 +272,10 @@ const Index = () => {
                     src="/seo/bilan.jpg" 
                     alt="Bilan de compétences"
                     className="w-full h-64 md:h-80 object-cover"
+                    loading="lazy"
+                    decoding="async"
+                    width={800}
+                    height={600}
                     onError={(e) => {
                       (e.target as HTMLImageElement).src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="800" height="600"%3E%3Crect fill="%236B8E9E" width="800" height="600"/%3E%3Ctext x="50%25" y="50%25" dominant-baseline="middle" text-anchor="middle" font-family="sans-serif" font-size="24" fill="%23ffffff"%3EBilan de comp%C3%A9tences%3C/text%3E%3C/svg%3E';
                     }}
@@ -298,6 +306,10 @@ const Index = () => {
                     src="/seo/orientation.jpg" 
                     alt="Orientation professionnelle"
                     className="w-full h-64 md:h-80 object-cover"
+                    loading="lazy"
+                    decoding="async"
+                    width={800}
+                    height={600}
                     onError={(e) => {
                       (e.target as HTMLImageElement).src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="800" height="600"%3E%3Crect fill="%236B8E9E" width="800" height="600"/%3E%3Ctext x="50%25" y="50%25" dominant-baseline="middle" text-anchor="middle" font-family="sans-serif" font-size="24" fill="%23ffffff"%3EOrientation%3C/text%3E%3C/svg%3E';
                     }}

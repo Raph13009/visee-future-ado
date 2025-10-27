@@ -28,6 +28,11 @@ const QuiSommesNous = () => {
                 src="/about/hero.jpg" 
                 alt="Professionnel en réflexion sur son parcours"
                 className="w-full h-80 md:h-[500px] object-cover"
+                loading="eager"
+                fetchPriority="high"
+                decoding="async"
+                width={600}
+                height={800}
                 onError={(e) => {
                   (e.target as HTMLImageElement).src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="600" height="800"%3E%3Crect fill="%236B8E9E" width="600" height="800"/%3E%3Ctext x="50%25" y="50%25" dominant-baseline="middle" text-anchor="middle" font-family="sans-serif" font-size="32" fill="%23ffffff"%3EProfessionnel en r%C3%A9flexion%3C/text%3E%3C/svg%3E';
                 }}
@@ -45,6 +50,10 @@ const QuiSommesNous = () => {
                   src="/about/approche.jpg" 
                   alt="Approche moderne de l'orientation professionnelle"
                   className="w-full h-72 object-cover"
+                  loading="lazy"
+                  decoding="async"
+                  width={800}
+                  height={600}
                   onError={(e) => {
                     (e.target as HTMLImageElement).src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="800" height="600"%3E%3Crect fill="%236B8E9E" width="800" height="600"/%3E%3Ctext x="50%25" y="50%25" dominant-baseline="middle" text-anchor="middle" font-family="sans-serif" font-size="24" fill="%23ffffff"%3ENotre approche%3C/text%3E%3C/svg%3E';
                   }}
@@ -120,6 +129,10 @@ const QuiSommesNous = () => {
                   src="/about/mission.jpg" 
                   alt="Mission Avenirea - Accompagnement professionnel"
                   className="w-full h-72 object-cover"
+                  loading="lazy"
+                  decoding="async"
+                  width={800}
+                  height={600}
                   onError={(e) => {
                     (e.target as HTMLImageElement).src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="800" height="600"%3E%3Crect fill="%236B8E9E" width="800" height="600"/%3E%3Ctext x="50%25" y="50%25" dominant-baseline="middle" text-anchor="middle" font-family="sans-serif" font-size="24" fill="%23ffffff"%3ENotre mission%3C/text%3E%3C/svg%3E';
                   }}

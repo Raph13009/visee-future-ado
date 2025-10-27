@@ -1520,6 +1520,11 @@ function ResultsRiasec() {
                 src="/worker.png" 
                 alt="Professionnel en réflexion"
                 className="w-full aspect-square object-cover object-center"
+                loading="eager"
+                fetchPriority="high"
+                decoding="async"
+                width={400}
+                height={400}
                 onError={(e) => {
                   // Fallback si l'image n'existe pas encore
                   (e.target as HTMLImageElement).src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="400"%3E%3Crect fill="%236B8E9E" width="400" height="400"/%3E%3Ctext x="50%25" y="50%25" dominant-baseline="middle" text-anchor="middle" font-family="sans-serif" font-size="24" fill="%23ffffff"%3EVotre profil%3C/text%3E%3C/svg%3E';
