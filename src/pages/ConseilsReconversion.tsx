@@ -55,6 +55,11 @@ const ConseilsReconversion = () => {
                   src="/conseils/hero.jpg" 
                   alt="Professionnel réfléchissant à sa reconversion professionnelle"
                   className="w-full h-80 object-cover"
+                  loading="eager"
+                  fetchPriority="high"
+                  decoding="async"
+                  width={1200}
+                  height={600}
                   onError={(e) => {
                     (e.target as HTMLImageElement).src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="1200" height="600"%3E%3Crect fill="%236B8E9E" width="1200" height="600"/%3E%3Ctext x="50%25" y="50%25" dominant-baseline="middle" text-anchor="middle" font-family="sans-serif" font-size="28" fill="%23ffffff"%3EReconversion professionnelle%3C/text%3E%3C/svg%3E';
                   }}
@@ -78,6 +83,10 @@ const ConseilsReconversion = () => {
                     src="/conseils/changer-de-voie.jpg" 
                     alt="Changer de voie professionnelle"
                     className="w-full h-72 object-cover"
+                    loading="lazy"
+                    decoding="async"
+                    width={800}
+                    height={600}
                     onError={(e) => {
                       (e.target as HTMLImageElement).src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="800" height="600"%3E%3Crect fill="%236B8E9E" width="800" height="600"/%3E%3Ctext x="50%25" y="50%25" dominant-baseline="middle" text-anchor="middle" font-family="sans-serif" font-size="24" fill="%23ffffff"%3EChanger de voie%3C/text%3E%3C/svg%3E';
                     }}
@@ -152,6 +161,10 @@ const ConseilsReconversion = () => {
                   src="/conseils/etapes.jpg" 
                   alt="Étapes de la reconversion professionnelle"
                   className="w-full h-64 object-cover"
+                  loading="lazy"
+                  decoding="async"
+                  width={800}
+                  height={500}
                   onError={(e) => {
                     (e.target as HTMLImageElement).src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="800" height="500"%3E%3Crect fill="%236B8E9E" width="800" height="500"/%3E%3Ctext x="50%25" y="50%25" dominant-baseline="middle" text-anchor="middle" font-family="sans-serif" font-size="24" fill="%23ffffff"%3EÉtapes de reconversion%3C/text%3E%3C/svg%3E';
                   }}
@@ -175,6 +188,10 @@ const ConseilsReconversion = () => {
                     src="/conseils/bilan.jpg" 
                     alt="Bilan de compétences pour reconversion"
                     className="w-full h-72 object-cover"
+                    loading="lazy"
+                    decoding="async"
+                    width={800}
+                    height={600}
                     onError={(e) => {
                       (e.target as HTMLImageElement).src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="800" height="600"%3E%3Crect fill="%236B8E9E" width="800" height="600"/%3E%3Ctext x="50%25" y="50%25" dominant-baseline="middle" text-anchor="middle" font-family="sans-serif" font-size="24" fill="%23ffffff"%3EBilan de comp%C3%A9tences%3C/text%3E%3C/svg%3E';
                     }}
@@ -266,6 +283,10 @@ const ConseilsReconversion = () => {
                   src="/conseils/conseils.jpg" 
                   alt="Conseils pour la reconversion professionnelle"
                   className="w-full h-72 object-cover"
+                  loading="lazy"
+                  decoding="async"
+                  width={1200}
+                  height={600}
                   onError={(e) => {
                     (e.target as HTMLImageElement).src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="1200" height="600"%3E%3Crect fill="%236B8E9E" width="1200" height="600"/%3E%3Ctext x="50%25" y="50%25" dominant-baseline="middle" text-anchor="middle" font-family="sans-serif" font-size="24" fill="%23ffffff"%3EConseils pratiques%3C/text%3E%3C/svg%3E';
                   }}

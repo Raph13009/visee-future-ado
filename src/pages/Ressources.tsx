@@ -95,6 +95,10 @@ const Ressources = () => {
                     src={post.image}
                     alt={post.title}
                     className="w-full h-full object-cover"
+                    loading="lazy"
+                    decoding="async"
+                    width={600}
+                    height={224}
                     onError={(e) => {
                       // Fallback si l'image n'existe pas
                       e.currentTarget.style.display = 'none';
