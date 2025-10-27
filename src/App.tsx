@@ -21,6 +21,7 @@ import QuiSommesNous from "./pages/QuiSommesNous";
 import AccesResultats from "./pages/AccesResultats";
 import ConseilsReconversion from "./pages/ConseilsReconversion";
 import MetierReconversion40Ans from "./pages/MetierReconversion40Ans";
+import MetiersReconversion40AnsSansDiplome from "./pages/MetiersReconversion40AnsSansDiplome";
 import TestOrientationProfessionnelleAdulte from "./pages/TestOrientationProfessionnelleAdulte";
 import BilanOrientationProfessionnelleAdulte from "./pages/BilanOrientationProfessionnelleAdulte";
 import Ressources from "./pages/Ressources";
@@ -52,6 +53,7 @@ const App = () => (
           <Route path="/acces-resultats" element={<AccesResultats />} />
           <Route path="/conseils-reconversion-professionnelle" element={<ConseilsReconversion />} />
           <Route path="/metier-reconversion-40-ans" element={<MetierReconversion40Ans />} />
+          <Route path="/5-metiers-reconversion-40-ans-sans-diplome" element={<MetiersReconversion40AnsSansDiplome />} />
           <Route path="/test-orientation-professionnelle-adulte" element={<TestOrientationProfessionnelleAdulte />} />
           <Route path="/bilan-orientation-professionnelle-adulte" element={<BilanOrientationProfessionnelleAdulte />} />
           <Route path="/ressources" element={<Ressources />} />

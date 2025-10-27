@@ -32,6 +32,13 @@ const Ressources = () => {
       link: '/metier-reconversion-40-ans'
     },
     {
+      slug: '5-metiers-reconversion-40-ans-sans-diplome',
+      title: '5 métiers pour une reconversion à 40 ans sans diplôme',
+      excerpt: 'Découvrez 5 idées de métiers accessibles sans diplôme pour réussir votre reconversion à 40 ans, avec des conseils concrets.',
+      image: '/worker-aged-40.jpg',
+      link: '/5-metiers-reconversion-40-ans-sans-diplome'
+    },
+    {
       slug: 'conseils-reconversion-professionnelle',
       title: 'Conseils pour une reconversion professionnelle réussie',
       excerpt: 'Découvrez les étapes clés pour réussir votre reconversion professionnelle, du bilan de compétences à la mise en action.',
