@@ -52,7 +52,7 @@ const MetiersReconversion40AnsSansDiplome = () => {
             <div className="max-w-3xl mx-auto mb-12">
               <div className="rounded-2xl overflow-hidden" style={{ border: '3px solid #1A1A1A', boxShadow: '8px 8px 0 rgba(0,0,0,0.1)' }}>
                 <img 
-                  src="/worker-aged-40.jpg" 
+                  src="/seo/group-working.jpg" 
                   alt="Professionnel de 40 ans en reconversion"
                   className="w-full h-80 object-cover"
                   loading="eager"
@@ -73,7 +73,7 @@ const MetiersReconversion40AnsSansDiplome = () => {
         <section className="content-section">
           <div className="max-w-4xl mx-auto">
             <h2 className="section-title mb-8">
-              Introduction
+              Pourquoi une reconversion sans diplôme est possible à 40 ans
             </h2>
             
             <div className="section-content mb-8">
@@ -81,8 +81,56 @@ const MetiersReconversion40AnsSansDiplome = () => {
                 À 40 ans, beaucoup ressentent le besoin de changer de vie professionnelle. Fatigue, perte de sens, envie de liberté… mais une question revient toujours : "Est-ce encore possible sans diplôme ?"
               </p>
               <p className="section-text">
-                La réponse est <strong>oui</strong> : de nombreux métiers valorisent l'expérience, la motivation et les soft skills plutôt que les études. Voici 5 pistes réalistes pour entamer votre <strong>reconversion</strong> dès aujourd'hui.
+                La réponse est <strong>oui</strong> : de nombreux métiers valorisent l'expérience, la motivation et les soft skills plutôt que les études. Contrairement aux idées reçues, <strong>changer de métier sans diplôme</strong> est une réalité pour des milliers de Français chaque année.
               </p>
+              <p className="section-text">
+                L'important, c'est de choisir un <strong>métier accessible sans diplôme</strong> qui correspond à vos compétences et à vos envies. Voici 5 pistes réalistes pour entamer votre <strong>reconversion</strong> dès aujourd'hui.
+              </p>
+            </div>
+
+            <div className="flex flex-col md:flex-row items-center gap-12">
+              <div className="w-full md:w-1/2">
+                <div className="rounded-2xl overflow-hidden" style={{ border: '3px solid #1A1A1A', boxShadow: '6px 6px 0 rgba(0,0,0,0.1)' }}>
+                  <img 
+                    src="/woman-working.jpg" 
+                    alt="Professionnelle en reconversion"
+                    className="w-full h-72 object-cover"
+                    loading="lazy"
+                    decoding="async"
+                    width={800}
+                    height={600}
+                    onError={(e) => {
+                      (e.target as HTMLImageElement).src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="800" height="600"%3E%3Crect fill="%236B8E9E" width="800" height="600"/%3E%3Ctext x="50%25" y="50%25" dominant-baseline="middle" text-anchor="middle" font-family="sans-serif" font-size="24" fill="%23ffffff"%3EReconversion%3C/text%3E%3C/svg%3E';
+                    }}
+                  />
+                </div>
+              </div>
+              
+              <div className="w-full md:w-1/2">
+                <div className="p-6 rounded-xl" style={{ background: '#D9D2B6', border: '2px solid #1A1A1A', boxShadow: '0 6px 0 rgba(0,0,0,0.08)' }}>
+                  <h3 className="font-bold text-xl mb-4" style={{ color: '#1A1A1A' }}>
+                    Les avantages d'une reconversion sans diplôme
+                  </h3>
+                  <ul className="space-y-3 text-sm" style={{ color: '#2C2C2C' }}>
+                    <li className="flex items-start gap-2">
+                      <span className="text-lg">✓</span>
+                      <span>Vous valorisez votre expérience professionnelle</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-lg">✓</span>
+                      <span>Pas de retour sur les bancs de l'école</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-lg">✓</span>
+                      <span>Vous gardez vos revenus pendant la transition</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-lg">✓</span>
+                      <span>Formations courtes et ciblées si besoin</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
             </div>
           </div>
         </section>
@@ -178,23 +226,40 @@ const MetiersReconversion40AnsSansDiplome = () => {
         {/* 5️⃣ Métier 3 - Conseiller en insertion */}
         <section className="content-section">
           <div className="max-w-4xl mx-auto">
-            <h2 className="section-title">
-              3. Conseiller en insertion ou coach emploi junior
-            </h2>
-            
-            <div className="section-content mb-8">
-              <p className="section-text">
-                Si vous aimez aider les autres à trouver leur voie, ce métier offre du sens. Les structures d'accompagnement (missions locales, associations, organismes privés) recrutent souvent sur la base de l'expérience humaine plutôt que du diplôme.
-              </p>
-              
-              <div className="section-text">
-                <p className="mb-3"><strong>Écoute, empathie, motivation</strong> requises</p>
-                <p className="mb-3"><strong>Évolution possible</strong> vers le bilan de compétences</p>
+            <div className="flex flex-col md:flex-row items-center gap-12 mb-8">
+              <div className="w-full md:w-1/2 section-content">
+                <h2 className="section-title">
+                  3. Conseiller en insertion ou coach emploi junior
+                </h2>
+                
+                <p className="section-text">
+                  Si vous aimez aider les autres à trouver leur voie, ce métier offre du sens. Les structures d'accompagnement (missions locales, associations, organismes privés) recrutent souvent sur la base de l'expérience humaine plutôt que du diplôme.
+                </p>
+                
+                <div className="section-text">
+                  <p className="mb-3"><strong>Écoute, empathie, motivation</strong> requises</p>
+                  <p className="mb-3"><strong>Évolution possible</strong> vers le bilan de compétences</p>
+                  <p className="mb-3"><strong>Stabilité assurée</strong> dans le secteur public ou associatif</p>
+                </div>
+                
+                <p className="section-text">
+                  <strong>Conseil Avenirea</strong> : testez votre profil sur notre bilan d'orientation professionnelle adulte avant de vous lancer.
+                </p>
               </div>
-              
-              <p className="section-text">
-                <strong>Conseil Avenirea</strong> : testez votre profil sur notre bilan d'orientation professionnelle adulte avant de vous lancer.
-              </p>
+
+              <div className="w-full md:w-1/2">
+                <div className="p-6 rounded-xl" style={{ background: '#FFFFFF', border: '2px solid #E6DCCC', boxShadow: '0 6px 0 rgba(0,0,0,0.08)' }}>
+                  <h3 className="font-bold text-lg mb-3" style={{ color: '#1A1A1A' }}>
+                    Les missions
+                  </h3>
+                  <ul className="space-y-2 text-sm text-gray-700">
+                    <li>✓ Accueil et accompagnement des demandeurs d'emploi</li>
+                    <li>✓ Rédaction de CV et lettres de motivation</li>
+                    <li>✓ Aide à la recherche d'emploi et de formation</li>
+                    <li>✓ Suivi personnalisé et motivation</li>
+                  </ul>
+                </div>
+              </div>
             </div>
           </div>
         </section>
@@ -202,24 +267,43 @@ const MetiersReconversion40AnsSansDiplome = () => {
         {/* 6️⃣ Métier 4 - Vendeur-conseil */}
         <section className="content-section">
           <div className="max-w-4xl mx-auto">
-            <h2 className="section-title">
-              4. Vendeur-conseil / Commercial terrain
-            </h2>
-            
-            <div className="section-content mb-8">
-              <p className="section-text">
-                Certains ont le contact facile et savent convaincre : c'est un atout rare. La vente reste un secteur ouvert à tous les profils motivés.
-              </p>
-              
-              <div className="section-text">
-                <p className="mb-3"><strong>Salaire évolutif</strong> + primes</p>
-                <p className="mb-3"><strong>Recrutement massif</strong> dans la distribution, l'automobile, le service</p>
-                <p className="mb-3"><strong>Formations en interne</strong> dans la plupart des entreprises</p>
+            <div className="flex flex-col md:flex-row-reverse items-center gap-12 mb-8">
+              <div className="w-full md:w-1/2">
+                <div className="rounded-2xl overflow-hidden" style={{ border: '3px solid #1A1A1A', boxShadow: '6px 6px 0 rgba(0,0,0,0.1)' }}>
+                  <img 
+                    src="/man-working.jpg" 
+                    alt="Vendeur-conseil en action"
+                    className="w-full h-72 object-cover"
+                    loading="lazy"
+                    decoding="async"
+                    width={800}
+                    height={600}
+                    onError={(e) => {
+                      (e.target as HTMLImageElement).src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="800" height="600"%3E%3Crect fill="%236B8E9E" width="800" height="600"/%3E%3Ctext x="50%25" y="50%25" dominant-baseline="middle" text-anchor="middle" font-family="sans-serif" font-size="24" fill="%23ffffff"%3EVente%3C/text%3E%3C/svg%3E';
+                    }}
+                  />
+                </div>
               </div>
-              
-              <p className="section-text">
-                <strong>Astuce</strong> : si vous aimez le contact humain, la reconversion vers la vente peut être un tremplin rapide.
-              </p>
+
+              <div className="w-full md:w-1/2 section-content">
+                <h2 className="section-title">
+                  4. Vendeur-conseil / Commercial terrain
+                </h2>
+                
+                <p className="section-text">
+                  Certains ont le contact facile et savent convaincre : c'est un atout rare. La vente reste un secteur ouvert à tous les profils motivés.
+                </p>
+                
+                <div className="section-text">
+                  <p className="mb-3"><strong>Salaire évolutif</strong> + primes</p>
+                  <p className="mb-3"><strong>Recrutement massif</strong> dans la distribution, l'automobile, le service</p>
+                  <p className="mb-3"><strong>Formations en interne</strong> dans la plupart des entreprises</p>
+                </div>
+                
+                <p className="section-text">
+                  <strong>Astuce</strong> : si vous aimez le contact humain, la reconversion vers la vente peut être un tremplin rapide.
+                </p>
+              </div>
             </div>
           </div>
         </section>
@@ -272,12 +356,15 @@ const MetiersReconversion40AnsSansDiplome = () => {
         <section className="content-section">
           <div className="max-w-4xl mx-auto">
             <h2 className="section-title mb-8">
-              Conclusion
+              Choisir le bon métier pour votre reconversion
             </h2>
             
             <div className="section-content mb-8">
               <p className="section-text">
-                La reconversion à 40 ans sans diplôme, c'est avant tout une question de volonté et de clarté. L'important n'est pas de repartir à zéro, mais de capitaliser sur ce que vous savez déjà faire.
+                La <strong>reconversion à 40 ans sans diplôme</strong>, c'est avant tout une question de volonté et de clarté. L'important n'est pas de repartir à zéro, mais de capitaliser sur ce que vous savez déjà faire.
+              </p>
+              <p className="section-text">
+                Les 5 métiers présentés ne sont que des pistes. Le plus important, c'est de choisir un <strong>métier qui vous correspond vraiment</strong> : vos compétences, vos valeurs, vos envies de vie.
               </p>
               <p className="section-text">
                 Et pour identifier vos points forts et les métiers qui vous correspondent vraiment, faites le <strong>test d'orientation Avenirea</strong> — rapide, gratuit et conçu pour les adultes en quête de sens.
@@ -299,7 +386,7 @@ const MetiersReconversion40AnsSansDiplome = () => {
                   boxShadow: '6px 6px 0 #1A1A1A'
                 }}
               >
-                Faire mon bilan d'orientation
+                Découvrir mon métier idéal
               </button>
             </div>
           </div>

@@ -11,6 +11,13 @@ const Ressources = () => {
   // Liste des articles de blog
   const blogPosts = [
     {
+      slug: '5-metiers-reconversion-40-ans-sans-diplome',
+      title: '5 métiers pour une reconversion à 40 ans sans diplôme',
+      excerpt: 'Découvrez 5 idées de métiers accessibles sans diplôme pour réussir votre reconversion à 40 ans, avec des conseils concrets.',
+      image: '/seo/group-working.jpg',
+      link: '/5-metiers-reconversion-40-ans-sans-diplome'
+    },
+    {
       slug: 'bilan-orientation-professionnelle-adulte',
       title: 'Bilan d\'orientation professionnelle adulte : comment faire le point sur sa carrière ?',
       excerpt: 'Vous sentez que votre travail ne vous correspond plus ? Découvrez comment un bilan d\'orientation professionnelle peut vous aider à clarifier votre avenir.',
@@ -30,13 +37,6 @@ const Ressources = () => {
       excerpt: 'À 40 ans, peut-on encore changer de métier ? Découvrez les métiers adaptés, les étapes concrètes et nos conseils pour réussir votre reconversion.',
       image: '/worker-aged-40.jpg',
       link: '/metier-reconversion-40-ans'
-    },
-    {
-      slug: '5-metiers-reconversion-40-ans-sans-diplome',
-      title: '5 métiers pour une reconversion à 40 ans sans diplôme',
-      excerpt: 'Découvrez 5 idées de métiers accessibles sans diplôme pour réussir votre reconversion à 40 ans, avec des conseils concrets.',
-      image: '/worker-aged-40.jpg',
-      link: '/5-metiers-reconversion-40-ans-sans-diplome'
     },
     {
       slug: 'conseils-reconversion-professionnelle',
