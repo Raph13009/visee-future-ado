@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -10,6 +10,7 @@ import PromoModal from "@/components/PromoModal";
 import PaymentModal from "@/components/PaymentModal";
 import { supabase } from "@/integrations/supabase/client";
 import CoachingCTA from "@/components/coaching/CoachingCTA";
+import OptimizedImage from "@/components/OptimizedImage";
 
 interface RiasecProfile {
   code: string;
@@ -1186,6 +1187,65 @@ function ResultsRiasec() {
   const [showPromoModal, setShowPromoModal] = useState(false);
   const [showPaymentModal, setShowPaymentModal] = useState(false);
   
+  // États pour le slideshow du rapport
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [isTransitioning, setIsTransitioning] = useState(false);
+  const touchStartX = useRef<number | null>(null);
+  const touchEndX = useRef<number | null>(null);
+  
+  const slides = Array.from({ length: 12 }, (_, i) => 
+    `/Presentation-Votre-Avenir/Presentation - Votre Avenir Commence Ici-${String(i + 1).padStart(2, '0')}.png`
+  );
+  
+  const minSwipeDistance = 50;
+  
+  const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
+    touchEndX.current = null;
+    touchStartX.current = e.targetTouches[0].clientX;
+  };
+  
+  const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
+    touchEndX.current = e.targetTouches[0].clientX;
+  };
+  
+  const handleTouchEnd = () => {
+    if (!touchStartX.current || !touchEndX.current) return;
+    const distance = touchStartX.current - touchEndX.current;
+    if (distance > minSwipeDistance && currentSlide < slides.length - 1) {
+      goToSlide(currentSlide + 1);
+    }
+    if (distance < -minSwipeDistance && currentSlide > 0) {
+      goToSlide(currentSlide - 1);
+    }
+  };
+  
+  const goToSlide = (index: number) => {
+    if (index < 0 || index >= slides.length || isTransitioning) return;
+    setIsTransitioning(true);
+    setCurrentSlide(index);
+    setTimeout(() => setIsTransitioning(false), 300);
+  };
+  
+  const handlePrevSlide = () => goToSlide(currentSlide - 1);
+  const handleNextSlide = () => goToSlide(currentSlide + 1);
+  
+  // Keyboard navigation for slideshow
+  useEffect(() => {
+    const handleKeyPress = (e: KeyboardEvent) => {
+      if (e.key === 'ArrowLeft') {
+        e.preventDefault();
+        goToSlide(currentSlide - 1);
+      }
+      if (e.key === 'ArrowRight') {
+        e.preventDefault();
+        goToSlide(currentSlide + 1);
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyPress);
+    return () => window.removeEventListener('keydown', handleKeyPress);
+  }, [currentSlide, isTransitioning]);
+
   // Vérifier si l'utilisateur revient d'un paiement réussi
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
@@ -1540,9 +1600,6 @@ function ResultsRiasec() {
               <p className="text-xl text-gray-700 font-medium mb-6 max-w-3xl mx-auto">
                 Basé sur la méthode RIASEC, reconnue dans les bilans de compétences.
               </p>
-              <p className="text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
-                Découvrez vos points forts, vos motivations et vos pistes concrètes d'évolution de carrière.
-              </p>
             </div>
 
             {/* Badge certification */}
@@ -1589,6 +1646,183 @@ function ResultsRiasec() {
             {profile.description}
           </p>
         </div>
+        )}
+
+        {/* Section Exemple de rapport - Version PRO uniquement */}
+        {isPro && (
+          <Card className="mb-12" style={{ background: 'linear-gradient(135deg, #FFF8F0 0%, #FFF4E6 100%)', border: '3px solid #1A1A1A', boxShadow: '8px 8px 0px #1A1A1A' }}>
+            <CardContent className="p-6 md:p-8">
+              <div className="text-center mb-8">
+                <div className="inline-block px-4 py-2 rounded-lg mb-4" style={{
+                  background: '#F5F1E8',
+                  border: '2px solid #1A1A1A',
+                  boxShadow: '3px 3px 0 #1A1A1A',
+                }}>
+                  <p className="text-gray-900 font-bold text-sm md:text-base">
+                    🎯 Bilan complet à 18 €
+                  </p>
+                </div>
+                <h2 className="text-2xl md:text-3xl font-black text-gray-900 mb-3">
+                  Exemple de rapport complet inclus
+                </h2>
+              </div>
+
+            {/* Slideshow Container - Version légère */}
+            <div className="mb-8">
+              <div className="flex items-center gap-3 md:gap-4">
+                {/* Left Arrow - Desktop Only */}
+                <button
+                  onClick={handlePrevSlide}
+                  disabled={currentSlide === 0}
+                  className="hidden md:flex flex-shrink-0 w-12 h-12 items-center justify-center rounded-xl transition-all duration-300 hover:translate-x-[-3px] disabled:opacity-30 disabled:cursor-not-allowed"
+                  style={{
+                    background: '#FFFFFF',
+                    border: '3px solid #1A1A1A',
+                    boxShadow: '5px 5px 0 #1A1A1A',
+                    color: '#1A1A1A',
+                  }}
+                  aria-label="Slide précédent"
+                >
+                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M15 19l-7-7 7-7" />
+                  </svg>
+                </button>
+
+                {/* Slide Container */}
+                <div className="flex-1 relative">
+                  <div
+                    className="relative rounded-xl overflow-hidden"
+                    style={{
+                      border: '4px solid #1A1A1A',
+                      boxShadow: '8px 8px 0 #1A1A1A',
+                      background: '#FFFFFF',
+                      display: 'inline-block',
+                      width: '100%',
+                    }}
+                    onTouchStart={handleTouchStart}
+                    onTouchMove={handleTouchMove}
+                    onTouchEnd={handleTouchEnd}
+                  >
+                    <img
+                      src={slides[currentSlide]}
+                      alt={`Page ${currentSlide + 1} de votre rapport Avenirea`}
+                      className={`w-full h-auto block transition-opacity duration-300 ${
+                        isTransitioning ? 'opacity-70' : 'opacity-100'
+                      }`}
+                      loading={currentSlide === 0 ? 'eager' : 'lazy'}
+                      decoding="async"
+                      style={{ display: 'block' }}
+                    />
+
+                    {/* Page Indicator */}
+                    <div className="absolute bottom-3 left-1/2 -translate-x-1/2 z-10">
+                      <div
+                        className="px-3 py-1.5 rounded-lg"
+                        style={{
+                          background: 'rgba(255, 255, 255, 0.95)',
+                          border: '2px solid #1A1A1A',
+                          boxShadow: '3px 3px 0 rgba(0,0,0,0.1)',
+                        }}
+                      >
+                        <p className="text-xs font-semibold" style={{ color: '#6B7280' }}>
+                          Page {currentSlide + 1} / {slides.length}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Mobile Navigation */}
+                  <div className="md:hidden mt-4">
+                    <div className="flex justify-center gap-2 mb-3">
+                      {slides.map((_, index) => (
+                        <button
+                          key={index}
+                          onClick={() => goToSlide(index)}
+                          className={`transition-all rounded-full ${
+                            index === currentSlide ? 'w-2.5 h-2.5' : 'w-2 h-2 opacity-40'
+                          }`}
+                          style={{
+                            background: index === currentSlide ? '#E96A3C' : '#9CA3AF',
+                            border: index === currentSlide ? '2px solid #1A1A1A' : 'none',
+                          }}
+                          aria-label={`Aller à la page ${index + 1}`}
+                        />
+                      ))}
+                    </div>
+                    
+                    <div className="flex justify-center gap-3">
+                      <button
+                        onClick={handlePrevSlide}
+                        disabled={currentSlide === 0}
+                        className="flex w-10 h-10 items-center justify-center rounded-xl transition-all duration-300 active:translate-x-[-2px] disabled:opacity-30 disabled:cursor-not-allowed"
+                        style={{
+                          background: '#FFFFFF',
+                          border: '3px solid #1A1A1A',
+                          boxShadow: '4px 4px 0 #1A1A1A',
+                          color: '#1A1A1A',
+                        }}
+                        aria-label="Slide précédent"
+                      >
+                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M15 19l-7-7 7-7" />
+                        </svg>
+                      </button>
+                      
+                      <button
+                        onClick={handleNextSlide}
+                        disabled={currentSlide === slides.length - 1}
+                        className="flex w-10 h-10 items-center justify-center rounded-xl transition-all duration-300 active:translate-x-[2px] disabled:opacity-30 disabled:cursor-not-allowed"
+                        style={{
+                          background: '#FFFFFF',
+                          border: '3px solid #1A1A1A',
+                          boxShadow: '4px 4px 0 #1A1A1A',
+                          color: '#1A1A1A',
+                        }}
+                        aria-label="Slide suivant"
+                      >
+                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M9 5l7 7-7 7" />
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Right Arrow - Desktop Only */}
+                <button
+                  onClick={handleNextSlide}
+                  disabled={currentSlide === slides.length - 1}
+                  className="hidden md:flex flex-shrink-0 w-12 h-12 items-center justify-center rounded-xl transition-all duration-300 hover:translate-x-[3px] disabled:opacity-30 disabled:cursor-not-allowed"
+                  style={{
+                    background: '#FFFFFF',
+                    border: '3px solid #1A1A1A',
+                    boxShadow: '5px 5px 0 #1A1A1A',
+                    color: '#1A1A1A',
+                  }}
+                  aria-label="Slide suivant"
+                >
+                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M9 5l7 7-7 7" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+
+            {/* CTA Button - Identique à celui de la case bleue */}
+            <div className="text-center">
+              <Button 
+                onClick={handleProceedToPayment}
+                className="w-full sm:w-auto px-12 py-6 text-xl font-black transition-all duration-300 hover:translate-y-[-2px]"
+                style={{ background: '#E96A3C', color: '#FFFFFF', border: '3px solid #1A1A1A', boxShadow: '6px 6px 0px #1A1A1A' }}
+              >
+                Télécharger mon rapport
+              </Button>
+              <p className="text-sm mt-4 font-semibold text-gray-600">
+                Paiement sécurisé • Accès immédiat • Satisfait ou remboursé
+              </p>
+            </div>
+            </CardContent>
+          </Card>
         )}
 
         {/* Section Synthèse du profil - Version PRO ou Jeune */}
@@ -2056,21 +2290,224 @@ function ResultsRiasec() {
                 </div>
                 
                 <p className="text-lg mb-8 font-medium">
-                  Votre rapport professionnel + un retour personnalisé d'un conseiller certifié
+                  Un rapport personnalisé de <strong>12 pages</strong> + un retour personnalisé d'un conseiller certifié
                 </p>
 
                 <div className="text-left max-w-lg mx-auto mb-8 space-y-3">
                   <div className="flex items-start gap-3">
                     <span className="text-green-300 font-bold mt-1">✓</span>
-                    <span className="font-medium">Votre profil complet RIASEC et ses interprétations</span>
+                    <span className="font-medium">Un rapport personnalisé de <strong>12 pages</strong> sur votre profil et votre avenir professionnel</span>
                   </div>
                   <div className="flex items-start gap-3">
                     <span className="text-green-300 font-bold mt-1">✓</span>
-                    <span className="font-medium">Les 6 métiers et formations les plus adaptés</span>
+                    <span className="font-medium">Votre profil complet RIASEC et ses interprétations détaillées</span>
                   </div>
                   <div className="flex items-start gap-3">
                     <span className="text-green-300 font-bold mt-1">✓</span>
-                    <span className="font-medium">Un expert vous contacte par mail avec des conseils et un rapport pro sur votre situation</span>
+                    <span className="font-medium">Les 6 métiers et formations les plus adaptés à votre profil</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <span className="text-green-300 font-bold mt-1">✓</span>
+                    <span className="font-medium">Un expert vous contacte par mail avec des conseils personnalisés sur votre situation</span>
+                  </div>
+                </div>
+
+                {/* Témoignage Claire - Version compacte */}
+                <div 
+                  className="mb-8 p-6 rounded-xl text-left"
+                  style={{
+                    background: 'rgba(255, 255, 255, 0.15)',
+                    backdropFilter: 'blur(10px)',
+                    border: '2px solid rgba(255, 255, 255, 0.3)',
+                    boxShadow: '4px 4px 0 rgba(0,0,0,0.2)'
+                  }}
+                >
+                  <div className="flex items-start gap-4">
+                    <div className="flex-shrink-0">
+                      <div 
+                        className="rounded-full overflow-hidden"
+                        style={{
+                          width: '60px',
+                          height: '60px',
+                          border: '2px solid rgba(255, 255, 255, 0.5)',
+                        }}
+                      >
+                        <OptimizedImage
+                          src="/seo/woman-working-suit.jpg"
+                          alt="Jennifer"
+                          className="w-full h-full"
+                          width={60}
+                          height={60}
+                          priority={false}
+                        />
+                      </div>
+                    </div>
+                    <div className="flex-1">
+                      <p className="text-white text-sm leading-relaxed mb-2 italic">
+                        "Le test Avenirea m'a permis de découvrir mes forces et de voir des métiers auxquels je n'aurais jamais pensé. Grâce au rapport et aux conseils d'un expert, j'ai changé de voie et décroché un emploi de professeure documentaliste qui me passionne."
+                      </p>
+                      <p className="text-white text-xs font-semibold">
+                        — Jennifer, ex-UX designer devenue professeure documentaliste
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Slideshow Preview - Intégré dans la carte */}
+                <div className="mb-8">
+                  {/* Header du slideshow */}
+                  <div className="text-center mb-6">
+                    <div className="inline-block px-4 py-2 rounded-lg mb-3" style={{
+                      background: 'rgba(255, 255, 255, 0.25)',
+                      border: '2px solid rgba(255, 255, 255, 0.5)',
+                      backdropFilter: 'blur(10px)',
+                    }}>
+                      <p className="text-sm md:text-base font-bold text-white">
+                        📄 Exemple d'un rapport complet de 12 pages
+                      </p>
+                    </div>
+                    <p className="text-white text-sm font-medium opacity-90">
+                      Découvrez le format et la qualité du rapport personnalisé que vous recevrez
+                    </p>
+                  </div>
+
+                  {/* Slideshow Container */}
+                  <div className="flex items-center gap-3 md:gap-4">
+                    {/* Left Arrow - Desktop Only */}
+                    <button
+                      onClick={handlePrevSlide}
+                      disabled={currentSlide === 0}
+                      className="hidden md:flex flex-shrink-0 w-12 h-12 items-center justify-center rounded-xl transition-all duration-300 hover:translate-x-[-3px] disabled:opacity-20 disabled:cursor-not-allowed"
+                      style={{
+                        background: 'rgba(255, 255, 255, 0.9)',
+                        border: '2px solid rgba(255, 255, 255, 0.5)',
+                        boxShadow: '4px 4px 0 rgba(0,0,0,0.2)',
+                        color: '#1A1A1A',
+                      }}
+                      aria-label="Slide précédent"
+                    >
+                      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M15 19l-7-7 7-7" />
+                      </svg>
+                    </button>
+
+                    {/* Slide Container */}
+                    <div className="flex-1 relative">
+                      <div
+                        className="relative rounded-xl overflow-hidden"
+                        style={{
+                          border: '3px solid rgba(255, 255, 255, 0.3)',
+                          boxShadow: '6px 6px 0 rgba(0,0,0,0.2)',
+                          background: '#FFFFFF',
+                          display: 'inline-block',
+                          width: '100%',
+                        }}
+                        onTouchStart={handleTouchStart}
+                        onTouchMove={handleTouchMove}
+                        onTouchEnd={handleTouchEnd}
+                      >
+                        <img
+                          src={slides[currentSlide]}
+                          alt={`Page ${currentSlide + 1} de votre rapport Avenirea`}
+                          className={`w-full h-auto block transition-opacity duration-300 ${
+                            isTransitioning ? 'opacity-70' : 'opacity-100'
+                          }`}
+                          loading={currentSlide === 0 ? 'eager' : 'lazy'}
+                          decoding="async"
+                          style={{ display: 'block' }}
+                        />
+
+                        {/* Page Indicator */}
+                        <div className="absolute bottom-3 left-1/2 -translate-x-1/2 z-10">
+                          <div
+                            className="px-3 py-1.5 rounded-lg"
+                            style={{
+                              background: 'rgba(255, 255, 255, 0.95)',
+                              border: '2px solid #1A1A1A',
+                              boxShadow: '2px 2px 0 rgba(0,0,0,0.1)',
+                            }}
+                          >
+                            <p className="text-xs font-semibold" style={{ color: '#6B7280' }}>
+                              Page {currentSlide + 1} / {slides.length}
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Mobile Navigation */}
+                      <div className="md:hidden mt-4">
+                        <div className="flex justify-center gap-2 mb-3">
+                          {slides.map((_, index) => (
+                            <button
+                              key={index}
+                              onClick={() => goToSlide(index)}
+                              className={`transition-all rounded-full ${
+                                index === currentSlide ? 'w-2.5 h-2.5' : 'w-2 h-2 opacity-40'
+                              }`}
+                              style={{
+                                background: index === currentSlide ? '#FFFFFF' : 'rgba(255, 255, 255, 0.5)',
+                                border: index === currentSlide ? '2px solid rgba(255, 255, 255, 0.8)' : 'none',
+                              }}
+                              aria-label={`Aller à la page ${index + 1}`}
+                            />
+                          ))}
+                        </div>
+                        
+                        <div className="flex justify-center gap-3">
+                          <button
+                            onClick={handlePrevSlide}
+                            disabled={currentSlide === 0}
+                            className="flex w-10 h-10 items-center justify-center rounded-xl transition-all duration-300 active:translate-x-[-2px] disabled:opacity-20 disabled:cursor-not-allowed"
+                            style={{
+                              background: 'rgba(255, 255, 255, 0.9)',
+                              border: '2px solid rgba(255, 255, 255, 0.5)',
+                              boxShadow: '3px 3px 0 rgba(0,0,0,0.2)',
+                              color: '#1A1A1A',
+                            }}
+                            aria-label="Slide précédent"
+                          >
+                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M15 19l-7-7 7-7" />
+                            </svg>
+                          </button>
+                          
+                          <button
+                            onClick={handleNextSlide}
+                            disabled={currentSlide === slides.length - 1}
+                            className="flex w-10 h-10 items-center justify-center rounded-xl transition-all duration-300 active:translate-x-[2px] disabled:opacity-20 disabled:cursor-not-allowed"
+                            style={{
+                              background: 'rgba(255, 255, 255, 0.9)',
+                              border: '2px solid rgba(255, 255, 255, 0.5)',
+                              boxShadow: '3px 3px 0 rgba(0,0,0,0.2)',
+                              color: '#1A1A1A',
+                            }}
+                            aria-label="Slide suivant"
+                          >
+                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M9 5l7 7-7 7" />
+                            </svg>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Right Arrow - Desktop Only */}
+                    <button
+                      onClick={handleNextSlide}
+                      disabled={currentSlide === slides.length - 1}
+                      className="hidden md:flex flex-shrink-0 w-12 h-12 items-center justify-center rounded-xl transition-all duration-300 hover:translate-x-[3px] disabled:opacity-20 disabled:cursor-not-allowed"
+                      style={{
+                        background: 'rgba(255, 255, 255, 0.9)',
+                        border: '2px solid rgba(255, 255, 255, 0.5)',
+                        boxShadow: '4px 4px 0 rgba(0,0,0,0.2)',
+                        color: '#1A1A1A',
+                      }}
+                      aria-label="Slide suivant"
+                    >
+                      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M9 5l7 7-7 7" />
+                      </svg>
+                    </button>
                   </div>
                 </div>
 

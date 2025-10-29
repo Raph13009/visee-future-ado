@@ -7,6 +7,8 @@ import { useState } from "react";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import CgvModal from "@/components/checkout/CgvModal";
 import OptimizedImage from "@/components/OptimizedImage";
+import ReportPreviewSection from "@/components/ReportPreviewSection";
+import ReportExampleSection from "@/components/ReportExampleSection";
 
 const Index = () => {
   const navigate = useNavigate();
@@ -71,7 +73,7 @@ const Index = () => {
       <CgvModal open={showCgvModal} onClose={() => setShowCgvModal(false)} />
       
       {/* Hero Section - Elegant & Professional */}
-      <section className="text-center px-6 pt-24 sm:pt-28 pb-16" style={{ background: '#F5F1E8', color: '#1A1A1A' }}>
+      <section className="text-center px-6 pt-32 sm:pt-36 pb-12" style={{ background: '#F5F1E8', color: '#1A1A1A' }}>
         <div className="max-w-4xl mx-auto">
           
           {/* Elegant Badge */}
@@ -91,60 +93,20 @@ const Index = () => {
           </div>
           
           {/* H1 Title - SEO Optimized */}
-          <h1 className="text-3xl sm:text-5xl font-bold leading-tight tracking-tight mb-6 max-w-3xl mx-auto">
+          <h1 className="text-3xl sm:text-5xl font-bold leading-tight tracking-tight mb-4 max-w-3xl mx-auto">
             Bilan de compétences et reconversion professionnelle
           </h1>
           
           {/* Refined Subtitle */}
-          <p className="text-lg sm:text-xl mb-10 max-w-2xl mx-auto" style={{ color: '#6B7280' }}>
+          <p className="text-lg sm:text-xl mb-4 max-w-2xl mx-auto" style={{ color: '#6B7280' }}>
             Clarifiez vos forces, définissez vos objectifs et transformez votre avenir professionnel.
-          </p>
-          
-          {/* CTA Buttons */}
-          <div className="flex justify-center gap-4 flex-wrap mb-8">
-            <button
-              onClick={() => navigate('/bilan-competences-tous-publics')}
-              className="px-8 py-4 font-bold text-base rounded-xl transition-all hover:translate-y-[1px] text-white"
-              style={{ 
-                background: '#E96A3C',
-                boxShadow: '0 6px 0 rgba(233, 106, 60, 0.3)'
-              }}
-              aria-label="Commencer le test de bilan de compétences"
-            >
-              Commencer le test
-            </button>
-            
-            <button
-              onClick={() => {
-                document.querySelector('#exemple-rapport')?.scrollIntoView({ behavior: 'smooth' });
-              }}
-              className="px-8 py-4 font-semibold text-base rounded-xl transition-all"
-              style={{ 
-                background: 'transparent',
-                border: '2px solid #E6DCCC',
-                color: '#2C2C2C'
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.background = '#4F8A8B';
-                e.currentTarget.style.color = '#FFFFFF';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.background = 'transparent';
-                e.currentTarget.style.color = '#2C2C2C';
-              }}
-              aria-label="Voir un exemple de rapport"
-            >
-              Voir un exemple de rapport
-            </button>
-          </div>
-          
-          {/* Inline Reassurance (no box) */}
-          <p className="text-sm mt-6" style={{ color: '#9CA3AF' }}>
-            1 actif sur 3 souhaite changer de métier selon France Compétences
           </p>
           
         </div>
       </section>
+
+      {/* Report Preview Section */}
+      <ReportPreviewSection />
 
       {/* Bilan Section */}
       <section className="bilan-section">
@@ -225,6 +187,99 @@ const Index = () => {
           </div>
         </div>
       </section>
+
+      {/* Section Témoignages - Ils nous ont fait confiance */}
+      <section className="py-20" style={{ background: '#F5F1E8' }}>
+        <div className="max-w-6xl mx-auto px-6">
+          {/* Section Title */}
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-black mb-4" style={{ color: '#1A1A1A', letterSpacing: '-0.02em' }}>
+              Ils nous ont fait confiance
+            </h2>
+            <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+              Découvrez comment Avenirea a aidé des personnes comme vous à trouver leur voie.
+            </p>
+          </div>
+
+          {/* Témoignage Principal */}
+          <div className="max-w-4xl mx-auto">
+            <div 
+              className="rounded-2xl p-8 md:p-12"
+              style={{
+                background: '#FFFFFF',
+                border: '3px solid #1A1A1A',
+                boxShadow: '8px 8px 0 #1A1A1A'
+              }}
+            >
+              <div className="flex flex-col md:flex-row items-start gap-8">
+                {/* Photo */}
+                <div className="flex-shrink-0 mx-auto md:mx-0">
+                  <div 
+                    className="rounded-full overflow-hidden"
+                    style={{
+                      width: '120px',
+                      height: '120px',
+                      border: '3px solid #1A1A1A',
+                      boxShadow: '4px 4px 0 rgba(0,0,0,0.1)'
+                    }}
+                  >
+                    <OptimizedImage
+                      src="/seo/woman-working-suit.jpg"
+                      alt="Jennifer, ex-UX designer devenue professeure documentaliste"
+                      className="w-full h-full"
+                      width={120}
+                      height={120}
+                      priority={false}
+                    />
+                  </div>
+                </div>
+
+                {/* Citation */}
+                <div className="flex-1 text-left">
+                  {/* Citation avec guillemets */}
+                  <div className="mb-6">
+                    <svg 
+                      className="w-12 h-12 mb-4 opacity-30"
+                      fill="currentColor" 
+                      viewBox="0 0 24 24"
+                      style={{ color: '#1A1A1A' }}
+                    >
+                      <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.996 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.984zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.432.917-3.995 3.638-3.995 5.849h3.983v10h-9.984z"/>
+                    </svg>
+                    
+                    <div className="space-y-4 text-lg leading-relaxed" style={{ color: '#2C2C2C' }}>
+                      <p>
+                        <strong className="text-xl" style={{ color: '#1A1A1A' }}>Avant :</strong> "Je voulais changer de métier mais je ne savais pas par où commencer. J'étais UX designer depuis plusieurs années et j'avais besoin de donner plus de sens à mon travail."
+                      </p>
+                      
+                      <p>
+                        <strong className="text-xl" style={{ color: '#1A1A1A' }}>Pendant :</strong> "Le test Avenirea m'a permis de découvrir mes forces et de voir des métiers auxquels je n'aurais jamais pensé. Le rapport était complet et très clair, notamment sur mes aptitudes pour la pédagogie."
+                      </p>
+                      
+                      <p>
+                        <strong className="text-xl" style={{ color: '#1A1A1A' }}>Après :</strong> "Grâce au rapport complet et aux conseils d'un expert lors de l'appel, j'ai suivi une formation et j'ai décroché un poste de professeure documentaliste qui me passionne aujourd'hui. Je me sens alignée avec mes valeurs."
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Informations de la personne */}
+                  <div className="pt-6 border-t-2" style={{ borderColor: '#D9D2B6' }}>
+                    <p className="font-bold text-xl mb-1" style={{ color: '#1A1A1A' }}>
+                      Jennifer
+                    </p>
+                    <p className="text-base" style={{ color: '#6B7280' }}>
+                      Ex-UX designer devenue professeure documentaliste
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Report Example Section - Slideshow */}
+      <ReportExampleSection />
 
       {/* SEO Section - Reconversion, Bilan, Orientation */}
       <section className="py-20" style={{ background: '#F5F1E8' }}>
