@@ -12,6 +12,13 @@ import { supabase } from "@/integrations/supabase/client";
 import CoachingCTA from "@/components/coaching/CoachingCTA";
 import OptimizedImage from "@/components/OptimizedImage";
 
+// Déclaration TypeScript pour gtag
+declare global {
+  interface Window {
+    gtag: (...args: any[]) => void;
+  }
+}
+
 interface RiasecProfile {
   code: string;
   name: string;
@@ -1251,6 +1258,22 @@ function ResultsRiasec() {
     const urlParams = new URLSearchParams(window.location.search);
     if (urlParams.get('payment') === 'success') {
       setIsUnlocked(true);
+      
+      // Google Analytics - Track purchase event
+      if (typeof window !== 'undefined' && window.gtag) {
+        window.gtag('event', 'purchase', {
+          transaction_id: urlParams.get('profile') + '_' + Date.now(),
+          value: 18.00,
+          currency: 'EUR',
+          items: [{
+            item_id: 'bilan-orientation-avenirea',
+            item_name: 'Bilan d\'orientation complet Avenirea',
+            category: 'Orientation professionnelle',
+            quantity: 1,
+            price: 18.00
+          }]
+        });
+      }
       
       // Mettre à jour le statut de paiement en base
       const updatePaymentStatus = async () => {
