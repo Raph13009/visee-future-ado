@@ -3,6 +3,7 @@ import { useState } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import CgvModal from '@/components/checkout/CgvModal';
+import OptimizedImage from '@/components/OptimizedImage';
 
 const Ressources = () => {
   const navigate = useNavigate();
@@ -98,23 +99,13 @@ const Ressources = () => {
               >
                 {/* Image de couverture */}
                 <div className="w-full h-56 overflow-hidden flex-shrink-0" style={{ background: '#D9D2B6' }}>
-                  <img
+                  <OptimizedImage
                     src={post.image}
                     alt={post.title}
-                    className="w-full h-full object-cover"
-                    loading="lazy"
-                    decoding="async"
+                    className="w-full h-full"
                     width={600}
                     height={224}
-                    onError={(e) => {
-                      // Fallback si l'image n'existe pas
-                      e.currentTarget.style.display = 'none';
-                      e.currentTarget.parentElement!.innerHTML = `
-                        <div class="w-full h-full flex items-center justify-center" style="background: #D9D2B6;">
-                          <span style="font-size: 4rem;">📚</span>
-                        </div>
-                      `;
-                    }}
+                    priority={false}
                   />
                 </div>
 

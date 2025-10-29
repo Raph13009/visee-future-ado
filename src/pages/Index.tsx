@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import CgvModal from "@/components/checkout/CgvModal";
+import OptimizedImage from "@/components/OptimizedImage";
 
 const Index = () => {
   const navigate = useNavigate();
@@ -149,10 +150,13 @@ const Index = () => {
       <section className="bilan-section">
         <div className="bilan-grid">
           <div className="bilan-card">
-            <img 
+            <OptimizedImage 
               src="/scolar.png" 
               alt="Bilan d'orientation scolaire"
               className="bilan-card-image"
+              width={400}
+              height={300}
+              priority={false}
             />
             <div className="bilan-card-content">
               <h3 className="bilan-card-title">
@@ -171,10 +175,13 @@ const Index = () => {
           </div>
 
           <div className="bilan-card">
-            <img 
+            <OptimizedImage 
               src="/professional.png" 
               alt="Bilan de compétences — reconversion professionnelle"
               className="bilan-card-image"
+              width={400}
+              height={300}
+              priority={false}
             />
             <div className="bilan-card-content">
               <h3 className="bilan-card-title">
@@ -193,10 +200,13 @@ const Index = () => {
           </div>
 
           <div className="bilan-card">
-            <img 
+            <OptimizedImage 
               src="/other.png" 
               alt="Bilan de compétences tous publics"
               className="bilan-card-image"
+              width={400}
+              height={300}
+              priority={false}
             />
             <div className="bilan-card-content">
               <h3 className="bilan-card-title">
@@ -234,17 +244,13 @@ const Index = () => {
             <div className="flex flex-col md:flex-row items-center gap-8 md:gap-12">
               <div className="w-full md:w-1/2">
                 <div className="rounded-2xl overflow-hidden" style={{ border: '3px solid #1A1A1A', boxShadow: '6px 6px 0px rgba(0,0,0,0.15)' }}>
-                  <img 
+                  <OptimizedImage 
                     src="/seo/reconversion.jpg" 
                     alt="Reconversion professionnelle"
-                    className="w-full h-64 md:h-80 object-cover"
-                    loading="lazy"
-                    decoding="async"
+                    className="w-full h-64 md:h-80"
                     width={800}
                     height={600}
-                    onError={(e) => {
-                      (e.target as HTMLImageElement).src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="800" height="600"%3E%3Crect fill="%236B8E9E" width="800" height="600"/%3E%3Ctext x="50%25" y="50%25" dominant-baseline="middle" text-anchor="middle" font-family="sans-serif" font-size="24" fill="%23ffffff"%3EReconversion%3C/text%3E%3C/svg%3E';
-                    }}
+                    priority={false}
                   />
                 </div>
               </div>
@@ -268,17 +274,13 @@ const Index = () => {
             <div className="flex flex-col md:flex-row-reverse items-center gap-8 md:gap-12">
               <div className="w-full md:w-1/2">
                 <div className="rounded-2xl overflow-hidden" style={{ border: '3px solid #1A1A1A', boxShadow: '6px 6px 0px rgba(0,0,0,0.15)' }}>
-                  <img 
+                  <OptimizedImage 
                     src="/seo/bilan.jpg" 
                     alt="Bilan de compétences"
-                    className="w-full h-64 md:h-80 object-cover"
-                    loading="lazy"
-                    decoding="async"
+                    className="w-full h-64 md:h-80"
                     width={800}
                     height={600}
-                    onError={(e) => {
-                      (e.target as HTMLImageElement).src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="800" height="600"%3E%3Crect fill="%236B8E9E" width="800" height="600"/%3E%3Ctext x="50%25" y="50%25" dominant-baseline="middle" text-anchor="middle" font-family="sans-serif" font-size="24" fill="%23ffffff"%3EBilan de comp%C3%A9tences%3C/text%3E%3C/svg%3E';
-                    }}
+                    priority={false}
                   />
                 </div>
               </div>
@@ -302,17 +304,13 @@ const Index = () => {
             <div className="flex flex-col md:flex-row items-center gap-8 md:gap-12">
               <div className="w-full md:w-1/2">
                 <div className="rounded-2xl overflow-hidden" style={{ border: '3px solid #1A1A1A', boxShadow: '6px 6px 0px rgba(0,0,0,0.15)' }}>
-                  <img 
+                  <OptimizedImage 
                     src="/seo/orientation.jpg" 
                     alt="Orientation professionnelle"
-                    className="w-full h-64 md:h-80 object-cover"
-                    loading="lazy"
-                    decoding="async"
+                    className="w-full h-64 md:h-80"
                     width={800}
                     height={600}
-                    onError={(e) => {
-                      (e.target as HTMLImageElement).src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="800" height="600"%3E%3Crect fill="%236B8E9E" width="800" height="600"/%3E%3Ctext x="50%25" y="50%25" dominant-baseline="middle" text-anchor="middle" font-family="sans-serif" font-size="24" fill="%23ffffff"%3EOrientation%3C/text%3E%3C/svg%3E';
-                    }}
+                    priority={false}
                   />
                 </div>
               </div>
