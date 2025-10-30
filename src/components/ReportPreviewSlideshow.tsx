@@ -15,59 +15,6 @@ const ReportPreviewSlideshow = ({ onProceedToPayment }: ReportPreviewSlideshowPr
     `/Presentation-Votre-Avenir/Presentation - Votre Avenir Commence Ici-${String(i + 1).padStart(2, '0')}.png`
   );
 
-  const toAvif = (url: string) => url.replace(/\.(png|jpg|jpeg)$/i, '.avif');
-  const toWebp = (url: string) => url.replace(/\.(png|jpg|jpeg)$/i, '.webp');
-
-  // Preload all slides reliably with limited concurrency and fallback chain (avif -> webp -> png)
-  useEffect(() => {
-    let cancelled = false;
-
-    const preloadOne = (url: string): Promise<void> => {
-      return new Promise((resolve) => {
-        const tryLoad = (candidate: string[], idx: number) => {
-          if (idx >= candidate.length) { resolve(); return; }
-          const img = new Image();
-          img.decoding = 'async';
-          img.loading = 'eager' as any;
-          img.onload = () => resolve();
-          img.onerror = () => tryLoad(candidate, idx + 1);
-          img.src = candidate[idx];
-        };
-        tryLoad([toAvif(url), toWebp(url), url], 0);
-      });
-    };
-
-    const concurrency = 3;
-    let index = 0;
-
-    const runNext = async (): Promise<void> => {
-      if (cancelled) return;
-      if (index >= slides.length) return;
-      const current = index++;
-      await preloadOne(slides[current]);
-      await runNext();
-    };
-
-    const workers = Array.from({ length: concurrency }, () => runNext());
-    Promise.all(workers).catch(() => {});
-
-    return () => { cancelled = true; };
-  }, []);
-
-  // Prefetch adjacent slides on navigation
-  useEffect(() => {
-    const next = slides[currentSlide + 1];
-    const prev = slides[currentSlide - 1];
-    const preload = (url?: string) => {
-      if (!url) return;
-      const img = new Image();
-      img.decoding = 'async';
-      img.src = toAvif(url);
-    };
-    preload(next);
-    preload(prev);
-  }, [currentSlide]);
-
   const minSwipeDistance = 50;
 
   const handleTouchStart = (e: React.TouchEvent) => {
@@ -186,20 +133,19 @@ const ReportPreviewSlideshow = ({ onProceedToPayment }: ReportPreviewSlideshowPr
               onTouchMove={handleTouchMove}
               onTouchEnd={handleTouchEnd}
             >
-              <picture>
-                <source srcSet={toAvif(slides[currentSlide])} type="image/avif" />
-                <source srcSet={toWebp(slides[currentSlide])} type="image/webp" />
-                <img
-                  src={slides[currentSlide]}
-                  alt={`Page ${currentSlide + 1} de votre rapport Avenirea`}
-                  className={`w-full h-auto block transition-opacity duration-300 ${
-                    isTransitioning ? 'opacity-70' : 'opacity-100'
-                  }`}
-                  loading={currentSlide === 0 ? 'eager' : 'lazy'}
-                  decoding="async"
-                  style={{ display: 'block' }}
-                />
-              </picture>
+              <div style={{ position: 'relative' }}>
+                {slides.map((src, index) => (
+                  <img
+                    key={src}
+                    src={src}
+                    alt={`Page ${index + 1} de votre rapport Avenirea`}
+                    className={`${index === currentSlide ? 'block' : 'hidden'} w-full h-auto`}
+                    loading={index === 0 ? 'eager' : 'lazy'}
+                    decoding="async"
+                    style={{ display: index === currentSlide ? 'block' : 'none' }}
+                  />
+                ))}
+              </div>
 
               {/* Page Indicator - Bottom Center */}
               <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-10">
