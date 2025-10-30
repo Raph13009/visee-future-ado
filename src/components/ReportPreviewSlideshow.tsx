@@ -136,9 +136,12 @@ const ReportPreviewSlideshow = ({ onProceedToPayment }: ReportPreviewSlideshowPr
               onTouchMove={handleTouchMove}
               onTouchEnd={handleTouchEnd}
             >
-              <div style={{ position: 'relative' }}>
+              <div style={{ position: 'relative', width: '100%', background: '#FFFFFF' }}>
                 {slideBaseNames.map((name, index) => (
-                  <picture key={`${name}-picture`} style={{ display: index === currentSlide ? 'block' : 'none' }} className={`${index === currentSlide ? 'block' : 'hidden'}`}>
+                  <picture
+                    key={`${name}-picture`}
+                    className={`${index === currentSlide ? 'relative opacity-100' : 'absolute inset-0 opacity-0'} transition-opacity duration-300`}
+                  >
                     <source srcSet={slidesAvif[index]} type="image/avif" />
                     <source srcSet={slidesWebp[index]} type="image/webp" />
                     <img
@@ -147,7 +150,6 @@ const ReportPreviewSlideshow = ({ onProceedToPayment }: ReportPreviewSlideshowPr
                       className={`w-full h-auto`}
                       loading={index === 0 ? 'eager' : 'lazy'}
                       decoding="async"
-                      style={{ display: 'block' }}
                     />
                   </picture>
                 ))}
@@ -264,7 +266,7 @@ const ReportPreviewSlideshow = ({ onProceedToPayment }: ReportPreviewSlideshowPr
               Recevoir mon rapport de 12 pages
             </button>
             <p className="text-sm mt-4 text-gray-600 font-medium">
-              Accès immédiat après paiement • Paiement sécurisé
+            Ton rapport arrive sous 48h • Paiement sécurisé
             </p>
           </div>
         )}

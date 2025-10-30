@@ -77,7 +77,7 @@ const Index = () => {
         <div className="max-w-4xl mx-auto">
           
           {/* Elegant Badge */}
-          <div className="flex justify-center mb-8">
+            <div className="flex justify-center mb-8">
             <span 
               className="inline-block text-xs font-semibold px-4 py-2 rounded-full"
               style={{ 
@@ -89,7 +89,7 @@ const Index = () => {
               }}
             >
               Bilan en ligne certifié
-            </span>
+                </span>
           </div>
           
           {/* H1 Title - SEO Optimized */}
@@ -480,11 +480,11 @@ const Index = () => {
                   <picture>
                     <source srcSet="/images/result1.avif" type="image/avif" />
                     <source srcSet="/images/result1.webp" type="image/webp" />
-                    <img 
+                  <img 
                       src="/images/result1.webp" 
                     alt="Profil RIASEC et traits de personnalité"
-                      className="w-full h-auto rounded-xl shadow-sm"
-                    />
+                    className="w-full h-auto rounded-xl shadow-sm"
+                  />
                   </picture>
                 </div>
               </div>
@@ -525,11 +525,11 @@ const Index = () => {
                   <picture>
                     <source srcSet="/images/result2.avif" type="image/avif" />
                     <source srcSet="/images/result2.webp" type="image/webp" />
-                    <img 
+                  <img 
                       src="/images/result2.webp" 
                     alt="Radar des compétences et recommandations formations"
-                      className="w-full h-auto rounded-xl shadow-sm"
-                    />
+                    className="w-full h-auto rounded-xl shadow-sm"
+                  />
                   </picture>
                 </div>
               </div>
@@ -570,11 +570,11 @@ const Index = () => {
                   <picture>
                     <source srcSet="/images/result3.avif" type="image/avif" />
                     <source srcSet="/images/result3.webp" type="image/webp" />
-                    <img 
+                  <img 
                       src="/images/result3.webp" 
                     alt="Métiers correspondant au profil"
-                      className="w-full h-auto rounded-xl shadow-sm"
-                    />
+                    className="w-full h-auto rounded-xl shadow-sm"
+                  />
                   </picture>
                 </div>
               </div>
@@ -646,64 +646,64 @@ const Index = () => {
 
       {/* Pause bien-être Section - Neobrutalism Style */}
       <section className="py-16 px-4" style={{ background: 'linear-gradient(to bottom right, #FAF5FF, #FDF4FF)' }}>
-        <div className="max-w-6xl mx-auto">
+          <div className="max-w-6xl mx-auto">
           
           {/* Header */}
-          <div className="text-center mb-12">
+            <div className="text-center mb-12">
             <div className="inline-block mb-6 px-6 py-3 rounded-xl" style={{ background: '#FFFFFF', border: '3px solid #DDD6FE', boxShadow: '5px 5px 0 rgba(124, 58, 237, 0.15)' }}>
               <h2 className="text-2xl md:text-3xl font-black" style={{ color: '#7C3AED' }}>
                 🎨 Pause bien-être
-              </h2>
-            </div>
+                </h2>
+              </div>
             <p className="text-base md:text-lg max-w-3xl mx-auto leading-relaxed" style={{ color: '#6B21A8' }}>
-              <span className="font-semibold">Prends une vraie pause</span> • 
+                <span className="font-semibold">Prends une vraie pause</span> • 
               <span> Pose ton téléphone</span> • 
               <span> Reconnecte-toi à toi-même</span>
-            </p>
-          </div>
+              </p>
+            </div>
 
           {/* Content - Mobile First */}
           <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-12">
             
-            {/* Image du livre */}
+              {/* Image du livre */}
             <div className="w-full lg:w-1/2 lg:max-w-md">
               <div className="relative">
                 <div className="rounded-2xl overflow-hidden p-4" style={{ background: '#FFFFFF', border: '3px solid #DDD6FE', boxShadow: '8px 8px 0 rgba(124, 58, 237, 0.15)' }}>
-                  <img 
-                    src="/cover-fr.png" 
-                    alt="Cute & Cozy Worlds - Livre de coloriage pour la relaxation"
+                    <img 
+                      src="/cover-fr.png" 
+                      alt="Cute & Cozy Worlds - Livre de coloriage pour la relaxation"
                     className="w-full h-auto rounded-lg"
-                  />
-                </div>
+                    />
+                  </div>
                 <div className="absolute -top-3 -right-3 px-4 py-2 rounded-lg font-black text-xs" style={{ background: '#EC4899', color: '#FFFFFF', border: '2px solid #C026D3', boxShadow: '3px 3px 0 rgba(236, 72, 153, 0.2)' }}>
-                  NOUVEAU
+                    NOUVEAU
+                  </div>
                 </div>
               </div>
-            </div>
 
-            {/* Contenu textuel */}
+              {/* Contenu textuel */}
             <div className="w-full lg:w-1/2 text-center lg:text-left">
-              <div className="space-y-6">
+                <div className="space-y-6">
                 
                 <h3 className="text-2xl md:text-3xl font-black mb-4" style={{ color: '#7C3AED' }}>
-                  Cute & Cozy Worlds
-                </h3>
+                      Cute & Cozy Worlds
+                    </h3>
                 
                 <p className="text-base md:text-lg leading-relaxed mb-4" style={{ color: '#6B21A8' }}>
-                  <span className="font-semibold">Scientifiquement prouvé :</span> le coloriage réduit le stress de 68%, 
+                      <span className="font-semibold">Scientifiquement prouvé :</span> le coloriage réduit le stress de 68%, 
                   améliore la concentration et libère de la <span className="font-semibold" style={{ color: '#EC4899' }}>dopamine</span> - 
-                  l'hormone du bien-être.
-                </p>
+                      l'hormone du bien-être.
+                    </p>
                 
                 <p className="text-base leading-relaxed" style={{ color: '#7C3AED' }}>
-                  Un moment de <span className="font-semibold">créativité apaisante</span> pour ados, étudiants et adultes. 
-                  Parfait pour une <span className="font-semibold">hygiène mentale simple et efficace</span>.
-                </p>
+                      Un moment de <span className="font-semibold">créativité apaisante</span> pour ados, étudiants et adultes. 
+                      Parfait pour une <span className="font-semibold">hygiène mentale simple et efficace</span>.
+                    </p>
 
                 {/* CTA Button */}
                 <div className="mt-6">
                   <button 
-                    onClick={() => window.open('https://www.amazon.fr/dp/B0FHW8CJ92', '_blank')}
+                      onClick={() => window.open('https://www.amazon.fr/dp/B0FHW8CJ92', '_blank')}
                     className="px-8 py-4 font-bold text-base md:text-lg rounded-xl transition-all hover:translate-y-[-2px]"
                     style={{ 
                       background: 'linear-gradient(135deg, #EC4899 0%, #7C3AED 100%)',
@@ -717,22 +717,22 @@ const Index = () => {
                   <p className="text-sm mt-3" style={{ color: '#7C3AED' }}>
                     ✨ Livraison gratuite Amazon Prime
                   </p>
-                </div>
+                  </div>
 
                 {/* Tags */}
                 <div className="flex flex-wrap justify-center lg:justify-start gap-3 mt-6">
                   <span className="px-3 py-2 rounded-lg font-semibold text-sm" style={{ background: '#FAF5FF', border: '2px solid #7C3AED', color: '#7C3AED' }}>
                     Concentration
-                  </span>
+                    </span>
                   <span className="px-3 py-2 rounded-lg font-semibold text-sm" style={{ background: '#FAF5FF', border: '2px solid #7C3AED', color: '#7C3AED' }}>
                     Apaisement
-                  </span>
+                    </span>
                   <span className="px-3 py-2 rounded-lg font-semibold text-sm" style={{ background: '#FAF5FF', border: '2px solid #7C3AED', color: '#7C3AED' }}>
                     Créativité
-                  </span>
+                    </span>
                   <span className="px-3 py-2 rounded-lg font-semibold text-sm" style={{ background: '#FAF5FF', border: '2px solid #7C3AED', color: '#7C3AED' }}>
                     Pause digitale
-                  </span>
+                    </span>
                 </div>
                 
               </div>

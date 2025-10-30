@@ -1591,6 +1591,8 @@ function ResultsRiasec() {
 
   // Déterminer si c'est un profil pro (reconversion ou public)
   const isPro = bilanType === 'reconversion' || bilanType === 'public';
+  const storedName = (typeof window !== 'undefined' ? (localStorage.getItem('userName') || '') : '').trim();
+  const firstName = storedName ? storedName.split(' ')[0] : '';
 
   return (
     <div className="min-h-screen" style={{ background: isPro ? 'linear-gradient(to bottom right, #F5F1E8, #E8E5DC)' : 'linear-gradient(to bottom right, rgb(239 246 255), rgb(224 231 255))' }}>
@@ -1617,7 +1619,7 @@ function ResultsRiasec() {
                 height={400}
                 onError={(e) => {
                   // Fallback si l'image n'existe pas encore
-                  (e.target as HTMLImageElement).src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="400"%3E%3Crect fill="%236B8E9E" width="400" height="400"/%3E%3Ctext x="50%25" y="50%25" dominant-baseline="middle" text-anchor="middle" font-family="sans-serif" font-size="24" fill="%23ffffff"%3EVotre profil%3C/text%3E%3C/svg%3E';
+                  (e.target as HTMLImageElement).src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="400"%3E%3Crect fill="%236B8E9E" width="400" height="400"/%3E%3Ctext x="50%25" y="50%25" dominant-baseline="middle" text-anchor="middle" font-family="sans-serif" font-size="24" fill="%23ffffff"%3ETon profil%3C/text%3E%3C/svg%3E';
                 }}
                 />
               </picture>
@@ -1626,7 +1628,28 @@ function ResultsRiasec() {
             {/* Titre principal */}
             <div className="text-center mb-8">
               <h1 className="text-4xl md:text-5xl font-black mb-4" style={{ color: '#1A1A1A' }}>
-                Votre profil de personnalité professionnelle
+                {firstName ? (
+                  <>
+                    Le profil professionnel de{' '}
+                    <span
+                      className="inline-block px-2 rounded-md"
+                      style={{
+                        backgroundImage: 'linear-gradient(180deg, rgba(0,0,0,0) 70%, #FFF4E6 0)',
+                      }}
+                    >
+                      <span
+                        className="bg-clip-text text-transparent"
+                        style={{
+                          backgroundImage: 'linear-gradient(90deg, #E96A3C, #D4B16A)',
+                        }}
+                      >
+                        {firstName}
+                      </span>
+                    </span>
+                  </>
+                ) : (
+                  'Ton profil professionnel'
+                )}
               </h1>
               <p className="text-xl text-gray-700 font-medium mb-6 max-w-3xl mx-auto">
                 Basé sur la méthode RIASEC, reconnue dans les bilans de compétences.
@@ -1727,25 +1750,26 @@ function ResultsRiasec() {
                       border: '4px solid #1A1A1A',
                       boxShadow: '8px 8px 0 #1A1A1A',
                       background: '#FFFFFF',
-                      display: 'inline-block',
                       width: '100%',
                     }}
                     onTouchStart={handleTouchStart}
                     onTouchMove={handleTouchMove}
                     onTouchEnd={handleTouchEnd}
                   >
-                    <div style={{ position: 'relative' }}>
+                    <div style={{ position: 'relative', width: '100%', background: '#FFFFFF' }}>
                       {slideBaseNames.map((name, index) => (
-                        <picture key={`${name}-picture`} style={{ display: index === currentSlide ? 'block' : 'none' }} className={`${index === currentSlide ? 'block' : 'hidden'}`}>
+                        <picture
+                          key={`${name}-picture`}
+                          className={`${index === currentSlide ? 'relative opacity-100' : 'absolute inset-0 opacity-0'} transition-opacity duration-300`}
+                        >
                           <source srcSet={slidesAvif[index]} type="image/avif" />
                           <source srcSet={slidesWebp[index]} type="image/webp" />
                           <img
                             src={slidesWebp[index]}
-                            alt={`Page ${index + 1} de votre rapport Avenirea`}
+                            alt={`Page ${index + 1} de ton rapport Avenirea`}
                             className={`w-full h-auto`}
                             loading={index === 0 ? 'eager' : 'lazy'}
                             decoding="async"
-                            style={{ display: 'block' }}
                           />
                         </picture>
                       ))}
@@ -1870,7 +1894,7 @@ function ResultsRiasec() {
           </h2>
           {isPro && (
             <p className="text-gray-600 mb-6 text-sm italic">
-              Ce qui vous distingue dans votre manière de travailler et d'interagir.
+              Ce qui te distingue dans ta manière de travailler et d'interagir.
             </p>
           )}
           <div className="flex flex-wrap gap-3">
@@ -1911,10 +1935,10 @@ function ResultsRiasec() {
           <div className="text-center mb-10">
             {isPro ? (
               <div className="mb-6">
-                <h2 className="text-2xl font-black text-gray-900 mb-4">Votre profil de compétences professionnelles</h2>
+                <h2 className="text-2xl font-black text-gray-900 mb-4">Ton profil de compétences professionnelles</h2>
                 <div className="max-w-2xl mx-auto px-6 py-4" style={{ background: '#F5F1E8', border: '2px solid #1A1A1A', boxShadow: '4px 4px 0px #1A1A1A' }}>
                   <p className="text-sm text-gray-700 font-medium">
-                    Ce profil reflète votre style professionnel dominant. Il peut être approfondi lors du bilan complet.
+                    Ce profil reflète ton style professionnel dominant. Il peut être approfondi lors du bilan complet.
                   </p>
                 </div>
               </div>
@@ -2052,7 +2076,7 @@ function ResultsRiasec() {
           </h2>
           {isPro && (
             <p className="text-gray-600 mb-6 text-sm">
-              Ces pistes sont sélectionnées pour les adultes en reconversion, selon votre profil et vos motivations.
+              Ces pistes sont sélectionnées pour les adultes en reconversion, selon ton profil et tes motivations.
               <span className="block mt-2 font-semibold text-gray-700">Aperçu : 2 formations visibles sur {profile.formations?.length || 4}</span>
             </p>
           )}
@@ -2319,7 +2343,7 @@ function ResultsRiasec() {
             <Card className="mb-8" style={{ background: 'linear-gradient(135deg, #6B8E9E 0%, #5A7A8A 100%)', border: '3px solid #1A1A1A', boxShadow: '8px 8px 0px #1A1A1A' }}>
               <CardContent className="p-8 text-center text-white">
                 <h2 className="text-3xl font-black mb-6">
-                  Recevez votre bilan complet Avenirea
+                  Reçois ton bilan complet Avenirea
                 </h2>
                 
                 <div className="mb-6 inline-block px-8 py-4 bg-white text-gray-900 font-black text-4xl" style={{ border: '3px solid #1A1A1A', boxShadow: '6px 6px 0px rgba(0,0,0,0.3)' }}>
@@ -2333,19 +2357,19 @@ function ResultsRiasec() {
                 <div className="text-left max-w-lg mx-auto mb-8 space-y-3">
                   <div className="flex items-start gap-3">
                     <span className="text-green-300 font-bold mt-1">✓</span>
-                    <span className="font-medium">Un rapport personnalisé de <strong>12 pages</strong> sur votre profil et votre avenir professionnel</span>
+                    <span className="font-medium">Un rapport personnalisé de <strong>12 pages</strong> sur ton profil et ton avenir professionnel</span>
                   </div>
                   <div className="flex items-start gap-3">
                     <span className="text-green-300 font-bold mt-1">✓</span>
-                    <span className="font-medium">Votre profil complet RIASEC et ses interprétations détaillées</span>
+                    <span className="font-medium">Ton profil complet RIASEC et ses interprétations détaillées</span>
                   </div>
                   <div className="flex items-start gap-3">
                     <span className="text-green-300 font-bold mt-1">✓</span>
-                    <span className="font-medium">Les 6 métiers et formations les plus adaptés à votre profil</span>
+                    <span className="font-medium">Les 6 métiers et formations les plus adaptés à ton profil</span>
                   </div>
                   <div className="flex items-start gap-3">
                     <span className="text-green-300 font-bold mt-1">✓</span>
-                    <span className="font-medium">Un expert vous contacte par mail avec des conseils personnalisés sur votre situation</span>
+                    <span className="font-medium">Un expert te contacte par mail avec des conseils personnalisés sur ta situation</span>
                   </div>
                 </div>
 
@@ -2409,7 +2433,7 @@ function ResultsRiasec() {
                       </p>
                     </div>
                     <p className="text-white text-sm font-medium opacity-90">
-                      Découvrez le format et la qualité du rapport personnalisé que vous recevrez
+                      Découvre le format et la qualité du rapport personnalisé que tu recevras
                     </p>
                   </div>
 
@@ -2453,7 +2477,7 @@ function ResultsRiasec() {
                           <source srcSet={slidesWebp[currentSlide]} type="image/webp" />
                           <img
                             src={slidesWebp[currentSlide]}
-                            alt={`Page ${currentSlide + 1} de votre rapport Avenirea`}
+                            alt={`Page ${currentSlide + 1} de ton rapport Avenirea`}
                             className={`w-full h-auto block transition-opacity duration-300 ${
                               isTransitioning ? 'opacity-70' : 'opacity-100'
                             }`}
