@@ -316,8 +316,8 @@ const ReportExampleSection = () => {
           </button>
         </div>
 
-        {/* CTA Section - Below Slideshow - Sticky when carousel visible */}
-        <div className="mt-16 text-center py-4 z-30 md:sticky md:bottom-4" style={{ background: '#FAF8F4' }}>
+        {/* CTA Section - Below Slideshow */}
+        <div className="mt-16 text-center py-4" style={{ background: '#FAF8F4' }}>
           <h2 className="text-2xl md:text-3xl font-bold mb-4 md:mb-6" style={{ color: '#1A1A1A' }}>
             Prêt à découvrir ton profil ?
           </h2>
