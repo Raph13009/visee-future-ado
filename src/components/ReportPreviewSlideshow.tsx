@@ -134,17 +134,25 @@ const ReportPreviewSlideshow = ({ onProceedToPayment }: ReportPreviewSlideshowPr
               onTouchEnd={handleTouchEnd}
             >
               <div style={{ position: 'relative' }}>
-                {slides.map((src, index) => (
-                  <img
-                    key={src}
-                    src={src}
-                    alt={`Page ${index + 1} de votre rapport Avenirea`}
-                    className={`${index === currentSlide ? 'block' : 'hidden'} w-full h-auto`}
-                    loading={index === 0 ? 'eager' : 'lazy'}
-                    decoding="async"
-                    style={{ display: index === currentSlide ? 'block' : 'none' }}
-                  />
-                ))}
+                {slides.map((src, index) => {
+                  const base = src.split('/').pop() || '';
+                  const avif = `/images/optimised/${base.replace(/\.(png|jpg|jpeg)$/i, '.avif')}`;
+                  const webp = `/images/optimised/${base.replace(/\.(png|jpg|jpeg)$/i, '.webp')}`;
+                  return (
+                    <picture key={src} style={{ display: index === currentSlide ? 'block' : 'none' }} className={`${index === currentSlide ? 'block' : 'hidden'}`}>
+                      <source srcSet={avif} type="image/avif" />
+                      <source srcSet={webp} type="image/webp" />
+                      <img
+                        src={src}
+                        alt={`Page ${index + 1} de votre rapport Avenirea`}
+                        className={`w-full h-auto`}
+                        loading={index === 0 ? 'eager' : 'lazy'}
+                        decoding="async"
+                        style={{ display: 'block' }}
+                      />
+                    </picture>
+                  );
+                })}
               </div>
 
               {/* Page Indicator - Bottom Center */}
