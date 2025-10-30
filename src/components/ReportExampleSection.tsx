@@ -157,9 +157,12 @@ const ReportExampleSection = () => {
               onTouchMove={handleTouchMove}
               onTouchEnd={handleTouchEnd}
             >
-              <div style={{ position: 'relative' }}>
+              <div style={{ position: 'relative', width: '100%', background: '#FFFFFF' }}>
                 {slideBaseNames.map((name, index) => (
-                  <picture key={`${name}-picture`} style={{ display: index === currentSlide ? 'block' : 'none' }} className={`${index === currentSlide ? 'block' : 'hidden'}`}>
+                  <picture
+                    key={`${name}-picture`}
+                    className={`${index === currentSlide ? 'relative opacity-100' : 'absolute inset-0 opacity-0'} transition-opacity duration-300`}
+                  >
                     <source srcSet={slidesAvif[index]} type="image/avif" />
                     <source srcSet={slidesWebp[index]} type="image/webp" />
                     <img
@@ -168,7 +171,6 @@ const ReportExampleSection = () => {
                       className={`w-full h-auto`}
                       loading={index === 0 ? 'eager' : 'lazy'}
                       decoding="async"
-                      style={{ display: 'block' }}
                     />
                   </picture>
                 ))}
