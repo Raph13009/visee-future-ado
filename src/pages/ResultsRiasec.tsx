@@ -1187,6 +1187,7 @@ function ResultsRiasec() {
   const [profile, setProfile] = useState<RiasecProfile | null>(null);
   const [loading, setLoading] = useState(true);
   const [bilanType, setBilanType] = useState<string>('scolaire');
+  const [firstName, setFirstName] = useState<string>('');
   
   // États pour la version freemium
   const [isUnlocked, setIsUnlocked] = useState(false);
@@ -1421,6 +1422,36 @@ function ResultsRiasec() {
     }
     
     setLoading(false);
+
+    // Fetch user's first name from DB (riasec_results.name)
+    (async () => {
+      try {
+        let resolvedName = '';
+        const riasecResultId = typeof window !== 'undefined' ? localStorage.getItem('riasecResultId') : null;
+        if (riasecResultId) {
+          const { data, error } = await supabase
+            .from('riasec_results')
+            .select('name')
+            .eq('id', riasecResultId)
+            .single();
+          if (!error && data && data.name) {
+            resolvedName = sanitizeName(String(data.name));
+          }
+        }
+        if (!resolvedName) {
+          const { data, error } = await supabase
+            .from('riasec_results')
+            .select('name, id')
+            .eq('dominant_profile', profileCode)
+            .order('id', { ascending: false })
+            .limit(1);
+          if (!error && data && data.length > 0 && data[0].name) {
+            resolvedName = sanitizeName(String(data[0].name));
+          }
+        }
+        if (resolvedName) setFirstName(resolvedName);
+      } catch (_) {}
+    })();
   }, [searchParams, navigate]);
 
   const RadarChart = ({ scores }: { scores: any }) => {
@@ -1591,8 +1622,17 @@ function ResultsRiasec() {
 
   // Déterminer si c'est un profil pro (reconversion ou public)
   const isPro = bilanType === 'reconversion' || bilanType === 'public';
-  const storedName = (typeof window !== 'undefined' ? (localStorage.getItem('userName') || '') : '').trim();
-  const firstName = storedName ? storedName.split(' ')[0] : '';
+
+  const sanitizeName = (name: string): string => {
+    const trimmed = (name || '').trim().replace(/^['"\s]+|['"\s]+$/g, '');
+    if (!trimmed) return '';
+    const first = trimmed.split(/\s+/)[0];
+    const onlyLetters = first.normalize('NFD').replace(/[^\p{L}-]/gu, '');
+    if (!onlyLetters) return '';
+    return onlyLetters.charAt(0).toUpperCase() + onlyLetters.slice(1);
+  };
+
+  // removed standalone effect to avoid hook order shift; name will be fetched in the profile-loading effect below
 
   return (
     <div className="min-h-screen" style={{ background: isPro ? 'linear-gradient(to bottom right, #F5F1E8, #E8E5DC)' : 'linear-gradient(to bottom right, rgb(239 246 255), rgb(224 231 255))' }}>
@@ -1633,15 +1673,11 @@ function ResultsRiasec() {
                     Le profil professionnel de{' '}
                     <span
                       className="inline-block px-2 rounded-md"
-                      style={{
-                        backgroundImage: 'linear-gradient(180deg, rgba(0,0,0,0) 70%, #FFF4E6 0)',
-                      }}
+                      style={{ backgroundImage: 'linear-gradient(180deg, rgba(0,0,0,0) 70%, #FFF4E6 0)' }}
                     >
                       <span
                         className="bg-clip-text text-transparent"
-                        style={{
-                          backgroundImage: 'linear-gradient(90deg, #E96A3C, #D4B16A)',
-                        }}
+                        style={{ backgroundImage: 'linear-gradient(90deg, #E96A3C, #D4B16A)' }}
                       >
                         {firstName}
                       </span>
