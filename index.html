@@ -87,49 +87,79 @@
     </noscript>
     <script type="module" src="/src/main.tsx"></script>
     
-    <!-- Axeptio Cookie Consent -->
+    <!-- Axeptio Cookie Consent (defensive) -->
     <script>
-      window.axeptioSettings = {
-        clientId: "68f623dd934072cc30bb9c1c",
-        cookiesVersion: "5cf124e8-f322-4e03-a63f-1193c2103b73",
-      };
+      (function() {
+        try {
+          // Settings
+          window.axeptioSettings = {
+            clientId: "68f623dd934072cc30bb9c1c",
+            cookiesVersion: "5cf124e8-f322-4e03-a63f-1193c2103b73",
+          };
 
-      (function (d, s) {
-        var t = d.getElementsByTagName(s)[0],
-          e = d.createElement(s);
-        e.async = true;
-        e.src = "//static.axept.io/sdk.js";
-        t.parentNode.insertBefore(e, t);
-      })(document, "script");
+          // Load SDK with guard
+          (function (d, s) {
+            var t = d.getElementsByTagName(s)[0],
+              e = d.createElement(s);
+            e.async = true;
+            e.src = "//static.axept.io/sdk.js";
+            e.onerror = function() {
+              // If SDK fails to load, ensure analytics is denied by default and continue
+              if (typeof gtag === 'function') {
+                try { gtag('consent', 'update', { 'analytics_storage': 'denied' }); } catch (e) {}
+              }
+            };
+            t.parentNode.insertBefore(e, t);
+          })(document, "script");
+
+          // Hard timeout fallback: if Axeptio never calls back, don't block the app
+          setTimeout(function() {
+            if (typeof gtag === 'function') {
+              try { gtag('consent', 'update', { 'analytics_storage': 'denied' }); } catch (e) {}
+            }
+          }, 3000);
+        } catch (e) {
+          // Total failure fallback
+          if (typeof gtag === 'function') {
+            try { gtag('consent', 'update', { 'analytics_storage': 'denied' }); } catch (e2) {}
+          }
+        }
+      })();
     </script>
 
-    <!-- Axeptio Consent Management for GA4 + Clarity -->
+    <!-- Axeptio Consent Management for GA4 + Clarity (defensive) -->
     <script>
-      window._axcb = window._axcb || [];
-      window._axcb.push(function (sdk) {
-        sdk.on("cookies:complete", function (choices) {
-          // Si l'utilisateur accepte les cookies analytiques
-          if (choices["google-analytics"]) {
-            // activer GA4
-            gtag('consent', 'update', {
-              'analytics_storage': 'granted'
-            });
-          } else {
-            gtag('consent', 'update', {
-              'analytics_storage': 'denied'
-            });
-          }
+      (function() {
+        try {
+          window._axcb = window._axcb || [];
+          window._axcb.push(function (sdk) {
+            if (!sdk || !sdk.on) return; // Guard if SDK not ready
+            sdk.on("cookies:complete", function (choices) {
+              try {
+                var analyticsAccepted = choices && choices["google-analytics"]; 
+                if (typeof gtag === 'function') {
+                  gtag('consent', 'update', {
+                    'analytics_storage': analyticsAccepted ? 'granted' : 'denied'
+                  });
+                }
+              } catch(e) {}
 
-          // Si l'utilisateur accepte Clarity
-          if (choices["microsoft-clarity"]) {
-            (function(c,l,a,r,i,t,y){
-              c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-              t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/tt42ie20jr";
-              y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-            })(window, document, "clarity", "script", "tt42ie20jr");
-          }
-        });
-      });
+              try {
+                var clarityAccepted = choices && choices["microsoft-clarity"]; 
+                if (clarityAccepted) {
+                  (function(c,l,a,r,i,t,y){
+                    c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+                    t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/tt42ie20jr";
+                    y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+                  })(window, document, "clarity", "script", "tt42ie20jr");
+                }
+              } catch(e) {}
+            });
+          });
+        } catch(e) {
+          // No-op if Axeptio flow fails
+        }
+      })();
     </script>
   </body>
 </html>
