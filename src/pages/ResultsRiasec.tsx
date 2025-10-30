@@ -1203,8 +1203,9 @@ function ResultsRiasec() {
   const slideBaseNames = Array.from({ length: 12 }, (_, i) => 
     `Presentation - Votre Avenir Commence Ici-${String(i + 1).padStart(2, '0')}`
   );
-  const slidesAvif = slideBaseNames.map((name) => `/images/optimised/${name}.avif`);
-  const slidesWebp = slideBaseNames.map((name) => `/images/optimised/${name}.webp`);
+  // Slides are in /images/Presentation-Votre-Avenir as AVIF/WEBP
+  const slidesAvif = slideBaseNames.map((name) => `/images/Presentation-Votre-Avenir/${name}.avif`);
+  const slidesWebp = slideBaseNames.map((name) => `/images/Presentation-Votre-Avenir/${name}.webp`);
   
   const minSwipeDistance = 50;
   
@@ -1220,7 +1221,7 @@ function ResultsRiasec() {
   const handleTouchEnd = () => {
     if (!touchStartX.current || !touchEndX.current) return;
     const distance = touchStartX.current - touchEndX.current;
-    if (distance > minSwipeDistance && currentSlide < slides.length - 1) {
+    if (distance > minSwipeDistance && currentSlide < slideBaseNames.length - 1) {
       goToSlide(currentSlide + 1);
     }
     if (distance < -minSwipeDistance && currentSlide > 0) {
@@ -1229,7 +1230,7 @@ function ResultsRiasec() {
   };
   
   const goToSlide = (index: number) => {
-    if (index < 0 || index >= slides.length || isTransitioning) return;
+    if (index < 0 || index >= slideBaseNames.length || isTransitioning) return;
     setIsTransitioning(true);
     setCurrentSlide(index);
     setTimeout(() => setIsTransitioning(false), 300);
@@ -1602,12 +1603,15 @@ function ResultsRiasec() {
           <div className="mb-16">
             {/* Image hero sobre - Format petit et compact */}
             <div className="relative mb-8 rounded-lg overflow-hidden neo-border max-w-xs mx-auto" style={{ border: '3px solid #1A1A1A', boxShadow: '6px 6px 0px #1A1A1A' }}>
-              <img 
-                src="/worker.png" 
+              <picture>
+                <source srcSet="/images/worker.avif" type="image/avif" />
+                <source srcSet="/images/worker.webp" type="image/webp" />
+                <img 
+                  src="/images/worker.webp" 
                 alt="Professionnel en réflexion"
                 className="w-full aspect-square object-cover object-center"
                 loading="eager"
-                fetchPriority="high"
+                  fetchpriority="high"
                 decoding="async"
                 width={400}
                 height={400}
@@ -1615,7 +1619,8 @@ function ResultsRiasec() {
                   // Fallback si l'image n'existe pas encore
                   (e.target as HTMLImageElement).src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="400"%3E%3Crect fill="%236B8E9E" width="400" height="400"/%3E%3Ctext x="50%25" y="50%25" dominant-baseline="middle" text-anchor="middle" font-family="sans-serif" font-size="24" fill="%23ffffff"%3EVotre profil%3C/text%3E%3C/svg%3E';
                 }}
-              />
+                />
+              </picture>
             </div>
 
             {/* Titre principal */}
@@ -1730,24 +1735,20 @@ function ResultsRiasec() {
                     onTouchEnd={handleTouchEnd}
                   >
                     <div style={{ position: 'relative' }}>
-                      {slideBaseNames.map((_, index) => {
-                        const avif = slidesAvif[index];
-                        const webp = slidesWebp[index];
-                        return (
-                          <picture key={webp} style={{ display: index === currentSlide ? 'block' : 'none' }} className={`${index === currentSlide ? 'block' : 'hidden'}`}>
-                            <source srcSet={avif} type="image/avif" />
-                            <source srcSet={webp} type="image/webp" />
-                            <img
-                              src={webp}
-                              alt={`Page ${index + 1} de votre rapport Avenirea`}
-                              className={`w-full h-auto`}
-                              loading={index === 0 ? 'eager' : 'lazy'}
-                              decoding="async"
-                              style={{ display: 'block' }}
-                            />
-                          </picture>
-                        );
-                      })}
+                      {slideBaseNames.map((name, index) => (
+                        <picture key={`${name}-picture`} style={{ display: index === currentSlide ? 'block' : 'none' }} className={`${index === currentSlide ? 'block' : 'hidden'}`}>
+                          <source srcSet={slidesAvif[index]} type="image/avif" />
+                          <source srcSet={slidesWebp[index]} type="image/webp" />
+                          <img
+                            src={slidesWebp[index]}
+                            alt={`Page ${index + 1} de votre rapport Avenirea`}
+                            className={`w-full h-auto`}
+                            loading={index === 0 ? 'eager' : 'lazy'}
+                            decoding="async"
+                            style={{ display: 'block' }}
+                          />
+                        </picture>
+                      ))}
                     </div>
 
                     {/* Page Indicator */}
@@ -1761,7 +1762,7 @@ function ResultsRiasec() {
                         }}
                       >
                         <p className="text-xs font-semibold" style={{ color: '#6B7280' }}>
-                          Page {currentSlide + 1} / {slides.length}
+                          Page {currentSlide + 1} / {slideBaseNames.length}
                         </p>
                       </div>
                     </div>
@@ -1770,7 +1771,7 @@ function ResultsRiasec() {
                   {/* Mobile Navigation */}
                   <div className="md:hidden mt-4">
                     <div className="flex justify-center gap-2 mb-3">
-                      {slides.map((_, index) => (
+                      {slideBaseNames.map((_, index) => (
                         <button
                           key={index}
                           onClick={() => goToSlide(index)}
@@ -1806,7 +1807,7 @@ function ResultsRiasec() {
                       
                       <button
                         onClick={handleNextSlide}
-                        disabled={currentSlide === slides.length - 1}
+            disabled={currentSlide === slideBaseNames.length - 1}
                         className="flex w-10 h-10 items-center justify-center rounded-xl transition-all duration-300 active:translate-x-[2px] disabled:opacity-30 disabled:cursor-not-allowed"
                         style={{
                           background: '#FFFFFF',
@@ -1827,7 +1828,7 @@ function ResultsRiasec() {
                 {/* Right Arrow - Desktop Only */}
                 <button
                   onClick={handleNextSlide}
-                  disabled={currentSlide === slides.length - 1}
+                  disabled={currentSlide === slideBaseNames.length - 1}
                   className="hidden md:flex flex-shrink-0 w-12 h-12 items-center justify-center rounded-xl transition-all duration-300 hover:translate-x-[3px] disabled:opacity-30 disabled:cursor-not-allowed"
                   style={{
                     background: '#FFFFFF',
@@ -2368,14 +2369,19 @@ function ResultsRiasec() {
                           border: '2px solid rgba(255, 255, 255, 0.5)',
                         }}
                       >
-                        <OptimizedImage
-                          src="/seo/woman-working-suit.jpg"
-                          alt="Jennifer"
-                          className="w-full h-full"
-                          width={60}
-                          height={60}
-                          priority={false}
-                        />
+                        <picture>
+                          <source srcSet="/images/woman-working-suit.avif" type="image/avif" />
+                          <source srcSet="/images/woman-working-suit.webp" type="image/webp" />
+                          <img
+                            src="/images/woman-working-suit.webp"
+                            alt="Jennifer"
+                            className="w-full h-full object-cover"
+                            width={60}
+                            height={60}
+                            loading="lazy"
+                            decoding="async"
+                          />
+                        </picture>
                       </div>
                     </div>
                     <div className="flex-1">
@@ -2442,16 +2448,20 @@ function ResultsRiasec() {
                         onTouchMove={handleTouchMove}
                         onTouchEnd={handleTouchEnd}
                       >
-                        <img
-                          src={slides[currentSlide]}
-                          alt={`Page ${currentSlide + 1} de votre rapport Avenirea`}
-                          className={`w-full h-auto block transition-opacity duration-300 ${
-                            isTransitioning ? 'opacity-70' : 'opacity-100'
-                          }`}
-                          loading={currentSlide === 0 ? 'eager' : 'lazy'}
-                          decoding="async"
-                          style={{ display: 'block' }}
-                        />
+                        <picture>
+                          <source srcSet={slidesAvif[currentSlide]} type="image/avif" />
+                          <source srcSet={slidesWebp[currentSlide]} type="image/webp" />
+                          <img
+                            src={slidesWebp[currentSlide]}
+                            alt={`Page ${currentSlide + 1} de votre rapport Avenirea`}
+                            className={`w-full h-auto block transition-opacity duration-300 ${
+                              isTransitioning ? 'opacity-70' : 'opacity-100'
+                            }`}
+                            loading={currentSlide === 0 ? 'eager' : 'lazy'}
+                            decoding="async"
+                            style={{ display: 'block' }}
+                          />
+                        </picture>
 
                         {/* Page Indicator */}
                         <div className="absolute bottom-3 left-1/2 -translate-x-1/2 z-10">
@@ -2463,9 +2473,9 @@ function ResultsRiasec() {
                               boxShadow: '2px 2px 0 rgba(0,0,0,0.1)',
                             }}
                           >
-                            <p className="text-xs font-semibold" style={{ color: '#6B7280' }}>
-                              Page {currentSlide + 1} / {slides.length}
-                            </p>
+                        <p className="text-xs font-semibold" style={{ color: '#6B7280' }}>
+                          Page {currentSlide + 1} / {slideBaseNames.length}
+                        </p>
                           </div>
                         </div>
                       </div>
@@ -2473,7 +2483,7 @@ function ResultsRiasec() {
                       {/* Mobile Navigation */}
                       <div className="md:hidden mt-4">
                         <div className="flex justify-center gap-2 mb-3">
-                          {slides.map((_, index) => (
+                      {slideBaseNames.map((_, index) => (
                             <button
                               key={index}
                               onClick={() => goToSlide(index)}
@@ -2509,7 +2519,7 @@ function ResultsRiasec() {
                           
                           <button
                             onClick={handleNextSlide}
-                            disabled={currentSlide === slides.length - 1}
+                        disabled={currentSlide === slideBaseNames.length - 1}
                             className="flex w-10 h-10 items-center justify-center rounded-xl transition-all duration-300 active:translate-x-[2px] disabled:opacity-20 disabled:cursor-not-allowed"
                             style={{
                               background: 'rgba(255, 255, 255, 0.9)',
@@ -2530,7 +2540,7 @@ function ResultsRiasec() {
                     {/* Right Arrow - Desktop Only */}
                     <button
                       onClick={handleNextSlide}
-                      disabled={currentSlide === slides.length - 1}
+            disabled={currentSlide === slideBaseNames.length - 1}
                       className="hidden md:flex flex-shrink-0 w-12 h-12 items-center justify-center rounded-xl transition-all duration-300 hover:translate-x-[3px] disabled:opacity-20 disabled:cursor-not-allowed"
                       style={{
                         background: 'rgba(255, 255, 255, 0.9)',

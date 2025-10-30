@@ -120,15 +120,19 @@ const ReportPreviewSection = () => {
                       border: '2px solid #D9D2B6',
                     }}
                   >
-                    <img
-                      src="/report-av.png"
-                      alt="Exemple de rapport Avenirea"
-                      className="w-full h-auto"
-                      width={550}
-                      height={733}
-                      loading="eager"
-                      decoding="async"
-                    />
+                    <picture>
+                      <source srcSet="/images/report-av.avif" type="image/avif" />
+                      <source srcSet="/images/report-av.webp" type="image/webp" />
+                      <img
+                        src="/images/report-av.webp"
+                        alt="Exemple de rapport Avenirea"
+                        className="w-full h-auto"
+                        width={550}
+                        height={733}
+                        loading="eager"
+                        decoding="async"
+                      />
+                    </picture>
                   </div>
                 </div>
 
@@ -146,19 +150,23 @@ const ReportPreviewSection = () => {
 
               {/* Mobile: Portrait of woman superposed on bottom right */}
               <div className="md:hidden absolute bottom-0 right-0 z-20" style={{ transform: 'translate(20px, 20px)' }}>
-                <img
-                  src="/woman-lp.png"
-                  alt="Professionnelle en réflexion sur son avenir"
-                  className="w-40 h-auto"
-                  width={160}
-                  height={200}
-                  loading="eager"
-                  decoding="async"
-                  style={{
-                    filter: 'drop-shadow(4px 4px 0 rgba(0,0,0,0.15))',
-                    transform: 'rotate(5deg)',
-                  }}
-                />
+                <picture>
+                  <source srcSet="/images/woman-lp.avif" type="image/avif" />
+                  <source srcSet="/images/woman-lp.webp" type="image/webp" />
+                  <img
+                    src="/images/woman-lp.webp"
+                    alt="Professionnelle en réflexion sur son avenir"
+                    className="w-40 h-auto"
+                    width={160}
+                    height={200}
+                    loading="eager"
+                    decoding="async"
+                    style={{
+                      filter: 'drop-shadow(4px 4px 0 rgba(0,0,0,0.15))',
+                      transform: 'rotate(5deg)',
+                    }}
+                  />
+                </picture>
               </div>
             </div>
           </div>
@@ -188,15 +196,19 @@ const ReportPreviewSection = () => {
                     border: '2px solid #1A1A1A',
                   }}
                 >
-                  <img
-                    src="/woman-lp.png"
-                    alt="Professionnelle en réflexion sur son avenir"
-                    className="w-full h-auto"
-                    width={600}
-                    height={750}
-                    loading="eager"
-                    decoding="async"
-                  />
+                  <picture>
+                    <source srcSet="/images/woman-lp.avif" type="image/avif" />
+                    <source srcSet="/images/woman-lp.webp" type="image/webp" />
+                    <img
+                      src="/images/woman-lp.webp"
+                      alt="Professionnelle en réflexion sur son avenir"
+                      className="w-full h-auto"
+                      width={600}
+                      height={750}
+                      loading="eager"
+                      decoding="async"
+                    />
+                  </picture>
                 </div>
               </div>
             </div>

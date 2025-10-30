@@ -112,14 +112,19 @@ const Index = () => {
       <section className="bilan-section">
         <div className="bilan-grid">
           <div className="bilan-card">
-            <OptimizedImage 
-              src="/scolar.png" 
-              alt="Bilan d'orientation scolaire"
-              className="bilan-card-image"
-              width={400}
-              height={300}
-              priority={false}
-            />
+            <picture>
+              <source srcSet="/images/scolar.avif" type="image/avif" />
+              <source srcSet="/images/scolar.webp" type="image/webp" />
+              <img
+                src="/images/scolar.webp"
+                alt="Bilan d'orientation scolaire"
+                className="bilan-card-image"
+                width={400}
+                height={300}
+                loading="lazy"
+                decoding="async"
+              />
+            </picture>
             <div className="bilan-card-content">
               <h3 className="bilan-card-title">
                 Bilan d'orientation scolaire
@@ -137,14 +142,19 @@ const Index = () => {
           </div>
 
           <div className="bilan-card">
-            <OptimizedImage 
-              src="/professional.png" 
-              alt="Bilan de compétences — reconversion professionnelle"
-              className="bilan-card-image"
-              width={400}
-              height={300}
-              priority={false}
-            />
+            <picture>
+              <source srcSet="/images/professional.avif" type="image/avif" />
+              <source srcSet="/images/professional.webp" type="image/webp" />
+              <img
+                src="/images/professional.webp"
+                alt="Bilan de compétences — reconversion professionnelle"
+                className="bilan-card-image"
+                width={400}
+                height={300}
+                loading="lazy"
+                decoding="async"
+              />
+            </picture>
             <div className="bilan-card-content">
               <h3 className="bilan-card-title">
                 Bilan de compétences — reconversion professionnelle
@@ -162,14 +172,19 @@ const Index = () => {
           </div>
 
           <div className="bilan-card">
-            <OptimizedImage 
-              src="/other.png" 
-              alt="Bilan de compétences tous publics"
-              className="bilan-card-image"
-              width={400}
-              height={300}
-              priority={false}
-            />
+            <picture>
+              <source srcSet="/images/other.avif" type="image/avif" />
+              <source srcSet="/images/other.webp" type="image/webp" />
+              <img
+                src="/images/other.webp"
+                alt="Bilan de compétences tous publics"
+                className="bilan-card-image"
+                width={400}
+                height={300}
+                loading="lazy"
+                decoding="async"
+              />
+            </picture>
             <div className="bilan-card-content">
               <h3 className="bilan-card-title">
                 Bilan de compétences tous publics
@@ -223,14 +238,19 @@ const Index = () => {
                       boxShadow: '4px 4px 0 rgba(0,0,0,0.1)'
                     }}
                   >
-                    <OptimizedImage
-                      src="/seo/woman-working-suit.jpg"
-                      alt="Jennifer, ex-UX designer devenue professeure documentaliste"
-                      className="w-full h-full"
-                      width={120}
-                      height={120}
-                      priority={false}
-                    />
+                    <picture>
+                      <source srcSet="/images/woman-working-suit.avif" type="image/avif" />
+                      <source srcSet="/images/woman-working-suit.webp" type="image/webp" />
+                      <img
+                        src="/images/woman-working-suit.webp"
+                        alt="Jennifer, ex-UX designer devenue professeure documentaliste"
+                        className="w-full h-full object-cover"
+                        width={120}
+                        height={120}
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </picture>
                   </div>
                 </div>
 
@@ -299,14 +319,19 @@ const Index = () => {
             <div className="flex flex-col md:flex-row items-center gap-8 md:gap-12">
               <div className="w-full md:w-1/2">
                 <div className="rounded-2xl overflow-hidden" style={{ border: '3px solid #1A1A1A', boxShadow: '6px 6px 0px rgba(0,0,0,0.15)' }}>
-                  <OptimizedImage 
-                    src="/seo/reconversion.jpg" 
-                    alt="Reconversion professionnelle"
-                    className="w-full h-64 md:h-80"
-                    width={800}
-                    height={600}
-                    priority={false}
-                  />
+                  <picture>
+                    <source srcSet="/images/reconversion.avif" type="image/avif" />
+                    <source srcSet="/images/reconversion.webp" type="image/webp" />
+                    <img
+                      src="/images/reconversion.webp"
+                      alt="Reconversion professionnelle"
+                      className="w-full h-64 md:h-80 object-cover"
+                      width={800}
+                      height={600}
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </picture>
                 </div>
               </div>
               <div className="w-full md:w-1/2">
@@ -329,14 +354,19 @@ const Index = () => {
             <div className="flex flex-col md:flex-row-reverse items-center gap-8 md:gap-12">
               <div className="w-full md:w-1/2">
                 <div className="rounded-2xl overflow-hidden" style={{ border: '3px solid #1A1A1A', boxShadow: '6px 6px 0px rgba(0,0,0,0.15)' }}>
-                  <OptimizedImage 
-                    src="/seo/bilan.jpg" 
-                    alt="Bilan de compétences"
-                    className="w-full h-64 md:h-80"
-                    width={800}
-                    height={600}
-                    priority={false}
-                  />
+                  <picture>
+                    <source srcSet="/images/woman-working-field.avif" type="image/avif" />
+                    <source srcSet="/images/woman-working-field.webp" type="image/webp" />
+                    <img
+                      src="/images/woman-working-field.webp"
+                      alt="Bilan de compétences"
+                      className="w-full h-64 md:h-80 object-cover"
+                      width={800}
+                      height={600}
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </picture>
                 </div>
               </div>
               <div className="w-full md:w-1/2">
@@ -359,14 +389,19 @@ const Index = () => {
             <div className="flex flex-col md:flex-row items-center gap-8 md:gap-12">
               <div className="w-full md:w-1/2">
                 <div className="rounded-2xl overflow-hidden" style={{ border: '3px solid #1A1A1A', boxShadow: '6px 6px 0px rgba(0,0,0,0.15)' }}>
-                  <OptimizedImage 
-                    src="/seo/orientation.jpg" 
-                    alt="Orientation professionnelle"
-                    className="w-full h-64 md:h-80"
-                    width={800}
-                    height={600}
-                    priority={false}
-                  />
+                  <picture>
+                    <source srcSet="/images/woman-working-haircut.avif" type="image/avif" />
+                    <source srcSet="/images/woman-working-haircut.webp" type="image/webp" />
+                    <img
+                      src="/images/woman-working-haircut.webp"
+                      alt="Orientation professionnelle"
+                      className="w-full h-64 md:h-80 object-cover"
+                      width={800}
+                      height={600}
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </picture>
                 </div>
               </div>
               <div className="w-full md:w-1/2">
@@ -442,11 +477,15 @@ const Index = () => {
               
               <div className="flex-1 lg:max-w-lg">
                 <div className="rounded-2xl overflow-hidden bg-gradient-to-br from-gray-100 to-gray-200 p-6 shadow-lg">
-                  <img 
-                    src="/result1.png" 
+                  <picture>
+                    <source srcSet="/images/result1.avif" type="image/avif" />
+                    <source srcSet="/images/result1.webp" type="image/webp" />
+                    <img 
+                      src="/images/result1.webp" 
                     alt="Profil RIASEC et traits de personnalité"
-                    className="w-full h-auto rounded-xl shadow-sm"
-                  />
+                      className="w-full h-auto rounded-xl shadow-sm"
+                    />
+                  </picture>
                 </div>
               </div>
               
@@ -483,11 +522,15 @@ const Index = () => {
               
               <div className="flex-1 lg:max-w-lg">
                 <div className="rounded-2xl overflow-hidden bg-gradient-to-br from-gray-100 to-gray-200 p-6 shadow-lg">
-                  <img 
-                    src="/result2.png" 
+                  <picture>
+                    <source srcSet="/images/result2.avif" type="image/avif" />
+                    <source srcSet="/images/result2.webp" type="image/webp" />
+                    <img 
+                      src="/images/result2.webp" 
                     alt="Radar des compétences et recommandations formations"
-                    className="w-full h-auto rounded-xl shadow-sm"
-                  />
+                      className="w-full h-auto rounded-xl shadow-sm"
+                    />
+                  </picture>
                 </div>
               </div>
               
@@ -524,11 +567,15 @@ const Index = () => {
               
               <div className="flex-1 lg:max-w-lg">
                 <div className="rounded-2xl overflow-hidden bg-gradient-to-br from-gray-100 to-gray-200 p-6 shadow-lg">
-                  <img 
-                    src="/result3.png" 
+                  <picture>
+                    <source srcSet="/images/result3.avif" type="image/avif" />
+                    <source srcSet="/images/result3.webp" type="image/webp" />
+                    <img 
+                      src="/images/result3.webp" 
                     alt="Métiers correspondant au profil"
-                    className="w-full h-auto rounded-xl shadow-sm"
-                  />
+                      className="w-full h-auto rounded-xl shadow-sm"
+                    />
+                  </picture>
                 </div>
               </div>
               
