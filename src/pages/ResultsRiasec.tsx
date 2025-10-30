@@ -1611,7 +1611,7 @@ function ResultsRiasec() {
                 alt="Professionnel en réflexion"
                 className="w-full aspect-square object-cover object-center"
                 loading="eager"
-                  fetchpriority="high"
+                  fetchPriority="high"
                 decoding="async"
                 width={400}
                 height={400}
@@ -1855,7 +1855,7 @@ function ResultsRiasec() {
                 Télécharger mon rapport
               </Button>
               <p className="text-sm mt-4 font-semibold text-gray-600">
-                Paiement sécurisé • Accès immédiat • Satisfait ou remboursé
+                Paiement sécurisé • Accès sous 48h • Satisfait ou remboursé
               </p>
             </div>
             </CardContent>
@@ -2566,7 +2566,7 @@ function ResultsRiasec() {
                 </Button>
                 
                 <p className="text-sm mt-4 font-semibold text-green-200">
-                  Paiement sécurisé • Accès immédiat • Satisfait ou remboursé
+                  Paiement sécurisé • Accès sous 48h • Satisfait ou remboursé
                 </p>
               </CardContent>
             </Card>
@@ -2658,7 +2658,7 @@ function ResultsRiasec() {
             </Button>
             
             <p className="text-emerald-200 text-xs sm:text-sm mt-3 font-semibold">
-              ⚡ Paiement sécurisé • Accès immédiat • Satisfait ou remboursé
+              ⚡ Paiement sécurisé • Accès sous 48h • Satisfait ou remboursé
             </p>
           </CardContent>
         </Card>
