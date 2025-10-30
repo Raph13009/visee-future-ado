@@ -19,8 +19,9 @@ const ReportExampleSection = () => {
   const slideBaseNames = Array.from({ length: 12 }, (_, i) => 
     `Presentation - Votre Avenir Commence Ici-${String(i + 1).padStart(2, '0')}`
   );
-  const slidesAvif = slideBaseNames.map((name) => `/images/optimised/${name}.avif`);
-  const slidesWebp = slideBaseNames.map((name) => `/images/optimised/${name}.webp`);
+  // Slides are in /images/Presentation-Votre-Avenir as AVIF/WEBP
+  const slidesAvif = slideBaseNames.map((name) => `/images/Presentation-Votre-Avenir/${name}.avif`);
+  const slidesWebp = slideBaseNames.map((name) => `/images/Presentation-Votre-Avenir/${name}.webp`);
 
   const minSwipeDistance = 50;
 
@@ -38,7 +39,7 @@ const ReportExampleSection = () => {
     
     const distance = touchStartX.current - touchEndX.current;
     
-    if (distance > minSwipeDistance && currentSlide < slides.length - 1) {
+    if (distance > minSwipeDistance && currentSlide < slideBaseNames.length - 1) {
       goToSlide(currentSlide + 1);
     }
     if (distance < -minSwipeDistance && currentSlide > 0) {
@@ -47,7 +48,7 @@ const ReportExampleSection = () => {
   };
 
   const goToSlide = (index: number) => {
-    if (index < 0 || index >= slides.length || isTransitioning) return;
+    if (index < 0 || index >= slideBaseNames.length || isTransitioning) return;
     setIsTransitioning(true);
     setCurrentSlide(index);
     setTimeout(() => setIsTransitioning(false), 300);
@@ -157,24 +158,20 @@ const ReportExampleSection = () => {
               onTouchEnd={handleTouchEnd}
             >
               <div style={{ position: 'relative' }}>
-                {slideBaseNames.map((_, index) => {
-                  const avif = slidesAvif[index];
-                  const webp = slidesWebp[index];
-                  return (
-                    <picture key={src} style={{ display: index === currentSlide ? 'block' : 'none' }} className={`${index === currentSlide ? 'block' : 'hidden'}`}>
-                      <source srcSet={avif} type="image/avif" />
-                      <source srcSet={webp} type="image/webp" />
-                      <img
-                        src={webp}
-                        alt={`Slide ${index + 1} du rapport Avenirea`}
-                        className={`w-full h-auto`}
-                        loading={index === 0 ? 'eager' : 'lazy'}
-                        decoding="async"
-                        style={{ display: 'block' }}
-                      />
-                    </picture>
-                  );
-                })}
+                {slideBaseNames.map((name, index) => (
+                  <picture key={`${name}-picture`} style={{ display: index === currentSlide ? 'block' : 'none' }} className={`${index === currentSlide ? 'block' : 'hidden'}`}>
+                    <source srcSet={slidesAvif[index]} type="image/avif" />
+                    <source srcSet={slidesWebp[index]} type="image/webp" />
+                    <img
+                      src={slidesWebp[index]}
+                      alt={`Slide ${index + 1} du rapport Avenirea`}
+                      className={`w-full h-auto`}
+                      loading={index === 0 ? 'eager' : 'lazy'}
+                      decoding="async"
+                      style={{ display: 'block' }}
+                    />
+                  </picture>
+                ))}
               </div>
 
               {/* Page Indicator - Bottom Center */}
@@ -188,7 +185,7 @@ const ReportExampleSection = () => {
                   }}
                 >
                   <p className="text-sm font-semibold" style={{ color: '#6B7280' }}>
-                    Page {currentSlide + 1} / {slides.length}
+                    Page {currentSlide + 1} / {slideBaseNames.length}
                   </p>
                 </div>
               </div>
@@ -198,7 +195,7 @@ const ReportExampleSection = () => {
             <div className="md:hidden mt-6">
               {/* Progress dots */}
               <div className="flex justify-center gap-2 mb-4">
-                {slides.map((_, index) => (
+                {slideBaseNames.map((_, index) => (
                   <button
                     key={index}
                     onClick={() => goToSlide(index)}
@@ -235,7 +232,7 @@ const ReportExampleSection = () => {
                 
                 <button
                   onClick={handleNextSlide}
-                  disabled={currentSlide === slides.length - 1}
+                  disabled={currentSlide === slideBaseNames.length - 1}
                   className="flex w-12 h-12 items-center justify-center rounded-xl transition-all duration-300 active:translate-x-[2px] disabled:opacity-30 disabled:cursor-not-allowed"
                   style={{
                     background: '#FFFFFF',
@@ -256,7 +253,7 @@ const ReportExampleSection = () => {
           {/* Right Arrow - Desktop Only - Always visible but disabled on last slide */}
           <button
             onClick={handleNextSlide}
-            disabled={currentSlide === slides.length - 1}
+            disabled={currentSlide === slideBaseNames.length - 1}
             className="hidden md:flex flex-shrink-0 w-14 h-14 items-center justify-center rounded-xl transition-all duration-300 hover:translate-x-[3px] disabled:opacity-30 disabled:cursor-not-allowed"
             style={{
               background: '#FFFFFF',

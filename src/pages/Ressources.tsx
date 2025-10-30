@@ -99,14 +99,41 @@ const Ressources = () => {
               >
                 {/* Image de couverture */}
                 <div className="w-full h-56 overflow-hidden flex-shrink-0" style={{ background: '#D9D2B6' }}>
-                  <OptimizedImage
-                    src={post.image}
-                    alt={post.title}
-                    className="w-full h-full"
-                    width={600}
-                    height={224}
-                    priority={false}
-                  />
+                  {(() => {
+                    const map: Record<string, { avif: string; webp: string }> = {
+                      '5-metiers-reconversion-40-ans-sans-diplome': { avif: '/images/group-working.avif', webp: '/images/group-working.webp' },
+                      'bilan-orientation-professionnelle-adulte': { avif: '/images/group-working.avif', webp: '/images/group-working.webp' },
+                      'test-orientation-professionnelle-adulte': { avif: '/images/orientation.avif', webp: '/images/orientation.webp' },
+                      'metier-reconversion-40-ans': { avif: '/images/worker-aged-40.avif', webp: '/images/worker-aged-40.webp' },
+                      'conseils-reconversion-professionnelle': { avif: '/images/conseils-hero.avif', webp: '/images/conseils-hero.webp' },
+                    };
+                    const img = map[post.slug];
+                    return img ? (
+                      <picture>
+                        <source srcSet={img.avif} type="image/avif" />
+                        <source srcSet={img.webp} type="image/webp" />
+                        <img
+                          src={img.webp}
+                          alt={post.title}
+                          className="w-full h-full object-cover"
+                          width={600}
+                          height={224}
+                          loading="lazy"
+                          decoding="async"
+                        />
+                      </picture>
+                    ) : (
+                      <img
+                        src={post.image}
+                        alt={post.title}
+                        className="w-full h-full object-cover"
+                        width={600}
+                        height={224}
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    );
+                  })()}
                 </div>
 
                 {/* Contenu de la carte */}

@@ -82,7 +82,7 @@ const ReconversionPro = () => {
       />
       
       {/* Hero Section with Background Image */}
-      <section className="relative flex items-center justify-center" style={{ height: '50vh', minHeight: '400px', backgroundImage: 'url("/professional.png")', backgroundSize: 'cover', backgroundPosition: 'center top' }}>
+      <section className="relative flex items-center justify-center" style={{ height: '50vh', minHeight: '400px', backgroundImage: 'url("/images/professional.webp")', backgroundSize: 'cover', backgroundPosition: 'center top' }}>
         <div className="absolute inset-0 bg-black bg-opacity-40"></div>
         <div className="relative z-10 text-center text-white">
           <div className="animate-fade-in">

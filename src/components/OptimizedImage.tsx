@@ -108,7 +108,7 @@ const OptimizedImage = ({
   const defaultBlurDataURL = getBlurPlaceholder();
 
   const loading = priority || !forceLazy ? 'eager' : 'lazy';
-  const fetchPriority = priority ? 'high' : 'auto';
+  const fetchpriority = priority ? 'high' : 'auto';
 
   // Construire les sources optimisées
   const getOptimizedSources = () => {
@@ -183,7 +183,7 @@ const OptimizedImage = ({
             width={width}
             height={height}
             loading={loading}
-            fetchPriority={fetchPriority}
+            fetchpriority={fetchpriority}
             decoding="async"
             className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-300 ${
               isLoaded ? 'opacity-100' : 'opacity-0'
