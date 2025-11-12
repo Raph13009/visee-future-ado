@@ -3,7 +3,8 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate, useLocation } from "react-router-dom";
+import { useEffect } from "react";
 import ScrollToTop from "./components/ScrollToTop";
 import Index from "./pages/Index";
 import Test from "./pages/Test";
@@ -31,6 +32,42 @@ import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
 
+// Component to handle subdomain redirects - redirects quiz.avenirea.com to /quiz
+const SubdomainRedirect = () => {
+  const location = useLocation();
+  
+  useEffect(() => {
+    // Check if we're on the quiz subdomain
+    if (typeof window !== 'undefined') {
+      const hostname = window.location.hostname;
+      
+      // If on quiz.avenirea.com and on root path, redirect to /quiz
+      if (hostname === 'quiz.avenirea.com' && location.pathname === '/') {
+        // Use replace to avoid adding to history
+        window.location.replace('/quiz');
+      }
+    }
+  }, [location.pathname]);
+  
+  return null;
+};
+
+// Conditional root route - shows Index on main domain, redirects to /quiz on subdomain
+const RootRoute = () => {
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const hostname = window.location.hostname;
+      // If on quiz subdomain, redirect to /quiz
+      if (hostname === 'quiz.avenirea.com') {
+        window.location.replace('/quiz');
+        return;
+      }
+    }
+  }, []);
+  
+  return <Index />;
+};
+
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
@@ -38,8 +75,9 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <ScrollToTop />
+        <SubdomainRedirect />
         <Routes>
-          <Route path="/" element={<Index />} />
+          <Route path="/" element={<RootRoute />} />
           <Route path="/test" element={<Test />} />
           <Route path="/test-riasec" element={<TestRiasec />} />
           {/* Redirect old URLs to new professional URL for Google Ads */}
