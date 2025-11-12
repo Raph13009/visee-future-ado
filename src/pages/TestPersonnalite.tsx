@@ -5,7 +5,7 @@ import { generateProfessionalPDF } from "@/lib/report/professionalPDF";
 
 type Stage = "selection" | "loading" | "guidelines" | "questionnaire" | "complete" | "analyzing" | "results";
 
-const GENDER_STORAGE_KEY = "personnaliteGender";
+// GENDER_STORAGE_KEY removed - no localStorage/cookies for this page
 
 const QUESTIONS_DATA = [
   {
@@ -1277,17 +1277,9 @@ const TestPersonnalite = () => {
   const [answers, setAnswers] = useState<AnswersState>({});
   const [traitScores, setTraitScores] = useState<Record<string, number> | null>(null);
 
-  useEffect(() => {
-    const stored = typeof window !== "undefined" ? localStorage.getItem(GENDER_STORAGE_KEY) : null;
-    if (stored) {
-      setSelectedGender(stored);
-      setStage("guidelines");
-    }
-  }, []);
-
   const handleGenderSelection = (gender: "male" | "female") => {
     setSelectedGender(gender);
-    localStorage.setItem(GENDER_STORAGE_KEY, gender);
+    // localStorage removed - no cookies/tracking for this page
     setStage("loading");
   };
 
@@ -1317,9 +1309,9 @@ const TestPersonnalite = () => {
 
   const saveTestResults = async (scores: Record<string, number>) => {
     try {
-      // Récupérer les informations utilisateur depuis localStorage (si disponibles)
-      const userName = localStorage.getItem('userName') || null;
-      const userEmail = localStorage.getItem('userEmail') || null;
+      // localStorage removed - no cookies/tracking for this page
+      const userName = null;
+      const userEmail = null;
       
       // Préparer les données pour l'insertion
       const resultData = {
@@ -1351,12 +1343,8 @@ const TestPersonnalite = () => {
         // Ne pas bloquer l'utilisateur si l'enregistrement échoue
       } else if (data) {
         console.log('[SUPABASE][PERSONALITY] Insert success:', data);
-        // Stocker l'ID pour une utilisation ultérieure (PDF, etc.)
-        // Avec .single(), data est directement l'objet, pas un tableau
-        const resultId = Array.isArray(data) ? data[0]?.id : data?.id;
-        if (resultId) {
-          localStorage.setItem('personalityTestResultId', resultId);
-        }
+        // localStorage removed - no cookies/tracking for this page
+        // ID is not stored locally
       }
     } catch (err) {
       console.error('[SUPABASE][PERSONALITY] General error:', err);
@@ -1411,10 +1399,10 @@ const TestPersonnalite = () => {
       <Helmet>
         <title>Personality Test | Avenirea - Discover Your True Self</title>
         <meta name="description" content="Take the Avenirea personality test and discover your personality type. Get a comprehensive 14-page personalized report with insights about your strengths, career paths, and development plan." />
-        <link rel="canonical" href="https://www.avenirea.com/personality-test" />
+        <link rel="canonical" href="https://www.avenirea.com/quiz" />
         <meta property="og:title" content="Personality Test | Avenirea" />
         <meta property="og:description" content="Take the Avenirea personality test and discover your personality type. Get a comprehensive 14-page personalized report." />
-        <meta property="og:url" content="https://www.avenirea.com/personality-test" />
+        <meta property="og:url" content="https://www.avenirea.com/quiz" />
         <meta property="og:type" content="website" />
         <meta property="og:image" content="https://www.avenirea.com/lovable-uploads/d90e4f60-4ab5-48a0-9e2f-ba4658dc9b54.png" />
         <meta name="twitter:card" content="summary_large_image" />
