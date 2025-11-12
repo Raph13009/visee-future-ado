@@ -3,7 +3,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import ScrollToTop from "./components/ScrollToTop";
 import Index from "./pages/Index";
 import Test from "./pages/Test";
@@ -42,6 +42,8 @@ const App = () => (
           <Route path="/" element={<Index />} />
           <Route path="/test" element={<Test />} />
           <Route path="/test-riasec" element={<TestRiasec />} />
+          {/* Redirect old URL to new USA-friendly URL for SEO */}
+          <Route path="/test-personnalite" element={<Navigate to="/personality-test" replace />} />
           <Route path="/personality-test" element={<TestPersonnalite />} />
           <Route path="/preview/report" element={<PreviewReport />} />
           <Route path="/resultats-riasec" element={<ResultsRiasec />} />

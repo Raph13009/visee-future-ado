@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
+import { Helmet } from "react-helmet-async";
 import { supabase } from "@/integrations/supabase/client";
 import { generateProfessionalPDF } from "@/lib/report/professionalPDF";
 
@@ -1433,8 +1434,23 @@ const TestPersonnalite = () => {
   const progressPercentage = ((currentStepIndex + 1) / TOTAL_STEPS) * 100;
 
   return (
-    <div className={`min-h-screen text-slate-900 ${stage === "analyzing" ? "bg-white" : stage === "results" ? "" : "bg-[#f7f4ef]"}`}>
-      {stage === "analyzing" ? (
+    <>
+      <Helmet>
+        <title>Personality Test | Avenirea - Discover Your True Self</title>
+        <meta name="description" content="Take the Avenirea personality test and discover your personality type. Get a comprehensive 14-page personalized report with insights about your strengths, career paths, and development plan." />
+        <link rel="canonical" href="https://www.avenirea.com/personality-test" />
+        <meta property="og:title" content="Personality Test | Avenirea" />
+        <meta property="og:description" content="Take the Avenirea personality test and discover your personality type. Get a comprehensive 14-page personalized report." />
+        <meta property="og:url" content="https://www.avenirea.com/personality-test" />
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content="https://www.avenirea.com/lovable-uploads/d90e4f60-4ab5-48a0-9e2f-ba4658dc9b54.png" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Personality Test | Avenirea" />
+        <meta name="twitter:description" content="Take the Avenirea personality test and discover your personality type." />
+        <meta name="twitter:image" content="https://www.avenirea.com/lovable-uploads/d90e4f60-4ab5-48a0-9e2f-ba4658dc9b54.png" />
+      </Helmet>
+      <div className={`min-h-screen text-slate-900 ${stage === "analyzing" ? "bg-white" : stage === "results" ? "" : "bg-[#f7f4ef]"}`}>
+        {stage === "analyzing" ? (
         <AnalysisScreen onComplete={() => setStage("results")} />
       ) : stage === "results" ? (
         <PaymentScreen traitScores={traitScores} answers={answers} />
@@ -1782,7 +1798,8 @@ const TestPersonnalite = () => {
         )}
         </div>
       )}
-    </div>
+      </div>
+    </>
   );
 };
 
