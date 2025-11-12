@@ -59,6 +59,10 @@ const PersonalityPaymentSuccess = () => {
         setPdfBlob(pdf);
         setIsGenerating(false);
 
+        // Clean up sessionStorage after successful generation
+        sessionStorage.removeItem('personalityTestAnswers');
+        sessionStorage.removeItem('personalityTestScores');
+
         // Auto-download
         const url = URL.createObjectURL(pdf);
         const link = document.createElement('a');
