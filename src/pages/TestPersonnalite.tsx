@@ -1072,17 +1072,23 @@ const PaymentScreen = ({
 
           <button
             onClick={() => {
-              // Save answers to sessionStorage before redirecting to Stripe
+              // Save answers to localStorage (persists across tabs/windows) before redirecting to Stripe
               // This ensures we can retrieve them even if URL parameters are lost
-              sessionStorage.setItem('personalityTestAnswers', JSON.stringify(answers));
-              if (traitScores) {
-                sessionStorage.setItem('personalityTestScores', JSON.stringify(traitScores));
+              try {
+                localStorage.setItem('personalityTestAnswers', JSON.stringify(answers));
+                if (traitScores) {
+                  localStorage.setItem('personalityTestScores', JSON.stringify(traitScores));
+                }
+                console.log('[PaymentScreen] Saved answers to localStorage:', Object.keys(answers).length, 'steps');
+              } catch (e) {
+                console.error('[PaymentScreen] Error saving to localStorage:', e);
               }
               
               // Encode answers to pass them to payment success page (fallback)
               const encodedAnswers = btoa(JSON.stringify(answers));
               const successUrl = `${window.location.origin}/personality-payment-success?answers=${encodeURIComponent(encodedAnswers)}`;
               const stripeUrl = `https://buy.stripe.com/dRm28safGcX7fU00nY7IY02?success_url=${encodeURIComponent(successUrl)}`;
+              console.log('[PaymentScreen] Redirecting to Stripe with success URL:', successUrl);
               window.location.href = stripeUrl;
             }}
             className="w-full rounded-xl bg-[#117B4D] px-6 py-4 text-lg font-semibold text-white shadow-lg transition hover:bg-[#0d5f3a] hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-[#117B4D] focus:ring-offset-2"
