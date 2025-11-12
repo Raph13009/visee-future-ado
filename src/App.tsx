@@ -8,6 +8,8 @@ import ScrollToTop from "./components/ScrollToTop";
 import Index from "./pages/Index";
 import Test from "./pages/Test";
 import TestRiasec from "./pages/TestRiasec";
+import TestPersonnalite from "./pages/TestPersonnalite";
+import PreviewReport from "./pages/PreviewReport";
 import ResultsRiasec from "./pages/ResultsRiasec";
 import PaymentSuccess from "./pages/PaymentSuccess";
 import Checkout from "./pages/Checkout";
@@ -40,6 +42,8 @@ const App = () => (
           <Route path="/" element={<Index />} />
           <Route path="/test" element={<Test />} />
           <Route path="/test-riasec" element={<TestRiasec />} />
+          <Route path="/test-personnalite" element={<TestPersonnalite />} />
+          <Route path="/preview/report" element={<PreviewReport />} />
           <Route path="/resultats-riasec" element={<ResultsRiasec />} />
           <Route path="/payment-success" element={<PaymentSuccess />} />
           <Route path="/checkout" element={<Checkout />} />
