@@ -1460,7 +1460,7 @@ const TestPersonnalite = () => {
           <div className="grid gap-10 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] lg:items-center">
             <div className="space-y-6">
               <span className="inline-flex items-center rounded-full bg-white/70 px-4 py-1 text-sm font-semibold uppercase tracking-wide text-emerald-600 shadow-sm">
-                Personality.co
+                avenirea.com
               </span>
               <h1 className="text-4xl font-semibold leading-tight text-slate-900 sm:text-5xl">
                 Discover <span className="text-emerald-600">who you truly are</span> with the Personality test
@@ -1498,7 +1498,7 @@ const TestPersonnalite = () => {
                         P
                       </div>
                       <div className="space-y-0.5">
-                        <p className="text-sm font-medium text-slate-900">Personality.co</p>
+                        <p className="text-sm font-medium text-slate-900">avenirea.com</p>
                         <p className="text-xs text-slate-500">Created by experts</p>
                       </div>
                     </div>
@@ -1540,7 +1540,7 @@ const TestPersonnalite = () => {
                             <button
                               key={index}
                               className={`h-8 w-8 rounded-full border border-slate-200 ${
-                                index === 3 ? "bg-emerald-100 border-emerald-400" : index === 4 ? "bg-emerald-200 border-emerald-500" : ""
+                                index === 3 ? "bg-emerald-500 border-emerald-600" : "bg-white"
                               }`}
                               aria-label={`Response option ${index + 1}`}
                             />
@@ -1556,7 +1556,9 @@ const TestPersonnalite = () => {
                           {[0, 1, 2, 3, 4].map((index) => (
                             <div
                               key={index}
-                              className="h-8 w-8 rounded-full border border-slate-200 bg-white"
+                              className={`h-8 w-8 rounded-full border border-slate-200 ${
+                                index === 0 ? "bg-emerald-500 border-emerald-600" : "bg-white"
+                              }`}
                               aria-hidden="true"
                             />
                           ))}
