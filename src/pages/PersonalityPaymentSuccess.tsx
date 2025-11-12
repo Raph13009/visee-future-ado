@@ -14,19 +14,33 @@ const PersonalityPaymentSuccess = () => {
     // Auto-generate PDF when page loads
     const generatePDF = async () => {
       try {
+        let answers = null;
+        
+        // Try to get answers from URL first
         const encodedAnswers = searchParams.get('answers');
-        if (!encodedAnswers) {
-          setError("Missing answers data. Please complete the test again.");
-          return;
+        if (encodedAnswers) {
+          try {
+            const decoded = atob(encodedAnswers);
+            answers = JSON.parse(decoded);
+          } catch (e) {
+            console.error("Error decoding URL answers:", e);
+          }
         }
-
-        // Decode answers
-        let answers;
-        try {
-          const decoded = atob(encodedAnswers);
-          answers = JSON.parse(decoded);
-        } catch (e) {
-          setError("Invalid answers data. Please complete the test again.");
+        
+        // Fallback: get answers from sessionStorage (more reliable)
+        if (!answers) {
+          const storedAnswers = sessionStorage.getItem('personalityTestAnswers');
+          if (storedAnswers) {
+            try {
+              answers = JSON.parse(storedAnswers);
+            } catch (e) {
+              console.error("Error parsing stored answers:", e);
+            }
+          }
+        }
+        
+        if (!answers || Object.keys(answers).length === 0) {
+          setError("Missing answers data. Please complete the test again.");
           return;
         }
 
