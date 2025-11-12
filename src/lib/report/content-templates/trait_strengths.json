@@ -1,0 +1,75 @@
+{
+  "Precision & Organization": {
+    "high": [
+      "Maintains high quality standards",
+      "Systematic and reliable approach",
+      "Excellent attention to detail",
+      "Strong organizational skills"
+    ],
+    "moderate": [
+      "Can organize when needed",
+      "Appreciates structure"
+    ]
+  },
+  "Empathy & Altruism": {
+    "high": [
+      "Deeply understands others' emotions",
+      "Naturally supportive and caring",
+      "Builds strong relationships",
+      "Prioritizes others' well-being"
+    ],
+    "moderate": [
+      "Cares about others",
+      "Can be supportive"
+    ]
+  },
+  "Creativity & Expression": {
+    "high": [
+      "Innovative problem-solving",
+      "Unique perspective and vision",
+      "Expresses ideas creatively",
+      "Appreciates aesthetics and beauty"
+    ],
+    "moderate": [
+      "Can think creatively",
+      "Appreciates innovation"
+    ]
+  },
+  "Logic & Reflection": {
+    "high": [
+      "Thorough analytical thinking",
+      "Deep research and understanding",
+      "Systematic problem-solving",
+      "Seeks underlying principles"
+    ],
+    "moderate": [
+      "Uses analytical thinking",
+      "Can reflect on problems"
+    ]
+  },
+  "Leadership & Confidence": {
+    "high": [
+      "Natural leadership abilities",
+      "Confident decision-making",
+      "Inspiring and motivating",
+      "Takes initiative and responsibility"
+    ],
+    "moderate": [
+      "Can take the lead",
+      "Expresses opinions"
+    ]
+  },
+  "Harmony & Cooperation": {
+    "high": [
+      "Excellent conflict resolution",
+      "Diplomatic and tactful",
+      "Creates harmonious environments",
+      "Facilitates collaboration"
+    ],
+    "moderate": [
+      "Values peace",
+      "Works collaboratively"
+    ]
+  }
+}
+

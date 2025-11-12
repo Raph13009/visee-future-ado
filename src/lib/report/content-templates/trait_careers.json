@@ -1,0 +1,155 @@
+{
+  "Precision & Organization": {
+    "high": [
+      "Quality Assurance Manager",
+      "Project Manager",
+      "Operations Analyst",
+      "Data Quality Specialist",
+      "Process Improvement Consultant",
+      "Compliance Officer",
+      "Supply Chain Manager",
+      "Financial Analyst"
+    ],
+    "moderate": [
+      "Administrative Coordinator",
+      "Office Manager",
+      "Research Assistant",
+      "Event Planner",
+      "Accountant",
+      "Editor",
+      "Legal Assistant"
+    ],
+    "low": [
+      "Customer Service Representative",
+      "Sales Associate",
+      "Receptionist",
+      "Retail Manager"
+    ]
+  },
+  "Empathy & Altruism": {
+    "high": [
+      "Counselor or Therapist",
+      "Social Worker",
+      "Human Resources Specialist",
+      "Nurse or Healthcare Worker",
+      "Teacher or Educator",
+      "Non-profit Coordinator",
+      "Customer Success Manager",
+      "Life Coach"
+    ],
+    "moderate": [
+      "Customer Service Representative",
+      "Event Coordinator",
+      "Community Outreach Coordinator",
+      "Training Specialist",
+      "Public Relations Specialist"
+    ],
+    "low": [
+      "Data Analyst",
+      "Software Developer",
+      "Research Scientist",
+      "Accountant"
+    ]
+  },
+  "Creativity & Expression": {
+    "high": [
+      "Graphic Designer",
+      "Creative Director",
+      "Marketing Manager",
+      "Writer or Content Creator",
+      "Art Director",
+      "UX/UI Designer",
+      "Advertising Executive",
+      "Photographer or Videographer"
+    ],
+    "moderate": [
+      "Marketing Coordinator",
+      "Social Media Manager",
+      "Event Planner",
+      "Interior Designer",
+      "Public Relations Specialist"
+    ],
+    "low": [
+      "Accountant",
+      "Data Entry Clerk",
+      "Compliance Officer",
+      "Quality Assurance Tester"
+    ]
+  },
+  "Logic & Reflection": {
+    "high": [
+      "Data Scientist",
+      "Research Scientist",
+      "Software Engineer",
+      "Financial Analyst",
+      "Business Analyst",
+      "Systems Analyst",
+      "Consultant",
+      "Academic Researcher"
+    ],
+    "moderate": [
+      "Project Manager",
+      "Operations Analyst",
+      "Market Research Analyst",
+      "Technical Writer",
+      "Quality Assurance Tester"
+    ],
+    "low": [
+      "Customer Service Representative",
+      "Sales Associate",
+      "Event Coordinator",
+      "Receptionist"
+    ]
+  },
+  "Leadership & Confidence": {
+    "high": [
+      "CEO or Executive",
+      "Business Manager",
+      "Entrepreneur",
+      "Team Leader",
+      "Sales Manager",
+      "Operations Manager",
+      "Consultant",
+      "Executive Coach"
+    ],
+    "moderate": [
+      "Project Manager",
+      "Team Coordinator",
+      "Supervisor",
+      "Training Manager",
+      "Account Manager"
+    ],
+    "low": [
+      "Administrative Assistant",
+      "Data Entry Clerk",
+      "Receptionist",
+      "Research Assistant"
+    ]
+  },
+  "Harmony & Cooperation": {
+    "high": [
+      "Human Resources Manager",
+      "Mediator",
+      "Team Facilitator",
+      "Community Coordinator",
+      "Partnership Manager",
+      "Customer Success Manager",
+      "Event Coordinator",
+      "Organizational Development Specialist"
+    ],
+    "moderate": [
+      "Project Coordinator",
+      "Administrative Coordinator",
+      "Customer Service Manager",
+      "Training Coordinator",
+      "Public Relations Specialist"
+    ],
+    "low": [
+      "Independent Contractor",
+      "Solo Entrepreneur",
+      "Freelance Writer",
+      "Research Scientist"
+    ]
+  }
+}
+

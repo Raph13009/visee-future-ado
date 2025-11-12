@@ -1,0 +1,45 @@
+{
+  "Precision & Organization": {
+    "very_high": "You demonstrate exceptional attention to detail and systematic thinking. Your high standards drive excellence in everything you do, and others rely on your meticulous approach to ensure quality and accuracy.",
+    "high": "You have strong organizational skills and pay careful attention to details. You maintain high standards and work systematically to achieve your goals with accuracy and reliability.",
+    "moderate": "You have a balanced approach to organization and detail. While you appreciate structure, you can also adapt when flexibility is needed.",
+    "low": "You may find detailed, systematic work challenging. Consider developing routines and checklists to help maintain organization and accuracy in important tasks.",
+    "very_low": "Organization and attention to detail are areas for significant growth. Start with small organizational systems and gradually build habits that support accuracy and structure."
+  },
+  "Empathy & Altruism": {
+    "very_high": "You have an extraordinary capacity for understanding and caring for others. Your emotional intelligence allows you to connect deeply with people, and you naturally prioritize the well-being of those around you.",
+    "high": "You are compassionate and emotionally aware. You naturally understand others' needs and often put their well-being before your own, creating meaningful connections in your relationships.",
+    "moderate": "You care about others and can be supportive when needed, while also maintaining healthy boundaries. You balance your own needs with those of others.",
+    "low": "You may find it difficult to read emotional cues or prioritize others' needs. Practice active listening and try to see situations from others' perspectives to build stronger connections.",
+    "very_low": "Understanding and responding to others' emotions may be difficult. Focus on developing emotional intelligence through observation, asking questions, and practicing empathy exercises."
+  },
+  "Creativity & Expression": {
+    "very_high": "Your creative vision is truly remarkable. You thrive on innovation and originality, constantly finding new ways to express yourself and solve problems through imaginative thinking.",
+    "high": "You have a strong creative drive and enjoy expressing your unique perspective. You find innovative solutions and appreciate aesthetics and originality in your work and personal style.",
+    "moderate": "You enjoy creative pursuits and can think outside the box when the situation calls for it. You appreciate both structure and innovation.",
+    "low": "You may prefer structured, established approaches over creative experimentation. Try exploring new hobbies or brainstorming sessions to develop your creative thinking.",
+    "very_low": "Creative thinking and self-expression may not come naturally. Engage in creative activities regularly, even simple ones like drawing or writing, to develop this skill."
+  },
+  "Logic & Reflection": {
+    "very_high": "Your analytical capabilities are outstanding. You excel at deep thinking, systematic problem-solving, and understanding complex systems through careful research and reflection.",
+    "high": "You are thoughtful and analytical, preferring to research and reflect before making decisions. You enjoy solving complex problems and understanding underlying principles.",
+    "moderate": "You use both analytical thinking and intuition in your decision-making. You can dive deep into problems when needed but also act on gut feelings.",
+    "low": "You may prefer quick decisions over deep analysis. Consider taking time to research and reflect on important choices to improve outcomes.",
+    "very_low": "Deep analytical thinking may be challenging. Practice breaking down problems into smaller parts, researching solutions, and taking time to reflect before making important decisions."
+  },
+  "Leadership & Confidence": {
+    "very_high": "You are a natural leader with exceptional confidence and assertiveness. You inspire others, take initiative, and aren't afraid to make difficult decisions to drive meaningful change.",
+    "high": "You are confident and assertive, naturally taking charge in group settings. You express your opinions clearly and aren't afraid to stand up for what you believe in.",
+    "moderate": "You can take the lead when necessary but also work well as part of a team. You balance assertiveness with collaboration.",
+    "low": "You may hesitate to take charge or express your opinions. Practice speaking up in small settings and gradually build confidence in leadership situations.",
+    "very_low": "Taking charge and asserting yourself may feel uncomfortable. Start by practicing in low-stakes situations and gradually build confidence in expressing your ideas and leading others."
+  },
+  "Harmony & Cooperation": {
+    "very_high": "You are an expert at maintaining peace and facilitating collaboration. Your diplomatic skills help resolve conflicts and create harmonious environments where everyone feels heard and valued.",
+    "high": "You value peace and work to maintain harmony in your relationships. You are skilled at mediating conflicts and helping others find common ground.",
+    "moderate": "You generally prefer harmony but can address conflicts when needed. You work to balance peace with honest communication.",
+    "low": "You may find conflict resolution challenging or prefer directness over diplomacy. Try framing feedback as collaborative experiments and practice active listening.",
+    "very_low": "Maintaining harmony and resolving conflicts peacefully may be difficult. Practice active listening, seek to understand different perspectives, and learn conflict resolution techniques."
+  }
+}
+

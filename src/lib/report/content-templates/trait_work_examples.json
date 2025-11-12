@@ -1,0 +1,105 @@
+{
+  "Precision & Organization": {
+    "high_strengths": [
+      "Excels in quality assurance and process optimization",
+      "Thrives in roles requiring systematic thinking"
+    ],
+    "high_caveats": [
+      "May struggle with rapid, unstructured changes",
+      "Could benefit from flexibility training"
+    ],
+    "moderate_strengths": [
+      "Can apply organizational skills when needed"
+    ],
+    "low_caveats": [
+      "May struggle with detailed, systematic tasks",
+      "Could develop organizational systems"
+    ]
+  },
+  "Empathy & Altruism": {
+    "high_strengths": [
+      "Excellent in customer service and team support roles",
+      "Builds strong collaborative relationships"
+    ],
+    "high_caveats": [
+      "May neglect own needs; practice self-care",
+      "Could set clearer boundaries"
+    ],
+    "moderate_strengths": [
+      "Can be supportive in team settings"
+    ],
+    "low_caveats": [
+      "May miss emotional cues in team settings",
+      "Could practice active listening"
+    ]
+  },
+  "Creativity & Expression": {
+    "high_strengths": [
+      "Innovates solutions in design and strategy roles",
+      "Brings fresh perspectives to problem-solving"
+    ],
+    "high_caveats": [
+      "May find strict routines limiting",
+      "Could benefit from structured creative processes"
+    ],
+    "moderate_strengths": [
+      "Can apply creative thinking when needed"
+    ],
+    "low_caveats": [
+      "May prefer established approaches",
+      "Could explore creative problem-solving"
+    ]
+  },
+  "Logic & Reflection": {
+    "high_strengths": [
+      "Strong in research, analysis, and data-driven roles",
+      "Excels at understanding complex systems"
+    ],
+    "high_caveats": [
+      "May overthink; trust intuition sometimes",
+      "Could act faster when time is limited"
+    ],
+    "moderate_strengths": [
+      "Can apply analytical thinking when needed"
+    ],
+    "low_caveats": [
+      "May make quick decisions without research",
+      "Could take time for deeper analysis"
+    ]
+  },
+  "Leadership & Confidence": {
+    "high_strengths": [
+      "Natural fit for management and decision-making roles",
+      "Inspires and motivates teams effectively"
+    ],
+    "high_caveats": [
+      "May dominate; practice active listening",
+      "Could delegate more effectively"
+    ],
+    "moderate_strengths": [
+      "Can take leadership roles when needed"
+    ],
+    "low_caveats": [
+      "May hesitate to take charge",
+      "Could practice leadership skills"
+    ]
+  },
+  "Harmony & Cooperation": {
+    "high_strengths": [
+      "Excellent in mediation and team coordination",
+      "Creates positive, collaborative work environments"
+    ],
+    "high_caveats": [
+      "May avoid necessary conflicts",
+      "Could practice assertive communication"
+    ],
+    "moderate_strengths": [
+      "Can facilitate collaboration when needed"
+    ],
+    "low_caveats": [
+      "May find conflict resolution challenging",
+      "Could develop diplomatic skills"
+    ]
+  }
+}
+

@@ -1,0 +1,33 @@
+{
+  "high": {
+    "title": "Leverage This Strength",
+    "actions": [
+      "Mentor others in this area to reinforce your expertise",
+      "Take on leadership roles that utilize this strength",
+      "Share your knowledge through teaching or writing",
+      "Seek opportunities to apply this strength in new contexts",
+      "Build a reputation as an expert in this domain"
+    ]
+  },
+  "moderate": {
+    "title": "Maintain & Develop",
+    "actions": [
+      "Continue practicing skills in this area consistently",
+      "Apply these skills strategically in your work and studies",
+      "Seek feedback to identify areas for improvement",
+      "Take on projects that challenge you in this domain",
+      "Learn from experts who excel in this area"
+    ]
+  },
+  "low": {
+    "title": "Development Focus",
+    "actions": [
+      "Start with small, daily habits to build this skill",
+      "Take a course or find a mentor in this area",
+      "Practice in low-stakes situations to build confidence",
+      "Set specific, measurable goals for improvement",
+      "Celebrate small wins to maintain motivation"
+    ]
+  }
+}
+

@@ -86,7 +86,7 @@ const PaymentModal: React.FC<PaymentModalProps> = ({ isOpen, onClose, onProceedT
         <div className="grid grid-cols-3 gap-2 sm:gap-3 mb-4 sm:mb-5 md:mb-6 text-center">
           <div className="bg-green-50 rounded-lg p-2 sm:p-3">
             <div className="text-xl sm:text-2xl mb-0.5 sm:mb-1">⚡</div>
-            <p className="text-[10px] sm:text-xs font-semibold text-gray-700 leading-tight">Accès immédiat</p>
+            <p className="text-[10px] sm:text-xs font-semibold text-gray-700 leading-tight">Ton rapport arrive sous 48h</p>
           </div>
           <div className="bg-purple-50 rounded-lg p-2 sm:p-3">
             <div className="text-xl sm:text-2xl mb-0.5 sm:mb-1">💯</div>

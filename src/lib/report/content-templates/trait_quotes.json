@@ -1,0 +1,105 @@
+{
+  "Precision & Organization": {
+    "high": [
+      "Excellence is not a skill, it's an attitude. Your attention to detail sets you apart.",
+      "The difference between ordinary and extraordinary is that little extra attention to detail.",
+      "Quality is never an accident; it is always the result of high intention and systematic effort."
+    ],
+    "moderate": [
+      "Organization is not about perfection; it's about efficiency and reducing stress.",
+      "Small consistent actions lead to big organizational improvements over time.",
+      "A well-organized space reflects a well-organized mind."
+    ],
+    "low": [
+      "The first step in getting organized is understanding what matters most to you.",
+      "Organization is a skill that can be learned and improved with practice.",
+      "Start small: organize one area today, and build from there."
+    ]
+  },
+  "Empathy & Altruism": {
+    "high": [
+      "Empathy is seeing with the eyes of another, listening with the ears of another, and feeling with the heart of another.",
+      "The greatest gift you can give someone is your presence, your attention, and your understanding.",
+      "Your ability to understand others' feelings is a superpower in building meaningful relationships."
+    ],
+    "moderate": [
+      "Empathy grows when we take time to truly listen and understand others' perspectives.",
+      "Small acts of kindness have the power to transform both the giver and the receiver.",
+      "Understanding others begins with understanding yourself first."
+    ],
+    "low": [
+      "Empathy is a skill that can be developed through practice and active listening.",
+      "Start by asking others how they feel and truly listening to their responses.",
+      "Putting yourself in others' shoes helps build stronger, more meaningful connections."
+    ]
+  },
+  "Creativity & Expression": {
+    "high": [
+      "Creativity is intelligence having fun. Your innovative thinking opens new possibilities.",
+      "The creative adult is the child who survived. Your imagination is your greatest asset.",
+      "Originality is nothing but judicious imitation. Your unique perspective creates value."
+    ],
+    "moderate": [
+      "Creativity is allowing yourself to make mistakes. Art is knowing which ones to keep.",
+      "Every child is an artist. The problem is staying an artist when you grow up.",
+      "Creative thinking inspires innovation, and innovation leads to progress."
+    ],
+    "low": [
+      "Creativity is a skill that can be nurtured through curiosity and experimentation.",
+      "Start by asking 'what if' questions and exploring new approaches to familiar problems.",
+      "Everyone has creative potential; it's about giving yourself permission to explore."
+    ]
+  },
+  "Logic & Reflection": {
+    "high": [
+      "The unexamined life is not worth living. Your analytical mind seeks truth and understanding.",
+      "Logic will get you from A to B. Imagination will take you everywhere. You have both.",
+      "Critical thinking is the key to unlocking complex problems and finding innovative solutions."
+    ],
+    "moderate": [
+      "Reflection is the key to learning. Take time to think deeply about your experiences.",
+      "Analytical thinking helps you make better decisions and solve problems systematically.",
+      "The ability to step back and reflect gives you clarity and perspective."
+    ],
+    "low": [
+      "Reflective thinking is a skill that improves with practice and curiosity.",
+      "Start by asking 'why' questions and exploring the reasoning behind decisions.",
+      "Taking time to think before acting leads to better outcomes and understanding."
+    ]
+  },
+  "Leadership & Confidence": {
+    "high": [
+      "A leader is one who knows the way, goes the way, and shows the way. You inspire others.",
+      "Confidence is not 'they will like me.' Confidence is 'I'll be fine if they don't.'",
+      "The greatest leader is not necessarily the one who does the greatest things, but the one who gets people to do the greatest things."
+    ],
+    "moderate": [
+      "Leadership is influence, nothing more, nothing less. Start by leading yourself well.",
+      "Confidence grows when you take action, even small steps toward your goals.",
+      "True leadership is about serving others and helping them achieve their potential."
+    ],
+    "low": [
+      "Leadership is a skill that develops through practice and taking initiative.",
+      "Start by expressing your opinion in small group settings and taking on small projects.",
+      "Confidence comes from competence. Build your skills, and your confidence will follow."
+    ]
+  },
+  "Harmony & Cooperation": {
+    "high": [
+      "Alone we can do so little; together we can do so much. Your collaborative spirit unites teams.",
+      "Harmony makes small things grow; lack of it makes great things decay.",
+      "The best teamwork comes from people who are working independently toward one goal in unison."
+    ],
+    "moderate": [
+      "Cooperation is the key to achieving more together than we could alone.",
+      "Finding common ground and building harmony creates stronger, more effective teams.",
+      "Active listening and understanding different perspectives builds better collaboration."
+    ],
+    "low": [
+      "Cooperation is a skill that improves through practice in team settings.",
+      "Start by actively listening to others and seeking to understand their viewpoints.",
+      "Building harmony requires finding compromises and focusing on shared goals."
+    ]
+  }
+}
+
