@@ -1101,8 +1101,12 @@ const PaymentScreen = ({
                 
                 // Encode answers to pass them to payment success page (fallback)
                 const encodedAnswers = btoa(JSON.stringify(answers));
-                const successUrl = `${window.location.origin}/personality-payment-success?answers=${encodeURIComponent(encodedAnswers)}`;
+                
+                // Use the current origin (quiz.avenirea.com or avenirea.com) to maintain localStorage access
+                const currentOrigin = window.location.origin;
+                const successUrl = `${currentOrigin}/personality-payment-success?answers=${encodeURIComponent(encodedAnswers)}`;
                 const stripeUrl = `https://buy.stripe.com/dRm28safGcX7fU00nY7IY02?success_url=${encodeURIComponent(successUrl)}`;
+                console.log('[PaymentScreen] Current origin:', currentOrigin);
                 console.log('[PaymentScreen] Redirecting to Stripe with success URL:', successUrl);
                 window.location.href = stripeUrl;
               } catch (e) {
