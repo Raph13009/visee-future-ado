@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { generateProfessionalPDF } from "@/lib/report/professionalPDF";
+import { supabase } from "@/integrations/supabase/client";
 
 const PersonalityPaymentSuccess = () => {
   const [searchParams] = useSearchParams();
@@ -32,7 +33,7 @@ const PersonalityPaymentSuccess = () => {
           }
         }
         
-        // Fallback: get answers from localStorage (persists across tabs/windows)
+        // Fallback 1: get answers from localStorage (persists across tabs/windows)
         if (!answers || Object.keys(answers).length === 0) {
           console.log('[PaymentSuccess] No answers in URL, checking localStorage...');
           const storedAnswers = localStorage.getItem('personalityTestAnswers');
@@ -45,6 +46,28 @@ const PersonalityPaymentSuccess = () => {
             }
           } else {
             console.log('[PaymentSuccess] No answers in localStorage either');
+          }
+        }
+        
+        // Fallback 2: get answers from Supabase (last result for this session)
+        if (!answers || Object.keys(answers).length === 0) {
+          console.log('[PaymentSuccess] No answers in localStorage, checking Supabase...');
+          try {
+            const { data, error } = await supabase
+              .from('personality_test_results')
+              .select('detailed_answers')
+              .order('created_at', { ascending: false })
+              .limit(1)
+              .single();
+            
+            if (!error && data && data.detailed_answers) {
+              answers = data.detailed_answers as any;
+              console.log('[PaymentSuccess] Found answers in Supabase:', Object.keys(answers).length, 'steps');
+            } else {
+              console.log('[PaymentSuccess] No answers in Supabase:', error);
+            }
+          } catch (e) {
+            console.error("[PaymentSuccess] Error fetching from Supabase:", e);
           }
         }
         

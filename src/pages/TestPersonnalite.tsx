@@ -1071,25 +1071,44 @@ const PaymentScreen = ({
           )}
 
           <button
-            onClick={() => {
-              // Save answers to localStorage (persists across tabs/windows) before redirecting to Stripe
-              // This ensures we can retrieve them even if URL parameters are lost
+            onClick={async () => {
               try {
+                // Validate answers before proceeding
+                const answerCount = Object.values(answers).reduce((acc, step) => acc + Object.keys(step).length, 0);
+                console.log('[PaymentScreen] Answer count:', answerCount);
+                
+                if (answerCount === 0) {
+                  alert('No answers found. Please complete the test first.');
+                  return;
+                }
+                
+                // Save answers to localStorage (persists across tabs/windows) before redirecting to Stripe
+                // This ensures we can retrieve them even if URL parameters are lost
                 localStorage.setItem('personalityTestAnswers', JSON.stringify(answers));
                 if (traitScores) {
                   localStorage.setItem('personalityTestScores', JSON.stringify(traitScores));
                 }
                 console.log('[PaymentScreen] Saved answers to localStorage:', Object.keys(answers).length, 'steps');
+                
+                // Also save to Supabase as backup
+                try {
+                  const scores = traitScores || calculateTraitScores(answers);
+                  await saveTestResults(scores);
+                  console.log('[PaymentScreen] Saved answers to Supabase as backup');
+                } catch (e) {
+                  console.error('[PaymentScreen] Error saving to Supabase (non-blocking):', e);
+                }
+                
+                // Encode answers to pass them to payment success page (fallback)
+                const encodedAnswers = btoa(JSON.stringify(answers));
+                const successUrl = `${window.location.origin}/personality-payment-success?answers=${encodeURIComponent(encodedAnswers)}`;
+                const stripeUrl = `https://buy.stripe.com/dRm28safGcX7fU00nY7IY02?success_url=${encodeURIComponent(successUrl)}`;
+                console.log('[PaymentScreen] Redirecting to Stripe with success URL:', successUrl);
+                window.location.href = stripeUrl;
               } catch (e) {
-                console.error('[PaymentScreen] Error saving to localStorage:', e);
+                console.error('[PaymentScreen] Error in payment flow:', e);
+                alert('An error occurred. Please try again.');
               }
-              
-              // Encode answers to pass them to payment success page (fallback)
-              const encodedAnswers = btoa(JSON.stringify(answers));
-              const successUrl = `${window.location.origin}/personality-payment-success?answers=${encodeURIComponent(encodedAnswers)}`;
-              const stripeUrl = `https://buy.stripe.com/dRm28safGcX7fU00nY7IY02?success_url=${encodeURIComponent(successUrl)}`;
-              console.log('[PaymentScreen] Redirecting to Stripe with success URL:', successUrl);
-              window.location.href = stripeUrl;
             }}
             className="w-full rounded-xl bg-[#117B4D] px-6 py-4 text-lg font-semibold text-white shadow-lg transition hover:bg-[#0d5f3a] hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-[#117B4D] focus:ring-offset-2"
           >
