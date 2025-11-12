@@ -13,6 +13,7 @@ import TestPersonnalite from "./pages/TestPersonnalite";
 import PreviewReport from "./pages/PreviewReport";
 import ResultsRiasec from "./pages/ResultsRiasec";
 import PaymentSuccess from "./pages/PaymentSuccess";
+import PersonalityPaymentSuccess from "./pages/PersonalityPaymentSuccess";
 import Checkout from "./pages/Checkout";
 import Results from "./pages/Results";
 import Coaching from "./pages/Coaching";
@@ -87,6 +88,7 @@ const App = () => (
           <Route path="/preview/report" element={<PreviewReport />} />
           <Route path="/resultats-riasec" element={<ResultsRiasec />} />
           <Route path="/payment-success" element={<PaymentSuccess />} />
+          <Route path="/personality-payment-success" element={<PersonalityPaymentSuccess />} />
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/results" element={<Results />} />
           <Route path="/coaching" element={<Coaching />} />
