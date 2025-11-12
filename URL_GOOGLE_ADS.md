@@ -34,6 +34,8 @@ Valeur: cname.vercel-dns.com (ou l'adresse fournie par Vercel)
 2. Settings → Domains
 3. Ajoutez `quiz.avenirea.com`
 4. Vercel vous donnera les instructions DNS à suivre
+5. **IMPORTANT** : Assurez-vous que le sous-domaine est configuré pour servir l'application (pas de redirection vers le domaine principal)
+6. Le code détecte automatiquement `quiz.avenirea.com` et redirige vers `/quiz` (page du test)
 
 ### Option 2 : Sous-domaine avec Landing Page
 **URL :** `https://test.avenirea.com`
@@ -53,6 +55,7 @@ Même processus que ci-dessus, mais avec `test` au lieu de `quiz`.
 - ✅ Redirections SEO : Toutes les anciennes URLs redirigent vers `/quiz`
 - ✅ Sitemap mis à jour : `/quiz` a la priorité 1.0
 - ✅ Meta tags optimisés : Canonical URL, Open Graph, Twitter Cards
+- ✅ **Sous-domaine configuré** : `quiz.avenirea.com` redirige automatiquement vers `/quiz` (page du test)
 
 ## 📝 Notes pour Google Ads
 
