@@ -16,33 +16,46 @@ const PersonalityPaymentSuccess = () => {
       try {
         let answers = null;
         
+        console.log('[PaymentSuccess] Page loaded, searching for answers...');
+        console.log('[PaymentSuccess] URL params:', window.location.search);
+        
         // Try to get answers from URL first
         const encodedAnswers = searchParams.get('answers');
         if (encodedAnswers) {
           try {
+            console.log('[PaymentSuccess] Found answers in URL, decoding...');
             const decoded = atob(encodedAnswers);
             answers = JSON.parse(decoded);
+            console.log('[PaymentSuccess] Successfully decoded URL answers:', Object.keys(answers).length, 'steps');
           } catch (e) {
-            console.error("Error decoding URL answers:", e);
+            console.error("[PaymentSuccess] Error decoding URL answers:", e);
           }
         }
         
-        // Fallback: get answers from sessionStorage (more reliable)
-        if (!answers) {
-          const storedAnswers = sessionStorage.getItem('personalityTestAnswers');
+        // Fallback: get answers from localStorage (persists across tabs/windows)
+        if (!answers || Object.keys(answers).length === 0) {
+          console.log('[PaymentSuccess] No answers in URL, checking localStorage...');
+          const storedAnswers = localStorage.getItem('personalityTestAnswers');
           if (storedAnswers) {
             try {
               answers = JSON.parse(storedAnswers);
+              console.log('[PaymentSuccess] Found answers in localStorage:', Object.keys(answers).length, 'steps');
             } catch (e) {
-              console.error("Error parsing stored answers:", e);
+              console.error("[PaymentSuccess] Error parsing stored answers:", e);
             }
+          } else {
+            console.log('[PaymentSuccess] No answers in localStorage either');
           }
         }
         
+        // Final check
         if (!answers || Object.keys(answers).length === 0) {
+          console.error('[PaymentSuccess] No answers found anywhere!');
           setError("Missing answers data. Please complete the test again.");
           return;
         }
+        
+        console.log('[PaymentSuccess] Answers found, proceeding with PDF generation...');
 
         setIsGenerating(true);
         setGenerationProgress(10);
@@ -59,9 +72,9 @@ const PersonalityPaymentSuccess = () => {
         setPdfBlob(pdf);
         setIsGenerating(false);
 
-        // Clean up sessionStorage after successful generation
-        sessionStorage.removeItem('personalityTestAnswers');
-        sessionStorage.removeItem('personalityTestScores');
+        // Clean up localStorage after successful generation
+        localStorage.removeItem('personalityTestAnswers');
+        localStorage.removeItem('personalityTestScores');
 
         // Auto-download
         const url = URL.createObjectURL(pdf);
