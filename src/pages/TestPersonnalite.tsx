@@ -1419,34 +1419,6 @@ const TestPersonnalite = () => {
     }
   };
 
-  const handleExpressTest = () => {
-    // Générer des réponses aléatoires (1-5) pour toutes les questions
-    const randomAnswers: AnswersState = {};
-    
-    QUESTIONS_DATA.forEach((step, stepIndex) => {
-      const stepKey = getStepKey(stepIndex);
-      const stepAnswers: Record<string, number> = {};
-      
-      step.questions.forEach((_, questionIndex) => {
-        const questionId = getQuestionId(stepIndex, questionIndex);
-        // Générer une réponse aléatoire entre 1 et 5
-        const randomAnswer = Math.floor(Math.random() * 5) + 1;
-        stepAnswers[questionId] = randomAnswer;
-      });
-      
-      randomAnswers[stepKey] = stepAnswers;
-    });
-    
-    // Remplir l'état avec les réponses aléatoires
-    setAnswers(randomAnswers);
-    
-    // Aller directement à la dernière étape
-    setCurrentStepIndex(TOTAL_STEPS - 1);
-    
-    // Scroll to top
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
-
 
   useEffect(() => {
     if (stage === "questionnaire" || stage === "complete" || stage === "analyzing" || stage === "results") {
@@ -1653,31 +1625,6 @@ const TestPersonnalite = () => {
                   </div>
                 </div>
               </div>
-              
-              {/* Bouton Test Express - visible uniquement sur la première page */}
-              {currentStepIndex === 0 && (
-                <div className="flex justify-end">
-                  <button
-                    onClick={handleExpressTest}
-                    className="group flex items-center gap-2 rounded-xl border border-emerald-300 bg-emerald-50/50 px-4 py-2.5 text-sm font-semibold text-emerald-700 shadow-sm transition-all hover:border-emerald-400 hover:bg-emerald-100 hover:shadow-md hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 active:translate-y-0"
-                    title="Fill all answers automatically and go directly to the last page"
-                  >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2.5"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      className="h-4 w-4 transition-transform duration-200 group-hover:scale-110 group-hover:rotate-12"
-                    >
-                      <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
-                    </svg>
-                    <span>Test Express</span>
-                  </button>
-                </div>
-              )}
               
               <div className="space-y-5">
                 <h2 className="text-base font-semibold text-slate-900 sm:text-lg">
