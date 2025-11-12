@@ -42,9 +42,10 @@ const App = () => (
           <Route path="/" element={<Index />} />
           <Route path="/test" element={<Test />} />
           <Route path="/test-riasec" element={<TestRiasec />} />
-          {/* Redirect old URL to new USA-friendly URL for SEO */}
-          <Route path="/test-personnalite" element={<Navigate to="/personality-test" replace />} />
-          <Route path="/personality-test" element={<TestPersonnalite />} />
+          {/* Redirect old URLs to new professional URL for Google Ads */}
+          <Route path="/test-personnalite" element={<Navigate to="/quiz" replace />} />
+          <Route path="/personality-test" element={<Navigate to="/quiz" replace />} />
+          <Route path="/quiz" element={<TestPersonnalite />} />
           <Route path="/preview/report" element={<PreviewReport />} />
           <Route path="/resultats-riasec" element={<ResultsRiasec />} />
           <Route path="/payment-success" element={<PaymentSuccess />} />
