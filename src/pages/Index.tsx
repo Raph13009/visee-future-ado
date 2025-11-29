@@ -147,7 +147,7 @@ const Index = () => {
               <source srcSet="/images/professional.webp" type="image/webp" />
               <img
                 src="/images/professional.webp"
-                alt="Bilan de compétences — reconversion professionnelle"
+                alt="Reconversion professionnelle adulte"
                 className="bilan-card-image"
                 width={400}
                 height={300}
@@ -157,7 +157,7 @@ const Index = () => {
             </picture>
             <div className="bilan-card-content">
               <h3 className="bilan-card-title">
-                Bilan de compétences — reconversion professionnelle
+                Reconversion professionnelle adulte
               </h3>
               <button 
                 className="bilan-button"

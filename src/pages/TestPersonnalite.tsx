@@ -1311,6 +1311,59 @@ const TestPersonnalite = () => {
   const [answers, setAnswers] = useState<AnswersState>({});
   const [traitScores, setTraitScores] = useState<Record<string, number> | null>(null);
 
+  // TEMPORARY: Button to access payment page directly (HIDDEN - for dev/testing only)
+  const handleDirectPaymentAccess = async () => {
+    try {
+      // Try to get last test result from Supabase
+      const { data: lastResult, error } = await supabase
+        .from('personality_test_results')
+        .select('detailed_answers, precision_organization_score, empathy_altruism_score, creativity_expression_score, logic_reflection_score, leadership_confidence_score, harmony_cooperation_score, gender')
+        .order('completed_at', { ascending: false })
+        .limit(1)
+        .single();
+
+      if (!error && lastResult && lastResult.detailed_answers) {
+        // Use last result from DB
+        setAnswers(lastResult.detailed_answers as AnswersState);
+        setTraitScores({
+          "Precision & Organization": lastResult.precision_organization_score || 0,
+          "Empathy & Altruism": lastResult.empathy_altruism_score || 0,
+          "Creativity & Expression": lastResult.creativity_expression_score || 0,
+          "Logic & Reflection": lastResult.logic_reflection_score || 0,
+          "Leadership & Confidence": lastResult.leadership_confidence_score || 0,
+          "Harmony & Cooperation": lastResult.harmony_cooperation_score || 0,
+        });
+        setSelectedGender(lastResult.gender || "male");
+      } else {
+        // Fallback: generate fake test data
+        const fakeAnswers: AnswersState = {};
+        
+        QUESTIONS_DATA.forEach((step, stepIndex) => {
+          const stepKey = getStepKey(stepIndex);
+          const stepAnswers: Record<string, number> = {};
+          
+          step.questions.forEach((_, questionIndex) => {
+            const questionId = getQuestionId(stepIndex, questionIndex);
+            const randomAnswer = Math.floor(Math.random() * 5) + 1;
+            stepAnswers[questionId] = randomAnswer;
+          });
+          
+          fakeAnswers[stepKey] = stepAnswers;
+        });
+        
+        const scores = calculateTraitScores(fakeAnswers);
+        setAnswers(fakeAnswers);
+        setTraitScores(scores);
+        setSelectedGender("male");
+      }
+      
+      setStage("results");
+    } catch (err) {
+      console.error("Error loading test data:", err);
+      alert("Error loading test data. Please complete the test normally.");
+    }
+  };
+
   const handleGenderSelection = (gender: "male" | "female") => {
     setSelectedGender(gender);
     // localStorage removed - no cookies/tracking for this page
@@ -1481,6 +1534,18 @@ const TestPersonnalite = () => {
                     ♀ Female
                   </button>
                 </div>
+                {/* TEMPORARY HIDDEN BUTTON - For dev/testing: Direct access to payment page */}
+                {/* Location: After Male/Female buttons, line ~1537 */}
+                {/* To access: Open browser console and type: document.querySelector('[data-dev-payment-btn]').click() */}
+                <button
+                  data-dev-payment-btn
+                  onClick={handleDirectPaymentAccess}
+                  className="fixed bottom-2 right-2 z-50 opacity-5 hover:opacity-100 transition-opacity bg-slate-800 text-white text-xs px-2 py-1 rounded"
+                  style={{ fontSize: '8px', padding: '2px 4px' }}
+                  title="Dev: Direct Payment Access (hidden)"
+                >
+                  🧪
+                </button>
               </div>
             </div>
             <div className="mx-auto w-full max-w-sm">

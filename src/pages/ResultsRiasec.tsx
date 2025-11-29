@@ -1643,28 +1643,6 @@ function ResultsRiasec() {
         {isPro ? (
           // VERSION PROFESSIONNELLE POUR RECONVERSION/PUBLIC
           <div className="mb-16">
-            {/* Image hero sobre - Format petit et compact */}
-            <div className="relative mb-8 rounded-lg overflow-hidden neo-border max-w-xs mx-auto" style={{ border: '3px solid #1A1A1A', boxShadow: '6px 6px 0px #1A1A1A' }}>
-              <picture>
-                <source srcSet="/images/worker.avif" type="image/avif" />
-                <source srcSet="/images/worker.webp" type="image/webp" />
-                <img 
-                  src="/images/worker.webp" 
-                alt="Professionnel en réflexion"
-                className="w-full aspect-square object-cover object-center"
-                loading="eager"
-                  fetchPriority="high"
-                decoding="async"
-                width={400}
-                height={400}
-                onError={(e) => {
-                  // Fallback si l'image n'existe pas encore
-                  (e.target as HTMLImageElement).src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="400"%3E%3Crect fill="%236B8E9E" width="400" height="400"/%3E%3Ctext x="50%25" y="50%25" dominant-baseline="middle" text-anchor="middle" font-family="sans-serif" font-size="24" fill="%23ffffff"%3ETon profil%3C/text%3E%3C/svg%3E';
-                }}
-                />
-              </picture>
-            </div>
-
             {/* Titre principal */}
             <div className="text-center mb-8">
               <h1 className="text-4xl md:text-5xl font-black mb-4" style={{ color: '#1A1A1A' }}>
@@ -2633,7 +2611,7 @@ function ResultsRiasec() {
 
             {/* Accompagnement premium */}
             <Card className="mb-8" style={{ background: '#F5F1E8', border: '2px solid #1A1A1A', boxShadow: '6px 6px 0px #1A1A1A' }}>
-              <CardContent className="p-8 text-center">
+              <CardContent className="p-4 sm:p-8 text-center">
                 <h2 className="text-2xl font-black mb-4 text-gray-900">
                   💼 Accompagnement premium
                 </h2>
@@ -2657,7 +2635,7 @@ function ResultsRiasec() {
                   onClick={() => {
                     window.location.href = 'https://buy.stripe.com/4gMaEYcnO5uFazGc6G7IY03';
                   }}
-                  className="px-8 py-4 text-lg font-bold transition-all"
+                  className="px-4 py-3 text-sm sm:px-8 sm:py-4 sm:text-lg font-bold transition-all w-full sm:w-auto"
                   style={{ background: '#E96A3C', color: '#FFFFFF', border: '3px solid #1A1A1A', boxShadow: '6px 6px 0px #1A1A1A' }}
                 >
                   Démarrer l'accompagnement
