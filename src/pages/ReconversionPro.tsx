@@ -130,7 +130,7 @@ const ReconversionPro = () => {
         <div className="neo-container section-content">
           <div className="max-w-4xl mx-auto">
             <h2 className="section-title mb-8 text-center">
-              Bilan de compétences — reconversion professionnelle
+              Reconversion professionnelle adulte
             </h2>
             
             <div className="space-y-6">
